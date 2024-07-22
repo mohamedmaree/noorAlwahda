@@ -15,11 +15,7 @@
                         <span class="checkmark"></span>
                     </label>
                 </th>
-                <th>{{__('admin.image')}}</th>
                 <th>{{__('admin.name')}}</th>
-                <th>{{__('admin.email')}}</th>
-                <th>{{__('admin.phone')}}</th>
-                <th>{{__('admin.ban_status')}}</th>
                 <th>{{__('admin.control')}}</th>
             </tr>
         </thead>
@@ -32,20 +28,8 @@
                         <span class="checkmark"></span>
                         </label>
                     </td>
-                    <td><img src="{{$enginetypes->image}}" width="30px" height="30px" alt=""></td>
                     <td>{{ $enginetypes->name }}</td>
-                    <td>{{ $enginetypes->email }}</td>
-                    <td>{{ $enginetypes->phone }}</td>
-                    <td>
-                        @if ($enginetypes->is_blocked)
-                        <span class="btn btn-sm round btn-outline-danger">
-                            {{ __('admin.Prohibited') }} <i class="la la-close font-medium-2"></i>
-                        </span>
-                        @else
-                        <span class="btn btn-sm round btn-outline-success">
-                            {{ __('admin.Unspoken') }} <i class="la la-check font-medium-2"></i>
-                        </span>
-                        @endif
+
                     </td>
                     
                     <td class="product-action"> 

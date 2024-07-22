@@ -9,7 +9,7 @@ class BodyTypes extends BaseModel
     const IMAGEPATH = 'bodytypes' ; 
 
     use HasTranslations; 
-    protected $fillable = ['title','description' ,'image'];
-    public $translatable = ['title','description'];
+    protected $fillable = ['name' ,'image'];
+    public $translatable = ['name'];
 
 }

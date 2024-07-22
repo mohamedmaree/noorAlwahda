@@ -17,41 +17,7 @@
         'name' => [
             'input_type' => 'text' , 
             'input_name' => __('admin.name') , 
-        ] ,
-        'phone' => [
-            'input_type' => 'text' , 
-            'input_name' => __('admin.phone') , 
-        ] ,
-        'email' => [
-            'input_type' => 'text' , 
-            'input_name' => __('admin.email') , 
-        ] ,
-        'active' => [
-            'input_type' => 'select' , 
-            'rows'       => [
-              '1' => [
-                'name' => __('admin.activate') , 
-                'id' => 1 , 
-              ],
-              '2' => [
-                'name' => __('admin.dis_activate') , 
-                'id' => 0 , 
-              ],
-            ] , 
-            'input_name' => __('admin.phone_activation_status')  , 
-        ] ,
-        {{-- 'country_id' => [
-            'input_type' => 'select' , 
-            'rows'       => $countries , 
-            'input_name' => __('admin.country') , 
-        ] ,
-        'intro_fqs_category_id' => [
-            'input_type' => 'select' , 
-            'rows'       => $categories , 
-            'row_name'   => 'title' , 
-            'input_name' => __('admin.section') , 
-        ] ,
-         --}}
+        ],
     ]" 
 >
 

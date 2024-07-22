@@ -9,7 +9,7 @@ class FuelTypes extends BaseModel
     const IMAGEPATH = 'fueltypes' ; 
 
     use HasTranslations; 
-    protected $fillable = ['title','description' ,'image'];
-    public $translatable = ['title','description'];
+    protected $fillable = ['name'];
+    public $translatable = ['name'];
 
 }

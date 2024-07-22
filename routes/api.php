@@ -43,7 +43,14 @@ Route::group([
             Route::get('car-brands-with-models'     ,[SettingController::class, 'carBrandsWithModels']);
             Route::get('car-models'                 ,[SettingController::class, 'carModels']);
             Route::get('car-colors'                 ,[SettingController::class, 'carColors']);
-            Route::get('car-years'                 ,[SettingController::class, 'carYears']);
+            Route::get('car-years'                  ,[SettingController::class, 'carYears']);
+            Route::get('body-types'                 ,[SettingController::class, 'bodyTypes']);
+            Route::get('engine-types'               ,[SettingController::class, 'engineTypes']);
+            Route::get('engine-cylinders'           ,[SettingController::class, 'engineCylinders']);
+            Route::get('engine-cylinders'           ,[SettingController::class, 'engineCylinders']);
+            Route::get('transmission-types'         ,[SettingController::class, 'transmissionTypes']);
+            Route::get('drive-types'                ,[SettingController::class, 'driveTypes']);
+            Route::get('fuel-types'                ,[SettingController::class, 'fuelTypes']);
             
          /***************************** SettingController End *****************************/
     });

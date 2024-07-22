@@ -9,7 +9,7 @@ class EngineCylinders extends BaseModel
     const IMAGEPATH = 'enginecylinders' ; 
 
     use HasTranslations; 
-    protected $fillable = ['title','description' ,'image'];
-    public $translatable = ['title','description'];
+    protected $fillable = ['name'];
+    public $translatable = ['name'];
 
 }

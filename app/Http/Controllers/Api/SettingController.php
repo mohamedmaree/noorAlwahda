@@ -45,6 +45,18 @@ use App\Models\CarColors;
 use App\Http\Resources\Api\Settings\CarColorsResource;
 use App\Models\CarYears;
 use App\Http\Resources\Api\Settings\CarYearsResource;
+use App\Models\BodyTypes;
+use App\Http\Resources\Api\Settings\BodyTypesResource;
+use App\Models\EngineTypes;
+use App\Http\Resources\Api\Settings\EngineTypesResource;
+use App\Models\EngineCylinders;
+use App\Http\Resources\Api\Settings\EngineCylindersResource;
+use App\Models\transmissionTypes;
+use App\Http\Resources\Api\Settings\transmissionTypesResource;
+use App\Models\DriveTypes;
+use App\Http\Resources\Api\Settings\DriveTypesResource;
+use App\Models\FuelTypes;
+use App\Http\Resources\Api\Settings\FuelTypesResource;
 
 class SettingController extends Controller {
   use ResponseTrait;
@@ -206,5 +218,33 @@ class SettingController extends Controller {
     return $this->successData( $CarYears);
   }
   
+  public function bodyTypes() {
+    $BodyTypes = BodyTypesResource::collection(BodyTypes::latest()->get());
+    return $this->successData( $BodyTypes);
+  }
+
+  public function engineTypes() {
+    $EngineTypes = EngineTypesResource::collection(EngineTypes::latest()->get());
+    return $this->successData( $EngineTypes);
+  }
   
+  public function engineCylinders() {
+    $EngineCylinders = EngineCylindersResource::collection(EngineCylinders::latest()->get());
+    return $this->successData( $EngineCylinders);
+  }
+  
+  public function transmissionTypes() {
+    $transmissionTypes = transmissionTypesResource::collection(transmissionTypes::latest()->get());
+    return $this->successData( $transmissionTypes);
+  }
+
+  public function driveTypes() {
+    $DriveTypes = DriveTypesResource::collection(DriveTypes::latest()->get());
+    return $this->successData( $DriveTypes);
+  }
+
+  public function fuelTypes() {
+    $FuelTypes = FuelTypesResource::collection(FuelTypes::latest()->get());
+    return $this->successData( $FuelTypes);
+  }
 }

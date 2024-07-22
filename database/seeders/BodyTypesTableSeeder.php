@@ -1,9 +1,8 @@
 <?php
-
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use DB;
 
 class BodyTypesTableSeeder extends Seeder
 {
@@ -12,6 +11,12 @@ class BodyTypesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        DB::table('body_types')->insert([
+            [
+                'name'      => json_encode(['en' => 'sedan'  , 'ar' => 'سيدان' ] , JSON_UNESCAPED_UNICODE)  , 
+            ] , [
+                'name'      => json_encode(['en' => 'hatch bag'  , 'ar' => 'هاتش باج' ] , JSON_UNESCAPED_UNICODE)  , 
+            ] 
+        ]);
     }
 }

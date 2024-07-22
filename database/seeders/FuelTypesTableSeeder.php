@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use DB;
 
 class FuelTypesTableSeeder extends Seeder
 {
@@ -12,6 +12,12 @@ class FuelTypesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        DB::table('fuel_types')->insert([
+            [
+                'name'      => json_encode(['en' => 'gaz'  , 'ar' => 'غاز' ] , JSON_UNESCAPED_UNICODE)  , 
+            ] , [
+                'name'      => json_encode(['en' => 'petrol'  , 'ar' => 'بنزين' ] , JSON_UNESCAPED_UNICODE)  , 
+            ]
+        ]);
     }
 }

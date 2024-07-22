@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('engine_types', function (Blueprint $table) {
             $table->id();
+            $table->text('name');
             $table->timestamps();
         });
     }

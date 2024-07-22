@@ -9,7 +9,7 @@ class DriveTypes extends BaseModel
     const IMAGEPATH = 'drivetypes' ; 
 
     use HasTranslations; 
-    protected $fillable = ['title','description' ,'image'];
-    public $translatable = ['title','description'];
+    protected $fillable = ['name'];
+    public $translatable = ['name'];
 
 }
