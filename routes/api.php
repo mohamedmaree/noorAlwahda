@@ -35,7 +35,17 @@ Route::group([
             Route::get('is-production'               ,[SettingController::class, 'isProduction']);
             Route::get('home'                        ,[SettingController::class, 'Home']);
             Route::post('update-devices'             ,[AuthController::class,  'updateDevices']);
-        /***************************** SettingController End *****************************/
+           
+            Route::get('car-status'                  ,[SettingController::class, 'carStatus']);
+            Route::get('damage-types'                ,[SettingController::class, 'damageTypes']);
+            Route::get('price-types'                 ,[SettingController::class, 'priceTypes']);
+            Route::get('car-brands'                 ,[SettingController::class, 'carBrands']);
+            Route::get('car-brands-with-models'     ,[SettingController::class, 'carBrandsWithModels']);
+            Route::get('car-models'                 ,[SettingController::class, 'carModels']);
+            Route::get('car-colors'                 ,[SettingController::class, 'carColors']);
+            Route::get('car-years'                 ,[SettingController::class, 'carYears']);
+            
+         /***************************** SettingController End *****************************/
     });
 
     

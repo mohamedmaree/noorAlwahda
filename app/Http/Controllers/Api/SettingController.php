@@ -27,8 +27,24 @@ use App\Http\Resources\Api\Settings\CountryWithCitiesResource;
 use App\Http\Resources\Api\Settings\CountryWithRegionsResource;
 use App\Http\Resources\Api\Settings\RegionResource;
 use App\Http\Resources\Api\Settings\RegionWithCitiesResource;
+use Illuminate\Http\Request;
 use App\Models\AppHome;
 use App\Http\Resources\Api\Settings\AppHomeResource;
+use App\Models\CarStatus;
+use App\Http\Resources\Api\Settings\CarStatusResource;
+use App\Models\DamageTypes;
+use App\Http\Resources\Api\Settings\DamageTypesResource;
+use App\Models\PriceTypes;
+use App\Http\Resources\Api\Settings\PriceTypesResource;
+use App\Models\CarBrands;
+use App\Http\Resources\Api\Settings\CarBrandsResource;
+use App\Http\Resources\Api\Settings\CarBrandsWithModelsResource;
+use App\Models\CarModels;
+use App\Http\Resources\Api\Settings\CarModelsResource;
+use App\Models\CarColors;
+use App\Http\Resources\Api\Settings\CarColorsResource;
+use App\Models\CarYears;
+use App\Http\Resources\Api\Settings\CarYearsResource;
 
 class SettingController extends Controller {
   use ResponseTrait;
@@ -148,4 +164,47 @@ class SettingController extends Controller {
     return $this->successData($home);
   }
 
+  public function carStatus() {
+    $CarStatus = CarStatusResource::collection(CarStatus::latest()->get());
+    return $this->successData( $CarStatus);
+  }
+
+  public function damageTypes() {
+    $DamageTypes = DamageTypesResource::collection(DamageTypes::latest()->get());
+    return $this->successData( $DamageTypes);
+  }
+
+  public function priceTypes() {
+    $PriceTypes = PriceTypesResource::collection(PriceTypes::latest()->get());
+    return $this->successData( $PriceTypes);
+  }
+  
+  public function carBrands() {
+    $CarBrands = CarBrandsResource::collection(CarBrands::latest()->get());
+    return $this->successData( $CarBrands);
+  }
+
+  public function carBrandsWithModels() {
+    $CarBrands = CarBrandsWithModelsResource::collection(CarBrands::with('models')->latest()->get());
+    return $this->successData( $CarBrands);
+  }
+
+  public function carModels(Request $request) {
+    $CarModels = CarModelsResource::collection(CarModels::when($request->brand_id,function($q)use($request){
+      return $q->where('car_brand_id',$request->brand_id);
+    })->latest()->get());
+    return $this->successData( $CarModels);
+  }
+
+  public function carColors() {
+    $CarColors = CarColorsResource::collection(CarColors::latest()->get());
+    return $this->successData( $CarColors);
+  }
+
+  public function carYears() {
+    $CarYears = CarYearsResource::collection(CarYears::latest()->get());
+    return $this->successData( $CarYears);
+  }
+  
+  
 }

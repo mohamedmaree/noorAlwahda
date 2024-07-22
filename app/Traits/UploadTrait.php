@@ -111,9 +111,9 @@ trait UploadTrait {
     if(file_exists("storage/images/$directory/default.png")){
       return asset("/storage/images/$directory/default.png");
     }elseif($directory == 'users'){
-      return Cache::get('settings')['default_user']??'';
+      return asset(Cache::get('settings')['default_user']??'');
     }else{
-      return Cache::get('settings')['logo']??'';
+      return asset(Cache::get('settings')['logo']??'');
     }
   }
 
