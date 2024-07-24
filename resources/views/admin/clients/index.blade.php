@@ -41,19 +41,19 @@
             ] , 
             'input_name' => __('admin.ban_status') , 
         ] ,
-        'active' => [
+        'is_approved' => [
             'input_type' => 'select' , 
             'rows'       => [
               '1' => [
-                'name' => __('admin.activate') , 
+                'name' => __('admin.approved') , 
                 'id' => 1 , 
               ],
               '2' => [
-                'name' => __('admin.dis_activate') , 
+                'name' => __('admin.not_approved') , 
                 'id' => 0 , 
               ],
             ] , 
-            'input_name' => __('admin.phone_activation_status')  , 
+            'input_name' => __('admin.is_approved')  , 
         ] ,
         
     ]" 

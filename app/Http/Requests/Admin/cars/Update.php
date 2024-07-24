@@ -14,7 +14,7 @@ class Update extends FormRequest
     public function rules()
     {
         return [
-            'user_id'          => 'required|exists:users,id',
+            'user_id'          => 'nullable|exists:users,id',
             'lot'              => 'required',
             'vin'              => 'required',
             'car_brand_id'             => 'required|exists:car_brands,id',

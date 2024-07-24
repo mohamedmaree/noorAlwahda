@@ -16,7 +16,6 @@
                 </th>
                 <th>{{__('admin.image')}}</th>
                 <th>{{__('admin.name')}}</th>
-                <th>{{ __('admin.view_sub_sections')}}</th>
                 <th>{{__('admin.status')}}</th>
                 <th>{{__('admin.control')}}</th>
             </tr>
@@ -32,7 +31,6 @@
                     </td>
                     <td><img src="{{$category->image}}" width="30px" height="30px" alt=""></td>
                     <td>{{$category->name}}</td>
-                    <td><a href="{{route('admin.categories.index' , ['id' => $category->id])}}">{{__('admin.view')}}</a></td>
                     <td>
                         {!! toggleBooleanView($category , route('admin.model.active' , ['model' =>'Category' , 'id' => $category->id , 'action' => 'is_active'])) !!}
                     </td>

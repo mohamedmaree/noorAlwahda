@@ -693,6 +693,9 @@ return [
     'delete_fueltypes'                 => 'حذف نوع الوقود',
     'delete_group_of_fueltypes'       => 'حذف مجموعة من أنواع الوقود',
 
+    'is_approved'  => 'حالة القبول',
+    'approved'  => 'تم قبولة',
+    'not_approved'  => 'لم يتم قبولة',
     
     #new_comand_translations_here
                 

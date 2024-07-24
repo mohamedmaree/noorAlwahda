@@ -22,6 +22,7 @@ class CarTableSeeder extends Seeder
                 'car_model_id'          => 1, 
                 'car_year_id'           => 1, 
                 'car_color_id'          => 1, 
+                'car_status_id'        => 1,
                 'image'             => 'comfort.png',
             ],[
                 'car_num'     => '20242', 
@@ -32,6 +33,7 @@ class CarTableSeeder extends Seeder
                 'car_model_id'          => 3, 
                 'car_year_id'           => 2, 
                 'car_color_id'          => 2, 
+                'car_status_id'        => 2,
                 'image'             => 'signature.png',
             ]
         ]);

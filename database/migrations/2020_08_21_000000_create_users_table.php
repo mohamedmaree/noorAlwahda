@@ -8,15 +8,16 @@ class CreateUsersTable extends Migration {
   public function up() {
     Schema::create('users', function (Blueprint $table) {
       $table->id();
+      $table->unsignedBigInteger('parent_id')->unsigned()->index()->nullable();
       $table->string('name',50);
       $table->string('country_code',5)->default('965');
       $table->string('phone',15);
       $table->string('email',50);
       $table->string('password',100);
       $table->string('image', 50)->default('default.png');
-      $table->boolean('active')->default(0);
+      $table->boolean('active')->default(1);
       $table->boolean('is_blocked')->default(0);
-      $table->boolean('is_approved')->default(1);
+      $table->boolean('is_approved')->default(0);
       $table->string('lang', 2)->default('ar');
       $table->boolean('is_notify')->default(true);
       $table->string('code', 10)->nullable();

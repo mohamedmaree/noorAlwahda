@@ -36,9 +36,9 @@ class AuthController extends Controller {
 
     public function register(RegisterRequest $request) {
         $user = User::create($request->validated());
-        $user->sendVerificationCode();
+        // $user->sendVerificationCode();
         $userData = new UserResource($user->refresh());
-        return $this->response('success', __('auth.registered'), $userData);
+        return $this->response('success', __('auth.registered_wait_approve'), $userData);
     }
 
     public function activate(ActivateRequest $request) {
@@ -72,10 +72,8 @@ class AuthController extends Controller {
         if (!$user = User::where('phone', $request['phone'])
             ->where('country_code', $request['country_code'])
             ->first()) {
-
             return $this->failMsg(__('auth.failed'));
         }
-
         if (!Hash::check($request->password, $user->password)) {
             return $this->failMsg(__('auth.failed'));
         }
@@ -84,8 +82,11 @@ class AuthController extends Controller {
             return $this->blockedReturn($user);
         }
 
-        if (!$user->active) {
-            return $this->phoneActivationReturn($user);
+        // if (!$user->active) {
+        //     return $this->phoneActivationReturn($user);
+        // }
+        if (!$user->is_approved) {
+            return $this->NeedApproveReturn($user);
         }
 
         return $this->response('success', __('apis.signed'), $user->login());

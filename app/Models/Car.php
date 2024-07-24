@@ -7,7 +7,7 @@ class Car extends BaseModel
 {
     const IMAGEPATH = 'cars' ; 
 
-    protected $fillable = ['car_num','lot','vin','user_id','car_brand_id','car_model_id','car_color_id','car_year_id','image'];
+    protected $fillable = ['car_num','lot','vin','user_id','car_brand_id','car_model_id','car_color_id','car_year_id','car_status_id','image'];
 
     public function user()
     {
@@ -25,6 +25,10 @@ class Car extends BaseModel
     }
     public function carYear(){
         return $this->belongsTo(CarYears::class,'car_year_id','id');
+    }
+
+    public function carStatus(){
+        return $this->belongsTo(CarStatus::class,'car_status_id','id');
     }
 
     public static function boot() {

@@ -103,7 +103,7 @@ class SettingController extends Controller {
   }
 
   public function categories($id = null) {
-    $categories = CategoryResource::collection(Category::where('is_active',1)->where('parent_id', $id)->latest()->get());
+    $categories = CategoryResource::collection(Category::where('is_active',1)->latest()->get());
     return $this->successData($categories);
   }
 

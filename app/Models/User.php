@@ -36,6 +36,7 @@ class User extends Authenticatable
     ];
 
     protected $fillable = [
+        'parent_id',
         'name',
         'country_code',
         'phone',
@@ -61,7 +62,7 @@ class User extends Authenticatable
             && @$searchArray['created_at_max'], function ($q) use ($searchArray) {
             $q->whereDate('created_at', '>=', @$searchArray['created_at_min'])
                 ->whereDate('created_at', '<=', @$searchArray['created_at_max']);
-        })
+            })
             ->when(@$searchArray['created_at_min'], function ($q) use ($searchArray) {
                 $q->whereDate('created_at', @$searchArray['created_at_min']);
             })
@@ -85,6 +86,9 @@ class User extends Authenticatable
             })
             ->when(@$searchArray['active'], function ($q) use ($searchArray) {
                 $q->where('active', @$searchArray['active']);
+            })
+            ->when(@$searchArray['is_approved'] !== null, function ($q) use ($searchArray) {
+                $q->where('is_approved', @$searchArray['is_approved']);
             });
     }
 

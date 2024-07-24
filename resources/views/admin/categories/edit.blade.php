@@ -72,8 +72,22 @@
                                             @endforeach
                                         </div>
 
-                                        
                                         <div class="col-md-12 col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-column">{{__('admin.carstatuses')}}</label>
+                                                <div class="controls">
+                                                    <select name="car_statuses_ids[]" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}" multiple>
+                                                        <option value>{{__('admin.choose_the_region')}}</option>
+                                                        @foreach ($statuses as $status)
+                                                            <option value="{{$status->id}}" {{ in_array($status->id,$category->car_statuses_ids)?'selected':'' }}>{{$status->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        
+                                        {{-- <div class="col-md-12 col-12">
                                             <div class="form-group">
                                                 <label for="first-name-column">{{__('admin.select_main_section')}}</label>
                                                 <input type="hidden" name="parent_id" id="root_category" value="{{ $category->parent_id }}">
@@ -82,7 +96,7 @@
                                                         @include('admin.categories.edit_tree',['mainCategories' => $categories])
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                         <div class="col-12 d-flex justify-content-center mt-3">
                                             <button type="submit" class="btn btn-primary mr-1 mb-1 submit_button">{{__('admin.update')}}</button>

@@ -64,7 +64,7 @@
                                             <div class="form-group">
                                                 <label for="first-name-column">{{__('admin.client')}}</label>
                                                 <div class="controls">
-                                                    <select name="user_id" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}" >
+                                                    <select name="user_id" class="select2 form-control" >
                                                         <option value>{{__('admin.client')}}</option>
                                                         @foreach ($users as $user)
                                                             <option value="{{$user->id}}">{{$user->name}}</option>

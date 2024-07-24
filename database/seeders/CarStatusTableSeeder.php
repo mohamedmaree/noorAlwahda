@@ -14,10 +14,18 @@ class CarStatusTableSeeder extends Seeder
     {
         DB::table('car_statuses')->insert([
             [
-                'name'      => json_encode(['en' => 'Shipped'  , 'ar' => 'تم شحنها' ] , JSON_UNESCAPED_UNICODE)  , 
+                'name'      => json_encode(['en' => 'new cars'  , 'ar' => 'جديدة' ] , JSON_UNESCAPED_UNICODE)  , 
             ] , [
-                'name'      => json_encode(['en' => 'delivered'  , 'ar' => 'تم تسليمها' ] , JSON_UNESCAPED_UNICODE)  , 
-            ]
+                'name'      => json_encode(['en' => 'towing'  , 'ar' => 'تم سحبها' ] , JSON_UNESCAPED_UNICODE)  , 
+            ] , [
+                'name'      => json_encode(['en' => 'warehouse'  , 'ar' => 'تم تخزينها' ] , JSON_UNESCAPED_UNICODE)  , 
+            ] , [
+                'name'      => json_encode(['en' => 'shipped'  , 'ar' => 'تم شحنها' ] , JSON_UNESCAPED_UNICODE)  , 
+            ] , [
+                'name'      => json_encode(['en' => 'in custom'  , 'ar' => ' في الميناء' ] , JSON_UNESCAPED_UNICODE)  , 
+            ] , [
+                'name'      => json_encode(['en' => 'arrived'  , 'ar' => 'تم وصولها' ] , JSON_UNESCAPED_UNICODE)  , 
+            ] 
         ]);
     }
 }

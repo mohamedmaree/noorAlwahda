@@ -18,10 +18,10 @@
             'input_type' => 'text' , 
             'input_name' => __('admin.name') , 
         ] ,
-        'parent_id' => [
-            'input_type' => 'select'          , 
-            'input_name' => __('admin.type') , 
-            'rows'       => $categories , 
+        'car_statuses' => [
+            'input_type' => 'select', 
+            'input_name' => __('admin.carstatuses') , 
+            'rows'       => $statuses , 
         ] ,
     ]" 
 >

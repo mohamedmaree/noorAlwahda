@@ -39,7 +39,11 @@
                     <td><img src="{{$car->image}}" width="30px" height="30px" alt=""></td>
                     <td>{{ $car->lot }}</td>
                     <td>{{ $car->vin }}</td>
-                    <td><a href="{{ route('admin.clients.show',[$car->user_id]) }}">{{ $car->user->name??'' }}</a></td>
+                    <td>
+                        @if($car->user_id)
+                            <a href="{{ route('admin.clients.show',[$car->user_id]) }}">{{ $car->user->name??'' }}</a>
+                        @endif
+                    </td>
                     <td>{{ $car->carBrand->name??'' }}</td>
                     <td>{{ $car->carModel->name??'' }}</td>
                     <td>{{ $car->carColor->name??'' }}</td>

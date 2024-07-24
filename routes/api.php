@@ -3,7 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ChatController;
 use App\Http\Controllers\Api\SettingController;
-use App\Http\Controllers\Api\SettlementController;
+use App\Http\Controllers\Api\CarController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
@@ -51,6 +51,8 @@ Route::group([
             Route::get('transmission-types'         ,[SettingController::class, 'transmissionTypes']);
             Route::get('drive-types'                ,[SettingController::class, 'driveTypes']);
             Route::get('fuel-types'                ,[SettingController::class, 'fuelTypes']);
+            Route::get('available-cars'            ,[CarController::class, 'availableCars']);
+            Route::get('cars-by-category'            ,[CarController::class, 'carsByCategory']);
             
          /***************************** SettingController End *****************************/
     });

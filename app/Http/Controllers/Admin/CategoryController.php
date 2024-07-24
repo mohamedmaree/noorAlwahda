@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\Admin\categories\Store;
 use App\Http\Requests\Admin\categories\Update;
+use App\Models\CarStatus ;
 
 
 class CategoryController extends Controller
@@ -17,12 +18,12 @@ class CategoryController extends Controller
     public function index($id = null)
     {
         if (request()->ajax()) {
-            $categories = Category::where('parent_id' , $id)->search(request()->searchArray)->paginate(30);
+            $categories = Category::search(request()->searchArray)->paginate(30);
             $html = view('admin.categories.table' ,compact('categories'))->render() ;
             return response()->json(['html' => $html]);
         }
-        $categories = Category::latest()->get();
-        return view('admin.categories.index' ,compact('categories' , 'id'));
+        $statuses = CarStatus::latest()->get();
+        return view('admin.categories.index' ,get_defined_vars());
     }
 
     public function export() 
@@ -32,8 +33,8 @@ class CategoryController extends Controller
 
     public function create($id = null)
     {
-        $categories = Category::where('parent_id',null)->latest()->get();
-        return view('admin.categories.create' , compact('categories' , 'id'));
+        $statuses = CarStatus::latest()->get();
+        return view('admin.categories.create' , get_defined_vars());
     }
 
     public function store(Store $request)
@@ -45,8 +46,8 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::findOrFail($id);
-        $categories = Category::where('parent_id',null)->latest()->get();
-        return view('admin.categories.edit' , ['category' => $category , 'categories' => $categories]);
+        $statuses = CarStatus::latest()->get();
+        return view('admin.categories.edit' ,get_defined_vars());
     }
 
     public function update(Update $request, $id)
@@ -59,8 +60,8 @@ class CategoryController extends Controller
      public function show($id)
      {
          $category = Category::findOrFail($id);
-         $categories = Category::where('parent_id',null)->latest()->get();
-         return view('admin.categories.show' , ['category' => $category , 'categories' => $categories]);
+         $statuses = CarStatus::latest()->get();
+         return view('admin.categories.show' , get_defined_vars());
      }
 
     public function destroy($id)

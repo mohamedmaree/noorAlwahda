@@ -33,5 +33,6 @@ return [
   'blocked'                 => 'blocked',
   'account_deleted'                 => 'Account Deleted successfully',
   'try_again' => 'Your Session have expired. Try again.',
-
+  'not_approved' => 'This account has not been Approved yet',
+  'registered_wait_approve' => 'The data has been sent successfully and is awaiting management review',
 ];

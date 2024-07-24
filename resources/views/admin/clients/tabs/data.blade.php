@@ -75,17 +75,6 @@
         </div>
     </div>
 
-    <div class="col-md-6 col-12">
-        <div class="form-group">
-            <label for="first-name-column">{{__('admin.activation')}} :</label>
-            {{-- <div class="controls"> --}}
-                <label class="switch">
-                    <input name="active" type="checkbox" value="1" {{$row->active == 1 ? 'checked' : ''}} disabled/>
-                    <span class="slider round"></span>
-                </label>
-            {{-- </div> --}}
-        </div>
-    </div>
 
    
     <div class="col-12 d-flex justify-content-center mt-3">

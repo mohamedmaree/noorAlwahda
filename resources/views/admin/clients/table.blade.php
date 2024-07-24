@@ -20,7 +20,7 @@
                 <th>{{ __('admin.email') }}</th>
                 <th>{{ __('admin.phone') }}</th>
                 <th>{{ __('admin.ban_status') }}</th>
-                <th>{{ __('admin.activation') }}</th>
+                <th>{{ __('admin.is_approved') }}</th>
                 <th>{{ __('admin.control') }}</th>
             </tr>
         </thead>
@@ -38,28 +38,10 @@
                 <td>{{ $row->email }}</td>
                 <td>{{ $row->phone }}</td>
                 <td>
-                    @if ($row->is_blocked)
-                        <span class="btn btn-sm round btn-outline-danger">
-                            {{ __('admin.Prohibited')  }} <i class="la la-close font-medium-2"></i>
-                        </span>
-                        {{-- <span class="btn btn-sm round btn-outline-success block_user" data-id="{{$row->id}}">{{__('admin.unblock')}}</span> --}}
-                    @else
-                        <span class="btn btn-sm round btn-outline-success">
-                            {{ __('admin.Unspoken') }} <i class="la la-check font-medium-2"></i>
-                        </span>
-                        {{-- <span class="btn btn-sm round btn-outline-danger block_user" data-id="{{$row->id}}">{{__('admin.block')}}</span> --}}
-                    @endif
+                    {!! toggleBooleanView($row , route('admin.model.active' , ['model' =>'User' , 'id' => $row->id , 'action' => 'is_blocked'])) !!}
                 </td>
                 <td>
-                    @if ($row->active)
-                    <span class="btn btn-sm round btn-outline-success">
-                        {{ __('admin.activate') }} <i class="la la-close font-medium-2"></i>
-                    </span>
-                    @else
-                    <span class="btn btn-sm round btn-outline-danger">
-                        {{ __('admin.dis_activate') }} <i class="la la-check font-medium-2"></i>
-                    </span>
-                    @endif
+                    {!! toggleBooleanView($row , route('admin.model.active' , ['model' =>'User' , 'id' => $row->id , 'action' => 'is_approved'])) !!}
                 </td>
                 <td class="product-action">
                     <span class="text-primary"><a href="{{ route('admin.clients.show', ['id' => $row->id]) }}" class="btn btn-warning btn-sm"><i class="feather icon-eye"></i> {{ __('admin.show') }}</a></span>

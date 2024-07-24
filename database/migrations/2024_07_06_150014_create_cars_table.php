@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('car_model_id')->nullable();
             $table->integer('car_year_id')->nullable();
             $table->integer('car_color_id')->nullable();
-
+            $table->integer('car_status_id')->nullable();
             // $table->string('car_letters')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();

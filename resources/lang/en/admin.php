@@ -507,4 +507,7 @@ return [
     'client'   => 'Client',
     'lot'   => 'Lot',
     'vin'   => 'Vin',
+    'is_approved'  => 'Is Approved?',
+    'approved'  => 'Approved',
+    'not_approved'  => 'Not Approved',
 ];

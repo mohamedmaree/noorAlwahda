@@ -97,7 +97,7 @@
                                     </div>
 
 
-                                    <div class="col-md-6 col-12">
+                                    {{-- <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="first-name-column">{{__('admin.activation')}}</label>
                                             <div class="controls">
@@ -107,7 +107,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">

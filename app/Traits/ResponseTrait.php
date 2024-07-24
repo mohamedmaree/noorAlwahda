@@ -56,6 +56,11 @@ trait ResponseTrait {
     return $this->response('needActive', __('auth.not_active'),$data);
   }
 
+  public function NeedApproveReturn($user) {
+    $user->logout();
+    return $this->response('needApprove', __('auth.not_approved'));
+  }
+
   public function failMsg($msg) {
     return $this->response('fail', $msg);
   }

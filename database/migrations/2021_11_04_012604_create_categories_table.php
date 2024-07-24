@@ -18,8 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->text('name');
             $table->text('image')->nullable();
             $table->boolean('is_active')->default(1);
-            $table -> unsignedBigInteger( 'parent_id' ) -> unsigned() -> index()->nullable();
-            $table -> foreign( 'parent_id' ) -> references( 'id' ) -> on( 'categories' )-> onDelete( 'cascade' );
+            $table->json('car_statuses_ids')->nullable();
             $table->timestamps();
         });
     }

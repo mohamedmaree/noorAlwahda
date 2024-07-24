@@ -20,10 +20,13 @@ class CheckAuthStatus {
       return $this->blockedReturn($user);
     }
 
-    if (!$user->active) {
-      return $this->phoneActivationReturn($user);
-    }
+    // if (!$user->active) {
+    //   return $this->phoneActivationReturn($user);
+    // }
 
+    if ($user->is_approved) {
+      return $this->NeedApproveReturn($user);
+    }
     return $next($request);
   }
 }
