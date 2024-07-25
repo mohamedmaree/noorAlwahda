@@ -697,7 +697,20 @@ return [
     'approved'  => 'تم قبولة',
     'not_approved'  => 'لم يتم قبولة',
     
+    
+    'shippngpricelist'                        => 'قائمة أسعار الشحن',
+    'shippngpricelists'                       => 'قوائم أسعار الشحن',
+    'add_shippngpricelist_page'               => 'صفحة اضافة قائمة أسعار الشحن',
+    'add_shippngpricelist'                    => 'اضافة قائمة أسعار الشحن',
+    'update_shippngpricelist_page'            => 'صفحة تحديث قائمة أسعار الشحن',
+    'update_shippngpricelist'                 => 'تحديث قائمة أسعار الشحن',
+    'show_shippngpricelist_page'              => 'صفحة عرض قائمة أسعار الشحن',
+    'delete_shippngpricelist'                 => 'حذف قائمة أسعار الشحن',
+    'delete_group_of_shippngpricelists'       => 'حذف مجموعة من قوائم أسعار الشحن',
+
+    
     #new_comand_translations_here
+                
                 
                 
                 

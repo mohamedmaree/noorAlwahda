@@ -49,6 +49,8 @@ class DatabaseSeeder extends Seeder
         $this->call(FuelTypesTableSeeder::class);
 
         $this->call(CarTableSeeder::class);
+        $this->call(ShippngPriceListTableSeeder::class);
+        
         
     }
 }

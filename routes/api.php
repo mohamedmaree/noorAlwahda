@@ -53,6 +53,11 @@ Route::group([
             Route::get('fuel-types'                ,[SettingController::class, 'fuelTypes']);
             Route::get('available-cars'            ,[CarController::class, 'availableCars']);
             Route::get('cars-by-category'            ,[CarController::class, 'carsByCategory']);
+            Route::get('car-details/{car?}'           ,[CarController::class, 'carDetails']);
+            Route::get('cars-by-user'               ,[CarController::class, 'carsByUser']);
+            Route::get('search-cars'            ,[CarController::class, 'searchCars']);
+            Route::get('shipping-lists'            ,[CarController::class, 'shippingLists']);
+            Route::get('shipping-list-details/{shippingList?}'  ,[CarController::class, 'shippingListDetails']);
             
          /***************************** SettingController End *****************************/
     });
@@ -76,7 +81,7 @@ Route::group([
    
 
 
-    Route::group(['middleware' => ['auth:sanctum', 'is-active']], function () {
+    Route::group(['middleware' => ['auth:sanctum']], function () {
         /***************************** AuthController  Start *****************************/
             Route::get('profile'                                  ,[AuthController::class,       'getProfile']);
             Route::put('update-profile'                           ,[AuthController::class,       'updateProfile']);
@@ -98,6 +103,10 @@ Route::group([
         /***************************** SettlementController start *****************************/
             Route::post('settlement-request'                      ,[SettlementController::class, 'settlementRequest']);
         /***************************** SettlementController end *****************************/
+
+        /***************************** CarController start *****************************/
+        Route::get('my-cars'            ,[CarController::class, 'myCars']);
+        /***************************** CarController end *****************************/
 
         /***************************** ChatController start *****************************/
             Route::get('create-room'                       ,[ChatController::class, 'createRoom']);

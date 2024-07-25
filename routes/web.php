@@ -2589,7 +2589,69 @@ Route::group([
             'title' => 'delete_group_of_fueltypes'
         ]);
     /*------------ end Of fueltypes ----------*/
+    
+    /*------------ start Of shippngpricelists ----------*/
+        Route::get('shippngpricelists', [
+            'uses'      => 'ShippngPriceListController@index',
+            'as'        => 'shippngpricelists.index',
+            'title'     => 'shippngpricelists',
+            'icon'      => '<i class="feather icon-image"></i>',
+            'type'      => 'parent',
+            'sub_route' => false,
+            'child'     => ['shippngpricelists.create', 'shippngpricelists.store','shippngpricelists.edit', 'shippngpricelists.update', 'shippngpricelists.show', 'shippngpricelists.delete'  ,'shippngpricelists.deleteAll' ,]
+        ]);
+
+        # shippngpricelists store
+        Route::get('shippngpricelists/create', [
+            'uses'  => 'ShippngPriceListController@create',
+            'as'    => 'shippngpricelists.create',
+            'title' => 'add_shippngpricelist_page'
+        ]);
+
+
+        # shippngpricelists store
+        Route::post('shippngpricelists/store', [
+            'uses'  => 'ShippngPriceListController@store',
+            'as'    => 'shippngpricelists.store',
+            'title' => 'add_shippngpricelist'
+        ]);
+
+        # shippngpricelists update
+        Route::get('shippngpricelists/{id}/edit', [
+            'uses'  => 'ShippngPriceListController@edit',
+            'as'    => 'shippngpricelists.edit',
+            'title' => 'update_shippngpricelist_page'
+        ]);
+
+        # shippngpricelists update
+        Route::put('shippngpricelists/{id}', [
+            'uses'  => 'ShippngPriceListController@update',
+            'as'    => 'shippngpricelists.update',
+            'title' => 'update_shippngpricelist'
+        ]);
+
+        # shippngpricelists show
+        Route::get('shippngpricelists/{id}/Show', [
+            'uses'  => 'ShippngPriceListController@show',
+            'as'    => 'shippngpricelists.show',
+            'title' => 'show_shippngpricelist_page'
+        ]);
+
+        # shippngpricelists delete
+        Route::delete('shippngpricelists/{id}', [
+            'uses'  => 'ShippngPriceListController@destroy',
+            'as'    => 'shippngpricelists.delete',
+            'title' => 'delete_shippngpricelist'
+        ]);
+        #delete all shippngpricelists
+        Route::post('delete-all-shippngpricelists', [
+            'uses'  => 'ShippngPriceListController@destroyAll',
+            'as'    => 'shippngpricelists.deleteAll',
+            'title' => 'delete_group_of_shippngpricelists'
+        ]);
+    /*------------ end Of shippngpricelists ----------*/
     #new_routes_here
+                     
                      
                      
                      
