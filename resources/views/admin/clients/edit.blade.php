@@ -109,17 +109,64 @@
                                         </div>
                                     </div> --}}
 
+
+                                    <div class="col-md-12 col-12">
+                                        <div class="form-group">
+                                            <label for="first-name-column">{{__('admin.main_account')}}</label>
+                                            <div class="controls">
+                                                <select name="parent_id" class="select2 form-control"  >
+                                                    <option value>{{__('admin.main_account')}}</option>
+                                                    @foreach ($users as $user)
+                                                        <option value="{{$user->id}}" {{ $row->parent_id == $user->id?'selected':'' }}>{{$user->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 col-12">
+                                        <div class="form-group">
+                                            <label for="first-name-column">{{__('admin.address')}}</label>
+                                            <div class="controls">
+                                                <input type="text" name="address" class="form-control" value="{{ $row->address }}"  >
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {{-- <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="first-name-column">{{__('admin.activation')}}</label>
+                                            <div class="controls">
+                                                <select name="active" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}" >
+                                                    <option value="1">{{__('admin.activate')}}</option>
+                                                    <option value="0">{{__('admin.dis_activate')}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div> --}}
+
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="first-name-column">{{__('admin.ban_status')}} :</label>
                                             {{-- <div class="controls"> --}}
                                                 <label class="switch">
-                                                    <input name="is_blocked" type="checkbox" value="1" {{$row->is_blocked == 1 ? 'checked' : ''}}/>
+                                                    <input name="is_blocked" type="checkbox"  value="1" {{$row->is_blocked == 1 ? 'checked' : ''}}/>
                                                     <span class="slider round"></span>
                                                 </label>
                                             {{-- </div> --}}
                                         </div>
                                     </div>
+
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <label for="account-name">{{ __('admin.block_reason') }}</label>
+                                                <textarea class="form-control" name="block_reason" id="" cols="30" rows="10"
+                                                    placeholder="{{ __('admin.block_reason') }}">{{ $row->block_reason }}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="col-12 d-flex justify-content-center mt-3">
                                         <button type="submit" class="btn btn-primary mr-1 mb-1 submit_button">{{__('admin.update')}}</button>
                                         <a href="{{ url()->previous() }}" type="reset" class="btn btn-outline-warning mr-1 mb-1">{{__('admin.back')}}</a>

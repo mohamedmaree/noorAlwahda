@@ -4,13 +4,8 @@ namespace App\Http\Resources\Api;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserResource extends JsonResource {
-  private $token               = '';
+class UsersResource extends JsonResource {
 
-  public function setToken($value) {
-    $this->token = $value;
-    return $this;
-  }
 
   public function toArray($request) {
     return [
@@ -23,9 +18,9 @@ class UserResource extends JsonResource {
       'full_phone'          => $this->full_phone,
       'address'             => $this->address,
       'image'               => $this->image,
-      'lang'                => $this->lang,
-      'is_notify'           => $this->is_notify,
-      'token'               => $this->token,
+      'assigned_cars'       => $this->cars->count(),
+      'is_blocked'          => $this->is_blocked,
+      'block_reason'        => $this->block_reason,
     ];
   }
 }

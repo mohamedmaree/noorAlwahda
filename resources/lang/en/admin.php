@@ -510,4 +510,9 @@ return [
     'is_approved'  => 'Is Approved?',
     'approved'  => 'Approved',
     'not_approved'  => 'Not Approved',
+    'content'   => ' content',
+    'sub_accounts'  => 'Sub Accounts',
+    'block_reason'  => 'Block Reason',
+    'main_account'  => 'Main Account',
+    
 ];

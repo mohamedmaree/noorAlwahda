@@ -537,7 +537,7 @@ Route::group([
             ],
         ]);
 
-        Route::get('clients', [
+        Route::get('clients-show/{id?}', [
             'uses'  => 'ClientController@index',
             'as'    => 'clients.index',
             'icon'  => '<i class="feather icon-users"></i>',
@@ -2650,7 +2650,69 @@ Route::group([
             'title' => 'delete_group_of_shippngpricelists'
         ]);
     /*------------ end Of shippngpricelists ----------*/
+    
+    /*------------ start Of news ----------*/
+        Route::get('news', [
+            'uses'      => 'NewsController@index',
+            'as'        => 'news.index',
+            'title'     => 'news',
+            'icon'      => '<i class="feather icon-image"></i>',
+            'type'      => 'parent',
+            'sub_route' => false,
+            'child'     => ['news.create', 'news.store','news.edit', 'news.update', 'news.show', 'news.delete'  ,'news.deleteAll' ,]
+        ]);
+
+        # news store
+        Route::get('news/create', [
+            'uses'  => 'NewsController@create',
+            'as'    => 'news.create',
+            'title' => 'add_news_page'
+        ]);
+
+
+        # news store
+        Route::post('news/store', [
+            'uses'  => 'NewsController@store',
+            'as'    => 'news.store',
+            'title' => 'add_news'
+        ]);
+
+        # news update
+        Route::get('news/{id}/edit', [
+            'uses'  => 'NewsController@edit',
+            'as'    => 'news.edit',
+            'title' => 'update_news_page'
+        ]);
+
+        # news update
+        Route::put('news/{id}', [
+            'uses'  => 'NewsController@update',
+            'as'    => 'news.update',
+            'title' => 'update_news'
+        ]);
+
+        # news show
+        Route::get('news/{id}/Show', [
+            'uses'  => 'NewsController@show',
+            'as'    => 'news.show',
+            'title' => 'show_news_page'
+        ]);
+
+        # news delete
+        Route::delete('news/{id}', [
+            'uses'  => 'NewsController@destroy',
+            'as'    => 'news.delete',
+            'title' => 'delete_news'
+        ]);
+        #delete all news
+        Route::post('delete-all-news', [
+            'uses'  => 'NewsController@destroyAll',
+            'as'    => 'news.deleteAll',
+            'title' => 'delete_group_of_news'
+        ]);
+    /*------------ end Of news ----------*/
     #new_routes_here
+                     
                      
                      
                      

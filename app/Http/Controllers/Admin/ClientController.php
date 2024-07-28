@@ -29,17 +29,18 @@ class ClientController extends Controller {
 
     public function index($id = null) {
         if (request()->ajax()) {
-            $rows = User::search(request()->searchArray)->paginate(30);
+            $rows = User::where('parent_id' , $id)->search(request()->searchArray)->paginate(30);
             $html = view('admin.clients.table', compact('rows'))->render();
             return response()->json(['html' => $html]);
         }
-        return view('admin.clients.index');
+        return view('admin.clients.index',get_defined_vars());
     }
 
     public function create() {
         $supported_countries = SiteSetting::where('key','countries')->first()->value??'';
         $supported_countries = json_decode($supported_countries);
         $countries = Country::whereIn('id',$supported_countries??[])->orderBy('id','ASC')->get();
+        $users = User::where('parent_id',null)->latest()->get();
         return view('admin.clients.create',get_defined_vars());
     }
 
@@ -55,6 +56,7 @@ class ClientController extends Controller {
         $supported_countries = SiteSetting::where('key','countries')->first()->value??'';
         $supported_countries = json_decode($supported_countries);
         $countries = Country::whereIn('id',$supported_countries??[])->orderBy('id','ASC')->get();
+        $users = User::where('parent_id',null)->where('id','!=',$row->id)->latest()->get();
         return view('admin.clients.edit',get_defined_vars());
     }
 
@@ -89,6 +91,7 @@ class ClientController extends Controller {
         $supported_countries = SiteSetting::where('key','countries')->first()->value??'';
         $supported_countries = json_decode($supported_countries);
         $countries = Country::whereIn('id',$supported_countries??[])->orderBy('id','ASC')->get();
+        $users = User::where('parent_id',null)->where('id','!=',$row->id)->latest()->get();
         return view('admin.clients.show', get_defined_vars());
     }
     public function showfinancial($id) {

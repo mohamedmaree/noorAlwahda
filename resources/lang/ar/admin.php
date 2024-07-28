@@ -709,7 +709,23 @@ return [
     'delete_group_of_shippngpricelists'       => 'حذف مجموعة من قوائم أسعار الشحن',
 
     
+    
+    'news'                        => 'خبر',
+    'news'                       => 'الأخبار',
+    'add_news_page'               => 'صفحة اضافة خبر',
+    'add_news'                    => 'اضافة خبر',
+    'update_news_page'            => 'صفحة تحديث خبر',
+    'update_news'                 => 'تحديث خبر',
+    'show_news_page'              => 'صفحة عرض خبر',
+    'delete_news'                 => 'حذف خبر',
+    'delete_group_of_news'       => 'حذف مجموعة من الأخبار',
+
+    'content'   => ' المحتوي',
+    'sub_accounts'  => 'الحسابات الفرعية',
+    'block_reason'  => 'سبب الحظر',
+    'main_account'  => 'الحساب الرئيسي',
     #new_comand_translations_here
+                
                 
                 
                 

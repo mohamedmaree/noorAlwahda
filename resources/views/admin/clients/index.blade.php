@@ -96,7 +96,7 @@
     <script src="{{asset('admin/app-assets/js/scripts/extensions/sweet-alerts.js')}}"></script>
     @include('admin.shared.deleteAll')
     @include('admin.shared.deleteOne')
-    @include('admin.shared.filter_js' , [ 'index_route' => url('admin/clients')])
+    @include('admin.shared.filter_js' , [ 'index_route' => url('admin/clients-show/'.$id)])
     @include('admin.shared.notify')
     <script>
       $(document).ready(function(){

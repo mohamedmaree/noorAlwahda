@@ -32,6 +32,9 @@ class Update extends FormRequest
             'password' => ['nullable', 'min:6'],
             'image'   => ['nullable', 'image'],
             'active'          => 'nullable',
+            'address'  =>'nullable',
+            'block_reason'  =>'nullable',
+            'parent_id'  =>'nullable|exists:users,id',
         ];
     }
 }

@@ -4,6 +4,8 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ChatController;
 use App\Http\Controllers\Api\SettingController;
 use App\Http\Controllers\Api\CarController;
+use App\Http\Controllers\Api\UserController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::group([
@@ -51,6 +53,7 @@ Route::group([
             Route::get('transmission-types'         ,[SettingController::class, 'transmissionTypes']);
             Route::get('drive-types'                ,[SettingController::class, 'driveTypes']);
             Route::get('fuel-types'                ,[SettingController::class, 'fuelTypes']);
+            Route::get('news'                      ,[SettingController::class, 'news']);
             Route::get('available-cars'            ,[CarController::class, 'availableCars']);
             Route::get('cars-by-category'            ,[CarController::class, 'carsByCategory']);
             Route::get('car-details/{car?}'           ,[CarController::class, 'carDetails']);
@@ -106,6 +109,11 @@ Route::group([
 
         /***************************** CarController start *****************************/
         Route::get('my-cars'            ,[CarController::class, 'myCars']);
+        Route::get('my-subaccounts'     ,[UserController::class, 'mySubaccounts']);
+        Route::get('account-details/{user?}'     ,[UserController::class, 'accountDetails']);
+        Route::post('create-subcustomer'                      ,[UserController::class, 'createSubCustomer']);
+        Route::put('update-subcustomer'               ,[UserController::class,       'updateSubcustomer']);
+        Route::patch('change-block-status'            ,[UserController::class,       'changeBlockStatus']);
         /***************************** CarController end *****************************/
 
         /***************************** ChatController start *****************************/

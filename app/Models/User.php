@@ -36,15 +36,18 @@ class User extends Authenticatable
     ];
 
     protected $fillable = [
+        'customer_num',
         'parent_id',
         'name',
         'country_code',
         'phone',
         'email',
         'password',
+        'address',
         'image',
         'active',
         'is_blocked',
+        'block_reason',
         'is_approved',
         'lang',
         'is_notify',
@@ -261,14 +264,31 @@ class User extends Authenticatable
         return $this->hasMany(Order::class,'user_id','id');
     }
 
+    public function cars()
+    {
+        return $this->hasMany(Car::class,'user_id','id');
+    }
+
+    public function childes(){
+        return $this->hasMany(self::class,'parent_id');
+    }
+
+    public function parent(){
+        return $this->belongsTo(self::class,'parent_id');
+    }
+
     public static function boot()
     {
         parent::boot();
         /* creating, created, updating, updated, deleting, deleted, forceDeleted, restored */
-
+        self::creating(function ($model) {
+            $lastId = self::max('id') ?? 0;
+            $model->customer_num = date('Y') . ($lastId + 1);
+        });
         static::deleted(function ($model) {
             $model->deleteFile($model->attributes['image'], 'users');
         });
     }
+
 
 }

@@ -17,6 +17,7 @@
                 </th>
                 <th>{{ __('admin.image') }}</th>
                 <th>{{ __('admin.name') }}</th>
+                <th>{{ __('admin.sub_accounts') }}</th>
                 <th>{{ __('admin.email') }}</th>
                 <th>{{ __('admin.phone') }}</th>
                 <th>{{ __('admin.ban_status') }}</th>
@@ -35,6 +36,7 @@
                 </td>
                 <td><img src="{{$row->image}}" width="30px" height="30px" alt=""></td>
                 <td>{{ $row->name }}</td>
+                <td><a href="{{route('admin.clients.index' , ['id' => $row->id])}}">{{__('admin.view')}}</a></td>
                 <td>{{ $row->email }}</td>
                 <td>{{ $row->phone }}</td>
                 <td>

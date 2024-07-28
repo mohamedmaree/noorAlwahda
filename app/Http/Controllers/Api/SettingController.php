@@ -57,6 +57,8 @@ use App\Models\DriveTypes;
 use App\Http\Resources\Api\Settings\DriveTypesResource;
 use App\Models\FuelTypes;
 use App\Http\Resources\Api\Settings\FuelTypesResource;
+use App\Models\News;
+use App\Http\Resources\Api\Settings\NewsResource;
 
 class SettingController extends Controller {
   use ResponseTrait;
@@ -247,4 +249,10 @@ class SettingController extends Controller {
     $FuelTypes = FuelTypesResource::collection(FuelTypes::latest()->get());
     return $this->successData( $FuelTypes);
   }
+
+  public function news() {
+    $news = NewsResource::collection(News::latest()->get());
+    return $this->successData( $news);
+  }
+  
 }

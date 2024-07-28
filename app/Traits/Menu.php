@@ -15,27 +15,27 @@ trait menu {
         'name'  => __('admin.users'),
         'count' => \App\Models\User::count(),
         'icon'  => 'icon-users',
-        'url'   => url('admin/clients'),
+        'url'   => url('admin/clients-show'),
       ], [
         'name'  => __('admin.active_users'),
         'count' => \App\Models\User::where('active', 1)->count(),
         'icon'  => 'icon-users',
-        'url'   => url('admin/clients'),
+        'url'   => url('admin/clients-show'),
       ], [
         'name'  =>  __('admin.dis_active_users'),
         'count' => \App\Models\User::where('active', 0)->count(),
         'icon'  => 'icon-users',
-        'url'   => url('admin/clients'),
+        'url'   => url('admin/clients-show'),
       ], [
         'name'  => __('admin.Unspoken_users'),
         'count' => \App\Models\User::where('is_blocked', 0)->count(),
         'icon'  => 'icon-users',
-        'url'   => url('admin/clients'),
+        'url'   => url('admin/clients-show'),
       ], [
         'name'  => __('admin.Prohibited_users'),
         'count' => \App\Models\User::where('is_blocked', 1)->count(),
         'icon'  => 'icon-users',
-        'url'   => url('admin/clients'),
+        'url'   => url('admin/clients-show'),
       ], [
         'name'  => __('admin.socials'),
         'count' => \App\Models\Social::count(),
