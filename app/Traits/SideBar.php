@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Permission;
+use App\Models\CarStatus;
 
 trait  SideBar
 {
@@ -48,7 +49,7 @@ trait  SideBar
                                 $activeLi = 'has-sub sidebar-group-active open';
                                 $active = 'active';
                             }
-
+                            
                             $html .= '<li class="nav-item '.$activeLi.'"><a href="javascript:void(0);">' . $value->getAction()['icon'] . '<span class="menu-title" data-i18n="Dashboard">' . __('admin.'.$value->getAction()['title']) . '</span></a>
                                 <ul class="menu-content">';
 
@@ -59,9 +60,14 @@ trait  SideBar
                                 if(isset($parts[0]) && isset($words[1])){
                                     $active = $parts[0] == $words[1] ? 'active' : '';
                                 }
-                                    // $active = ('admin.'.$child) == Route::currentRouteName() ? 'active' : '';
+                                $active = ('admin.'.$child) == Route::currentRouteName() ? 'active' : '';
                                 if (isset($routes_data['"admin.' . $child . '"']) && $routes_data['"admin.' . $child . '"']['title'] && $routes_data['"admin.' . $child . '"']['icon']){
-                                    $html .=  '<li class="'. $active.'"><a href="' . route('admin.'.$child) . '"><i class="feather icon-circle"></i>'. __('admin.'.$routes_data['"admin.' . $child . '"']['title']) . ' </a></li>';
+                                    if(str_contains($routes_data['"admin.' . $child . '"']['name'],'admin.cars.carsByStatus.')){
+                                        $carStatus = CarStatus::where('name->en', $routes_data['"admin.' . $child . '"']['title'])->first();
+                                        $html .=  '<li class="'. $active.'"><a href="' . route('admin.'.$child) . '"><i class="feather icon-circle"></i>'. $carStatus->name . ' </a></li>';
+                                    }else{
+                                        $html .=  '<li class="'. $active.'"><a href="' . route('admin.'.$child) . '"><i class="feather icon-circle"></i>'. __('admin.'.$routes_data['"admin.' . $child . '"']['title']) . ' </a></li>';
+                                    }
                                 }
                             }
 
@@ -72,7 +78,12 @@ trait  SideBar
                     if (in_array($value->getName(), $my_routes)) {
                         $active = $value->getName() == Route::currentRouteName() ? 'active' : '';
                         $activeLi ="";
-                        $html .= '<li class="nav-item '.$active.'"><a href="' . route($value->getName()) . '"> ' . $value->getAction()['icon'] . '<span class="menu-title" data-i18n="Dashboard">' . __('admin.'.$value->getAction()['title']) . '</span> <span class="link-text d-flex align-items-center"></a></li>';
+                        if(str_contains($value->getAction()['as'],'admin.cars.carsByStatus.')){
+                            $carStatus = CarStatus::where('name->en', $value->getAction()['title'])->first();
+                            $html .= '<li class="nav-item '.$active.'"><a href="' . route($value->getName()) . '"> ' . $value->getAction()['icon'] . '<span class="menu-title" data-i18n="Dashboard">' .$carStatus->name. '</span> <span class="link-text d-flex align-items-center"></a></li>';
+                        }else{
+                            $html .= '<li class="nav-item '.$active.'"><a href="' . route($value->getName()) . '"> ' . $value->getAction()['icon'] . '<span class="menu-title" data-i18n="Dashboard">' . __('admin.'.$value->getAction()['title']) . '</span> <span class="link-text d-flex align-items-center"></a></li>';
+                        }
                     }
                 }
             }

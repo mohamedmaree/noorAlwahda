@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\CarStatus;
 
-Route::group([
+    Route::group([
     'prefix'     => 'admin',
     'namespace'  => 'Admin',
     'as'         => 'admin.',
@@ -1737,14 +1738,38 @@ Route::group([
 /*------------ end Of apphomes ----------*/
         
     /*------------ start Of cars ----------*/
-        Route::get('cars', [
+    $childs = ['cars.index','cars.create', 'cars.store','cars.edit', 'cars.update', 'cars.show', 'cars.delete'  ,'cars.deleteAll' ];
+    $statuses = CarStatus::oldest()->get();
+    foreach($statuses as $status){
+        Route::get('cars/status/'.$status->id, [
+            'uses'  => 'CarController@carsByStatus',
+            'as'    => 'cars.carsByStatus.'.$status->id,
+            'title' => $status->name,
+            'icon'      => '<i class="feather icon-image"></i>',
+            // 'type'      => 'parent',
+            // 'sub_route' => false,
+            // 'child'     => ['cars.create', 'cars.store','cars.edit', 'cars.update', 'cars.show', 'cars.delete'  ,'cars.deleteAll' ,]
+        ]);
+        $childs[] = 'cars.carsByStatus.'.$status->id;
+    }
+        Route::get('all-cars', [
             'uses'      => 'CarController@index',
-            'as'        => 'cars.index',
+            'as'        => 'all_cars',
             'title'     => 'cars',
             'icon'      => '<i class="feather icon-image"></i>',
             'type'      => 'parent',
-            'sub_route' => false,
-            'child'     => ['cars.create', 'cars.store','cars.edit', 'cars.update', 'cars.show', 'cars.delete'  ,'cars.deleteAll' ,]
+            'sub_route' => true,
+            'child'     => $childs
+        ]);
+
+        Route::get('cars', [
+            'uses'      => 'CarController@index',
+            'as'        => 'cars.index',
+            'title'     => 'all_cars',
+            'icon'      => '<i class="feather icon-image"></i>',
+            // 'type'      => 'parent',
+            // 'sub_route' => false,
+            // 'child'     => ['cars.create', 'cars.store','cars.edit', 'cars.update', 'cars.show', 'cars.delete'  ,'cars.deleteAll' ,]
         ]);
 
         # cars store

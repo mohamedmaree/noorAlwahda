@@ -18,6 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->text('name');
             $table->text('image')->nullable();
             $table->boolean('is_active')->default(1);
+            $table->enum('level',['purchasing','shipping','arrived'])->default('purchasing');
             $table->json('car_statuses_ids')->nullable();
             $table->timestamps();
         });

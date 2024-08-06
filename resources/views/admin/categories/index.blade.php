@@ -18,6 +18,24 @@
             'input_type' => 'text' , 
             'input_name' => __('admin.name') , 
         ] ,
+        'level' => [
+            'input_type' => 'select' , 
+            'rows'       => [
+              '1' => [
+                'name' => __('admin.purchasing') , 
+                'id' => 'purchasing' , 
+              ],
+              '2' => [
+                'name' => __('admin.shipping') , 
+                'id' => 'shipping' , 
+              ],
+              '3' => [
+                'name' => __('admin.arrived') , 
+                'id' => 'arrived' , 
+              ],
+            ] , 
+            'input_name' => __('admin.level')  , 
+        ] ,
         'car_statuses' => [
             'input_type' => 'select', 
             'input_name' => __('admin.carstatuses') , 

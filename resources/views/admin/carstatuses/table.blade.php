@@ -16,6 +16,7 @@
                     </label>
                 </th>
                 <th>{{__('admin.name')}}</th>
+                <th>{{__('admin.sort')}}</th>
                 <th>{{__('admin.control')}}</th>
             </tr>
         </thead>
@@ -29,6 +30,7 @@
                         </label>
                     </td>
                     <td>{{ $carstatus->name }}</td>
+                    <td>{{ $carstatus->sort }}</td>
                     
                     <td class="product-action"> 
                         <span class="text-primary"><a href="{{ route('admin.carstatuses.show', ['id' => $carstatus->id]) }}" class="btn btn-warning btn-sm"><i class="feather icon-eye"></i> {{ __('admin.show') }}</a></span>

@@ -59,6 +59,15 @@
                                                         </div>
                                                     </div>
                                                 @endforeach
+                                                <div class="col-md-12 col-12">
+                                                    <div class="form-group">
+                                                        <label for="first-name-column">{{__('admin.sort')}}</label>
+                                                        <div class="controls">
+                                                            <input type="number" name="sort" value="{{ $carstatus->sort }}"  class="form-control" placeholder="{{__('admin.sort')}}" min="0" >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
                                             </div>
                                         
                                      

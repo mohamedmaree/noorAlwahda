@@ -178,10 +178,15 @@ class AuthController extends Controller {
     }
 
     public function getNotifications() {
-        auth()->user()->unreadNotifications->markAsRead();
         $notifications = new NotificationsCollection(auth()->user()->notifications()->paginate($this->paginateNum()));
         return $this->successData(['notifications' => $notifications]);
     }
+
+    public function markAsReadNotifications() {
+        auth()->user()->unreadNotifications->markAsRead();
+        return $this->response('success', __('apis.updated'));
+    }
+
 
     public function countUnreadNotifications() {
         return $this->successData(['count' => auth()->user()->unreadNotifications->count()]);

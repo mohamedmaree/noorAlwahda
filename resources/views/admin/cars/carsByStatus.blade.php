@@ -11,17 +11,44 @@
     datefilter="true" 
     order="true" 
     extrabuttons="true"
-    addbutton="{{ route('admin.carstatuses.create') }}" 
-    deletebutton="{{ route('admin.carstatuses.deleteAll') }}" 
+    addbutton="{{ route('admin.cars.create') }}" 
+    deletebutton="{{ route('admin.cars.deleteAll') }}" 
     :searchArray="[
-        'name' => [
+        'lot' => [
             'input_type' => 'text' , 
-            'input_name' => __('admin.name') , 
+            'input_name' => __('admin.lot') , 
         ] ,
-        'sort' => [
+        'vin' => [
             'input_type' => 'text' , 
-            'input_name' => __('admin.sort') , 
+            'input_name' => __('admin.vin') , 
         ] ,
+        'car_brand_id' => [
+            'input_type' => 'select' , 
+            'rows'       => $carbrands , 
+            'input_name' => __('admin.carbrand') , 
+        ] ,
+        'car_model_id' => [
+            'input_type' => 'select' , 
+            'rows'       => $carmodels , 
+            'input_name' => __('admin.carmodel') , 
+        ],
+        'car_year_id' => [
+            'input_type' => 'select' , 
+            'rows'       => $caryears , 
+            'row_name'   => 'year' , 
+            'input_name' => __('admin.manufacturing_year') , 
+        ] ,
+        'car_color_id' => [
+            'input_type' => 'select' , 
+            'rows'       => $carcolors , 
+            'input_name' => __('admin.carcolor') , 
+        ] ,
+        'user_id' => [
+            'input_type' => 'select' , 
+            'rows'       => $users , 
+            'input_name' => __('admin.client') , 
+        ] ,
+
     ]" 
 >
 
@@ -46,5 +73,5 @@
     <script src="{{asset('admin/app-assets/js/scripts/extensions/sweet-alerts.js')}}"></script>
     @include('admin.shared.deleteAll')
     @include('admin.shared.deleteOne')
-    @include('admin.shared.filter_js' , [ 'index_route' => url('admin/carstatuses')])
+    @include('admin.shared.filter_js' , [ 'index_route' => url('admin/cars/status/'.$status_id)])
 @endsection

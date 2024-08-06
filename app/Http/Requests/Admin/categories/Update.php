@@ -26,6 +26,7 @@ class Update extends FormRequest
         return [
             'name.*'                  => 'required|max:191',
             'car_statuses_ids'        => 'required|array',
+            'level'                   => 'required',
             'image'                   => ['nullable','image'],
         ];
     }

@@ -80,7 +80,19 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+                                                <div class="col-md-12 col-12">
+                                                    <div class="form-group">
+                                                        <label for="first-name-column">{{__('admin.level')}}</label>
+                                                        <div class="controls">
+                                                            <select name="level" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}">
+                                                                <option value>{{__('admin.level')}}</option>
+                                                                <option value="purchasing" {{ $category->level == 'purchasing' ? 'selected' : '' }}>{{ __('admin.purchasing') }}</option>
+                                                                <option value="shipping" {{ $category->level == 'shipping' ? 'selected' : '' }}>{{ __('admin.shipping') }}</option>
+                                                                <option value="arrived" {{ $category->level == 'arrived' ? 'selected' : '' }}>{{ __('admin.arrived') }}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 {{-- <div class="col-md-12 col-12">
                                                     <div class="form-group">
                                                         <label for="first-name-column">{{__('admin.select_main_section')}}</label>

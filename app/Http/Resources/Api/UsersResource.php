@@ -21,6 +21,7 @@ class UsersResource extends JsonResource {
       'assigned_cars'       => $this->cars->count(),
       'is_blocked'          => $this->is_blocked,
       'block_reason'        => $this->block_reason,
+      'is_have_subseries'   => $this->childes->count() > 0 ? true : false,
     ];
   }
 }

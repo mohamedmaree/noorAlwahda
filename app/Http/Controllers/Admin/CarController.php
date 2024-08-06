@@ -31,6 +31,22 @@ class CarController extends Controller
         return view('admin.cars.index',get_defined_vars());
     }
 
+    public function carsByStatus()
+    {
+        $status_id = request()->segment(4);
+        if (request()->ajax()) {
+            $cars = Car::where('car_status_id',$status_id)->search(request()->searchArray)->paginate(30);
+            $html = view('admin.cars.table' ,compact('cars'))->render() ;
+            return response()->json(['html' => $html]);
+        }
+        $users = User::orderBy('name','ASC')->get();
+        $carbrands = CarBrands::orderBy('name','ASC')->get();
+        $carmodels = CarModels::orderBy('name','ASC')->get();
+        $carcolors = CarColors::orderBy('name','ASC')->get();
+        $caryears = CarYears::orderBy('year','ASC')->get();
+        return view('admin.cars.carsByStatus',get_defined_vars());
+    }
+
     public function create()
     {
         $users = User::orderBy('name','ASC')->get();

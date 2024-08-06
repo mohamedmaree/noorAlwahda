@@ -724,6 +724,13 @@ return [
     'sub_accounts'  => 'الحسابات الفرعية',
     'block_reason'  => 'سبب الحظر',
     'main_account'  => 'الحساب الرئيسي',
+    'level'   => 'المرحلة',
+    'purchasing'   => 'الشراء',
+    'shipping'   => 'الشحن',
+    'arrived'   => 'الوصول',
+    'all_cars'  => 'كل السيارات',
+    'new cars'   => 'السيارات الجديدة',
+    'towing'  => 'تم سحبها',
     #new_comand_translations_here
                 
                 

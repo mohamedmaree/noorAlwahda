@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('car_statuses', function (Blueprint $table) {
             $table->id();
             $table->text('name');
+            $table->integer('sort')->nullable();
             $table->timestamps();
         });
     }

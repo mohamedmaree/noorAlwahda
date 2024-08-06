@@ -14,6 +14,7 @@ use App\Models\Category;
 use App\Models\ShippngPriceList;
 use App\Http\Resources\Api\Cars\ShippingListsCollection;
 use App\Http\Resources\Api\Cars\ShippngPriceListResource;
+use App\Http\Requests\Api\Car\assignCarToSubaccountRequest;
 
 class CarController extends Controller {
   use ResponseTrait;
@@ -45,7 +46,9 @@ class CarController extends Controller {
   }
 
   public function myCars(){
-    $cars = new CarsCollection(Car::where('user_id',auth()->id())->latest()->paginate($this->paginateNum()));
+    $ids = auth()->user()->childes()->pluck('id')->toArray();
+    $ids[] = auth()->id();
+    $cars = new CarsCollection(Car::whereIn('user_id',$ids)->latest()->paginate($this->paginateNum()));
     return $this->successData( $cars);
   }
 
@@ -56,6 +59,14 @@ class CarController extends Controller {
 
   public function shippingListDetails(ShippngPriceList $shippingList){
     return $this->successData( new ShippngPriceListResource($shippingList));
+  }
+
+  public function assignCarToSubaccount(assignCarToSubaccountRequest $request){
+    $ids = auth()->user()->childes()->pluck('id')->toArray();
+    $ids[] = auth()->id();
+    $car = Car::where('id',$request->car_id)->whereIn('user_id',$ids)->firstOrFail();
+    $car->update(['user_id' => $request->user_id]);
+    return $this->response('success', __('apis.updated'));
   }
 
   

@@ -514,5 +514,9 @@ return [
     'sub_accounts'  => 'Sub Accounts',
     'block_reason'  => 'Block Reason',
     'main_account'  => 'Main Account',
-    
+    'level'   => 'Level',
+    'purchasing'   => 'Purchasing',
+    'shipping'   => 'Shipping',
+    'arrived'   => 'Arrived',
+    'all_cars'  => 'All cars',
 ];

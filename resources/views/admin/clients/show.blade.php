@@ -67,8 +67,8 @@
                                 <li class="nav-item">
                                     <a href="#orders" class="navbar-nav-link legitRipple" data-toggle="tab">
                                         <i class="fa-solid fa-location-dot mr-2"></i>
-                                        {{  __('admin.orders') }}
-                                        <span class="badge badge-pill bg-primary position-static ml-auto ml-lg-2">{{ $row->orders()->count() }}</span>
+                                        {{  __('admin.cars') }}
+                                        <span class="badge badge-pill bg-primary position-static ml-auto ml-lg-2">{{ $row->cars()->count() }}</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">

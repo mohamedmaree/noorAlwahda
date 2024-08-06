@@ -10,7 +10,7 @@ class Category extends BaseModel
 
     const IMAGEPATH = 'categories' ; 
 
-    protected $fillable = ['name','is_active','car_statuses_ids' ,'image'];
+    protected $fillable = ['name','is_active','car_statuses_ids','level' ,'image'];
     public $translatable = ['name'];
     
     protected $casts = [
@@ -50,6 +50,9 @@ class Category extends BaseModel
           return $query->orderBy('created_at' , request()->searchArray && request()->searchArray['order'] ? request()->searchArray['order'] : 'DESC' );
       }
 
+    public function numcars(){
+        return Car::whereIn('car_status_id',$this->car_statuses_ids??[])->count();
+    }
     // public function childes(){
     //     return $this->hasMany(self::class,'parent_id');
     // }

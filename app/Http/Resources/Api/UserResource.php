@@ -26,6 +26,7 @@ class UserResource extends JsonResource {
       'lang'                => $this->lang,
       'is_notify'           => $this->is_notify,
       'token'               => $this->token,
+      'is_have_subseries'   => $this->childes->count() > 0 ? true : false,
     ];
   }
 }

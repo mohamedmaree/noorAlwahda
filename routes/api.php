@@ -96,6 +96,8 @@ Route::group([
             Route::post('change-email-send-code'                  ,[AuthController::class        , 'changeEmailSendCode']);
             Route::post('change-email-check-code'                 ,[AuthController::class        , 'changeEmailCheckCode']);
             Route::get('notifications'                            ,[AuthController::class,       'getNotifications']);
+            Route::get('mark-as-read-notifications'               ,[AuthController::class,       'markAsReadNotifications']);
+            
             Route::get('count-notifications'                      ,[AuthController::class,       'countUnreadNotifications']);
             Route::delete('delete-notification/{notification_id}' ,[AuthController::class,       'deleteNotification']);
             Route::delete('delete-notifications'                  ,[AuthController::class,       'deleteNotifications']);
@@ -114,6 +116,7 @@ Route::group([
         Route::post('create-subcustomer'                      ,[UserController::class, 'createSubCustomer']);
         Route::put('update-subcustomer'               ,[UserController::class,       'updateSubcustomer']);
         Route::patch('change-block-status'            ,[UserController::class,       'changeBlockStatus']);
+        Route::patch('assign-car-subaccount'         ,[CarController::class,       'assignCarToSubaccount']);
         /***************************** CarController end *****************************/
 
         /***************************** ChatController start *****************************/
