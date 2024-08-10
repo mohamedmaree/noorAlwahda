@@ -2797,7 +2797,131 @@ use App\Models\CarStatus;
     /*------------ end Of news ----------*/
     
     
+    
+    /*------------ start Of carfinances ----------*/
+        Route::get('carfinances', [
+            'uses'      => 'CarFinanceController@index',
+            'as'        => 'carfinances.index',
+            'title'     => 'carfinances',
+            'icon'      => '<i class="feather icon-image"></i>',
+            'type'      => 'parent',
+            'sub_route' => false,
+            'child'     => ['carfinances.create', 'carfinances.store','carfinances.edit', 'carfinances.update', 'carfinances.show', 'carfinances.delete'  ,'carfinances.deleteAll' ,]
+        ]);
+
+        # carfinances store
+        Route::get('carfinances/create', [
+            'uses'  => 'CarFinanceController@create',
+            'as'    => 'carfinances.create',
+            'title' => 'add_carfinance_page'
+        ]);
+
+
+        # carfinances store
+        Route::post('carfinances/store', [
+            'uses'  => 'CarFinanceController@store',
+            'as'    => 'carfinances.store',
+            'title' => 'add_carfinance'
+        ]);
+
+        # carfinances update
+        Route::get('carfinances/{id}/edit', [
+            'uses'  => 'CarFinanceController@edit',
+            'as'    => 'carfinances.edit',
+            'title' => 'update_carfinance_page'
+        ]);
+
+        # carfinances update
+        Route::put('carfinances/{id}', [
+            'uses'  => 'CarFinanceController@update',
+            'as'    => 'carfinances.update',
+            'title' => 'update_carfinance'
+        ]);
+
+        # carfinances show
+        Route::get('carfinances/{id}/Show', [
+            'uses'  => 'CarFinanceController@show',
+            'as'    => 'carfinances.show',
+            'title' => 'show_carfinance_page'
+        ]);
+
+        # carfinances delete
+        Route::delete('carfinances/{id}', [
+            'uses'  => 'CarFinanceController@destroy',
+            'as'    => 'carfinances.delete',
+            'title' => 'delete_carfinance'
+        ]);
+        #delete all carfinances
+        Route::post('delete-all-carfinances', [
+            'uses'  => 'CarFinanceController@destroyAll',
+            'as'    => 'carfinances.deleteAll',
+            'title' => 'delete_group_of_carfinances'
+        ]);
+    /*------------ end Of carfinances ----------*/
+    
+    /*------------ start Of carfinanceoperations ----------*/
+        Route::get('carfinanceoperations', [
+            'uses'      => 'CarFinanceOperationsController@index',
+            'as'        => 'carfinanceoperations.index',
+            'title'     => 'carfinanceoperations',
+            'icon'      => '<i class="feather icon-image"></i>',
+            'type'      => 'parent',
+            'sub_route' => false,
+            'child'     => ['carfinanceoperations.create', 'carfinanceoperations.store','carfinanceoperations.edit', 'carfinanceoperations.update', 'carfinanceoperations.show', 'carfinanceoperations.delete'  ,'carfinanceoperations.deleteAll' ,]
+        ]);
+
+        # carfinanceoperations store
+        Route::get('carfinanceoperations/create', [
+            'uses'  => 'CarFinanceOperationsController@create',
+            'as'    => 'carfinanceoperations.create',
+            'title' => 'add_carfinanceoperations_page'
+        ]);
+
+
+        # carfinanceoperations store
+        Route::post('carfinanceoperations/store', [
+            'uses'  => 'CarFinanceOperationsController@store',
+            'as'    => 'carfinanceoperations.store',
+            'title' => 'add_carfinanceoperations'
+        ]);
+
+        # carfinanceoperations update
+        Route::get('carfinanceoperations/{id}/edit', [
+            'uses'  => 'CarFinanceOperationsController@edit',
+            'as'    => 'carfinanceoperations.edit',
+            'title' => 'update_carfinanceoperations_page'
+        ]);
+
+        # carfinanceoperations update
+        Route::put('carfinanceoperations/{id}', [
+            'uses'  => 'CarFinanceOperationsController@update',
+            'as'    => 'carfinanceoperations.update',
+            'title' => 'update_carfinanceoperations'
+        ]);
+
+        # carfinanceoperations show
+        Route::get('carfinanceoperations/{id}/Show', [
+            'uses'  => 'CarFinanceOperationsController@show',
+            'as'    => 'carfinanceoperations.show',
+            'title' => 'show_carfinanceoperations_page'
+        ]);
+
+        # carfinanceoperations delete
+        Route::delete('carfinanceoperations/{id}', [
+            'uses'  => 'CarFinanceOperationsController@destroy',
+            'as'    => 'carfinanceoperations.delete',
+            'title' => 'delete_carfinanceoperations'
+        ]);
+        #delete all carfinanceoperations
+        Route::post('delete-all-carfinanceoperations', [
+            'uses'  => 'CarFinanceOperationsController@destroyAll',
+            'as'    => 'carfinanceoperations.deleteAll',
+            'title' => 'delete_group_of_carfinanceoperations'
+        ]);
+    /*------------ end Of carfinanceoperations ----------*/
     #new_routes_here
+                     
+                     
                      
                      
                      

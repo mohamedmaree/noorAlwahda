@@ -546,7 +546,7 @@ return [
 
     
     
-    'pricetypes'                        => 'سعر',
+    'pricetype'                        => 'نوع السعر',
     'pricetypes'                       => 'أنواع الأسعار',
     'add_pricetypes_page'               => 'صفحة اضافة سعر',
     'add_pricetypes'                    => 'اضافة سعر',
@@ -743,7 +743,36 @@ return [
     'delete_group_of_pricecategories'       => 'حذف مجموعة من أقسام الأسعار',
 
     
+    
+    'carfinance'                        => 'مالية',
+    'carfinances'                       => 'ماليات السيارات',
+    'add_carfinance_page'               => 'صفحة اضافة مالية',
+    'add_carfinance'                    => 'اضافة مالية',
+    'update_carfinance_page'            => 'صفحة تحديث مالية',
+    'update_carfinance'                 => 'تحديث مالية',
+    'show_carfinance_page'              => 'صفحة عرض مالية',
+    'delete_carfinance'                 => 'حذف مالية',
+    'delete_group_of_carfinances'       => 'حذف مجموعة من ماليات السيارات',
+
+    
+    
+    'carfinanceoperations'                        => 'سند دفع',
+    'carfinanceoperations'                       => 'سندات الدفع',
+    'add_carfinanceoperations_page'               => 'صفحة اضافة سند دفع',
+    'add_carfinanceoperations'                    => 'اضافة سند دفع',
+    'update_carfinanceoperations_page'            => 'صفحة تحديث سند دفع',
+    'update_carfinanceoperations'                 => 'تحديث سند دفع',
+    'show_carfinanceoperations_page'              => 'صفحة عرض سند دفع',
+    'delete_carfinanceoperations'                 => 'حذف سند دفع',
+    'delete_group_of_carfinanceoperations'       => 'حذف مجموعة من سندات الدفع',
+
+    'required_amount'  => 'المبلغ المطلوب',
+    'paid_amount'  => 'المبلغ المدفوع',
+    'amount'   => 'المبلغ',
+    'download'   => 'تحميل',
     #new_comand_translations_here
+                
+                
                 
                 
                 

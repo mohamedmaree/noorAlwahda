@@ -519,4 +519,8 @@ return [
     'shipping'   => 'Shipping',
     'arrived'   => 'Arrived',
     'all_cars'  => 'All cars',
+    'required_amount'  => 'Required Amount',
+    'paid_amount'  => 'Paid Amount',
+    'amount'   => 'Amount',
+    'download'   => 'Download',
 ];
