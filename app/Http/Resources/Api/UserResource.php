@@ -27,6 +27,7 @@ class UserResource extends JsonResource {
       'is_notify'           => $this->is_notify,
       'token'               => $this->token,
       'is_have_subseries'   => $this->childes->count() > 0 ? true : false,
+      'is_main_user'        => $this->parent_id ? false : true
     ];
   }
 }

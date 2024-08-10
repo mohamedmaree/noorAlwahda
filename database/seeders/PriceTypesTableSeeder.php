@@ -17,6 +17,8 @@ class PriceTypesTableSeeder extends Seeder
                 'name'      => json_encode(['en' => 'added value'  , 'ar' => 'ضريبة قيمه مضافة' ] , JSON_UNESCAPED_UNICODE)  , 
             ] , [
                 'name'      => json_encode(['en' => 'customs'  , 'ar' => 'جمارك' ] , JSON_UNESCAPED_UNICODE)  , 
+            ],[
+                'name'      => json_encode(['en' => 'Shipping charges' , 'ar' => 'مصاريف شحن' ] , JSON_UNESCAPED_UNICODE)  , 
             ]
         ]);
     }

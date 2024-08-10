@@ -731,7 +731,20 @@ return [
     'all_cars'  => 'كل السيارات',
     'new cars'   => 'السيارات الجديدة',
     'towing'  => 'تم سحبها',
+    
+    'pricecategories'                        => 'قسم',
+    'pricecategories'                       => 'أقسام الأسعار',
+    'add_pricecategories_page'               => 'صفحة اضافة قسم',
+    'add_pricecategories'                    => 'اضافة قسم',
+    'update_pricecategories_page'            => 'صفحة تحديث قسم',
+    'update_pricecategories'                 => 'تحديث قسم',
+    'show_pricecategories_page'              => 'صفحة عرض قسم',
+    'delete_pricecategories'                 => 'حذف قسم',
+    'delete_group_of_pricecategories'       => 'حذف مجموعة من أقسام الأسعار',
+
+    
     #new_comand_translations_here
+                
                 
                 
                 

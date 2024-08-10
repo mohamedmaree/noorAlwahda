@@ -51,6 +51,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CarTableSeeder::class);
         $this->call(ShippngPriceListTableSeeder::class);
         $this->call(NewsTableSeeder::class);
+        $this->call(PriceCategoriesTableSeeder::class);
         
         
     }

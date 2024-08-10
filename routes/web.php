@@ -1943,7 +1943,66 @@ use App\Models\CarStatus;
             'title' => 'delete_group_of_damagetypes'
         ]);
     /*------------ end Of damagetypes ----------*/
-    
+    /*------------ start Of pricecategories ----------*/
+    Route::get('pricecategories', [
+        'uses'      => 'PriceCategoriesController@index',
+        'as'        => 'pricecategories.index',
+        'title'     => 'pricecategories',
+        'icon'      => '<i class="feather icon-image"></i>',
+        'type'      => 'parent',
+        'sub_route' => false,
+        'child'     => ['pricecategories.create', 'pricecategories.store','pricecategories.edit', 'pricecategories.update', 'pricecategories.show', 'pricecategories.delete'  ,'pricecategories.deleteAll' ,]
+    ]);
+
+    # pricecategories store
+    Route::get('pricecategories/create', [
+        'uses'  => 'PriceCategoriesController@create',
+        'as'    => 'pricecategories.create',
+        'title' => 'add_pricecategories_page'
+    ]);
+
+
+    # pricecategories store
+    Route::post('pricecategories/store', [
+        'uses'  => 'PriceCategoriesController@store',
+        'as'    => 'pricecategories.store',
+        'title' => 'add_pricecategories'
+    ]);
+
+    # pricecategories update
+    Route::get('pricecategories/{id}/edit', [
+        'uses'  => 'PriceCategoriesController@edit',
+        'as'    => 'pricecategories.edit',
+        'title' => 'update_pricecategories_page'
+    ]);
+
+    # pricecategories update
+    Route::put('pricecategories/{id}', [
+        'uses'  => 'PriceCategoriesController@update',
+        'as'    => 'pricecategories.update',
+        'title' => 'update_pricecategories'
+    ]);
+
+    # pricecategories show
+    Route::get('pricecategories/{id}/Show', [
+        'uses'  => 'PriceCategoriesController@show',
+        'as'    => 'pricecategories.show',
+        'title' => 'show_pricecategories_page'
+    ]);
+
+    # pricecategories delete
+    Route::delete('pricecategories/{id}', [
+        'uses'  => 'PriceCategoriesController@destroy',
+        'as'    => 'pricecategories.delete',
+        'title' => 'delete_pricecategories'
+    ]);
+    #delete all pricecategories
+    Route::post('delete-all-pricecategories', [
+        'uses'  => 'PriceCategoriesController@destroyAll',
+        'as'    => 'pricecategories.deleteAll',
+        'title' => 'delete_group_of_pricecategories'
+    ]);
+/*------------ end Of pricecategories ----------*/
     /*------------ start Of pricetypes ----------*/
         Route::get('pricetypes', [
             'uses'      => 'PriceTypesController@index',
@@ -2736,7 +2795,10 @@ use App\Models\CarStatus;
             'title' => 'delete_group_of_news'
         ]);
     /*------------ end Of news ----------*/
+    
+    
     #new_routes_here
+                     
                      
                      
                      
