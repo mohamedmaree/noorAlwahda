@@ -2919,7 +2919,77 @@ use App\Models\CarStatus;
             'title' => 'delete_group_of_carfinanceoperations'
         ]);
     /*------------ end Of carfinanceoperations ----------*/
+    
+    /*------------ start Of cargalleries ----------*/
+        Route::get('cargalleries', [
+            'uses'      => 'CarGalleryController@index',
+            'as'        => 'cargalleries.index',
+            'title'     => 'cargalleries',
+            'icon'      => '<i class="feather icon-image"></i>',
+            'type'      => 'parent',
+            'sub_route' => false,
+            'child'     => ['cargalleries.create', 'cargalleries.store','cargalleries.edit', 'cargalleries.update', 'cargalleries.show', 'cargalleries.delete'  ,'cargalleries.deleteAll' ,'cargalleries.delete.image']
+        ]);
+
+        # cargalleries store
+        Route::get('cargalleries/create', [
+            'uses'  => 'CarGalleryController@create',
+            'as'    => 'cargalleries.create',
+            'title' => 'add_cargallery_page'
+        ]);
+
+
+        # cargalleries store
+        Route::post('cargalleries/store', [
+            'uses'  => 'CarGalleryController@store',
+            'as'    => 'cargalleries.store',
+            'title' => 'add_cargallery'
+        ]);
+
+        # cargalleries update
+        Route::get('cargalleries/{id}/edit', [
+            'uses'  => 'CarGalleryController@edit',
+            'as'    => 'cargalleries.edit',
+            'title' => 'update_cargallery_page'
+        ]);
+
+        # cargalleries update
+        Route::put('cargalleries/{id}', [
+            'uses'  => 'CarGalleryController@update',
+            'as'    => 'cargalleries.update',
+            'title' => 'update_cargallery'
+        ]);
+
+        # cargalleries show
+        Route::get('cargalleries/{id}/Show', [
+            'uses'  => 'CarGalleryController@show',
+            'as'    => 'cargalleries.show',
+            'title' => 'show_cargallery_page'
+        ]);
+
+        # cargalleries delete
+        Route::delete('cargalleries/{id}', [
+            'uses'  => 'CarGalleryController@destroy',
+            'as'    => 'cargalleries.delete',
+            'title' => 'delete_cargallery'
+        ]);
+        #delete all cargalleries
+        Route::post('delete-all-cargalleries', [
+            'uses'  => 'CarGalleryController@destroyAll',
+            'as'    => 'cargalleries.deleteAll',
+            'title' => 'delete_group_of_cargalleries'
+        ]);
+        Route::post('cargalleryimages/delete-image', [
+            'uses'  => 'CarGalleryController@deleteImage',
+            'as'    => 'cargalleries.delete.image',
+            'title' => 'delete_image'
+        ]);
+    /*------------ end Of cargalleries ----------*/
+    
+
     #new_routes_here
+                     
+                     
                      
                      
                      

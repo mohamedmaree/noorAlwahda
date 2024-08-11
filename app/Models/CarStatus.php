@@ -9,7 +9,7 @@ class CarStatus extends BaseModel
     const IMAGEPATH = 'carstatuses' ; 
 
     use HasTranslations; 
-    protected $fillable = ['name','sort'];
+    protected $fillable = ['name','num_days','sort'];
     public $translatable = ['name'];
 
 }

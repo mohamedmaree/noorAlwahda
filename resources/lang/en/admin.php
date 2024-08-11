@@ -523,4 +523,5 @@ return [
     'paid_amount'  => 'Paid Amount',
     'amount'   => 'Amount',
     'download'   => 'Download',
+    'num_days'   => 'Num Days',
 ];

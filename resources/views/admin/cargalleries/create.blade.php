@@ -1,12 +1,28 @@
 @extends('admin.layout.master')
 {{-- extra css files --}}
 @section('css')
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('admin/app-assets/css-rtl/plugins/forms/validation/form-validation.css') }}">
+<style>
+    .clickAdd {
+        display: inline-block;
+        width: 140px;
+        height: 140px;
+        line-height: 110px;
+        text-align: center;
+        position: relative;
+        border-radius: 15px;
+        margin: 5px;
+        border: 3px dotted #e4e4e4;
+        width: 140px;
+        height: 140px;
+        margin: 20px;
+        border-radius: 28px;
+    }  
+</style>
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin/app-assets/css-rtl/plugins/forms/validation/form-validation.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/app-assets/vendors/css/extensions/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
 @endsection
 {{-- extra css files --}}
-
 @section('content')
 <!-- // Basic multiple Column Form section start -->
 <section id="multiple-column-form">
@@ -14,17 +30,17 @@
         <div class="col-12">
             <div class="card">
                 {{-- <div class="card-header">
-                    <h4 class="card-title">{{__('admin.add') . ' ' . __('admin.carstatus')}}</h4>
+                    <h4 class="card-title">{{__('admin.add') . ' ' . __('admin.cargallery')}}</h4>
                 </div> --}}
                 <div class="card-content">
                     <div class="card-body">
-                        <form  method="POST" action="{{route('admin.carstatuses.store')}}" class="store form-horizontal" novalidate>
+                        <form  method="POST" action="{{route('admin.cargalleries.store')}}" class="store form-horizontal" novalidate>
                             @csrf
                             <div class="form-body">
                                 <div class="row">
                                    
                                     {{-- to create languages tabs uncomment that --}}
-                                    <div class="col-12">
+                                    {{-- <div class="col-12">
                                         <div class="col-12">
                                             <ul class="nav nav-tabs  mb-3">
                                                     @foreach (languages() as $lang)
@@ -33,61 +49,59 @@
                                                         </li>
                                                     @endforeach
                                             </ul>
-                                        </div> 
-{{-- 
+                                        </div>  --}}
+
                                         <div class="col-12">
                                             <div class="imgMontg col-12 text-center">
-                                                <div class="dropBox">
+    
+                                                <div class="dropBox d-flex">
                                                     <div class="textCenter">
                                                         <div class="imagesUploadBlock">
                                                             <label class="uploadImg">
                                                                 <span><i class="feather icon-image"></i></span>
-                                                                <input type="file" accept="image/*" name="image" class="imageUploader">
+                                                                <input type="file" accept="image/*" name="images[]"
+                                                                    class="imageUploader">
                                                             </label>
                                                         </div>
                                                     </div>
                                                 </div>
+    
+                                                <button class="clickAdd">
+                                                    <span>
+                                                        <i class="feather icon-plus"></i>
+                                                    </span>
+                                                </button>
+    
                                             </div>
-                                        </div> --}}
+                                        </div>
 
-                                    {{-- to create languages tabs uncomment that --}}
-                                       <div class="tab-content">
-                                                @foreach (languages() as $lang)
-                                                    <div role="tabpanel" class="tab-pane fade @if($loop->first) show active @endif " id="first_{{$lang}}" aria-labelledby="first_{{$lang}}" aria-expanded="true">
-                                                        <div class="col-md-12 col-12">
-                                                            <div class="form-group">
-                                                                <label for="first-name-column">{{__('admin.name')}} {{ $lang }}</label>
-                                                                <div class="controls">
-                                                                    <input type="text" name="name[{{$lang}}]" class="form-control" placeholder="{{__('admin.write') . __('admin.name')}} {{ $lang }}" required data-validation-required-message="{{__('admin.this_field_is_required')}}" >
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                @endforeach
-                                            </div>
-
-                                            <div class="col-md-12 col-12">
-                                                <div class="form-group">
-                                                    <label for="first-name-column">{{__('admin.num_days')}}</label>
-                                                    <div class="controls">
-                                                        <input type="number" name="num_days"  class="form-control" placeholder="{{__('admin.num_days')}}" min="0" >
-                                                    </div>
+                                        <div class="col-md-12 col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-column">{{__('admin.car')}}</label>
+                                                <div class="controls">
+                                                    <select name="car_id" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}" >
+                                                        <option value>{{__('admin.car')}}</option>
+                                                        @foreach ($cars as $car)
+                                                            <option value="{{$car->id}}">{{$car->car_num.' - '.$car->lot.' - '.$car->vin}}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
+                                        </div>
 
-                                            <div class="col-md-12 col-12">
-                                                <div class="form-group">
-                                                    <label for="first-name-column">{{__('admin.sort')}}</label>
-                                                    <div class="controls">
-                                                        <input type="number" name="sort"  class="form-control" placeholder="{{__('admin.sort')}}" min="0" >
-                                                    </div>
+                                        <div class="col-md-12 col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-column">{{__('admin.carstatus')}}</label>
+                                                <div class="controls">
+                                                    <select name="car_status_id" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}">
+                                                        <option value>{{__('admin.carstatus')}}</option>
+                                                        @foreach ($statuses as $status)
+                                                            <option value="{{$status->id}}">{{$status->name}}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
-                                        
-                                    {{--  to create languages tabs uncomment that --}}
-                                    </div>
-
-
+                                        </div>
 
                                         <div class="col-12 d-flex justify-content-center mt-3">
                                             <button type="submit"

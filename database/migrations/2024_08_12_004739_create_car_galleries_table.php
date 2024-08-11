@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('car_statuses', function (Blueprint $table) {
+        Schema::create('car_galleries', function (Blueprint $table) {
             $table->id();
-            $table->text('name');
-            $table->integer('num_days')->nullable();
-            $table->integer('sort')->nullable();
+            $table->integer('car_id')->nullable();
+            $table->integer('car_status_id')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('car_statuses');
+        Schema::dropIfExists('car_galleries');
     }
 };

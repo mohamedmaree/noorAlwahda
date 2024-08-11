@@ -14,17 +14,17 @@
         <div class="col-12">
             <div class="card">
                 {{-- <div class="card-header">
-                    <h4 class="card-title">{{__('admin.add') . ' ' . __('admin.carstatus')}}</h4>
+                    <h4 class="card-title">{{__('admin.add') . ' ' . __('admin.cargalleryimages')}}</h4>
                 </div> --}}
                 <div class="card-content">
                     <div class="card-body">
-                        <form  method="POST" action="{{route('admin.carstatuses.store')}}" class="store form-horizontal" novalidate>
+                        <form  method="POST" action="{{route('admin.cargalleryimages.store')}}" class="store form-horizontal" novalidate>
                             @csrf
                             <div class="form-body">
                                 <div class="row">
                                    
                                     {{-- to create languages tabs uncomment that --}}
-                                    <div class="col-12">
+                                    {{-- <div class="col-12">
                                         <div class="col-12">
                                             <ul class="nav nav-tabs  mb-3">
                                                     @foreach (languages() as $lang)
@@ -33,8 +33,8 @@
                                                         </li>
                                                     @endforeach
                                             </ul>
-                                        </div> 
-{{-- 
+                                        </div>  --}}
+
                                         <div class="col-12">
                                             <div class="imgMontg col-12 text-center">
                                                 <div class="dropBox">
@@ -48,10 +48,10 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div> --}}
+                                        </div>
 
                                     {{-- to create languages tabs uncomment that --}}
-                                       <div class="tab-content">
+                                    {{--    <div class="tab-content">
                                                 @foreach (languages() as $lang)
                                                     <div role="tabpanel" class="tab-pane fade @if($loop->first) show active @endif " id="first_{{$lang}}" aria-labelledby="first_{{$lang}}" aria-expanded="true">
                                                         <div class="col-md-12 col-12">
@@ -64,28 +64,86 @@
                                                         </div>
                                                     </div>
                                                 @endforeach
-                                            </div>
+                                            </div> --}}
 
-                                            <div class="col-md-12 col-12">
+                                            <div class="col-md-6 col-12">
                                                 <div class="form-group">
-                                                    <label for="first-name-column">{{__('admin.num_days')}}</label>
+                                                    <label for="first-name-column">{{ __('admin.name') }}</label>
                                                     <div class="controls">
-                                                        <input type="number" name="num_days"  class="form-control" placeholder="{{__('admin.num_days')}}" min="0" >
+                                                        <input type="text" name="name" class="form-control"
+                                                            placeholder="{{ __('admin.name') }}" required
+                                                            data-validation-required-message="{{ __('admin.this_field_is_required') }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="first-name-column">{{ __('admin.phone') }}</label>
+                                                    <div class="controls">
+                                                        <input type="number" name="phone" class="form-control"
+                                                            placeholder="{{ __('admin.phone') }}" required
+                                                            data-validation-required-message="{{ __('admin.this_field_is_required') }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="first-name-column">{{ __('admin.email') }}</label>
+                                                    <div class="controls">
+                                                        <input type="email" name="email" class="form-control"
+                                                            placeholder="{{ __('admin.email') }}" required
+                                                            data-validation-required-message="{{ __('admin.this_field_is_required') }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="first-name-column">{{ __('admin.password') }}</label>
+                                                    <div class="controls">
+                                                        <input type="password" name="password" class="form-control" required
+                                                            data-validation-required-message="{{ __('admin.this_field_is_required') }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <label for="account-name">{{ __('admin.about_app') }}</label>
+                                                        <textarea class="form-control" name="intro_about" id="" cols="30" rows="10"
+                                                            placeholder="{{ __('admin.about_app') }}"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-12 col-12">
                                                 <div class="form-group">
-                                                    <label for="first-name-column">{{__('admin.sort')}}</label>
+                                                    <label for="first-name-column">{{ __('admin.ban_status') }}</label>
                                                     <div class="controls">
-                                                        <input type="number" name="sort"  class="form-control" placeholder="{{__('admin.sort')}}" min="0" >
+                                                        <select name="block" class="select2 form-control" required
+                                                            data-validation-required-message="{{ __('admin.this_field_is_required') }}">
+                                                            <option value>{{ __('admin.Select_the_blocking_status') }}</option>
+                                                            <option value="1">{{ __('admin.Prohibited') }}</option>
+                                                            <option value="0">{{ __('admin.Unspoken') }}</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
+                                            {{-- <div class="col-md-12 col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-column">{{__('admin.Validity')}}</label>
+                                                <div class="controls">
+                                                    <select name="role_id" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}" >
+                                                        <option value>{{__('admin.Select_the_validity')}}</option>
+                                                        @foreach ($roles as $role)
+                                                            <option value="{{$role->id}}">{{$role->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div> --}}
                                         
                                     {{--  to create languages tabs uncomment that --}}
-                                    </div>
+                                    {{-- </div> --}}
 
 
 

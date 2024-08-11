@@ -15,6 +15,7 @@ class Update extends FormRequest
     {
         return [
             'name.*'   => 'required',
+            'num_days' => 'required',
             'sort'     => 'required',
         ];
     }

@@ -15,6 +15,7 @@ class Store extends FormRequest
     {
         return [
             'name.*'   => 'required',
+            'num_days' => 'required',
             'sort'     => 'required',
         ];
     }

@@ -13,18 +13,18 @@
         <div class="col-12">
             <div class="card">
                 {{-- <div class="card-header">
-                    <h4 class="card-title">{{__('admin.update') . ' ' . __('admin.carstatus')}}</h4>
+                    <h4 class="card-title">{{__('admin.update') . ' ' . __('admin.cargalleryimages')}}</h4>
                 </div> --}}
                 <div class="card-content">
                     <div class="card-body">
-                        <form  method="POST" action="{{route('admin.carstatuses.update' , ['id' => $carstatus->id])}}" class="store form-horizontal" novalidate>
+                        <form  method="POST" action="{{route('admin.cargalleryimages.update' , ['id' => $cargalleryimages->id])}}" class="store form-horizontal" novalidate>
                             @csrf
                             @method('PUT')
                             <div class="form-body">
                                 <div class="row">
                                     
                                     {{-- to create languages tabs uncomment that --}}
-                                    <div class="col-12">
+                                    {{-- <div class="col-12">
                                         <div class="col-12">
                                             <ul class="nav nav-tabs  mb-3">
                                                     @foreach (languages() as $lang)
@@ -33,8 +33,8 @@
                                                         </li>
                                                     @endforeach
                                             </ul>
-                                        </div> 
-{{-- 
+                                        </div>  --}}
+
                                         <div class="col-12">
                                             <div class="imgMontg col-12 text-center">
                                                 <div class="dropBox">
@@ -45,52 +45,88 @@
                                                                 <input type="file" accept="image/*" name="image" class="imageUploader">
                                                             </label>
                                                             <div class="uploadedBlock">
-                                                                <img src="{{$carstatus->image}}">
+                                                                <img src="{{$cargalleryimages->image}}">
                                                                 <button class="close"><i class="feather icon-x"></i></button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div> --}}
+                                        </div>
 
-                                        <div class="tab-content">
+                                        {{-- <div class="tab-content">
                                                 @foreach (languages() as $lang)
                                                     <div role="tabpanel" class="tab-pane fade @if($loop->first) show active @endif " id="first_{{$lang}}" aria-labelledby="first_{{$lang}}" aria-expanded="true">
                                                         <div class="col-md-12 col-12">
                                                             <div class="form-group">
                                                                 <label for="first-name-column">{{__('admin.name')}} {{ $lang }}</label>
                                                                 <div class="controls">
-                                                                    <input type="text" value="{{$carstatus->getTranslations('name')[$lang]??''}}" name="name[{{$lang}}]" class="form-control" placeholder="{{__('admin.write') . __('admin.name')}} {{ $lang }}" required data-validation-required-message="{{__('admin.this_field_is_required')}}" >
+                                                                    <input type="text" value="{{$cargalleryimages->getTranslations('name')[$lang]??''}}" name="name[{{$lang}}]" class="form-control" placeholder="{{__('admin.write') . __('admin.name')}} {{ $lang }}" required data-validation-required-message="{{__('admin.this_field_is_required')}}" >
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 @endforeach
-                                            </div>
-
-                                            <div class="col-md-12 col-12">
-                                                <div class="form-group">
-                                                    <label for="first-name-column">{{__('admin.num_days')}}</label>
-                                                    <div class="controls">
-                                                        <input type="number" name="num_days" value="{{ $carstatus->num_days }}"  class="form-control" placeholder="{{__('admin.num_days')}}" min="0" >
-                                                    </div>
+                                            </div> --}}
+                                        
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-column">{{__('admin.name')}}</label>
+                                                <div class="controls">
+                                                    <input type="text" name="name" value="{{$cargalleryimages->name}}" class="form-control" placeholder="{{__('admin.name')}}" required data-validation-required-message="{{__('admin.this_field_is_required')}}" >
                                                 </div>
                                             </div>
-
-                                            <div class="col-md-12 col-12">
-                                                <div class="form-group">
-                                                    <label for="first-name-column">{{__('admin.sort')}}</label>
-                                                    <div class="controls">
-                                                        <input type="number" name="sort" value="{{ $carstatus->sort }}"  class="form-control" placeholder="{{__('admin.sort')}}" min="0" >
-                                                    </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-column">{{__('admin.phone')}}</label>
+                                                <div class="controls">
+                                                    <input type="number" name="phone" value="{{$cargalleryimages->phone}}" class="form-control" placeholder="{{__('admin.phone')}}" required data-validation-required-message="{{__('admin.this_field_is_required')}}" >
                                                 </div>
                                             </div>
-                                     
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-column">{{__('admin.email')}}</label>
+                                                <div class="controls">
+                                                    <input type="email" name="email" value="{{$cargalleryimages->email}}" class="form-control" placeholder="{{__('admin.email')}}" required data-validation-required-message="{{__('admin.this_field_is_required')}}" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-column">{{__('admin.password')}}</label>
+                                                <div class="controls">
+                                                    <input type="password" name="password" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label for="account-name">{{__('admin.description')}}</label>
+                                                    <textarea class="form-control" name="title" id="" cols="30" rows="10" placeholder="{{__('admin.about_the_application_in_english')}}">{{$cargalleryimages->title}}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
 
+                                        {{-- <div class="col-md-12 col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-column">{{__('admin.Validity')}}</label>
+                                                <div class="controls">
+                                                    <select name="role_id" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}" >
+                                                        <option value>{{__('admin.Select_the_validity')}}</option>
+                                                        @foreach ($roles as $role)
+                                                            <option {{$role->id == $cargalleryimages->role_id ? 'selected' : ''}} value="{{$role->id}}">{{$role->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div> --}}
 
                                     {{--  to create languages tabs uncomment that --}}
-                                    </div>
+                                    {{-- </div> --}}
                                     
                                     <div class="col-12 d-flex justify-content-center mt-3">
                                         <button type="submit" class="btn btn-primary mr-1 mb-1 submit_button">{{__('admin.update')}}</button>

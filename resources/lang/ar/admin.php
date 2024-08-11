@@ -770,7 +770,34 @@ return [
     'paid_amount'  => 'المبلغ المدفوع',
     'amount'   => 'المبلغ',
     'download'   => 'تحميل',
+    'num_days'   => 'عدد الأيام',
+    
+    'cargallery'                        => 'معرض الصور',
+    'cargalleries'                       => 'معرض صور السيارات',
+    'add_cargallery_page'               => 'صفحة اضافة معرض الصور',
+    'add_cargallery'                    => 'اضافة معرض الصور',
+    'update_cargallery_page'            => 'صفحة تحديث معرض الصور',
+    'update_cargallery'                 => 'تحديث معرض الصور',
+    'show_cargallery_page'              => 'صفحة عرض معرض الصور',
+    'delete_cargallery'                 => 'حذف معرض الصور',
+    'delete_group_of_cargalleries'       => 'حذف مجموعة من معرض صور السيارات',
+
+    
+    
+    'cargalleryimages'                        => 'صورة',
+    'cargalleryimages'                       => 'صور معرض الصور',
+    'add_cargalleryimages_page'               => 'صفحة اضافة صورة',
+    'add_cargalleryimages'                    => 'اضافة صورة',
+    'update_cargalleryimages_page'            => 'صفحة تحديث صورة',
+    'update_cargalleryimages'                 => 'تحديث صورة',
+    'show_cargalleryimages_page'              => 'صفحة عرض صورة',
+    'delete_cargalleryimages'                 => 'حذف صورة',
+    'delete_group_of_cargalleryimages'       => 'حذف مجموعة من صور معرض الصور',
+
+    
     #new_comand_translations_here
+                
+                
                 
                 
                 
