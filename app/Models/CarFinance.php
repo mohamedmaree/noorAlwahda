@@ -22,4 +22,8 @@ class CarFinance extends BaseModel
     {
         return $this->belongsTo(PriceTypes::class, 'price_type_id', 'id');
     }
+
+    // public function getPaidAmountAttribute() {
+    //     return number_format(CarFinanceOperations::where(['car_id' => $this->car_id,'price_type_id' => $this->price_type_id])->sum('amount'),2);
+    // }
 }

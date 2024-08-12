@@ -17,6 +17,7 @@
                 </th>
             </th>
             <th>{{__('admin.image')}}</th>
+            <th>{{__('admin.car_num')}}</th>
             <th>{{__('admin.lot')}}</th>
             <th>{{__('admin.vin')}}</th>
             <th>{{__('admin.client')}}</th>
@@ -39,6 +40,7 @@
                         </label>
                     </td>
                     <td><img src="{{$car->image}}" width="30px" height="30px" alt=""></td>
+                    <td>{{ $car->car_num }}</td>
                     <td>{{ $car->lot }}</td>
                     <td>{{ $car->vin }}</td>
                     <td>

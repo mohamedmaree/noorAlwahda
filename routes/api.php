@@ -56,8 +56,7 @@ Route::group([
             Route::get('news'                      ,[SettingController::class, 'news']);
             Route::get('available-cars'            ,[CarController::class, 'availableCars']);
             Route::get('cars-by-category'            ,[CarController::class, 'carsByCategory']);
-            Route::get('car-details/{car?}'           ,[CarController::class, 'carDetails']);
-            Route::get('cars-by-user'               ,[CarController::class, 'carsByUser']);
+
             Route::get('search-cars'            ,[CarController::class, 'searchCars']);
             Route::get('shipping-lists'            ,[CarController::class, 'shippingLists']);
             Route::get('shipping-list-details/{shippingList?}'  ,[CarController::class, 'shippingListDetails']);
@@ -117,6 +116,13 @@ Route::group([
         Route::put('update-subcustomer'               ,[UserController::class,       'updateSubcustomer']);
         Route::patch('change-block-status'            ,[UserController::class,       'changeBlockStatus']);
         Route::patch('assign-car-subaccount'         ,[CarController::class,       'assignCarToSubaccount']);
+
+        Route::get('car-details/{car?}'           ,[CarController::class, 'carDetails']);
+        Route::get('car-status-history/{car?}'           ,[CarController::class, 'carStatusHistory']);
+        Route::get('car-gallery/{car?}'           ,[CarController::class, 'carGallery']);
+        Route::get('car-finance/{car?}'           ,[CarController::class, 'carFinance']);
+        Route::get('customer-outstanding'           ,[CarController::class, 'customerOutstanding']);
+        Route::get('cars-by-user'               ,[CarController::class, 'carsByUser']);
         /***************************** CarController end *****************************/
 
         /***************************** ChatController start *****************************/

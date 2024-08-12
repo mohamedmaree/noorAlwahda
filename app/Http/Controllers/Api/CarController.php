@@ -15,6 +15,11 @@ use App\Models\ShippngPriceList;
 use App\Http\Resources\Api\Cars\ShippingListsCollection;
 use App\Http\Resources\Api\Cars\ShippngPriceListResource;
 use App\Http\Requests\Api\Car\assignCarToSubaccountRequest;
+use App\Http\Resources\Api\Cars\CarStatusHistoryResource;
+use App\Http\Resources\Api\Cars\CarGalleryResource;
+use App\Models\PriceCategories;
+use App\Models\CarFinance;
+use App\Http\Resources\Api\Cars\CarFinanceResource;
 
 class CarController extends Controller {
   use ResponseTrait;
@@ -34,6 +39,28 @@ class CarController extends Controller {
     return $this->successData( new CarResource($car));
   }
 
+  public function carStatusHistory(Car $car){
+    return $this->successData(CarStatusHistoryResource::collection($car->statusHistory));
+  }
+
+  public function carGallery(Car $car){
+    return $this->successData(CarGalleryResource::collection($car->carGalleries));
+  }
+
+  public function carFinance(Car $car){
+    $priceCats = PriceCategories::orderBy('name','ASC')->get();
+    
+    $data = [];
+    foreach($priceCats as $priceCat){
+      $data[] = ['id'      => $priceCat->id,
+                 'name'    =>$priceCat->name,
+                 'finance' => CarFinanceResource::collection($car->carFinance->whereIn('price_type_id',$priceCat->price_types_ids))
+                ];
+    }
+    return $this->successData($data);
+  }
+  
+
   public function carsByUser(Request $request){
     $user = User::findOrFail($request->user_id);
     $cars = new CarsCollection(Car::where('user_id',$user->id)->latest()->paginate($this->paginateNum()));
@@ -50,6 +77,16 @@ class CarController extends Controller {
     $ids[] = auth()->id();
     $cars = new CarsCollection(Car::whereIn('user_id',$ids)->latest()->paginate($this->paginateNum()));
     return $this->successData( $cars);
+  }
+
+  public function customerOutstanding(){
+    $ids = auth()->user()->childes()->pluck('id')->toArray();
+    $ids[] = auth()->id();
+    $cars_ids = Car::whereIn('user_id',$ids)->pluck('id')->toArray();
+    $carsFinance = CarFinance::whereIn('car_id' ,$cars_ids);
+    $data['total_required'] = number_format( $carsFinance->sum('required_amount') ,2);
+    $data['total_paid']     = number_format( $carsFinance->sum('paid_amount'), 2);
+    return $this->successData($data);
   }
 
   public function shippingLists(){

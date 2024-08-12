@@ -35,6 +35,15 @@ class Car extends BaseModel
         return $this->hasMany(CarStatusHistory::class,'car_id','id');
     }
 
+    public function carGalleries(){
+        return $this->hasMany(CarGallery::class,'car_id','id');
+    }
+    
+
+    public function carFinance(){
+        return $this->hasMany(CarFinance::class,'car_id','id');
+    }
+
     public function nextCarStatus(){
         return CarStatus::where('sort','>',$this->carStatus->sort??0)->orderBy('sort','ASC')->first();
     }

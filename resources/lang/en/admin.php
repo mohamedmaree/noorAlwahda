@@ -529,4 +529,5 @@ return [
     'changed_successfully'  => 'Changed Successfully',
     'still_days' => 'days remaining',
     'days' => 'Days',
+    'car_num' => 'Car Num',
 ];

@@ -810,6 +810,7 @@ return [
     'changed_successfully'  => 'تم التعديل بنجاح',
     'still_days'   => 'الأيام المتبقية',
     'days' => 'أيام',
+    'car_num' => 'رقم السيارة',
     
     #new_comand_translations_here
                 
