@@ -524,4 +524,9 @@ return [
     'amount'   => 'Amount',
     'download'   => 'Download',
     'num_days'   => 'Num Days',
+    'change_status_to'   => 'Change Status To ',
+    'carstatus'                        => 'Car Status',
+    'changed_successfully'  => 'Changed Successfully',
+    'still_days' => 'days remaining',
+    'days' => 'Days',
 ];

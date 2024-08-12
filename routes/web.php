@@ -1739,19 +1739,28 @@ use App\Models\CarStatus;
         
     /*------------ start Of cars ----------*/
     $childs = ['cars.index','cars.create', 'cars.store','cars.edit', 'cars.update', 'cars.show', 'cars.delete'  ,'cars.deleteAll' ];
-    $statuses = CarStatus::oldest()->get();
+    $statuses = CarStatus::orderBy('sort','ASC')->get();
+    $i = 0;
     foreach($statuses as $status){
         Route::get('cars/status/'.$status->id, [
             'uses'  => 'CarController@carsByStatus',
             'as'    => 'cars.carsByStatus.'.$status->id,
             'title' => $status->name,
             'icon'      => '<i class="feather icon-image"></i>',
-            // 'type'      => 'parent',
-            // 'sub_route' => false,
-            // 'child'     => ['cars.create', 'cars.store','cars.edit', 'cars.update', 'cars.show', 'cars.delete'  ,'cars.deleteAll' ,]
         ]);
         $childs[] = 'cars.carsByStatus.'.$status->id;
+       
+        if($i > 0){
+            Route::get('cars/change-status/{car?}/{status?}'.$status->id, [
+                'uses'  => 'CarController@changeStatus',
+                'as'    => 'cars.carsChangeStatus.'.$status->id,
+                'title' => __('admin.change_status_to').$status->name,
+            ]);
+            $childs[] = 'cars.carsChangeStatus.'.$status->id;
+        }
+        $i++;
     }
+
         Route::get('all-cars', [
             'uses'      => 'CarController@index',
             'as'        => 'all_cars',
@@ -2987,7 +2996,69 @@ use App\Models\CarStatus;
     /*------------ end Of cargalleries ----------*/
     
 
+    
+    /*------------ start Of carstatushistories ----------*/
+        // Route::get('carstatushistories', [
+        //     'uses'      => 'CarStatusHistoryController@index',
+        //     'as'        => 'carstatushistories.index',
+        //     'title'     => 'carstatushistories',
+        //     'icon'      => '<i class="feather icon-image"></i>',
+        //     'type'      => 'parent',
+        //     'sub_route' => false,
+        //     'child'     => ['carstatushistories.create', 'carstatushistories.store','carstatushistories.edit', 'carstatushistories.update', 'carstatushistories.show', 'carstatushistories.delete'  ,'carstatushistories.deleteAll' ,]
+        // ]);
+
+        // # carstatushistories store
+        // Route::get('carstatushistories/create', [
+        //     'uses'  => 'CarStatusHistoryController@create',
+        //     'as'    => 'carstatushistories.create',
+        //     'title' => 'add_carstatushistory_page'
+        // ]);
+
+
+        // # carstatushistories store
+        // Route::post('carstatushistories/store', [
+        //     'uses'  => 'CarStatusHistoryController@store',
+        //     'as'    => 'carstatushistories.store',
+        //     'title' => 'add_carstatushistory'
+        // ]);
+
+        // # carstatushistories update
+        // Route::get('carstatushistories/{id}/edit', [
+        //     'uses'  => 'CarStatusHistoryController@edit',
+        //     'as'    => 'carstatushistories.edit',
+        //     'title' => 'update_carstatushistory_page'
+        // ]);
+
+        // # carstatushistories update
+        // Route::put('carstatushistories/{id}', [
+        //     'uses'  => 'CarStatusHistoryController@update',
+        //     'as'    => 'carstatushistories.update',
+        //     'title' => 'update_carstatushistory'
+        // ]);
+
+        // # carstatushistories show
+        // Route::get('carstatushistories/{id}/Show', [
+        //     'uses'  => 'CarStatusHistoryController@show',
+        //     'as'    => 'carstatushistories.show',
+        //     'title' => 'show_carstatushistory_page'
+        // ]);
+
+        // # carstatushistories delete
+        // Route::delete('carstatushistories/{id}', [
+        //     'uses'  => 'CarStatusHistoryController@destroy',
+        //     'as'    => 'carstatushistories.delete',
+        //     'title' => 'delete_carstatushistory'
+        // ]);
+        // #delete all carstatushistories
+        // Route::post('delete-all-carstatushistories', [
+        //     'uses'  => 'CarStatusHistoryController@destroyAll',
+        //     'as'    => 'carstatushistories.deleteAll',
+        //     'title' => 'delete_group_of_carstatushistories'
+        // ]);
+    /*------------ end Of carstatushistories ----------*/
     #new_routes_here
+                     
                      
                      
                      

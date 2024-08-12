@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use Carbon\Carbon;
 
 class Car extends BaseModel
 {
@@ -30,6 +30,31 @@ class Car extends BaseModel
     public function carStatus(){
         return $this->belongsTo(CarStatus::class,'car_status_id','id');
     }
+
+    public function statusHistory(){
+        return $this->hasMany(CarStatusHistory::class,'car_id','id');
+    }
+
+    public function nextCarStatus(){
+        return CarStatus::where('sort','>',$this->carStatus->sort??0)->orderBy('sort','ASC')->first();
+    }
+     
+    public Function stillDays(){
+        $daysBetween = null;
+        if($lastStatus = $this->statusHistory()->where('car_status_id',$this->car_status_id)->latest()->first()){
+            $numDays = $lastStatus->carStatus->num_days??0;
+            $startDate = $lastStatus->start_date;
+
+            $startDateTimestamp = strtotime($startDate);
+            $endDateTimestamp = strtotime('+'.$numDays.' days', $startDateTimestamp);
+            $endDate = date('Y-m-d', $endDateTimestamp);
+            
+            $todayTimestamp = strtotime(date('Y-m-d'));
+            $daysBetween = ($endDateTimestamp - $todayTimestamp) / (60 * 60 * 24);
+        }
+        return $daysBetween;
+    }
+    
 
     public static function boot() {
         parent::boot();

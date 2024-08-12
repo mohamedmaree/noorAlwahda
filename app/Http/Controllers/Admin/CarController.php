@@ -13,6 +13,7 @@ use App\Models\CarBrands;
 use App\Models\CarColors;
 use App\Models\CarModels;
 use App\Models\CarYears;
+use App\Models\CarStatus;
 
 class CarController extends Controller
 {
@@ -28,7 +29,18 @@ class CarController extends Controller
         $carmodels = CarModels::orderBy('name','ASC')->get();
         $carcolors = CarColors::orderBy('name','ASC')->get();
         $caryears = CarYears::orderBy('year','ASC')->get();
+        $statuses = CarStatus::latest()->get();
         return view('admin.cars.index',get_defined_vars());
+    }
+    public function changeStatus($car_id = null ,$status_id = null){
+       $car = Car::findOrFail($car_id);
+       $status = CarStatus::findOrFail($status_id);
+       if($previousStatus = $car->statusHistory()->where('car_status_id', $car->car_status_id)->first()){
+            $previousStatus->update(['end_date' => date('Y-m-d')]);
+       }
+       $car->update(['car_status_id' => $status->id]);
+       $car->statusHistory()->create(['car_status_id' => $status->id,'start_date' => date('Y-m-d')]);
+       return response()->json('success');
     }
 
     public function carsByStatus()
@@ -57,10 +69,12 @@ class CarController extends Controller
         return view('admin.cars.create',get_defined_vars());
     }
 
-
     public function store(Store $request)
     {
-        Car::create($request->validated());
+        $car = Car::create($request->validated());
+        $car_status_id = $car->nextCarStatus()->id??0;
+        $car->statusHistory()->create(['car_status_id' => $car_status_id,'start_date' => date('Y-m-d')]);
+        $car->update(['car_status_id' => $car_status_id]);
         Report::addToLog('  اضافه سيارة') ;
         return response()->json(['url' => route('admin.cars.index')]);
     }

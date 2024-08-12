@@ -522,7 +522,7 @@ return [
 
     
     
-    'carstatus'                        => 'حالة',
+    'carstatus'                        => 'حالة السيارة',
     'carstatuses'                       => 'حالات السيارات',
     'add_carstatus_page'               => 'صفحة اضافة حالة',
     'add_carstatus'                    => 'اضافة حالة',
@@ -795,7 +795,24 @@ return [
     'delete_group_of_cargalleryimages'       => 'حذف مجموعة من صور معرض الصور',
 
     
+    
+    'carstatushistory'                        => 'أرشيف حالات السيارة',
+    'carstatushistories'                       => 'أرشيف حالات السيارات',
+    'add_carstatushistory_page'               => 'صفحة اضافة أرشيف حالات السيارة',
+    'add_carstatushistory'                    => 'اضافة أرشيف حالات السيارة',
+    'update_carstatushistory_page'            => 'صفحة تحديث أرشيف حالات السيارة',
+    'update_carstatushistory'                 => 'تحديث أرشيف حالات السيارة',
+    'show_carstatushistory_page'              => 'صفحة عرض أرشيف حالات السيارة',
+    'delete_carstatushistory'                 => 'حذف أرشيف حالات السيارة',
+    'delete_group_of_carstatushistories'       => 'حذف مجموعة من أرشيف حالات السيارات',
+    
+    'change_status_to'   => 'تغير الحالة الي ',
+    'changed_successfully'  => 'تم التعديل بنجاح',
+    'still_days'   => 'الأيام المتبقية',
+    'days' => 'أيام',
+    
     #new_comand_translations_here
+                
                 
                 
                 
