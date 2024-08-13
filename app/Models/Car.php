@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use Carbon\Carbon;
+use App\Models\CarStatus;
 
 class Car extends BaseModel
 {

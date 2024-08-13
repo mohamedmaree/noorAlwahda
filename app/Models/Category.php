@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Spatie\Translatable\HasTranslations;
+use App\Models\Car;
 
 class Category extends BaseModel
 {

@@ -23,7 +23,8 @@ class CarResource extends JsonResource
             'model'             => $this->carModel->name??'',
             'color'             => $this->carColor->name??'',
             'year'              => $this->carYear->year??'',
-            'status'              => $this->carStatus->name??'',
+            'status'            => $this->carStatus->name??'',
+            'level'             => $this->carStatus->category()->level??'',
             'image'             => $this->image,
           ];
     }
