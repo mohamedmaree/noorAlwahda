@@ -744,7 +744,7 @@ return [
 
     
     
-    'carfinance'                        => 'مالية',
+    'carfinance'                        => 'ماليات السيارة',
     'carfinances'                       => 'ماليات السيارات',
     'add_carfinance_page'               => 'صفحة اضافة مالية',
     'add_carfinance'                    => 'اضافة مالية',
@@ -756,7 +756,7 @@ return [
 
     
     
-    'carfinanceoperations'                        => 'سند دفع',
+    'carfinanceoperation'                        => 'سند دفع',
     'carfinanceoperations'                       => 'سندات الدفع',
     'add_carfinanceoperations_page'               => 'صفحة اضافة سند دفع',
     'add_carfinanceoperations'                    => 'اضافة سند دفع',
@@ -811,8 +811,54 @@ return [
     'still_days'   => 'الأيام المتبقية',
     'days' => 'أيام',
     'car_num' => 'رقم السيارة',
+    'noor_alwahda' => 'نور الوحدة',
+    'cars_settings'  => 'اعدادات السيارات',
+    'change_status_to'  => 'تغيير الحالة الي ',
+    
+    
+    'auction'                        => 'مزاد',
+    'auctions'                       => 'المزادات',
+    'add_auction_page'               => 'صفحة اضافة مزاد',
+    'add_auction'                    => 'اضافة مزاد',
+    'update_auction_page'            => 'صفحة تحديث مزاد',
+    'update_auction'                 => 'تحديث مزاد',
+    'show_auction_page'              => 'صفحة عرض مزاد',
+    'delete_auction'                 => 'حذف مزاد',
+    'delete_group_of_auctions'       => 'حذف مجموعة من المزادات',
+
+    
+    
+    'warehouse'                        => 'مستودع',
+    'warehouses'                       => 'المستودعات',
+    'add_warehouse_page'               => 'صفحة اضافة مستودع',
+    'add_warehouse'                    => 'اضافة مستودع',
+    'update_warehouse_page'            => 'صفحة تحديث مستودع',
+    'update_warehouse'                 => 'تحديث مستودع',
+    'show_warehouse_page'              => 'صفحة عرض مستودع',
+    'delete_warehouse'                 => 'حذف مستودع',
+    'delete_group_of_warehouses'       => 'حذف مجموعة من المستودعات',
+
+    
+    
+    'branch'                        => 'فرع',
+    'branches'                       => 'فروع الشركة',
+    'add_branch_page'               => 'صفحة اضافة فرع',
+    'add_branch'                    => 'اضافة فرع',
+    'update_branch_page'            => 'صفحة تحديث فرع',
+    'update_branch'                 => 'تحديث فرع',
+    'show_branch_page'              => 'صفحة عرض فرع',
+    'delete_branch'                 => 'حذف فرع',
+    'delete_group_of_branches'       => 'حذف مجموعة من فروع الشركة',
+
+    'car_info'      => 'بيانات السيارة',
+    'car_history'   => 'أرشيف حالات السيارة',
+    'car_gallery'  => 'معرض الصور',
+
     
     #new_comand_translations_here
+                
+                
+                
                 
                 
                 

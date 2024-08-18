@@ -3,7 +3,7 @@
 namespace App\Traits;
 use Illuminate\Support\Facades\Route;
 use App\Models\Permission;
-
+use App\Models\CarStatus;
 trait  Roles
 {
     function addRole()
@@ -113,15 +113,25 @@ trait  Roles
                     $html .=  '<ul class="list-unstyled mt-2">';
 
                     foreach ($value->getAction()['child'] as $key => $child) {
-
                         $select = in_array('admin.' . $child, $my_routes)  ? 'checked' : '';
+                        if(str_contains($child,'cars.carsByStatus.')){
+                            $carStatus = CarStatus::where('name->en', $routes_data['"admin.' . $child . '"']['title'])->first();
+                            $title = $carStatus->name;
+
+                        }else{
+                            $title = __('admin.'.$routes_data['"admin.' . $child . '"']['title']) ;
+                        }
                         $html .=  '<li>
                                 <div class="form-group clearfix">
                                     <div class="icheck-primary d-inline">
                                         <input type="checkbox"  name="permissions[]" data-parent="' . $parent_class . '" value="admin.' . $child . '"  id="' . $value->getName() . $key . '" class="childs ' . $parent_class . '" ' . $select . '>
                                         <label for="' . $value->getName() . $key . '" dir="ltr"></label>
                                     </div>
-                                    <label for="' . $value->getName() . $key . '"> ' . __('admin.'.$routes_data['"admin.' . $child . '"']['title']) . '</label>
+                                    <label for="' . $value->getName() . $key . '"> ' 
+                                    
+                                    . $title.
+                                    
+                                    '</label>
                                 </div>
 
                             </li>';

@@ -11,47 +11,13 @@
     datefilter="true" 
     order="true" 
     extrabuttons="true"
-    addbutton="{{ route('admin.cargalleryimages.create') }}" 
-    deletebutton="{{ route('admin.cargalleryimages.deleteAll') }}" 
+    addbutton="{{ route('admin.auctions.create') }}" 
+    deletebutton="{{ route('admin.auctions.deleteAll') }}" 
     :searchArray="[
         'name' => [
             'input_type' => 'text' , 
             'input_name' => __('admin.name') , 
         ] ,
-        'phone' => [
-            'input_type' => 'text' , 
-            'input_name' => __('admin.phone') , 
-        ] ,
-        'email' => [
-            'input_type' => 'text' , 
-            'input_name' => __('admin.email') , 
-        ] ,
-        'active' => [
-            'input_type' => 'select' , 
-            'rows'       => [
-              '1' => [
-                'name' => __('admin.activate') , 
-                'id' => 1 , 
-              ],
-              '2' => [
-                'name' => __('admin.dis_activate') , 
-                'id' => 0 , 
-              ],
-            ] , 
-            'input_name' => __('admin.phone_activation_status')  , 
-        ] ,
-        {{-- 'country_id' => [
-            'input_type' => 'select' , 
-            'rows'       => $countries , 
-            'input_name' => __('admin.country') , 
-        ] ,
-        'intro_fqs_category_id' => [
-            'input_type' => 'select' , 
-            'rows'       => $categories , 
-            'row_name'   => 'title' , 
-            'input_name' => __('admin.section') , 
-        ] ,
-         --}}
     ]" 
 >
 
@@ -76,5 +42,5 @@
     <script src="{{asset('admin/app-assets/js/scripts/extensions/sweet-alerts.js')}}"></script>
     @include('admin.shared.deleteAll')
     @include('admin.shared.deleteOne')
-    @include('admin.shared.filter_js' , [ 'index_route' => url('admin/cargalleryimages')])
+    @include('admin.shared.filter_js' , [ 'index_route' => url('admin/auctions')])
 @endsection

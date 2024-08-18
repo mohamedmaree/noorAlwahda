@@ -277,6 +277,11 @@ class User extends Authenticatable
         return $this->belongsTo(self::class,'parent_id');
     }
 
+    public function carFinanceOperations(){
+        $carids = $this->cars->pluck('id');
+        return CarFinanceOperations::whereIn('id',$carids)->get();
+    }
+
     public static function boot()
     {
         parent::boot();

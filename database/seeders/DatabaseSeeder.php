@@ -53,6 +53,11 @@ class DatabaseSeeder extends Seeder
         $this->call(NewsTableSeeder::class);
         $this->call(PriceCategoriesTableSeeder::class);
         
+        $this->call(WarehouseTableSeeder::class);
+        $this->call(BranchTableSeeder::class);
+        $this->call(AuctionTableSeeder::class);
+        
+        
         
     }
 }

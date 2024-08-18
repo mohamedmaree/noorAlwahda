@@ -72,10 +72,10 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#walletHistory" class="navbar-nav-link legitRipple" data-toggle="tab">
-                                        <i class="fa-solid fa-wallet mr-2"></i>
-                                        {{  __('admin.wallet_history') }}
-                                        <span class="badge badge-pill bg-primary position-static ml-auto ml-lg-2">{{ $row->transactions()->count() }}</span>
+                                    <a href="#carFinanceOperations" class="navbar-nav-link legitRipple" data-toggle="tab">
+                                        <i class="fa-solid fa-list mr-2"></i>
+                                        {{  __('admin.carfinanceoperations') }}
+                                        <span class="badge badge-pill bg-primary position-static ml-auto ml-lg-2">{{ $row->carFinanceOperations()->count() }}</span>
                                     </a>
                                 </li>
                             </ul>
@@ -88,44 +88,15 @@
                                  <div class="tab-content w-100 order-2 order-md-1">
                                      @include('admin.clients.tabs.data')
                                      @include('admin.clients.tabs.orders')
-                                     @include('admin.clients.tabs.walletHistory')
+                                     @include('admin.clients.tabs.carFinanceOperations')
 
                                  </div>
                              </div>
                             <div class="col-md-4">
                                 <div  class="sidebar sidebar-light bg-transparent sidebar-component sidebar-component-right  border-0 shadow-0 order-1 order-lg-2 sidebar-expand-md">
                                 <div class="sidebar-content">
-                                    <div class="card border-left-3 border-left-success rounded-left-0">
-                                        <div class="card-header bg-transparent header-elements-inline">
-                                            <span class="card-title font-weight-semibold">{{  __('admin.add_or_deduct_balance') }}</span>
-                                        </div>
-                                        <div class="card-body">
-                                            <form action="{{ route('admin.clients.updateBalance') }}" method="POST">
-                                                @csrf
-                                                <input type="hidden" name="user_id" value="{{ $row->id }}">
-                                                <input type="number" name="balance" step="0.001" class="form-control mb-3" placeholder="{{  __('admin.enter_add_or_deduct_balance') }}">
-                                                <div class="d-flex align-items-center">
-                                                    <button type="submit" class="btn  btn-labeled btn-labeled-right ml-auto legitRipple btn-primary"><b><i class="fa-solid fa-paper-plane"></i></b>{{  __('admin.send') }}</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
 
-                                    <div class="card border-left-3 border-left-success rounded-left-0">
-                                        <div class="card-header bg-transparent header-elements-inline">
-                                            <span class="card-title font-weight-semibold">{{  __('admin.wallet') }}</span>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="d-sm-flex align-item-sm-center flex-sm-nowrap">
-                                                <div>
-                                                    <h6 class="font-weight-semibold">{{  __('admin.balance') }}</h6>
-                                                </div>
-                                                <div class="text-sm-right mb-0 mt-3 mt-sm-0 ml-auto">
-                                                    <h6 class="font-weight-semibold">{{ $row->wallet_balance }} </h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                     <div class="card border-left-3 border-left-primary rounded-left-0">
                                         <div class="card-header bg-transparent header-elements-inline">
                                             <span class="card-title font-weight-semibold">{{  __('admin.send_notify') }}</span>

@@ -1,152 +1,236 @@
 @extends('admin.layout.master')
-
+@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css" integrity="sha512-nNlU0WK2QfKsuEmdcTwkeh+lhGs6uyOxuUs+n+0oXSYDok5qy0EI0lt01ZynHq6+p/tbgpZ7P+yUb+r71wqdXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css/clients.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css/datatable-responsive.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css/datatable.min.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/extensions/sweetalert2.min.css')}}">
+@endsection
 @section('content')
-<!-- // Basic multiple Column Form section start -->
-<section id="multiple-column-form">
-    <div class="row match-height">
-        <div class="col-12">
-            <div class="card">
-                {{-- <div class="card-header">
-                    <h4 class="card-title">{{__('admin.view') . ' ' . __('admin.car')}}</h4>
-                </div> --}}
-                <div class="card-content">
-                    <div class="card-body">
-                        <form  class="show form-horizontal" >
-                            <div class="form-body">
-                                <div class="row">
-                                    
+    <!-- // Basic multiple Column Form section start -->
+    <section id="multiple-column-form">
+        <div class="row match-height">
+            <div class="col-12">
 
-                                        <div class="col-12">
-                                            <div class="imgMontg col-12 text-center">
-                                                <div class="dropBox">
-                                                    <div class="textCenter">
-                                                        <div class="imagesUploadBlock">
-                                                            <label class="uploadImg">
-                                                                <span><i class="feather icon-image"></i></span>
-                                                                <input type="file" accept="image/*" name="image" class="imageUploader">
-                                                            </label>
-                                                            <div class="uploadedBlock">
-                                                                <img src="{{$car->image}}">
-                                                                <button class="close"><i class="feather icon-x"></i></button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                <!-- Content area -->
 
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <label for="first-name-column">{{ __('admin.lot') }}</label>
-                                                <div class="controls">
-                                                    <input type="text" name="lot" value="{{ $car->lot }}" class="form-control"
-                                                        placeholder="{{ __('admin.lot') }}" required
-                                                        data-validation-required-message="{{ __('admin.this_field_is_required') }}">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <label for="first-name-column">{{ __('admin.vin') }}</label>
-                                                <div class="controls">
-                                                    <input type="text" name="vin" value="{{ $car->vin }}" class="form-control"
-                                                        placeholder="{{ __('admin.vin') }}" required
-                                                        data-validation-required-message="{{ __('admin.this_field_is_required') }}">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <label for="first-name-column">{{__('admin.client')}}</label>
-                                                <div class="controls">
-                                                    <select name="user_id" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}" >
-                                                        <option value>{{__('admin.client')}}</option>
-                                                        @foreach ($users as $user)
-                                                            <option value="{{$user->id}}" {{$user->id == $car->user_id ? 'selected' : ''}}>{{$user->name}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
+                <div style="position: relative">
+                    <div class="profile-cover">
+                        <div class="profile-cover-img"
+                             style="background-image: url({{ $settings['profile_cover'] }})"></div>
+                        <div class="media align-items-center text-center text-md-left flex-column flex-md-row m-0">
+                            <div class="mr-md-3 mb-2 mb-md-0">
+                                <a href="{{ $car->image }}"
+                                   class="profile-thumb" data-fancybox="gallery" data-caption="Caption">
+                                    <img src="{{ $car->image }}"
+                                         class="bg-white border-white rounded-circle" width="48" height="48" alt="">
+                                </a>
+                            </div>
+                            <div class="media-body text-white">
+                                <h1 class="mb-1"> {{ $car->car_num }} - {{ $car->lot }} - {{ $car->vin }}</h1>
+                                {{-- <span class="d-block mb-1">{{  __('admin.city') }} : {{ $row->city->name??'' }}</span> --}}
+                                {{-- <span class="d-block ">
+                                    <i class="fa-regular fa-star font-size-base {{ $row->rate > 0 ? 'active' : '' }}"></i>
+                                    <i class="fa-regular fa-star font-size-base {{ $row->rate >= 1 ? 'active' : '' }}"></i>
+                                    <i class="fa-regular fa-star font-size-base {{ $row->rate >= 2 ? 'active' : '' }}"></i>
+                                    <i class="fa-regular fa-star font-size-base {{ $row->rate >= 3 ? 'active' : '' }}"></i>
+                                    <i class="fa-regular fa-star font-size-base {{ $row->rate >= 4 ? 'active' : '' }}"></i>
+                                </span> --}}
+                            </div>
+                            <div class="ml-md-3 mt-2 mt-md-0">
+                                <ul class="list-inline list-inline-condensed mb-0">
+                                    <li class="list-inline-item"><a href="{{ route('admin.cars.edit', $car->id) }}" class="btn btn-primary border-transparent legitRipple">
+                                            <i class="fa-regular fa-pen-to-square mr-2"></i>{{  __('admin.edit') }}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="navbar navbar-expand-lg navbar-light bg-light p-0">
+                        <div class="text-center d-lg-none w-100">
+                            <button type="button" class="navbar-toggler dropdown-toggle" data-toggle="collapse"
+                                    data-target="#navbar-second">
+                                <i class="fa-solid fa-bars mr-2"></i>
+                                {{  __('admin.car_info') }}
+                            </button>
+                        </div>
+                        <div class="navbar-collapse collapse" id="navbar-second">
+                            <ul class="nav navbar-nav">
+                                <li class="nav-item">
+                                    <a href="#data" class="navbar-nav-link active legitRipple" data-toggle="tab">
+                                        <i class="fa-solid fa-car mr-2"></i>
+                                        {{  __('admin.car_info') }}
+                                    </a>
+                                </li>
 
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <label for="first-name-column">{{__('admin.carbrand')}}</label>
-                                                <div class="controls">
-                                                    <select name="car_brand_id" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}" >
-                                                        <option value>{{__('admin.carbrand')}}</option>
-                                                        @foreach ($carbrands as $carbrand)
-                                                            <option {{$carbrand->id == $car->car_brand_id ? 'selected' : ''}} value="{{$carbrand->id}}">{{$carbrand->name}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
 
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <label for="first-name-column">{{__('admin.carmodel')}}</label>
-                                                <div class="controls">
-                                                    <select name="car_model_id" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}" >
-                                                        <option value>{{__('admin.carmodel')}}</option>
-                                                        @foreach ($carmodels as $carmodel)
-                                                            <option {{$carmodel->id == $car->car_model_id ? 'selected' : ''}} value="{{$carmodel->id}}">{{$carmodel->name}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
+                                <li class="nav-item">
+                                    <a href="#history" class="navbar-nav-link legitRipple" data-toggle="tab">
+                                        <i class="fa-solid fa-list mr-2"></i>
+                                        {{  __('admin.car_history') }}
+                                        <span class="badge badge-pill bg-primary position-static ml-auto ml-lg-2">{{ $car->statusHistory->count() }}</span>
+                                    </a>
+                                </li>
 
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <label for="first-name-column">{{__('admin.caryear')}}</label>
-                                                <div class="controls">
-                                                    <select name="car_year_id" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}" >
-                                                        <option value>{{__('admin.caryear')}}</option>
-                                                        @foreach ($caryears as $caryear)
-                                                            <option {{$caryear->id == $car->car_year_id ? 'selected' : ''}} value="{{$caryear->id}}">{{$caryear->year}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
+                                <li class="nav-item">
+                                    <a href="#gallery" class="navbar-nav-link legitRipple" data-toggle="tab">
+                                        <i class="fa-solid fa-list mr-2"></i>
+                                        {{  __('admin.car_gallery') }}
+                                        <span class="badge badge-pill bg-primary position-static ml-auto ml-lg-2">{{ $car->carGalleries->count() }}</span>
+                                    </a>
+                                </li>
 
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <label for="first-name-column">{{__('admin.carcolor')}}</label>
-                                                <div class="controls">
-                                                    <select name="car_color_id" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}" >
-                                                        <option value>{{__('admin.carcolor')}}</option>
-                                                        @foreach ($carcolors as $carcolor)
-                                                            <option {{$carcolor->id == $car->car_color_id ? 'selected' : ''}} value="{{$carcolor->id}}">{{$carcolor->name}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
+                                <li class="nav-item">
+                                    <a href="#carfinance" class="navbar-nav-link legitRipple" data-toggle="tab">
+                                        <i class="fa-solid fa-list mr-2"></i>
+                                        {{  __('admin.carfinance') }}
+                                        <span class="badge badge-pill bg-primary position-static ml-auto ml-lg-2">{{ $car->carFinance->count() }}</span>
+                                    </a>
+                                </li>
 
-                                    
-                                    <div class="col-12 d-flex justify-content-center mt-3">
-                                        <a href="{{ url()->previous() }}" type="reset" class="btn btn-outline-warning mr-1 mb-1">{{__('admin.back')}}</a>
+                                <li class="nav-item">
+                                    <a href="#carFinanceOperations" class="navbar-nav-link legitRipple" data-toggle="tab">
+                                        <i class="fa-solid fa-list mr-2"></i>
+                                        {{  __('admin.carfinanceoperations') }}
+                                        <span class="badge badge-pill bg-primary position-static ml-auto ml-lg-2">{{ $car->carFinanceOperations->count() }}</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="content-3">
+                        <div class="row d-flex align-items-start flex-column flex-md-row">
+                            <!-- Left content -->
+                             <div class="col-md-8">
+                                 <div class="tab-content w-100 order-2 order-md-1">
+                                     @include('admin.cars.tabs.data')
+                                     @include('admin.cars.tabs.history')
+                                     @include('admin.cars.tabs.car_gallery')
+                                     @include('admin.cars.tabs.carFinance')
+                                     @include('admin.cars.tabs.carFinanceOperations')
+
+                                 </div>
+                             </div>
+                            <div class="col-md-4">
+                                <div  class="sidebar sidebar-light bg-transparent sidebar-component sidebar-component-right  border-0 shadow-0 order-1 order-lg-2 sidebar-expand-md">
+                                <div class="sidebar-content">
+
+                                    <div class="card border-left-3 border-left-primary rounded-left-0">
+                                        <div class="card-header bg-transparent header-elements-inline">
+                                            <span class="card-title font-weight-semibold">{{  __('admin.send_notify') }} {{ __('admin.client') }}</span>
+                                        </div>
+                                        <div class="card-body">
+                                            <form class="form notify-form" action="{{  route('admin.clients.notify')  }}"
+                                                  method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" name="notify" value="notify">
+                                                <input type="hidden" name="id" value="{{ $car->user_id }}">
+                                                
+                                                <input type="text" name="title_ar" class="form-control" placeholder="{{__('admin.the_title_in_arabic')}}">
+                                                <div class="error error_title_ar"></div>
+                                                <br>
+                                                <input type="text" name="title_en" class="form-control" placeholder="{{__('admin.the_title_in_english')}}">
+                                                <div class="error error_body_ar"></div>
+                                                <br>
+                                                <textarea name="body_ar" class="form-control" rows="3" cols="1" placeholder="{{  __('admin.write') }} {{  __('admin.the_message_in_arabic') }}" required></textarea>
+                                                <div class="error error_body_ar"></div>
+                                                <br>
+                                                <textarea name="body_en" class="form-control" rows="3" cols="1" placeholder="{{  __('admin.write') }} {{  __('admin.the_message_in_english') }}" required></textarea>
+                                                <div class="error error_body_en"></div>
+                                                <br>
+                                                <hr>
+                                                <div class="d-flex align-items-center">
+                                                    <button type="submit"
+                                                            class="btn  btn-labeled btn-labeled-right ml-auto legitRipple btn-primary submit-button"><b><i
+                                                                    class="fa-solid fa-paper-plane"></i></b>{{  __('admin.send') }}</button>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                            </div>
+                        </div>
                     </div>
-                </div>
+
+                <!-- /footer -->
+
+                <!-- /main content -->
             </div>
+            <!-- /page content -->
+
+
         </div>
-    </div>
-</section>
+
+    </section>
 
 @endsection
 
 @section('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{asset('admin/app-assets/js/jquery-datatable.min.js')}}"></script>
+    <script src="{{asset('admin/app-assets/vendors/js/extensions/sweetalert2.all.min.js')}}"></script>
+
+
     <script>
-        $('.show input').attr('disabled' , true)
-        $('.show textarea').attr('disabled' , true)
-        $('.show select').attr('disabled' , true)
+            $(document).ready(function() {
+            $('.table').addClass( 'wrap' ).dataTable({
+                responsive: true,
+
+                columnDefs: [
+                    { responsivePriority: 4, targets: 0 },
+                    { responsivePriority: 2, targets: -1 }
+                ],
+
+                "language":
+                    {
+                        "sProcessing": "جارٍ التحميل...",
+                        "sLengthMenu": "أظهر _MENU_ مدخلات",
+                        "sZeroRecords": "لم يعثر على أية سجلات",
+                        // "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                        "sInfo": " اظهار النتائج من  _START_ - _END_",
+
+                        "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                        "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                        "sInfoPostFix": "",
+                        "sSearch": "ابحث:",
+                        "sUrl": "",
+                        "oPaginate": {
+                            "sFirst": "الأول",
+                            "sPrevious": "السابق",
+                            "sNext": "التالي",
+                            "sLast": "الأخير"
+                        },
+                        'paginate': {
+                            'previous': '<div class="contain-next-previous"><i class="fa-solid fa-angles-right"></i></div>',
+                            'next': '<div class="contain-next-previous"><i class="fa-solid fa-angles-left"></i></div> '
+                        }
+                    },
+
+
+            });
+        } );
+            window.addEventListener("load", function() {
+
+             var containTable =  document.querySelectorAll('.dataTables_wrapper');
+            containTable.forEach((el) => {
+                let footer = document.createElement("div");
+                footer.classList.add('table_footer');
+                footer.classList.add('p-2');
+                let info = el.querySelector(".dataTables_info");
+                let pagination = el.querySelector(".dataTables_paginate")
+                footer.append(info)
+                footer.append(pagination)
+
+
+                el.append(footer);
+            })
+
+        })
     </script>
+
+    @include('admin.shared.notify')
 @endsection

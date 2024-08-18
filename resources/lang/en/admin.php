@@ -530,4 +530,11 @@ return [
     'still_days' => 'days remaining',
     'days' => 'Days',
     'car_num' => 'Car Num',
+    'noor_alwahda' => 'Noor Alwahda',
+    'cars_settings'  => 'Cars Settings',
+    'change_status_to'  => 'Change Status To ',
+
+    'car_info'      => 'Car Info',
+    'car_history'   => 'Car Status History',
+    'car_gallery'   => 'Car Gallery',
 ];
