@@ -1754,14 +1754,14 @@ use App\Models\CarStatus;
         ]);
         $childs[] = 'cars.carsByStatus.'.$status->id;
        
-        if($i > 0){
+        // if($i > 0){
             Route::get('cars/change-status/{car?}/{status?}'.$status->id, [
                 'uses'  => 'CarController@changeStatus',
                 'as'    => 'cars.carsChangeStatus.'.$status->id,
                 'title' => 'change status to' .$status->name,
             ]);
             $childs[] = 'cars.carsChangeStatus.'.$status->id;
-        }
+        // }
         $i++;
     }
 
