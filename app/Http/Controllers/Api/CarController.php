@@ -31,7 +31,9 @@ class CarController extends Controller {
 
   public function carsByCategory(Request $request){
     $category = Category::findOrFail($request->category_id);
-    $cars = new CarsCollection(Car::whereIn('car_status_id',$category->car_statuses_ids??[])->latest()->paginate($this->paginateNum()));
+    $ids = auth()->user()->childes()->pluck('id')->toArray();
+    $ids[] = auth()->id();
+    $cars = new CarsCollection(Car::whereIn('user_id',$ids)->whereIn('car_status_id',$category->car_statuses_ids??[])->latest()->paginate($this->paginateNum()));
     return $this->successData( $cars);
   }
   
@@ -68,7 +70,9 @@ class CarController extends Controller {
   }
 
   public function searchCars(Request $request){
-    $cars = new CarsCollection(Car::where('vin','like','%'.$request->search.'%')->orwhere('lot','like','%'.$request->search.'%')->latest()->paginate($this->paginateNum()));
+    $ids = auth()->user()->childes()->pluck('id')->toArray();
+    $ids[] = auth()->id();
+    $cars = new CarsCollection(Car::whereIn('user_id',$ids)->where('vin','like','%'.$request->search.'%')->orwhere('lot','like','%'.$request->search.'%')->latest()->paginate($this->paginateNum()));
     return $this->successData( $cars);
   }
 
@@ -85,7 +89,8 @@ class CarController extends Controller {
     $cars_ids = Car::whereIn('user_id',$ids)->pluck('id')->toArray();
     $carsFinance = CarFinance::whereIn('car_id' ,$cars_ids);
     $data['total_required'] = number_format( $carsFinance->sum('required_amount') ,2);
-    $data['total_paid']     = number_format( $carsFinance->sum('paid_amount'), 2);
+    $data['total_required_in_usd'] = number_format( $carsFinance->sum('required_amount') ,2);
+
     return $this->successData($data);
   }
 

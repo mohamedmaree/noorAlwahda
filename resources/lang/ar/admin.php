@@ -534,7 +534,7 @@ return [
 
     
     
-    'damagetypes'                        => 'عطل',
+    'damagetype'                        => 'نوع العطل',
     'damagetypes'                       => 'أنواع الأعطال',
     'add_damagetypes_page'               => 'صفحة اضافة عطل',
     'add_damagetypes'                    => 'اضافة عطل',
@@ -623,7 +623,7 @@ return [
     'lot'   => 'رقم lot',
     'vin'   => 'رقم vin',
     
-    'bodytypes'                        => 'نوع الهيكل',
+    'bodytype'                        => 'نوع الهيكل',
     'bodytypes'                       => 'أنواع الهياكل',
     'add_bodytypes_page'               => 'صفحة اضافة نوع الهيكل',
     'add_bodytypes'                    => 'اضافة نوع الهيكل',
@@ -635,7 +635,7 @@ return [
 
     
     
-    'enginetypes'                        => 'نوع المحرك',
+    'enginetype'                        => 'نوع المحرك',
     'enginetypes'                       => 'أنواع المحركات',
     'add_enginetypes_page'               => 'صفحة اضافة نوع المحرك',
     'add_enginetypes'                    => 'اضافة نوع المحرك',
@@ -647,7 +647,7 @@ return [
 
     
     
-    'enginecylinders'                        => 'سعة المحرك',
+    'enginecylinder'                        => 'سعة المحرك',
     'enginecylinders'                       => 'سعة المحركات',
     'add_enginecylinders_page'               => 'صفحة اضافة سعة المحرك',
     'add_enginecylinders'                    => 'اضافة سعة المحرك',
@@ -659,7 +659,7 @@ return [
 
     
     
-    'transmissiontypes'                        => 'نوع ناقل الحركة',
+    'transmissiontype'                        => 'نوع ناقل الحركة',
     'transmissiontypes'                       => 'أنواع ناقل الحركة',
     'add_transmissiontypes_page'               => 'صفحة اضافة نوع ناقل الحركة',
     'add_transmissiontypes'                    => 'اضافة نوع ناقل الحركة',
@@ -671,7 +671,7 @@ return [
 
     
     
-    'drivetypes'                        => 'نوع القيادة',
+    'drivetype'                        => 'نوع القيادة',
     'drivetypes'                       => 'أنواع القيادة',
     'add_drivetypes_page'               => 'صفحة اضافة نوع القيادة',
     'add_drivetypes'                    => 'اضافة نوع القيادة',
@@ -683,7 +683,7 @@ return [
 
     
     
-    'fueltypes'                        => 'نوع الوقود',
+    'fueltype'                        => 'نوع الوقود',
     'fueltypes'                       => 'أنواع الوقود',
     'add_fueltypes_page'               => 'صفحة اضافة نوع الوقود',
     'add_fueltypes'                    => 'اضافة نوع الوقود',
@@ -855,7 +855,37 @@ return [
     'car_gallery'  => 'معرض الصور',
 
     
+    
+    'carattachment'                        => 'مرفقات السيارة',
+    'carattachments'                       => 'مرفقات السيارات',
+    'add_carattachment_page'               => 'صفحة اضافة مرفقات السيارة',
+    'add_carattachment'                    => 'اضافة مرفقات السيارة',
+    'update_carattachment_page'            => 'صفحة تحديث مرفقات السيارة',
+    'update_carattachment'                 => 'تحديث مرفقات السيارة',
+    'show_carattachment_page'              => 'صفحة عرض مرفقات السيارة',
+    'delete_carattachment'                 => 'حذف مرفقات السيارة',
+    'delete_group_of_carattachments'       => 'حذف مجموعة من مرفقات السيارات',
+
+    'attachment'  => 'المرفق',
+    'distance'  => 'المسافة المقطوعة',
+    'no'   => 'لا',
+    'yes'   => 'نعم',
+    'from_country' => 'من دولة',
+    'to_country' => 'إلي دولة',
+    'pickup_location'  => 'فرع الاستلام',
+    'container'  => 'الحاوية',
+    'sell_available' => 'متاحة للبيع',
+    'purchasing_date'=>'تاريخ الشراء',
+    'estimation_arrive_date'=>'تاريخ الوصول المتوقع',
+    'warehouse_arrive_date'=> 'تاريخ وصول المستودع',
+    'company_arrive_date'=> 'تاريخ وصول الشركة',
+    'port_arrive_date'=> 'تاريخ وصول الميناء',
+    'shipping_date'=> 'تاريخ الشحن',
+    'towing_date'=> 'تاريخ السحب',
+    'notes' => 'ملاحظات',
+    
     #new_comand_translations_here
+                
                 
                 
                 

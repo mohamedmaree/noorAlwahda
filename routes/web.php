@@ -2998,7 +2998,66 @@ use App\Models\CarStatus;
             'title' => 'delete_image'
         ]);
     /*------------ end Of cargalleries ----------*/
-    
+        /*------------ start Of carattachments ----------*/
+        Route::get('carattachments', [
+            'uses'      => 'CarAttachmentController@index',
+            'as'        => 'carattachments.index',
+            'title'     => 'carattachments',
+            'icon'      => '<i class="feather icon-file"></i>',
+            'type'      => 'parent',
+            'sub_route' => false,
+            'child'     => ['carattachments.create', 'carattachments.store','carattachments.edit', 'carattachments.update', 'carattachments.show', 'carattachments.delete'  ,'carattachments.deleteAll' ,]
+        ]);
+
+        # carattachments store
+        Route::get('carattachments/create', [
+            'uses'  => 'CarAttachmentController@create',
+            'as'    => 'carattachments.create',
+            'title' => 'add_carattachment_page'
+        ]);
+
+
+        # carattachments store
+        Route::post('carattachments/store', [
+            'uses'  => 'CarAttachmentController@store',
+            'as'    => 'carattachments.store',
+            'title' => 'add_carattachment'
+        ]);
+
+        # carattachments update
+        Route::get('carattachments/{id}/edit', [
+            'uses'  => 'CarAttachmentController@edit',
+            'as'    => 'carattachments.edit',
+            'title' => 'update_carattachment_page'
+        ]);
+
+        # carattachments update
+        Route::put('carattachments/{id}', [
+            'uses'  => 'CarAttachmentController@update',
+            'as'    => 'carattachments.update',
+            'title' => 'update_carattachment'
+        ]);
+
+        # carattachments show
+        Route::get('carattachments/{id}/Show', [
+            'uses'  => 'CarAttachmentController@show',
+            'as'    => 'carattachments.show',
+            'title' => 'show_carattachment_page'
+        ]);
+
+        # carattachments delete
+        Route::delete('carattachments/{id}', [
+            'uses'  => 'CarAttachmentController@destroy',
+            'as'    => 'carattachments.delete',
+            'title' => 'delete_carattachment'
+        ]);
+        #delete all carattachments
+        Route::post('delete-all-carattachments', [
+            'uses'  => 'CarAttachmentController@destroyAll',
+            'as'    => 'carattachments.deleteAll',
+            'title' => 'delete_group_of_carattachments'
+        ]);
+    /*------------ end Of carattachments ----------*/
     Route::get('cars-settings', [
         'as'        => 'cars_settings',
         'title'     => 'cars_settings',
@@ -3264,7 +3323,10 @@ use App\Models\CarStatus;
             'title' => 'delete_group_of_branches'
         ]);
     /*------------ end Of branches ----------*/
+    
+
     #new_routes_here
+                     
                      
                      
                      

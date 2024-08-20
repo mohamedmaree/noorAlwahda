@@ -28,13 +28,6 @@ class Car extends BaseModel
                            'auction_id',
                            'distance',
                            'key',
-                           'purchasing_date',
-                           'estimation_arrive_date',
-                           'warehouse_arrive_date',
-                           'company_arrive_date',
-                           'port_arrive_date',
-                           'shipping_date',
-                           'towing_date',
 
                            'from_country_id',
                            'region_id',
@@ -43,6 +36,15 @@ class Car extends BaseModel
                            'pickup_location_id',
                            'container',
                            'available',
+                           
+                           'purchasing_date',
+                           'estimation_arrive_date',
+                           'warehouse_arrive_date',
+                           'company_arrive_date',
+                           'port_arrive_date',
+                           'shipping_date',
+                           'towing_date',
+
                            'notes',
                            'image'];
 
