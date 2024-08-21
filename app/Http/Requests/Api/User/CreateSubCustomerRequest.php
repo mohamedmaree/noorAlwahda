@@ -18,6 +18,8 @@ class CreateSubCustomerRequest extends BaseApiRequest {
       'country_code' => 'required|numeric|digits_between:2,5',
       'phone'        => 'required|numeric|digits_between:8,10|unique:users,phone,NULL,id,deleted_at,NULL',
       'address'      => 'nullable',
+      'password'     => 'required|min:6',
+      'country_id'   => 'nullable|exists:countries,id',
     ];
   }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Api;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\Api\Settings\CountryResource;
 
 class UsersResource extends JsonResource {
 
@@ -22,7 +23,8 @@ class UsersResource extends JsonResource {
       'is_blocked'          => $this->is_blocked,
       'block_reason'        => $this->block_reason,
       'is_have_subseries'   => $this->childes->count() > 0 ? true : false,
-      'is_main_user'        => $this->parent_id ? false : true
+      'is_main_user'        => $this->parent_id ? false : true,
+      'country'             => new CountryResource($this->country)
     ];
   }
 }

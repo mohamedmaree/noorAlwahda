@@ -27,6 +27,7 @@
             <th>{{__('admin.manufacturing_year')}}</th>
             <th>{{__('admin.carstatus')}}</th>
             <th>{{__('admin.still_days')}}</th>
+            <th>{{__('admin.sell_available')}}</th>
             <th>{{__('admin.control')}}</th>
             </tr>
         </thead>
@@ -60,7 +61,9 @@
                     @else
                         <td>_</td>
                     @endif
-                    
+                    <td>
+                        {!! toggleBooleanView($car , route('admin.model.active' , ['model' =>'Car' , 'id' => $car->id , 'action' => 'available'])) !!}
+                    </td>
                     <td class="product-action"> 
                         @if($car->nextCarStatus())
                             <span class="change-status btn btn-success btn-sm" data-url="{{ route('admin.cars.carsChangeStatus.'.($car->nextCarStatus()->id??0),[$car->id,($car->nextCarStatus()->id??0)]) }}"><i class="feather icon-edit"></i> {{ __('admin.change_status_to').' '.($car->nextCarStatus()->name??'') }}</span>

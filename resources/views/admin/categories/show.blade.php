@@ -86,13 +86,29 @@
                                                         <div class="controls">
                                                             <select name="level" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}">
                                                                 <option value>{{__('admin.level')}}</option>
-                                                                <option value="purchasing" {{ $category->level == 'purchasing' ? 'selected' : '' }}>{{ __('admin.purchasing') }}</option>
+                                                                <option value="new_cars" {{ $category->level == 'new_cars' ? 'selected' : '' }}>{{ __('admin.new_cars') }}</option>
+                                                                <option value="towing" {{ $category->level == 'towing' ? 'selected' : '' }}>{{ __('admin.towing') }}</option>
+                                                                <option value="warehouse" {{ $category->level == 'warehouse' ? 'selected' : '' }}>{{ __('admin.warehouse') }}</option>
                                                                 <option value="shipping" {{ $category->level == 'shipping' ? 'selected' : '' }}>{{ __('admin.shipping') }}</option>
-                                                                <option value="arrived" {{ $category->level == 'arrived' ? 'selected' : '' }}>{{ __('admin.arrived') }}</option>
+                                                                <option value="custom" {{ $category->level == 'custom' ? 'selected' : '' }}>{{ __('admin.custom') }}</option>
+                                                                <option value="ready_collected" {{ $category->level == 'ready_collected' ? 'selected' : '' }}>{{ __('admin.ready_collected') }}</option>
+        
                                                             </select>
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <div class="col-md-12 col-12">
+                                                    <div class="form-group">
+                                                        <label for="first-name-column">{{ __('admin.sort') }}</label>
+                                                        <div class="controls">
+                                                            <input type="number" name="sort" value="{{ $category->sort }}" class="form-control"
+                                                                placeholder="{{ __('admin.sort') }}" required
+                                                                data-validation-required-message="{{ __('admin.this_field_is_required') }}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                                 {{-- <div class="col-md-12 col-12">
                                                     <div class="form-group">
                                                         <label for="first-name-column">{{__('admin.select_main_section')}}</label>

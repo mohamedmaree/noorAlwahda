@@ -24,6 +24,8 @@ class UpdateSubcustomerRequest extends BaseApiRequest {
       'country_code' => 'sometimes|required|numeric|digits_between:2,5',
       'phone'        => 'sometimes|required|numeric|digits_between:8,10|unique:users,phone,'.request()->user_id.',id,deleted_at,NULL',
       'address'      => 'sometimes|nullable',
+      'password'     => 'sometimes|nullable|min:6',
+      'country_id'   => 'sometimes|nullable|exists:countries,id',
     ];
   }
 

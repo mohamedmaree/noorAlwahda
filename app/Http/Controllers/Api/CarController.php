@@ -25,7 +25,7 @@ class CarController extends Controller {
   use ResponseTrait;
 
   public function availableCars(){
-    $cars = new CarsCollection(Car::whereNull('user_id')->latest()->paginate($this->paginateNum()));
+    $cars = new CarsCollection(Car::where('available',1)->latest()->paginate($this->paginateNum()));
     return $this->successData( $cars);
   }
 

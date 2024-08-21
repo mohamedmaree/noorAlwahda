@@ -105,7 +105,7 @@ class SettingController extends Controller {
   }
 
   public function categories($id = null) {
-    $categories = CategoryResource::collection(Category::where('is_active',1)->latest()->get());
+    $categories = CategoryResource::collection(Category::where('is_active',1)->orderBy('sort','ASC')->get());
     return $this->successData($categories);
   }
 

@@ -20,6 +20,7 @@ class RegisterRequest extends BaseApiRequest {
       'email'        => 'required|email|unique:users,email,NULL,id,deleted_at,NULL|max:50',
       'password'     => 'required|min:6|max:100',
       'image'        => 'nullable',
+      'country_id' => 'nullable|exists:countries,id',
     ];
   }
 

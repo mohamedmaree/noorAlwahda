@@ -725,9 +725,15 @@ return [
     'block_reason'  => 'سبب الحظر',
     'main_account'  => 'الحساب الرئيسي',
     'level'   => 'المرحلة',
-    'purchasing'   => 'الشراء',
-    'shipping'   => 'الشحن',
-    'arrived'   => 'الوصول',
+
+    'new_cars'  => 'جديدة',
+    'towing'  => 'تم سحبها',
+    'warehouse'  => 'تم تخزينها',
+    'shipping'  => 'تم شحنها',
+    'custom'=>'في الميناء',
+    'ready_collected'=>'جاهزة للتسليم',
+
+
     'all_cars'  => 'كل السيارات',
     'new cars'   => 'السيارات الجديدة',
     'towing'  => 'تم سحبها',

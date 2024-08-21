@@ -17,6 +17,7 @@ class store extends FormRequest
             'name.*'                  => 'required|max:191',
             'car_statuses_ids'        => 'required|array',
             'level'                   => 'required',
+            'sort'                    => 'required',
             'image'                   => ['nullable','image'],
         ];
     }

@@ -10,6 +10,7 @@ class CreateUsersTable extends Migration {
       $table->id();
       $table->string('customer_num', 50); //! create with new customer dynamic
       $table->unsignedBigInteger('parent_id')->unsigned()->index()->nullable();
+      $table->unsignedBigInteger('country_id')->unsigned()->index()->nullable();
       $table->string('name',50);
       $table->string('country_code',5)->default('965')->nullable();
       $table->string('phone',15);

@@ -17,6 +17,7 @@
                 <th>{{__('admin.image')}}</th>
                 <th>{{__('admin.name')}}</th>
                 <th>{{__('admin.level')}}</th>
+                <th>{{__('admin.sort')}}</th>
                 <th>{{__('admin.status')}}</th>
                 <th>{{__('admin.control')}}</th>
             </tr>
@@ -33,6 +34,7 @@
                     <td><img src="{{$category->image}}" width="30px" height="30px" alt=""></td>
                     <td>{{$category->name}}</td>
                     <td>{{__('admin.'.$category->level)}}</td>
+                    <td>{{$category->sort}}</td>
                     <td>
                         {!! toggleBooleanView($category , route('admin.model.active' , ['model' =>'Category' , 'id' => $category->id , 'action' => 'is_active'])) !!}
                     </td>

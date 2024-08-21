@@ -11,7 +11,7 @@ class Category extends BaseModel
 
     const IMAGEPATH = 'categories' ; 
 
-    protected $fillable = ['name','is_active','car_statuses_ids','level' ,'image'];
+    protected $fillable = ['name','is_active','car_statuses_ids','level','sort' ,'image'];
     public $translatable = ['name'];
     
     protected $casts = [

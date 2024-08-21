@@ -38,6 +38,7 @@ class User extends Authenticatable
     protected $fillable = [
         'customer_num',
         'parent_id',
+        'country_id',
         'name',
         'country_code',
         'phone',
@@ -275,6 +276,10 @@ class User extends Authenticatable
 
     public function parent(){
         return $this->belongsTo(self::class,'parent_id');
+    }
+
+    public function country(){
+        return $this->belongsTo(Country::class,'country_id');
     }
 
     public function carFinanceOperations(){

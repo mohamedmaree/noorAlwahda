@@ -35,6 +35,7 @@ class Update extends FormRequest
             'address'  =>'nullable',
             'block_reason'  =>'nullable',
             'parent_id'  =>'nullable|exists:users,id',
+            'country_id' => 'nullable|exists:countries,id',
         ];
     }
 }
