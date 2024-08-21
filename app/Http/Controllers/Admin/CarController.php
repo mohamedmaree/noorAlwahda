@@ -127,10 +127,11 @@ class CarController extends Controller
             $carFinanceArr = [];
             $i = 0;
             foreach($request->price_type_id as $priceType){
-              $carFinanceArr[] = ['car_id' => $car->id,'price_type_id' => $priceType,'required_amount' => $request->required_amount[$i]??'' ];
-              $i++;
+                if(isset($request->required_amount[$i]) ){
+                    CarFinance::create(['car_id' => $car->id,'price_type_id' => $priceType,'required_amount' => $request->required_amount[$i]??'' ]);
+                    $i++;
+                }
             }
-            CarFinance::insert($carFinanceArr);
         }
         if($request->operations_price_type_id){
             $carFinanceOperationsArr = [];
@@ -199,14 +200,15 @@ class CarController extends Controller
         $car->update($request->validated());
 
         if($request->required_amount){
-            // $car->carFinance()->delete();
+            $car->carFinance()->delete();
             $carFinanceArr = [];
             $i = 0;
             foreach($request->price_type_id as $priceType){
-              $carFinanceArr[] = ['car_id' => $car->id,'price_type_id' => $priceType,'required_amount' => $request->required_amount[$i]??'' ];
-              $i++;
+                if(isset($request->required_amount[$i]) ){
+                    CarFinance::create(['car_id' => $car->id,'price_type_id' => $priceType,'required_amount' => $request->required_amount[$i]??'' ]);
+                    $i++;
+                }
             }
-            CarFinance::insert($carFinanceArr);
         }
         // if($request->operations_price_type_id){
         //     // $car->carFinanceOperations()->delete();
