@@ -113,7 +113,6 @@ class CarController extends Controller
         $warehouses = Warehouse::orderBy('name','ASC')->get();
         $branches = Branch::orderBy('name','ASC')->get();
         $priceTypes = PriceTypes::orderBy('name','ASC')->get();
-        
         return view('admin.cars.create',get_defined_vars());
     }
 
@@ -196,7 +195,46 @@ class CarController extends Controller
 
     public function update(Update $request, $id)
     {
-        $car = Car::findOrFail($id)->update($request->validated());
+        $car = Car::findOrFail($id);
+        $car->update($request->validated());
+
+        if($request->price_type_id){
+            // $car->carFinance()->delete();
+            $carFinanceArr = [];
+            $i = 0;
+            foreach($request->price_type_id as $priceType){
+              $carFinanceArr[] = ['car_id' => $car->id,'price_type_id' => $priceType,'required_amount' => $request->required_amount[$i]??'' ];
+              $i++;
+            }
+            CarFinance::insert($carFinanceArr);
+        }
+        // if($request->operations_price_type_id){
+        //     // $car->carFinanceOperations()->delete();
+        //     $carFinanceOperationsArr = [];
+        //     $i = 0;
+        //     foreach($request->operations_price_type_id as $price_type_id){
+        //         CarFinanceOperations::create(['car_id' => $car->id,'price_type_id' => $price_type_id,'amount' => $request->amount[$i]??'','image' => $request->operations_image[$i]??'' ]);
+        //         $i++;
+        //     }
+        // }
+        // if($request->car_status_ids){
+        //     // $car->carGalleries()->delete();
+        //     $carGalleryArr = [];
+        //     $i = 0;
+        //     foreach($request->car_status_ids as $status_id){
+        //         $gallery = CarGallery::create(['car_id' => $car->id,'car_status_id' => $status_id,'amount']);
+        //         $this->storeFiles($gallery,$request->gallery_images[$status_id]);
+        //         $i++;
+        //     }
+        // }
+
+        // if($request->images){
+        //     // $car->carAttachments()->delete();
+        //     foreach($request->images as $image){
+        //         CarAttachment::create(['car_id' => $car->id,'image' => $image]);
+        //     }
+        // }
+
         Report::addToLog('  تعديل سيارة') ;
         return response()->json(['url' => route('admin.cars.index')]);
     }

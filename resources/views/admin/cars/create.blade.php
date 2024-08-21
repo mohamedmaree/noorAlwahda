@@ -491,8 +491,7 @@
                                                     <label for="first-name-column">{{ $priceType->name}}</label>
                                                     <div class="controls">
                                                         <input type="number" name="required_amount[]" class="form-control"
-                                                            placeholder="{{ __('admin.required_amount') }}" required
-                                                            data-validation-required-message="{{ __('admin.this_field_is_required') }}">
+                                                            placeholder="{{ __('admin.required_amount') }}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -525,8 +524,7 @@
                                                     <label for="first-name-column">{{ $priceType->name}}</label>
                                                     <div class="controls">
                                                         <input type="number" name="amount[]" class="form-control"
-                                                            placeholder="{{ __('admin.amount') }}" required
-                                                            data-validation-required-message="{{ __('admin.this_field_is_required') }}">
+                                                            placeholder="{{ __('admin.amount') }}" >
                                                     </div>
                                                 </div>
                                             </div>

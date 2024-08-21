@@ -134,6 +134,9 @@ class Car extends BaseModel
         return $this->hasMany(CarGallery::class,'car_id','id');
     }
     
+    public function carAttachments(){
+        return $this->hasMany(CarAttachment::class,'car_id','id');
+    }
 
     public function carFinance(){
         return $this->hasMany(CarFinance::class,'car_id','id');

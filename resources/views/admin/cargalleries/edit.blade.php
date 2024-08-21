@@ -31,6 +31,7 @@
         font-size: 26px;
         border: aquamarine;
     }
+
 </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
 @endsection

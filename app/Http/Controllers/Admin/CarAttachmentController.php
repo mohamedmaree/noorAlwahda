@@ -78,4 +78,11 @@ class CarAttachmentController extends Controller
             return response()->json('failed');
         }
     }
+
+    public function deleteImage(Request $request)
+    {
+        $image = CarAttachment::find($request->image_id);
+        $image->delete();
+        return response()->json(['msg' => 'success']);
+    }
 }

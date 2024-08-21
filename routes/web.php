@@ -3006,7 +3006,7 @@ use App\Models\CarStatus;
             'icon'      => '<i class="feather icon-file"></i>',
             'type'      => 'parent',
             'sub_route' => false,
-            'child'     => ['carattachments.create', 'carattachments.store','carattachments.edit', 'carattachments.update', 'carattachments.show', 'carattachments.delete'  ,'carattachments.deleteAll' ,]
+            'child'     => ['carattachments.create', 'carattachments.store','carattachments.edit', 'carattachments.update', 'carattachments.show', 'carattachments.delete'  ,'carattachments.deleteAll' ,'carattachments.delete.image']
         ]);
 
         # carattachments store
@@ -3056,6 +3056,11 @@ use App\Models\CarStatus;
             'uses'  => 'CarAttachmentController@destroyAll',
             'as'    => 'carattachments.deleteAll',
             'title' => 'delete_group_of_carattachments'
+        ]);
+        Route::post('carattachments/delete-image', [
+            'uses'  => 'CarAttachmentController@deleteImage',
+            'as'    => 'carattachments.delete.image',
+            'title' => 'delete_image'
         ]);
     /*------------ end Of carattachments ----------*/
     Route::get('cars-settings', [
