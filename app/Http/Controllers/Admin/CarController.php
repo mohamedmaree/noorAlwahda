@@ -123,7 +123,7 @@ class CarController extends Controller
         // $car->statusHistory()->create(['car_status_id' => $car_status_id,'start_date' => date('Y-m-d')]);
         // $car->update(['car_status_id' => $car_status_id]);
 
-        if($request->price_type_id){
+        if($request->required_amount){
             $carFinanceArr = [];
             $i = 0;
             foreach($request->price_type_id as $priceType){
@@ -198,7 +198,7 @@ class CarController extends Controller
         $car = Car::findOrFail($id);
         $car->update($request->validated());
 
-        if($request->price_type_id){
+        if($request->required_amount){
             // $car->carFinance()->delete();
             $carFinanceArr = [];
             $i = 0;
