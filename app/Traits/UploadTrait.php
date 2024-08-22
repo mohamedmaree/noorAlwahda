@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Cache;
 
 trait UploadTrait {
 
-  public function uploadAllTyps($file , $directory , $width = null , $height = null)
+  public function uploadAllTyps($file , $directory , $width = 600 , $height = 500)
   {
       if (!File::isDirectory('storage/images/' . $directory)) {
         File::makeDirectory('storage/images/' . $directory, 0777, true, true);
