@@ -14,7 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-
+    'max_execution_time' => env('MAX_EXECUTION_TIME', 300),
     /*
     |--------------------------------------------------------------------------
     | Application Environment
