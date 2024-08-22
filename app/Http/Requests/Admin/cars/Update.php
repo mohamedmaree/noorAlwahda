@@ -35,7 +35,7 @@ class Update extends FormRequest
             'from_country_id'         => 'required|exists:countries,id',
             'region_id'         => 'required|exists:regions,id',
             'to_country_id'         => 'nullable|exists:countries,id',
-            'warehouse_id'         => 'requinullablered|exists:warehouses,id',
+            'warehouse_id'         => 'nullable|exists:warehouses,id',
             'pickup_location_id'         => 'nullable|exists:branches,id',
             'container'         => 'nullable',
             'purchasing_date'         => 'nullable',
