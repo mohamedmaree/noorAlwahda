@@ -559,4 +559,5 @@ return [
     'shipping_date'=> 'Shipping Date',
     'towing_date'=> 'Towing Date',
     'notes' => 'Notes',
+    'vip'  => 'vip',
 ];

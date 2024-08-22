@@ -82,7 +82,7 @@
                                                 <div class="form-group">
                                                     <label for="first-name-column">{{__('admin.pricetypes')}}</label>
                                                     <div class="controls">
-                                                        <select name="price_type_id" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}">
+                                                        <select name="price_type_id[]" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}" multiple>
                                                             <option value>{{__('admin.pricetypes')}}</option>
                                                             @foreach ($priceTypes as $priceType)
                                                                 <option value="{{$priceType->id}}">{{$priceType->name}}</option>
@@ -91,6 +91,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-12 col-12">
                                                 <div class="form-group">
                                                     <label for="first-name-column">{{ __('admin.amount') }}</label>

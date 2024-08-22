@@ -32,6 +32,7 @@ use App\Models\CarFinanceOperations ;
 use App\Models\CarGallery ;
 use App\Models\CarGalleryImages ;
 use App\Models\CarAttachment ;
+use App\Models\SiteSetting;
 
 class CarController extends Controller
 {
@@ -51,8 +52,10 @@ class CarController extends Controller
         $cardamagetypes = DamageTypes::latest()->get();
         $bodytypes = BodyTypes::latest()->get();
         $enginetypes = EngineTypes::latest()->get();
-        $countries = Country::orderBy('name','ASC')->get();
-        $regions = Region::orderBy('name','ASC')->get();
+        $supported_countries = SiteSetting::where('key','countries')->first()->value??'';
+        $supported_countries = json_decode($supported_countries);
+        $countries = Country::whereIn('id',$supported_countries??[])->orderBy('id','ASC')->get();
+        $regions = Region::whereIn('country_id',$supported_countries??[])->orderBy('name','ASC')->get();
         $warehouses = Warehouse::orderBy('name','ASC')->get();
         
         return view('admin.cars.index',get_defined_vars());
@@ -86,8 +89,10 @@ class CarController extends Controller
         $cardamagetypes = DamageTypes::latest()->get();
         $bodytypes = BodyTypes::latest()->get();
         $enginetypes = EngineTypes::latest()->get();
-        $countries = Country::orderBy('name','ASC')->get();
-        $regions = Region::orderBy('name','ASC')->get();
+        $supported_countries = SiteSetting::where('key','countries')->first()->value??'';
+        $supported_countries = json_decode($supported_countries);
+        $countries = Country::whereIn('id',$supported_countries??[])->orderBy('id','ASC')->get();
+        $regions = Region::whereIn('country_id',$supported_countries??[])->orderBy('name','ASC')->get();
         $warehouses = Warehouse::orderBy('name','ASC')->get();
         return view('admin.cars.carsByStatus',get_defined_vars());
     }
@@ -108,8 +113,10 @@ class CarController extends Controller
         $drivetypes = DriveTypes::latest()->get();
         $fueltypes = FuelTypes::latest()->get();
         $auctions = Auction::latest()->get();
-        $countries = Country::orderBy('name','ASC')->get();
-        $regions = Region::orderBy('name','ASC')->get();
+        $supported_countries = SiteSetting::where('key','countries')->first()->value??'';
+        $supported_countries = json_decode($supported_countries);
+        $countries = Country::whereIn('id',$supported_countries??[])->orderBy('id','ASC')->get();
+        $regions = Region::whereIn('country_id',$supported_countries??[])->orderBy('name','ASC')->get();
         $warehouses = Warehouse::orderBy('name','ASC')->get();
         $branches = Branch::orderBy('name','ASC')->get();
         $priceTypes = PriceTypes::orderBy('name','ASC')->get();
@@ -133,15 +140,15 @@ class CarController extends Controller
                 }
             }
         }
-        if($request->operations_price_type_id){
-            $carFinanceOperationsArr = [];
-            $i = 0;
-            foreach($request->operations_price_type_id as $price_type_id){
-                CarFinanceOperations::create(['car_id' => $car->id,'price_type_id' => $price_type_id,'amount' => $request->amount[$i]??'','image' => $request->operations_image[$i]??'' ]);
-                $i++;
-            }
-        }
-        if($request->car_status_ids){
+        // if($request->operations_price_type_id){
+        //     $carFinanceOperationsArr = [];
+        //     $i = 0;
+        //     foreach($request->operations_price_type_id as $price_type_id){
+        //         CarFinanceOperations::create(['car_id' => $car->id,'price_type_id' => $price_type_id,'amount' => $request->amount[$i]??'','image' => $request->operations_image[$i]??'' ]);
+        //         $i++;
+        //     }
+        // }
+        if($request->gallery_images){
             $carGalleryArr = [];
             $i = 0;
             foreach($request->car_status_ids as $status_id){
@@ -185,8 +192,10 @@ class CarController extends Controller
         $drivetypes = DriveTypes::latest()->get();
         $fueltypes = FuelTypes::latest()->get();
         $auctions = Auction::latest()->get();
-        $countries = Country::orderBy('name','ASC')->get();
-        $regions = Region::orderBy('name','ASC')->get();
+        $supported_countries = SiteSetting::where('key','countries')->first()->value??'';
+        $supported_countries = json_decode($supported_countries);
+        $countries = Country::whereIn('id',$supported_countries??[])->orderBy('id','ASC')->get();
+        $regions = Region::whereIn('country_id',$supported_countries??[])->orderBy('name','ASC')->get();
         $warehouses = Warehouse::orderBy('name','ASC')->get();
         $branches = Branch::orderBy('name','ASC')->get();
         $priceTypes = PriceTypes::orderBy('name','ASC')->get();
@@ -210,17 +219,17 @@ class CarController extends Controller
                 }
             }
         }
-        if($request->operations_image){
-            $carFinanceOperationsArr = [];
-            $i = 0;
-            foreach($request->operations_price_type_id as $price_type_id){
-                if(isset($request->operations_image[$i])){
-                    $car->carFinanceOperations()->where(['car_id' => $car->id,'price_type_id' => $price_type_id])->delete();
-                    CarFinanceOperations::create(['car_id' => $car->id,'price_type_id' => $price_type_id,'amount' => $request->amount[$i]??'','image' => $request->operations_image[$i]??'' ]);
-                }
-                $i++;
-            }
-        }
+        // if($request->operations_image){
+        //     $carFinanceOperationsArr = [];
+        //     $i = 0;
+        //     foreach($request->operations_price_type_id as $price_type_id){
+        //         if(isset($request->operations_image[$i])){
+        //             $car->carFinanceOperations()->where(['car_id' => $car->id,'price_type_id' => $price_type_id])->delete();
+        //             CarFinanceOperations::create(['car_id' => $car->id,'price_type_id' => $price_type_id,'amount' => $request->amount[$i]??'','image' => $request->operations_image[$i]??'' ]);
+        //         }
+        //         $i++;
+        //     }
+        // }
         if($request->gallery_images){
             $carGalleryArr = [];
             $i = 0;
@@ -260,8 +269,10 @@ class CarController extends Controller
         $drivetypes = DriveTypes::latest()->get();
         $fueltypes = FuelTypes::latest()->get();
         $auctions = Auction::latest()->get();
-        $countries = Country::orderBy('name','ASC')->get();
-        $regions = Region::orderBy('name','ASC')->get();
+        $supported_countries = SiteSetting::where('key','countries')->first()->value??'';
+        $supported_countries = json_decode($supported_countries);
+        $countries = Country::whereIn('id',$supported_countries??[])->orderBy('id','ASC')->get();
+        $regions = Region::whereIn('country_id',$supported_countries??[])->orderBy('name','ASC')->get();
         $warehouses = Warehouse::orderBy('name','ASC')->get();
         $branches = Branch::orderBy('name','ASC')->get();
         $priceTypes = PriceTypes::orderBy('name','ASC')->get();

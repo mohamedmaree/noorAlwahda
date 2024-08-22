@@ -17,6 +17,7 @@
                 </th>
                 <th>{{__('admin.image')}}</th>
                 <th>{{__('admin.name')}}</th>
+                <th>{{ __('admin.vip') }}</th>
                 <th>{{__('admin.control')}}</th>
             </tr>
         </thead>
@@ -31,7 +32,9 @@
                     </td>
                     <td><img src="{{$shippngpricelist->image}}" width="30px" height="30px" alt=""></td>
                     <td>{{ $shippngpricelist->name }}</td>
-
+                    <td>
+                        {!! toggleBooleanView($shippngpricelist , route('admin.model.active' , ['model' =>'ShippngPriceList' , 'id' => $shippngpricelist->id , 'action' => 'vip'])) !!}
+                    </td>
                     
                     <td class="product-action"> 
                         <span class="text-primary"><a href="{{ route('admin.shippngpricelists.show', ['id' => $shippngpricelist->id]) }}" class="btn btn-warning btn-sm"><i class="feather icon-eye"></i> {{ __('admin.show') }}</a></span>

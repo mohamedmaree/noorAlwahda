@@ -889,6 +889,7 @@ return [
     'shipping_date'=> 'تاريخ الشحن',
     'towing_date'=> 'تاريخ السحب',
     'notes' => 'ملاحظات',
+    'vip'  => 'مميز',
     
     #new_comand_translations_here
                 

@@ -17,7 +17,7 @@
                 </th>
                 <th>{{__('admin.image')}}</th>
                 <th>{{__('admin.car')}}</th>
-                <th>{{__('admin.pricetype')}}</th>
+                <th>{{__('admin.pricetypes')}}</th>
                 <th>{{__('admin.amount')}}</th>
                 <th>{{__('admin.control')}}</th>
             </tr>
@@ -33,7 +33,11 @@
                     </td>
                     <td><a href="{{$carfinanceoperations->image}}" target="blank">{{ __('admin.show') }} </a></td>
                     <td>{{ $carfinanceoperations->car->car_num??'' }}</td>
-                    <td>{{ $carfinanceoperations->priceType->name??'' }}</td>
+                    <td>
+                        @foreach($carfinanceoperations->priceTypes() as $pricetype)
+                            {{ $pricetype->name.' - ' }}
+                        @endforeach
+                    </td>
                     <td>{{ $carfinanceoperations->amount }}</td>
                     
                     <td class="product-action"> 

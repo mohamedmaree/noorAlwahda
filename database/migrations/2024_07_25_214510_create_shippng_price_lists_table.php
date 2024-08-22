@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('shippng_price_lists', function (Blueprint $table) {
             $table->id();
             $table->text('name')->nullable();
+            $table->boolean('vip')->default(0);
             $table->string('image')->nullable();
             $table->timestamps();
         });

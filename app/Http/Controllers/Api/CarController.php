@@ -55,7 +55,7 @@ class CarController extends Controller {
     $data = [];
     foreach($priceCats as $priceCat){
       $data[] = ['id'      => $priceCat->id,
-                 'name'    =>$priceCat->name,
+                 'name'    => $priceCat->name,
                  'finance' => CarFinanceResource::collection($car->carFinance->whereIn('price_type_id',$priceCat->price_types_ids))
                 ];
     }
@@ -95,7 +95,9 @@ class CarController extends Controller {
   }
 
   public function shippingLists(){
-    $lists = new ShippingListsCollection(ShippngPriceList::latest()->paginate($this->paginateNum()));
+    $lists = new ShippingListsCollection(ShippngPriceList::where('vip',0)->when(auth()->user()->vip,function($q){
+      return $q->orwhere('vip',1);
+    })->latest()->paginate($this->paginateNum()));
     return $this->successData( $lists);
   }
 

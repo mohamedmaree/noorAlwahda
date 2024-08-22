@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('car_finance_operations', function (Blueprint $table) {
             $table->id();
             $table->integer('car_id')->nullable();
-            $table->integer('price_type_id')->nullable();
+            $table->json('price_type_id')->nullable();
             $table->double('amount', 9, 3)->default(0);
             $table->string('image')->nullable();
             $table->timestamps();

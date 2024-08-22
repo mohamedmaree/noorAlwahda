@@ -22,6 +22,7 @@
                 <th>{{ __('admin.phone') }}</th>
                 <th>{{ __('admin.ban_status') }}</th>
                 <th>{{ __('admin.is_approved') }}</th>
+                <th>{{ __('admin.vip') }}</th>
                 <th>{{ __('admin.control') }}</th>
             </tr>
         </thead>
@@ -44,6 +45,9 @@
                 </td>
                 <td>
                     {!! toggleBooleanView($row , route('admin.model.active' , ['model' =>'User' , 'id' => $row->id , 'action' => 'is_approved'])) !!}
+                </td>
+                <td>
+                    {!! toggleBooleanView($row , route('admin.model.active' , ['model' =>'User' , 'id' => $row->id , 'action' => 'vip'])) !!}
                 </td>
                 <td class="product-action">
                     <span class="text-primary"><a href="{{ route('admin.clients.show', ['id' => $row->id]) }}" class="btn btn-warning btn-sm"><i class="feather icon-eye"></i> {{ __('admin.show') }}</a></span>

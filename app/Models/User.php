@@ -32,6 +32,7 @@ class User extends Authenticatable
         'is_notify'   => 'boolean',
         'is_blocked'  => 'boolean',
         'is_approved' => 'boolean',
+        'vip'         => 'boolean',
         'active'      => 'boolean',
     ];
 
@@ -50,6 +51,7 @@ class User extends Authenticatable
         'is_blocked',
         'block_reason',
         'is_approved',
+        'vip',
         'lang',
         'is_notify',
         'code',

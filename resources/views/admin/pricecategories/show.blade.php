@@ -69,7 +69,7 @@
                                                         <select name="price_types_ids[]" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}" multiple>
                                                             <option value>{{__('admin.pricetypes')}}</option>
                                                             @foreach ($priceTypes as $priceType)
-                                                                <option value="{{$priceType->id}}" {{ in_array($priceType->id,$pricecategories->price_types_ids)?'selected':'' }}>{{$pricecategories->name}}</option>
+                                                                <option value="{{$priceType->id}}" {{ in_array($priceType->id,$pricecategories->price_types_ids)?'selected':'' }}>{{$priceType->name}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>

@@ -48,12 +48,12 @@
                             {{__('admin.carfinance')}}
                         </a>
                     </li>
-                    <li class="nav-item" style="margin-top: 3px" > 
+                    {{-- <li class="nav-item" style="margin-top: 3px" > 
                         <a class="nav-link d-flex py-75" id="account-pill-carfinanceoperations" data-toggle="pill" href="#account-vertical-carfinanceoperations" aria-expanded="false">
                             <i class="feather icon-calendar mr-50 font-medium-3"></i>
                             {{__('admin.carfinanceoperations')}}
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item" style="margin-top: 3px" > 
                         <a class="nav-link d-flex py-75" id="account-pill-cargallery" data-toggle="pill" href="#account-vertical-cargallery" aria-expanded="false">
                             <i class="feather icon-calendar mr-50 font-medium-3"></i>
@@ -218,7 +218,7 @@
                                                 <label for="first-name-column">{{__('admin.bodytype')}}</label>
                                                 <div class="controls">
                                                     <select name="car_body_type_id" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}" >
-                                                        <option value>{{__('admin.damagetype')}}</option>
+                                                        <option value>{{__('admin.bodytype')}}</option>
                                                         @foreach ($bodytypes as $bodytype)
                                                             <option  value="{{$bodytype->id}}">{{$bodytype->name}}</option>
                                                         @endforeach
@@ -357,7 +357,7 @@
                                             <div class="form-group">
                                                 <label for="first-name-column">{{__('admin.to_country')}}</label>
                                                 <div class="controls">
-                                                    <select name="to_country_id" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}" >
+                                                    <select name="to_country_id" class="select2 form-control"  >
                                                         <option value>{{__('admin.to_country')}}</option>
                                                         @foreach ($countries as $country)
                                                             <option  value="{{$country->id}}">{{$country->name}}</option>
@@ -371,7 +371,7 @@
                                             <div class="form-group">
                                                 <label for="first-name-column">{{__('admin.warehouse')}}</label>
                                                 <div class="controls">
-                                                    <select name="warehouse_id" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}" >
+                                                    <select name="warehouse_id" class="select2 form-control" >
                                                         <option value>{{__('admin.warehouse')}}</option>
                                                         @foreach ($warehouses as $warehouse)
                                                             <option  value="{{$warehouse->id}}">{{$warehouse->name}}</option>
@@ -384,7 +384,7 @@
                                             <div class="form-group">
                                                 <label for="first-name-column">{{__('admin.pickup_location')}}</label>
                                                 <div class="controls">
-                                                    <select name="pickup_location_id" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}" >
+                                                    <select name="pickup_location_id" class="select2 form-control" >
                                                         <option value>{{__('admin.pickup_location')}}</option>
                                                         @foreach ($branches as $branch)
                                                             <option  value="{{$branch->id}}">{{$branch->name}}</option>
@@ -398,8 +398,7 @@
                                                 <label for="first-name-column">{{ __('admin.container') }}</label>
                                                 <div class="controls">
                                                     <input type="text" name="container" class="form-control"
-                                                        placeholder="{{ __('admin.container') }}" required
-                                                        data-validation-required-message="{{ __('admin.this_field_is_required') }}">
+                                                        placeholder="{{ __('admin.container') }}" >
                                                 </div>
                                             </div>
                                         </div>
@@ -500,7 +499,7 @@
                                     </div>
                                 </div>
 
-                                <div role="tabpanel" class="tab-pane" id="account-vertical-carfinanceoperations" aria-labelledby="account-pill-carfinanceoperations" aria-expanded="false">
+                                {{-- <div role="tabpanel" class="tab-pane" id="account-vertical-carfinanceoperations" aria-labelledby="account-pill-carfinanceoperations" aria-expanded="false">
                                     <div class="row">
                                         @foreach ($priceTypes as $priceType)
                                            <input type="hidden" name="operations_price_type_id[]" value="{{ $priceType->id }}">
@@ -530,7 +529,7 @@
                                             </div>
                                         @endforeach
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div role="tabpanel" class="tab-pane" id="account-vertical-cargallery" aria-labelledby="account-pill-cargallery" aria-expanded="false">
                                     <div class="row">
                                         

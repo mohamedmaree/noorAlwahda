@@ -37,8 +37,8 @@ class CarFinanceOperationsController extends Controller
     public function store(Store $request)
     {
         $operation = CarFinanceOperations::create($request->validated());
-        $paid_amount = CarFinanceOperations::where(['car_id' => $operation->car_id,'price_type_id' => $operation->price_type_id])->sum('amount');
-        CarFinance::where(['car_id' => $operation->car_id,'price_type_id' => $operation->price_type_id])->update(['paid_amount' => $paid_amount]);
+        $paid_amount = CarFinanceOperations::where('car_id', $operation->car_id)->whereJsonContains('price_type_id', (string)$operation->price_type_id[0]??0)->sum('amount');
+        CarFinance::where(['car_id' => $operation->car_id,'price_type_id' => $operation->price_type_id[0]??0])->update(['paid_amount' => $paid_amount]);
 
         Report::addToLog('  اضافه سند دفع') ;
         return response()->json(['url' => route('admin.carfinanceoperations.index')]);
@@ -56,8 +56,8 @@ class CarFinanceOperationsController extends Controller
         $operation = CarFinanceOperations::findOrFail($id);
         $operation->update($request->validated());
 
-        $paid_amount = CarFinanceOperations::where(['car_id' => $operation->car_id,'price_type_id' => $operation->price_type_id])->sum('amount');
-        CarFinance::where(['car_id' => $operation->car_id,'price_type_id' => $operation->price_type_id])->update(['paid_amount' => $paid_amount]);
+        $paid_amount = CarFinanceOperations::where('car_id', $operation->car_id)->whereJsonContains('price_type_id', (string)$operation->price_type_id[0]??0)->sum('amount');
+        CarFinance::where(['car_id' => $operation->car_id,'price_type_id' => $operation->price_type_id[0]??0])->update(['paid_amount' => $paid_amount]);
 
         Report::addToLog('  تعديل سند دفع') ;
         return response()->json(['url' => route('admin.carfinanceoperations.index')]);
@@ -75,8 +75,9 @@ class CarFinanceOperationsController extends Controller
         $operation = CarFinanceOperations::findOrFail($id);
         $operation->delete();
        
-        $paid_amount = CarFinanceOperations::where(['car_id' => $operation->car_id,'price_type_id' => $operation->price_type_id])->sum('amount');
-        CarFinance::where(['car_id' => $operation->car_id,'price_type_id' => $operation->price_type_id])->update(['paid_amount' => $paid_amount]);
+
+        $paid_amount = CarFinanceOperations::where('car_id', $operation->car_id)->whereJsonContains('price_type_id', (string)$operation->price_type_id[0]??0)->sum('amount');
+        CarFinance::where(['car_id' => $operation->car_id,'price_type_id' => $operation->price_type_id[0]??0])->update(['paid_amount' => $paid_amount]);
 
         Report::addToLog('  حذف سند دفع') ;
         return response()->json(['id' =>$id]);
@@ -91,8 +92,9 @@ class CarFinanceOperationsController extends Controller
             $operation = CarFinanceOperations::findOrFail($id->id);
             $operation->delete();
            
-            $paid_amount = CarFinanceOperations::where(['car_id' => $operation->car_id,'price_type_id' => $operation->price_type_id])->sum('amount');
-            CarFinance::where(['car_id' => $operation->car_id,'price_type_id' => $operation->price_type_id])->update(['paid_amount' => $paid_amount]);
+
+            $paid_amount = CarFinanceOperations::where('car_id', $operation->car_id)->whereJsonContains('price_type_id', (string)$operation->price_type_id[0]??0)->sum('amount');
+            CarFinance::where(['car_id' => $operation->car_id,'price_type_id' => $operation->price_type_id[0]??0])->update(['paid_amount' => $paid_amount]);
         }
         
         // if (CarFinanceOperations::whereIntegerInRaw('id',$ids)->get()->each->delete()) {
