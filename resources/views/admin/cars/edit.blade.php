@@ -242,7 +242,7 @@
                                                 <label for="first-name-column">{{__('admin.bodytype')}}</label>
                                                 <div class="controls">
                                                     <select name="car_body_type_id" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}" >
-                                                        <option value>{{__('admin.damagetype')}}</option>
+                                                        <option value>{{__('admin.bodytype')}}</option>
                                                         @foreach ($bodytypes as $bodytype)
                                                             <option  value="{{$bodytype->id}}" {{$bodytype->id == $car->car_body_type_id ? 'selected' : ''}}>{{$bodytype->name}}</option>
                                                         @endforeach
