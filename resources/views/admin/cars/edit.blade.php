@@ -665,7 +665,7 @@
 {{-- show selected image script --}}
 
 {{-- submit add form script --}}
-    @include('admin.shared.submitAddForm')
+    @include('admin.shared.submitEditForm')
 {{-- submit add form script --}}
 </script>
 <script>
