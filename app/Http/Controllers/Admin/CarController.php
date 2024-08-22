@@ -170,6 +170,7 @@ class CarController extends Controller
 
     public function edit($id)
     {
+        dd(phpinfo());
         $car = Car::findOrFail($id);
         $users = User::orderBy('name','ASC')->get();
         $carbrands = CarBrands::orderBy('name','ASC')->get();
