@@ -554,7 +554,7 @@
                                                     <label for="first-name-column">{{ $priceType->name}}</label>
                                                     <div class="controls">
                                                         <input type="number" name="amount[]" value="{{ $car->carFinanceOperations->where('price_type_id',$priceType->id)->first()->amount??''}}"  class="form-control"
-                                                            placeholder="{{ __('admin.amount') }}" disabled>
+                                                            placeholder="{{ __('admin.amount') }}" >
                                                     </div>
                                                 </div>
                                             </div>
@@ -566,7 +566,7 @@
                                        
                                         @foreach ($statuses as $status)
                                             <input type="hidden" name="car_status_ids[]" value="{{ $status->id }}">
-                                            {{-- {{ $status->name}} --}}
+                                            {{ $status->name}}
                                      
                                             <div class="imgMontg col-12 text-center">
                                                 <div class="dropBox d-flex">
@@ -576,7 +576,7 @@
                                                                 <div class="imagesUploadBlock">
                                                                     <label class="uploadImg">
                                                                         <span><i class="feather icon-image"></i></span>
-                                                                        <input type="file" accept="image/*" name="gallery_images[{{ $status->id }}][]" class="imageUploader" multiple>
+                                                                        {{-- <input type="file" accept="image/*" name="gallery_images[{{ $status->id }}][]" class="imageUploader" multiple> --}}
                                                                     </label>
                                                                     <div class="uploadedBlock">
                                                                         <img src="{{$image->image}}" class="im">
@@ -588,14 +588,14 @@
                                                     
                                                     @endif
                                                 </div>
-                                                {{-- <div class="textCenter">
+                                                <div class="textCenter">
                                                     <div class="imagesUploadBlock">
                                                         <label class="uploadImg">
                                                             <span><i class="feather icon-image"></i></span>
                                                             <input type="file" accept="image/*" name="gallery_images[{{ $status->id }}][]"  class="imageUploader" multiple>
                                                         </label>
                                                     </div>
-                                                </div> --}}
+                                                </div>
                                             </div>
 
                                         @endforeach
@@ -624,11 +624,11 @@
                                                 @endforeach
                                             </div>
     
-                                            {{-- <button class="clickAdd">
+                                            <button class="clickAdd">
                                                 <span>
                                                     <i class="feather icon-plus"></i>
                                                 </span>
-                                            </button> --}}
+                                            </button>
                                             
                                         </div>
                                     </div>

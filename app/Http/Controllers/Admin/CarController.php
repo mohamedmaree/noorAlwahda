@@ -145,7 +145,7 @@ class CarController extends Controller
             $carGalleryArr = [];
             $i = 0;
             foreach($request->car_status_ids as $status_id){
-                $gallery = CarGallery::create(['car_id' => $car->id,'car_status_id' => $status_id,'amount']);
+                $gallery = CarGallery::create(['car_id' => $car->id,'car_status_id' => $status_id]);
                 $this->storeFiles($gallery,$request->gallery_images[$status_id]);
                 $i++;
             }
@@ -210,32 +210,34 @@ class CarController extends Controller
                 }
             }
         }
-        // if($request->operations_price_type_id){
-        //     // $car->carFinanceOperations()->delete();
-        //     $carFinanceOperationsArr = [];
-        //     $i = 0;
-        //     foreach($request->operations_price_type_id as $price_type_id){
-        //         CarFinanceOperations::create(['car_id' => $car->id,'price_type_id' => $price_type_id,'amount' => $request->amount[$i]??'','image' => $request->operations_image[$i]??'' ]);
-        //         $i++;
-        //     }
-        // }
-        // if($request->car_status_ids){
-        //     // $car->carGalleries()->delete();
-        //     $carGalleryArr = [];
-        //     $i = 0;
-        //     foreach($request->car_status_ids as $status_id){
-        //         $gallery = CarGallery::create(['car_id' => $car->id,'car_status_id' => $status_id,'amount']);
-        //         $this->storeFiles($gallery,$request->gallery_images[$status_id]);
-        //         $i++;
-        //     }
-        // }
+        if($request->operations_image){
+            $carFinanceOperationsArr = [];
+            $i = 0;
+            foreach($request->operations_price_type_id as $price_type_id){
+                if(isset($request->operations_image[$i])){
+                    $car->carFinanceOperations()->where(['car_id' => $car->id,'price_type_id' => $price_type_id])->delete();
+                    CarFinanceOperations::create(['car_id' => $car->id,'price_type_id' => $price_type_id,'amount' => $request->amount[$i]??'','image' => $request->operations_image[$i]??'' ]);
+                }
+                $i++;
+            }
+        }
+        if($request->gallery_images){
+            $carGalleryArr = [];
+            $i = 0;
+            foreach($request->car_status_ids as $status_id){
+                if(isset($request->gallery_images[$status_id])){
+                    $gallery = CarGallery::firstOrCreate(['car_id' => $car->id,'car_status_id' => $status_id]);
+                    $this->storeFiles($gallery,$request->gallery_images[$status_id]);
+                }
+                $i++;
+            }
+        }
 
-        // if($request->images){
-        //     // $car->carAttachments()->delete();
-        //     foreach($request->images as $image){
-        //         CarAttachment::create(['car_id' => $car->id,'image' => $image]);
-        //     }
-        // }
+        if($request->images){
+            foreach($request->images as $image){
+                CarAttachment::create(['car_id' => $car->id,'image' => $image]);
+            }
+        }
 
         Report::addToLog('  تعديل سيارة') ;
         return response()->json(['url' => route('admin.cars.index')]);
