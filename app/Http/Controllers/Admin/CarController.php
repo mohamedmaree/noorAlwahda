@@ -51,13 +51,23 @@ class CarController extends Controller
         $statuses = CarStatus::latest()->get();
         $cardamagetypes = DamageTypes::latest()->get();
         $bodytypes = BodyTypes::latest()->get();
+
         $enginetypes = EngineTypes::latest()->get();
         $supported_countries = SiteSetting::where('key','countries')->first()->value??'';
         $supported_countries = json_decode($supported_countries);
         $countries = Country::whereIn('id',$supported_countries??[])->orderBy('id','ASC')->get();
         $regions = Region::whereIn('country_id',$supported_countries??[])->orderBy('name','ASC')->get();
+       
         $warehouses = Warehouse::orderBy('name','ASC')->get();
+        $branches = Branch::orderBy('name','ASC')->get();
+        $auctions = Auction::latest()->get();
         
+        $statuses = CarStatus::orderBy('sort','ASC')->get();
+        foreach($statuses as $status){
+            $statusArr[] =  $status->name;
+            $carsStatusArr[] = Car::where('car_status_id',$status->id)->count();
+        }
+
         return view('admin.cars.index',get_defined_vars());
     }
 

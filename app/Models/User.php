@@ -96,6 +96,9 @@ class User extends Authenticatable
             })
             ->when(@$searchArray['is_approved'] !== null, function ($q) use ($searchArray) {
                 $q->where('is_approved', @$searchArray['is_approved']);
+            })
+            ->when(@$searchArray['vip'] !== null, function ($q) use ($searchArray) {
+                $q->where('vip', @$searchArray['vip']);
             });
     }
 

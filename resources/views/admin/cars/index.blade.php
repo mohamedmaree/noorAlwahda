@@ -3,9 +3,24 @@
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/extensions/sweetalert2.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/index_page.css')}}">
-@endsection
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/charts/apexcharts.css')}}">
+    @endsection
 
 @section('content')
+<div class="row">
+    <div class="col-lg-12 col-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between pb-0">
+                <h4 class="card-title">{{__('admin.cars_status')}}</h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body py-0">
+                    <div id="cars-chart-status"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <x-admin.table 
     datefilter="true" 
@@ -21,6 +36,11 @@
         'vin' => [
             'input_type' => 'text' , 
             'input_name' => __('admin.vin') , 
+        ] ,
+        'user_id' => [
+            'input_type' => 'select' , 
+            'rows'       => $users , 
+            'input_name' => __('admin.client') , 
         ] ,
         'car_brand_id' => [
             'input_type' => 'select' , 
@@ -43,10 +63,64 @@
             'rows'       => $carcolors , 
             'input_name' => __('admin.carcolor') , 
         ] ,
-        'user_id' => [
+        'car_status_id' => [
             'input_type' => 'select' , 
-            'rows'       => $users , 
-            'input_name' => __('admin.client') , 
+            'rows'       => $statuses , 
+            'input_name' => __('admin.carstatuses') , 
+        ] ,
+        'car_damage_type_id' => [
+            'input_type' => 'select' , 
+            'rows'       => $cardamagetypes , 
+            'input_name' => __('admin.damagetypes') , 
+        ] ,
+        'car_body_type_id' => [
+            'input_type' => 'select' , 
+            'rows'       => $bodytypes , 
+            'input_name' => __('admin.bodytypes') , 
+        ] ,
+        'car_engine_type_id' => [
+            'input_type' => 'select' , 
+            'rows'       => $enginetypes , 
+            'input_name' => __('admin.enginetypes') , 
+        ] ,
+        'from_country_id' => [
+            'input_type' => 'select' , 
+            'rows'       => $countries , 
+            'input_name' => __('admin.countries') , 
+        ] ,
+        'region_id' => [
+            'input_type' => 'select' , 
+            'rows'       => $regions , 
+            'input_name' => __('admin.regions') , 
+        ] ,
+        'warehouse_id' => [
+            'input_type' => 'select' , 
+            'rows'       => $warehouses , 
+            'input_name' => __('admin.warehouses') , 
+        ] ,
+        'pickup_location_id' => [
+            'input_type' => 'select' , 
+            'rows'       => $branches , 
+            'input_name' => __('admin.branches') , 
+        ] ,
+        'auction_id' => [
+            'input_type' => 'select' , 
+            'rows'       => $auctions , 
+            'input_name' => __('admin.auctions') , 
+        ] ,
+        'available' => [
+            'input_type' => 'select' , 
+            'rows'       => [
+              '1' => [
+                'name' => __('admin.sell_available') , 
+                'id' => 1 , 
+              ],
+              '2' => [
+                'name' => __('admin.sell_not_available') , 
+                'id' => 0 , 
+              ],
+            ] , 
+            'input_name' => __('admin.sell_available')  , 
         ] ,
 
     ]" 
@@ -71,7 +145,17 @@
 
     <script src="{{asset('admin/app-assets/vendors/js/extensions/sweetalert2.all.min.js')}}"></script>
     <script src="{{asset('admin/app-assets/js/scripts/extensions/sweet-alerts.js')}}"></script>
+    <script src="{{asset('admin/app-assets/vendors/js/charts/apexcharts.min.js')}}"></script>
+    <script src="{{asset('admin/charts_functions.js')}}"></script>
+
     @include('admin.shared.deleteAll')
     @include('admin.shared.deleteOne')
     @include('admin.shared.filter_js' , [ 'index_route' => url('admin/cars')])
+    <script>
+    //cars-chart-status
+    new ApexCharts(
+        document.querySelector("#cars-chart-status"),
+        pieChartFunction(@json($statusArr) , @json($carsStatusArr) ,['#A5978B', '#F9CE1D','#4CAF50', '#EA3546','#1CAF20','#A5776B'])
+    ).render();
+    </script>
 @endsection

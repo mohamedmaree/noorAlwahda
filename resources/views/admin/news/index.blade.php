@@ -16,7 +16,7 @@
     :searchArray="[
         'content' => [
             'input_type' => 'text' , 
-            'input_name' => __('admin.name') , 
+            'input_name' => __('admin.content') , 
         ] ,
         
     ]" 

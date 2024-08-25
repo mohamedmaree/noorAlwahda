@@ -881,6 +881,7 @@ return [
     'pickup_location'  => 'فرع الاستلام',
     'container'  => 'الحاوية',
     'sell_available' => 'متاحة للبيع',
+    'sell_not_available' => 'غير متاحة للبيع',
     'purchasing_date'=>'تاريخ الشراء',
     'estimation_arrive_date'=>'تاريخ الوصول المتوقع',
     'warehouse_arrive_date'=> 'تاريخ وصول المستودع',
@@ -890,8 +891,19 @@ return [
     'towing_date'=> 'تاريخ السحب',
     'notes' => 'ملاحظات',
     'vip'  => 'مميز',
+    'not_vip'  => 'غير مميز',
     'exchange_rate'  => 'معامل التحويل',
     'price'   => 'السعر',
+    'main_users' => 'المستخدمين الرئيسيين',
+    'sub_users'   => 'المستخدمين الفرعيين',
+    'vip_users'   => 'المستخدمين المميزين',
+    'not_vip_users'  => 'المستخدمين العاديين',
+    'availableCars'  => 'سيارات متاحة للبيع' ,
+    'notavailableCars'  => 'سيارات غير متاحة للبيع' ,
+    'cars_delayed'    => 'سيارات متآخرة',
+    'carfinanceoperations_count'  => 'عدد سندات الدفع',
+    'carfinanceoperations_sum'  => 'مبلغ سندات الدفع',
+    'added_cars'  => 'السيارات المضافة',
     #new_comand_translations_here
                 
                 

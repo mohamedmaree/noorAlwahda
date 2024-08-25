@@ -4,10 +4,77 @@
     <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css-rtl/plugins/forms/validation/form-validation.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/extensions/sweetalert2.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/index_page.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/charts/apexcharts.css')}}">
 @endsection
 
 @section('content')
+<div class="row">
 
+  <div class="col-lg-6 col-12">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between pb-0">
+            <h4 class="card-title">{{__('admin.main_users')}}</h4>
+        </div>
+        <div class="card-content">
+            <div class="card-body py-0">
+                <div id="mainusers-chart"></div>
+            </div>
+            {{-- <ul class="list-group list-group-flush customer-info">
+                <li class="list-group-item d-flex justify-content-between ">
+                    <div class="series-info">
+                        <i class="fa fa-circle font-small-3 text-primary"></i>
+                        <span class="text-bold-600">{{__('admin.main_users')}}</span>
+                    </div>
+                    <div class="product-result">
+                        <span>{{$mainUsers}}</span>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between ">
+                    <div class="series-info">
+                        <i class="fa fa-circle font-small-3 text-warning"></i>
+                        <span class="text-bold-600">{{__('admin.sub_users')}}</span>
+                    </div>
+                    <div class="product-result">
+                        <span>{{$subUsers}}</span>
+                    </div>
+                </li>
+            </ul> --}}
+        </div>
+    </div>
+  </div>
+  <div class="col-lg-6 col-12">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between pb-0">
+            <h4 class="card-title">{{__('admin.vip_users')}}</h4>
+        </div>
+        <div class="card-content">
+            <div class="card-body py-0">
+                <div id="vip-chart"></div>
+            </div>
+            {{-- <ul class="list-group list-group-flush customer-info">
+                <li class="list-group-item d-flex justify-content-between ">
+                    <div class="series-info">
+                        <i class="fa fa-circle font-small-3 text-primary"></i>
+                        <span class="text-bold-600">{{__('admin.vip_users')}}</span>
+                    </div>
+                    <div class="product-result">
+                        <span>{{$vipUsers}}</span>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between ">
+                    <div class="series-info">
+                        <i class="fa fa-circle font-small-3 text-warning"></i>
+                        <span class="text-bold-600">{{__('admin.not_vip_users')}}</span>
+                    </div>
+                    <div class="product-result">
+                        <span>{{$notvipUsers}}</span>
+                    </div>
+                </li>
+            </ul> --}}
+        </div>
+    </div>
+  </div>
+</div>
 <x-admin.table 
     datefilter="true" 
     order="true" 
@@ -26,6 +93,11 @@
         'email' => [
             'input_type' => 'text' , 
             'input_name' => __('admin.email') , 
+        ] ,
+        'country_id' => [
+            'input_type' => 'select' , 
+            'rows'       => $countries , 
+            'input_name' => __('admin.countries') , 
         ] ,
         'is_blocked' => [
             'input_type' => 'select' , 
@@ -54,6 +126,20 @@
               ],
             ] , 
             'input_name' => __('admin.is_approved')  , 
+        ] ,
+        'vip' => [
+            'input_type' => 'select' , 
+            'rows'       => [
+              '1' => [
+                'name' => __('admin.vip') , 
+                'id' => 1 , 
+              ],
+              '2' => [
+                'name' => __('admin.not_vip') , 
+                'id' => 0 , 
+              ],
+            ] , 
+            'input_name' => __('admin.vip')  , 
         ] ,
         
     ]" 
@@ -94,6 +180,9 @@
     <script src="{{asset('admin/app-assets/js/scripts/forms/validation/form-validation.js')}}"></script>
     <script src="{{asset('admin/app-assets/vendors/js/extensions/sweetalert2.all.min.js')}}"></script>
     <script src="{{asset('admin/app-assets/js/scripts/extensions/sweet-alerts.js')}}"></script>
+    <script src="{{asset('admin/app-assets/vendors/js/charts/apexcharts.min.js')}}"></script>
+    <script src="{{asset('admin/charts_functions.js')}}"></script>
+
     @include('admin.shared.deleteAll')
     @include('admin.shared.deleteOne')
     @include('admin.shared.filter_js' , [ 'index_route' => url('admin/clients-show/'.$id)])
@@ -128,6 +217,18 @@
   
           });
       });
+  </script>
+  <script>
+        //vip-chart
+        new ApexCharts(
+            document.querySelector("#vip-chart"),
+            pieChartFunction(['{{ __('admin.vip_users') }}', '{{ __('admin.not_vip_users') }}'] , [ Number('{{$vipUsers}}'), Number('{{$notvipUsers}}')] , ['#7367F0', '#FF9F43'])
+        ).render();
+        //mainusers-chart
+        new ApexCharts(
+            document.querySelector("#mainusers-chart"),
+            pieChartFunction(['{{ __('admin.main_users') }}', '{{ __('admin.sub_users') }}'] , [ Number('{{$mainUsers}}'), Number('{{$subUsers}}')] , ['#7367F0', '#FF9F43'])
+        ).render();
   </script>
     {{-- import excel file script--}}
     @include('admin.shared.importFile')

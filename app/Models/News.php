@@ -9,7 +9,9 @@ class News extends BaseModel
     const IMAGEPATH = 'news' ; 
 
     use HasTranslations; 
-    protected $fillable = ['content'];
+    protected $fillable = ['content','vip'];
     public $translatable = ['content'];
-
+    protected $casts = [
+        'vip'         => 'boolean',
+    ];
 }

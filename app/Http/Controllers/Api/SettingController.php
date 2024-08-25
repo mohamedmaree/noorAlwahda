@@ -251,7 +251,10 @@ class SettingController extends Controller {
   }
 
   public function news() {
-    $news = NewsResource::collection(News::latest()->get());
+    $news = NewsResource::collection(News::where('vip',0)->when(auth()->user()->vip,function($q){
+                                            return $q->orwhere('vip',1);
+                                          })
+                                          ->latest()->get());
     return $this->successData( $news);
   }
   

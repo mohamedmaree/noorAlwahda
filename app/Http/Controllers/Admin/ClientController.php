@@ -33,6 +33,14 @@ class ClientController extends Controller {
             $html = view('admin.clients.table', compact('rows'))->render();
             return response()->json(['html' => $html]);
         }
+        $supported_countries = SiteSetting::where('key','countries')->first()->value??'';
+        $supported_countries = json_decode($supported_countries);
+        $countries = Country::whereIn('id',$supported_countries??[])->orderBy('id','ASC')->get();
+        
+        $mainUsers    = User::whereNull('parent_id')->count() ; 
+        $subUsers    = User::whereNotNull('parent_id')->count() ; 
+        $vipUsers    = User::where(['vip' => 1])->count() ; 
+        $notvipUsers = User::where(['vip' => 0])->count() ; 
         return view('admin.clients.index',get_defined_vars());
     }
 

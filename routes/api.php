@@ -53,9 +53,8 @@ Route::group([
             Route::get('transmission-types'         ,[SettingController::class, 'transmissionTypes']);
             Route::get('drive-types'                ,[SettingController::class, 'driveTypes']);
             Route::get('fuel-types'                ,[SettingController::class, 'fuelTypes']);
-            Route::get('news'                      ,[SettingController::class, 'news']);
             Route::get('available-cars'            ,[CarController::class, 'availableCars']);
-            Route::get('cars-by-category'            ,[CarController::class, 'carsByCategory']);
+
 
             Route::get('search-cars'            ,[CarController::class, 'searchCars']);
 
@@ -124,6 +123,9 @@ Route::group([
         Route::get('cars-by-user'               ,[CarController::class, 'carsByUser']);
         Route::get('shipping-lists'            ,[CarController::class, 'shippingLists']);
         Route::get('shipping-list-details/{shippingList?}'  ,[CarController::class, 'shippingListDetails']);
+       
+        Route::get('news'                      ,[SettingController::class, 'news']);
+        Route::get('cars-by-category'            ,[CarController::class, 'carsByCategory']);
         /***************************** CarController end *****************************/
 
         /***************************** ChatController start *****************************/

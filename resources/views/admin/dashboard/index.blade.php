@@ -102,6 +102,70 @@
             <div class="col-lg-6 col-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between pb-0">
+                        <h4 class="card-title">{{__('admin.users')}}</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body py-0">
+                            <div id="mainusers-chart"></div>
+                        </div>
+                        <ul class="list-group list-group-flush customer-info">
+                            <li class="list-group-item d-flex justify-content-between ">
+                                <div class="series-info">
+                                    <i class="fa fa-circle font-small-3 text-primary"></i>
+                                    <span class="text-bold-600">{{__('admin.main_users')}}</span>
+                                </div>
+                                <div class="product-result">
+                                    <span>{{$mainUsers}}</span>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between ">
+                                <div class="series-info">
+                                    <i class="fa fa-circle font-small-3 text-warning"></i>
+                                    <span class="text-bold-600">{{__('admin.sub_users')}}</span>
+                                </div>
+                                <div class="product-result">
+                                    <span>{{$subUsers}}</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between pb-0">
+                        <h4 class="card-title">{{__('admin.users')}}</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body py-0">
+                            <div id="vip-chart"></div>
+                        </div>
+                        <ul class="list-group list-group-flush customer-info">
+                            <li class="list-group-item d-flex justify-content-between ">
+                                <div class="series-info">
+                                    <i class="fa fa-circle font-small-3 text-primary"></i>
+                                    <span class="text-bold-600">{{__('admin.vip_users')}}</span>
+                                </div>
+                                <div class="product-result">
+                                    <span>{{$vipUsers}}</span>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between ">
+                                <div class="series-info">
+                                    <i class="fa fa-circle font-small-3 text-warning"></i>
+                                    <span class="text-bold-600">{{__('admin.not_vip_users')}}</span>
+                                </div>
+                                <div class="product-result">
+                                    <span>{{$notvipUsers}}</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between pb-0">
                         <h4 class="card-title">{{__('admin.cars')}}</h4>
                     </div>
                     <div class="card-content">
@@ -112,19 +176,19 @@
                             <li class="list-group-item d-flex justify-content-between ">
                                 <div class="series-info">
                                     <i class="fa fa-circle font-small-3 text-primary"></i>
-                                    <span class="text-bold-600">{{__('admin.new_cars')}}</span>
+                                    <span class="text-bold-600">{{__('admin.availableCars')}}</span>
                                 </div>
                                 <div class="product-result">
-                                    <span>10</span>
+                                    <span>{{ $availableCars }}</span>
                                 </div>
                             </li>
                             <li class="list-group-item d-flex justify-content-between ">
                                 <div class="series-info">
                                     <i class="fa fa-circle font-small-3 text-warning"></i>
-                                    <span class="text-bold-600">{{__('admin.delivered_cars')}}</span>
+                                    <span class="text-bold-600">{{__('admin.notavailableCars')}}</span>
                                 </div>
                                 <div class="product-result">
-                                    <span>50</span>
+                                    <span>{{ $notavailable }}</span>
                                 </div>
                             </li>
                         </ul>
@@ -142,60 +206,20 @@
                             <div id="cars-chart-status"></div>
                         </div>
                         <ul class="list-group list-group-flush customer-info">
-                            <li class="list-group-item d-flex justify-content-between ">
-                                <div class="series-info">
-                                    <i class="fa fa-circle font-small-3 text-primary"></i>
-                                    <span class="text-bold-600">{{__('admin.new_cars')}}</span>
-                                </div>
-                                <div class="product-result">
-                                    <span>10</span>
-                                </div>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between ">
-                                <div class="series-info">
-                                    <i class="fa fa-circle font-small-3 text-primary"></i>
-                                    <span class="text-bold-600">{{__('admin.on_way')}}</span>
-                                </div>
-                                <div class="product-result">
-                                    <span>10</span>
-                                </div>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between ">
-                                <div class="series-info">
-                                    <i class="fa fa-circle font-small-3 text-primary"></i>
-                                    <span class="text-bold-600">{{__('admin.picked_up')}}</span>
-                                </div>
-                                <div class="product-result">
-                                    <span>10</span>
-                                </div>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between ">
-                                <div class="series-info">
-                                    <i class="fa fa-circle font-small-3 text-primary"></i>
-                                    <span class="text-bold-600">{{__('admin.loaded')}}</span>
-                                </div>
-                                <div class="product-result">
-                                    <span>10</span>
-                                </div>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between ">
-                                <div class="series-info">
-                                    <i class="fa fa-circle font-small-3 text-primary"></i>
-                                    <span class="text-bold-600">{{__('admin.shipped')}}</span>
-                                </div>
-                                <div class="product-result">
-                                    <span>10</span>
-                                </div>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between ">
-                                <div class="series-info">
-                                    <i class="fa fa-circle font-small-3 text-warning"></i>
-                                    <span class="text-bold-600">{{__('admin.delivered_cars')}}</span>
-                                </div>
-                                <div class="product-result">
-                                    <span>50</span>
-                                </div>
-                            </li>
+                            <?php $i=0;?>
+                            @foreach($statusArr as $status)
+                                <li class="list-group-item d-flex justify-content-between ">
+                                    <div class="series-info">
+                                        <i class="fa fa-circle font-small-3 text-primary"></i>
+                                        <span class="text-bold-600">{{$status}}</span>
+                                    </div>
+                                    <div class="product-result">
+                                        <span>{{ $carsStatusArr[$i] }}</span>
+                                    </div>
+                                </li>
+                                <?php $i++;?>
+                            @endforeach
+                           
                         </ul>
                     </div>
                 </div>
@@ -204,49 +228,27 @@
             <div class="col-lg-6 col-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between pb-0">
-                        <h4 class="card-title">{{__('admin.cars_online')}}</h4>
+                        <h4 class="card-title">{{__('admin.cars_delayed')}}</h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body py-0">
-                            <div id="cars-online-chart"></div>
+                            <div id="cars-delayed-chart"></div>
                         </div>
                         <ul class="list-group list-group-flush customer-info">
-                            <li class="list-group-item d-flex justify-content-between ">
-                                <div class="series-info">
-                                    <i class="fa fa-circle font-small-3 text-primary"></i>
-                                    <span class="text-bold-600">{{__('admin.online_cars')}}</span>
-                                </div>
-                                <div class="product-result">
-                                    <span>10</span>
-                                </div>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between ">
-                                <div class="series-info">
-                                    <i class="fa fa-circle font-small-3 text-primary"></i>
-                                    <span class="text-bold-600">{{__('admin.owned_cars')}}</span>
-                                </div>
-                                <div class="product-result">
-                                    <span>10</span>
-                                </div>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between ">
-                                <div class="series-info">
-                                    <i class="fa fa-circle font-small-3 text-primary"></i>
-                                    <span class="text-bold-600">{{__('admin.customers_cars')}}</span>
-                                </div>
-                                <div class="product-result">
-                                    <span>10</span>
-                                </div>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between ">
-                                <div class="series-info">
-                                    <i class="fa fa-circle font-small-3 text-warning"></i>
-                                    <span class="text-bold-600">{{__('admin.sold_cars')}}</span>
-                                </div>
-                                <div class="product-result">
-                                    <span>50</span>
-                                </div>
-                            </li>
+
+                            <?php $i=0;?>
+                            @foreach($DelaystatusArr as $delaystatus)
+                                <li class="list-group-item d-flex justify-content-between ">
+                                    <div class="series-info">
+                                        <i class="fa fa-circle font-small-3 text-primary"></i>
+                                        <span class="text-bold-600">{{$delaystatus}}</span>
+                                    </div>
+                                    <div class="product-result">
+                                        <span>{{ $DelaycarsStatusArr[$i] }}</span>
+                                    </div>
+                                </li>
+                                <?php $i++;?>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -255,7 +257,7 @@
             <div class="col-lg-12 col-md-6 col-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-end">
-                        <h4 class="card-title">{{__('admin.cars')}}</h4>
+                        <h4 class="card-title">{{__('admin.added_cars')}}</h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body pb-0">
@@ -293,23 +295,33 @@
         //customer-chart
         new ApexCharts(
             document.querySelector("#customer-chart"),
-            pieChartFunction(['active', 'not active'] , [ Number('{{$activeUsers}}'), Number('{{$notActiveUsers}}')] , ['#7367F0', '#FF9F43'])
+            pieChartFunction(['{{ __('admin.active_users') }}', '{{ __('admin.dis_active_users') }}'] , [ Number('{{$activeUsers}}'), Number('{{$notActiveUsers}}')] , ['#7367F0', '#FF9F43'])
+        ).render();
+        //vip-chart
+        new ApexCharts(
+            document.querySelector("#vip-chart"),
+            pieChartFunction(['{{ __('admin.vip_users') }}', '{{ __('admin.not_vip_users') }}'] , [ Number('{{$vipUsers}}'), Number('{{$notvipUsers}}')] , ['#7367F0', '#FF9F43'])
+        ).render();
+        //mainusers-chart
+        new ApexCharts(
+            document.querySelector("#mainusers-chart"),
+            pieChartFunction(['{{ __('admin.main_users') }}', '{{ __('admin.sub_users') }}'] , [ Number('{{$mainUsers}}'), Number('{{$subUsers}}')] , ['#7367F0', '#FF9F43'])
         ).render();
         //cars-chart
         new ApexCharts(
             document.querySelector("#cars-chart"),
-            pieChartFunction(['new', 'delivered'] , [ Number('10'), Number('50')] , ['#7367F0', '#FF9F43'])
+            pieChartFunction(['{{ __('admin.sell_available') }}', '{{ __('admin.sell_not_available') }}'] , [ Number('{{$availableCars}}'), Number('{{$notavailable}}')] , ['#7367F0', '#FF9F43'])
         ).render();
         //cars-chart-status
         new ApexCharts(
             document.querySelector("#cars-chart-status"),
-            pieChartFunction(['new','on_way','picked_up','loaded','shipped', 'delivered'] , [ Number('10'), Number('10'), Number('10'), Number('10'), Number('10'), Number('50')] ,['#A5978B', '#F9CE1D','#4CAF50', '#EA3546','#1CAF20','#A5776B'])
+            pieChartFunction(@json($statusArr) , @json($carsStatusArr) ,['#A5978B', '#F9CE1D','#4CAF50', '#EA3546','#1CAF20','#A5776B'])
         ).render();
 
-        //cars-online-chart
+        //cars-delayed-chart
         new ApexCharts(
-            document.querySelector("#cars-online-chart"),
-            pieChartFunction(['online cars','owned cars','customers cars','sold cars'] , [ Number('10'), Number('10'), Number('10'), Number('10')] ,['#A5978B', '#F9CE1D','#4CAF50', '#EA3546'])
+            document.querySelector("#cars-delayed-chart"),
+            pieChartFunction(@json($DelaystatusArr) , @json($DelaycarsStatusArr) ,['#A5978B', '#F9CE1D','#4CAF50', '#EA3546'])
         ).render();
 
 
@@ -392,18 +404,17 @@
             document.querySelector("#revenue-chart"),
             revenueChartoptions
         ).render();
+       
         //columns chart
         var options = {
           series: [{
-          name: 'Net Profit',
-          data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
-        }, {
-          name: 'Revenue',
-          data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
-        }, {
-          name: 'Free Cash Flow',
-          data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
-        }],
+          name: '{{ __('admin.carfinanceoperations_count') }}',
+          data: @json($carFinanceOperationsArrayCount)
+        },{
+          name: '{{ __('admin.carfinanceoperations_sum') }}',
+          data: @json($carFinanceOperationsArraySum)
+        }
+        ],
           chart: {
           type: 'bar',
           height: 350
@@ -424,11 +435,11 @@
           colors: ['transparent']
         },
         xaxis: {
-          categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+          categories: ['1', '2', '3', '4', '5', '6', '7', '8', '9','10','11','12'],
         },
         yaxis: {
           title: {
-            text: '$ (thousands)'
+            text: ''
           }
         },
         fill: {
@@ -437,7 +448,7 @@
         tooltip: {
           y: {
             formatter: function (val) {
-              return "$ " + val + " thousands"
+              return "" + val + ""
             }
           }
         }

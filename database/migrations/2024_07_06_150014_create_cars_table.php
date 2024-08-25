@@ -50,7 +50,7 @@ return new class extends Migration
             $table->integer('warehouse_id')->nullable();
             $table->integer('pickup_location_id')->nullable();//company branch id
             $table->string('container', 50)->nullable(); 
-            $table->boolean('available')->nullable(); 
+            $table->boolean('available')->default(0)->nullable(); 
 
             $table->double('price', 9, 2)->default(0);
             $table->text('notes')->nullable(); 

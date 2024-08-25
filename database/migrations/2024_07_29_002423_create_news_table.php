@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('news', function (Blueprint $table) {
             $table->id();
             $table->text('content')->nullable();
+            $table->boolean('vip')->default(0);
             $table->timestamps();
         });
     }

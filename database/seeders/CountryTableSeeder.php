@@ -26,7 +26,6 @@ class CountryTableSeeder extends Seeder
                 'flag'          =>  $country->emoji,
                 'currency_code' =>  $country->currency ,
                 'currency'      => json_encode(['ar' => $country->currency , 'en' => $country->currency], JSON_UNESCAPED_UNICODE) , 
-                'created_at'    => \Carbon\Carbon::now()->subMonth(rand(0,8)),
             ];
         }, $countriesJson );
         

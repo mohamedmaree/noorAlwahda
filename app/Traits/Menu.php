@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Traits;
+use App\Models\CarStatus;
 
 trait menu {
   public function home() {
+
+
 
     $menu = [
       [
@@ -18,12 +21,12 @@ trait menu {
         'url'   => url('admin/clients-show'),
       ], [
         'name'  => __('admin.active_users'),
-        'count' => \App\Models\User::where('active', 1)->count(),
+        'count' => \App\Models\User::where('is_approved', 1)->count(),
         'icon'  => 'icon-users',
         'url'   => url('admin/clients-show'),
       ], [
         'name'  =>  __('admin.dis_active_users'),
-        'count' => \App\Models\User::where('active', 0)->count(),
+        'count' => \App\Models\User::where('is_approved', 0)->count(),
         'icon'  => 'icon-users',
         'url'   => url('admin/clients-show'),
       ], [
@@ -36,7 +39,56 @@ trait menu {
         'count' => \App\Models\User::where('is_blocked', 1)->count(),
         'icon'  => 'icon-users',
         'url'   => url('admin/clients-show'),
-      ], [
+      ],
+      [
+        'name'  => __('admin.main_users'),
+        'count' => \App\Models\User::whereNull('parent_id')->count(),
+        'icon'  => 'icon-users',
+        'url'   => url('admin/clients-show'),
+      ],
+      [
+        'name'  => __('admin.sub_users'),
+        'count' => \App\Models\User::whereNotNull('parent_id')->count(),
+        'icon'  => 'icon-users',
+        'url'   => url('admin/clients-show'),
+      ],
+      [
+        'name'  => __('admin.vip_users'),
+        'count' => \App\Models\User::where('vip', 1)->count(),
+        'icon'  => 'icon-users',
+        'url'   => url('admin/clients-show'),
+      ],
+      [
+        'name'  => __('admin.sections'),
+        'count' => \App\Models\Category::count(),
+        'icon'  => 'icon-list',
+        'url'   => url('admin/categories-show'),
+      ],
+      [
+        'name'  => __('admin.pricecategories'),
+        'count' => \App\Models\PriceCategories::count(),
+        'icon'  => 'icon-list',
+        'url'   => url('admin/pricecategories'),
+      ],
+      [
+        'name'  => __('admin.pricetypes'),
+        'count' => \App\Models\PriceTypes::count(),
+        'icon'  => 'icon-list',
+        'url'   => url('admin/pricetypes'),
+      ],
+      [
+        'name'  => __('admin.shippngpricelists'),
+        'count' => \App\Models\ShippngPriceList::count(),
+        'icon'  => 'icon-list',
+        'url'   => url('admin/shippngpricelists'),
+      ],
+      [
+        'name'  => __('admin.news'),
+        'count' => \App\Models\News::count(),
+        'icon'  => 'icon-list',
+        'url'   => url('admin/news'),
+      ],
+      [
         'name'  => __('admin.socials'),
         'count' => \App\Models\Social::count(),
         'icon'  => 'icon-thumbs-up',
@@ -90,8 +142,51 @@ trait menu {
         'icon'  => 'icon-eye',
         'url'   => url('admin/roles'),
       ],
-    ];
+      [
+        'name'  => __('admin.carfinanceoperations'),
+        'count' => \App\Models\CarFinanceOperations::count(),
+        'icon'  => 'icon-list',
+        'url'   => url('admin/carfinanceoperations'),
+      ],
+      [
+        'name'  => __('admin.carstatuses'),
+        'count' => \App\Models\CarStatus::count(),
+        'icon'  => 'icon-list',
+        'url'   => url('admin/carstatuses'),
+      ],
+      [
+        'name'  => __('admin.auctions'),
+        'count' => \App\Models\Auction::count(),
+        'icon'  => 'icon-list',
+        'url'   => url('admin/auctions'),
+      ],
+      [
+        'name'  => __('admin.warehouses'),
+        'count' => \App\Models\Warehouse::count(),
+        'icon'  => 'icon-list',
+        'url'   => url('admin/warehouses'),
+      ],
+      [
+        'name'  => __('admin.branches'),
+        'count' => \App\Models\Branch::count(),
+        'icon'  => 'icon-home',
+        'url'   => url('admin/branches'),
+      ],
+      [
+        'name'  => __('admin.cars'),
+        'count' => \App\Models\Car::count(),
+        'icon'  => 'icon-truck',
+        'url'   => url('admin/cars'),
+      ],
 
+    ];
+    $statuses = CarStatus::orderBy('sort','ASC')->get();
+    foreach($statuses as $status){
+        $menu[] =  [  'name'  => $status->name,
+                      'count' => \App\Models\Car::where('car_status_id',$status->id)->count(),
+                      'icon'  => 'icon-truck',
+                      'url'   => url('admin/cars/status/'.$status->id)];
+    }
     return $menu;
   }
 
