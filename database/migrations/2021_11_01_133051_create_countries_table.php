@@ -19,6 +19,7 @@ class CreateCountriesTable extends Migration
             $table->string('key', 100)->default('+965');
             $table->string('currency', 100)->nullable();
             $table->string('currency_code', 100)->nullable();
+            $table->double('exchange_rate', 9, 3)->nullable();
             $table->string('iso2', 100)->nullable();
             $table->string('iso3', 100)->nullable();
             $table->string('flag', 100)->nullable();

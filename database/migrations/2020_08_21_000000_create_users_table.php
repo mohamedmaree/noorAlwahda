@@ -13,6 +13,7 @@ class CreateUsersTable extends Migration {
       $table->unsignedBigInteger('country_id')->unsigned()->index()->nullable();
       $table->string('name',50);
       $table->string('country_code',5)->default('965')->nullable();
+      $table->string('currency_code',5)->default('AED')->nullable();
       $table->string('phone',15);
       $table->string('email',50)->nullable();
       $table->string('password',100)->nullable();

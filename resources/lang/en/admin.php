@@ -560,4 +560,6 @@ return [
     'towing_date'=> 'Towing Date',
     'notes' => 'Notes',
     'vip'  => 'vip',
+    'exchange_rate'  => 'Exchange Rate',
+    'price'   => 'Price',
 ];

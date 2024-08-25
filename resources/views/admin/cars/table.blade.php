@@ -26,6 +26,7 @@
             <th>{{__('admin.carcolor')}}</th>
             <th>{{__('admin.manufacturing_year')}}</th>
             <th>{{__('admin.carstatus')}}</th>
+            <th>{{__('admin.price')}}</th>
             <th>{{__('admin.still_days')}}</th>
             <th>{{__('admin.sell_available')}}</th>
             <th>{{__('admin.control')}}</th>
@@ -54,6 +55,7 @@
                     <td>{{ $car->carColor->name??'' }}</td>
                     <td>{{ $car->carYear->year??'' }}</td>
                     <td>{{ $car->carStatus->name??'' }}</td>
+                    <td>{{ $car->price }}</td>
                     @if($car->stillDays() != null && $car->stillDays() <= 0)
                         <td class="text-danger">{{ $car->stillDays().' '.__('admin.days')  }}</td>
                     @elseif($car->stillDays() > 0)

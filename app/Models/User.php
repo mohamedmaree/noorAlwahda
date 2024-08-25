@@ -42,6 +42,7 @@ class User extends Authenticatable
         'country_id',
         'name',
         'country_code',
+        'currency_code',
         'phone',
         'email',
         'password',

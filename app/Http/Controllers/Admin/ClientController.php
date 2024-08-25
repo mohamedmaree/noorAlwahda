@@ -40,6 +40,10 @@ class ClientController extends Controller {
         $supported_countries = SiteSetting::where('key','countries')->first()->value??'';
         $supported_countries = json_decode($supported_countries);
         $countries = Country::whereIn('id',$supported_countries??[])->orderBy('id','ASC')->get();
+
+        $supported_currencies = SiteSetting::where('key','currencies')->first()->value??'';
+        $supported_currencies = json_decode($supported_currencies);
+        $currencies = Country::whereIn('currency_code',$supported_currencies)->orderBy('id','ASC')->get();
         $users = User::where('parent_id',null)->latest()->get();
         return view('admin.clients.create',get_defined_vars());
     }
@@ -56,6 +60,11 @@ class ClientController extends Controller {
         $supported_countries = SiteSetting::where('key','countries')->first()->value??'';
         $supported_countries = json_decode($supported_countries);
         $countries = Country::whereIn('id',$supported_countries??[])->orderBy('id','ASC')->get();
+
+        $supported_currencies = SiteSetting::where('key','currencies')->first()->value??'';
+        $supported_currencies = json_decode($supported_currencies);
+        $currencies = Country::whereIn('currency_code',$supported_currencies)->orderBy('id','ASC')->get();
+
         $users = User::where('parent_id',null)->where('id','!=',$row->id)->latest()->get();
         return view('admin.clients.edit',get_defined_vars());
     }
@@ -91,6 +100,10 @@ class ClientController extends Controller {
         $supported_countries = SiteSetting::where('key','countries')->first()->value??'';
         $supported_countries = json_decode($supported_countries);
         $countries = Country::whereIn('id',$supported_countries??[])->orderBy('id','ASC')->get();
+        $supported_currencies = SiteSetting::where('key','currencies')->first()->value??'';
+        $supported_currencies = json_decode($supported_currencies);
+        $currencies = Country::whereIn('currency_code',$supported_currencies)->orderBy('id','ASC')->get();
+
         $users = User::where('parent_id',null)->where('id','!=',$row->id)->latest()->get();
         return view('admin.clients.show', get_defined_vars());
     }

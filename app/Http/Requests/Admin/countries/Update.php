@@ -26,8 +26,9 @@ class Update extends FormRequest
         return [
             'name.*'                => 'required|max:191',
             'currency.*'             => 'required|max:191',
-            'key'                    => 'required|unique:countries,key,'.$this->id,
-            'currency_code'          => 'required|unique:countries,currency_code,'.$this->id,
+            'key'                    => 'required',//|unique:countries,key,'.$this->id,
+            'currency_code'          => 'required',//|unique:countries,currency_code,'.$this->id,
+            'exchange_rate'          => 'nullable',
             'flag'                   => 'nullable',
         ];
     }

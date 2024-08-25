@@ -27,7 +27,8 @@ class UpdateProfileRequest extends BaseApiRequest {
       'email'        => 'sometimes|required|email|max:50|unique:users,email,'.auth()->id().',id,deleted_at,NULL',
       // 'active'       => '',
       'image'        => 'nullable',
-      'country_id' => 'nullable|exists:countries,id',
+      'country_id'   => 'sometimes|nullable|exists:countries,id',
+      'currency_code' => 'sometimes|nullable|exists:countries,currency_code',
     ];
   }
 

@@ -77,12 +77,32 @@
         </div>
     </div>
 
-    <div class="col-md-12 col-12">
+    <div class="col-md-6 col-12">
         <div class="form-group">
-            <label for="first-name-column">{{__('admin.address')}}</label>
-            <div class="controls">
-                <input type="text" name="address" class="form-control" value="{{ $row->address }}" disabled >
-            </div>
+            <label for="first-name-column">{{__('admin.country')}}</label>
+            <select name="country_id" class="form-control select2">
+                @foreach($countries as $country)
+                    <option value="{{ $country->id }}"
+                        @if ($row->country_id == $country->id)
+                            selected
+                        @endif >
+                    {{ $country->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="col-md-6 col-12">
+        <div class="form-group">
+            <label for="first-name-column">{{__('admin.currency')}}</label>
+            <select name="currency_code" class="form-control select2">
+                @foreach($currencies as $currency)
+                    <option value="{{ $currency->currency_code }}"
+                        @if ($row->currency_code  == $country->currency_code)
+                            selected
+                        @endif >
+                        {{ $currency->currency}} - {{ $currency->name}} </option>
+                @endforeach
+            </select>
         </div>
     </div>
 

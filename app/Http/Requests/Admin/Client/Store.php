@@ -27,6 +27,8 @@ class Store extends FormRequest
             'name'     => 'required|max:191',
             'is_blocked'  => 'nullable',
             'country_code' => 'required',
+            'currency_code' => 'nullable|exists:countries,currency_code',
+            'country_id' => 'nullable|exists:countries,id',
             'phone'    => 'required|min:8|unique:users,phone,NULL,NULL,deleted_at,NULL',
             'email'    => 'required|email|max:191|unique:users,email,NULL,NULL,deleted_at,NULL',
             'password' => ['required', 'min:6'],

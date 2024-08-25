@@ -392,6 +392,16 @@
             </div>
         </div>
 
+        <div class="col-md-6 col-12">
+            <div class="form-group">
+                <label for="first-name-column">{{ __('admin.price') }}</label>
+                <div class="controls">
+                    <input type="text" name="price" value="{{$car->price}}"  step="0.000" class="form-control"
+                        placeholder="{{ __('admin.price') }}" >
+                </div>
+            </div>
+        </div>
+
         <div class="col-12">
             <div class="form-group">
                 <div class="controls">

@@ -52,6 +52,7 @@ return new class extends Migration
             $table->string('container', 50)->nullable(); 
             $table->boolean('available')->nullable(); 
 
+            $table->double('price', 9, 2)->default(0);
             $table->text('notes')->nullable(); 
 
             $table->string('image')->nullable();

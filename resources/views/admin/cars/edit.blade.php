@@ -368,7 +368,7 @@
                                             <div class="form-group">
                                                 <label for="first-name-column">{{__('admin.region')}}</label>
                                                 <div class="controls">
-                                                    <select name="region_id" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}" >
+                                                    <select name="region_id" class="select2 form-control"  >
                                                         <option value>{{__('admin.region')}}</option>
                                                         @foreach ($regions as $region)
                                                             <option  value="{{$region->id}}" {{$region->id == $car->region_id ? 'selected' : ''}}>{{$region->name}}</option>
@@ -487,6 +487,16 @@
                                                 <div class="controls">
                                                     <input type="date" name="towing_date" value="{{$car->towing_date}}"  class="form-control"
                                                         placeholder="{{ __('admin.towing_date') }}" >
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-column">{{ __('admin.price') }}</label>
+                                                <div class="controls">
+                                                    <input type="text" name="price" value="{{$car->price}}"  step="0.00" class="form-control"
+                                                        placeholder="{{ __('admin.price') }}" >
                                                 </div>
                                             </div>
                                         </div>

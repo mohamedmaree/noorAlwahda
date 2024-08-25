@@ -890,7 +890,8 @@ return [
     'towing_date'=> 'تاريخ السحب',
     'notes' => 'ملاحظات',
     'vip'  => 'مميز',
-    
+    'exchange_rate'  => 'معامل التحويل',
+    'price'   => 'السعر',
     #new_comand_translations_here
                 
                 

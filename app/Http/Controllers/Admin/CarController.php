@@ -120,15 +120,22 @@ class CarController extends Controller
         $warehouses = Warehouse::orderBy('name','ASC')->get();
         $branches = Branch::orderBy('name','ASC')->get();
         $priceTypes = PriceTypes::orderBy('name','ASC')->get();
+        
+
+
         return view('admin.cars.create',get_defined_vars());
     }
 
     public function store(Store $request)
     {
         $car = Car::create($request->validated());
-        // $car_status_id = $car->nextCarStatus()->id??0;
-        // $car->statusHistory()->create(['car_status_id' => $car_status_id,'start_date' => date('Y-m-d')]);
-        // $car->update(['car_status_id' => $car_status_id]);
+        if($status = CarStatus::find($request->car_status_id)){
+            $car->statusHistory()->create(['car_status_id' => $status->id,'start_date' => date('Y-m-d')]);
+        }else{
+            $car_status_id = $car->nextCarStatus()->id??0;
+            $car->statusHistory()->create(['car_status_id' => $car_status_id,'start_date' => date('Y-m-d')]);
+            $car->update(['car_status_id' => $car_status_id]);
+        }
 
         if($request->required_amount){
             $carFinanceArr = [];

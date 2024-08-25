@@ -13,6 +13,18 @@ class CarFinanceOperations extends BaseModel
         'amount'   => 'decimal:2',
     ];
 
+    public function getAmountAttribute()
+    {
+        if(auth()->check()){
+            if(auth()->user()->currency_code){
+              $exchange_rate = Country::where('currency_code',auth()->user()->currency_code)->first()->exchange_rate??1;
+              return number_format($this->attributes['amount'] * $exchange_rate,2);
+            }
+        }
+        return number_format($this->attributes['amount'],2);
+    }
+
+
     public function scopeSearch($query, $searchArray = [])
     {
         $query->where(function ($query) use ($searchArray) {

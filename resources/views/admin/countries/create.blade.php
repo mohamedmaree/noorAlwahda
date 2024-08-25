@@ -74,6 +74,14 @@
                                         </div>
                                         <div class="col-md-12 col-12">
                                             <div class="form-group">
+                                                <label for="first-name-column">{{__('admin.exchange_rate')}}</label>
+                                                <div class="controls">
+                                                    <input type="number" name="exchange_rate" class="form-control" placeholder="{{__('admin.exchange_rate')}}" step="0.001" min="0" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-12">
+                                            <div class="form-group">
                                                 <label for="first-name-column">{{__('admin.flag')}}</label>
                                                 <div class="controls">
                                                     <input type="text" name="flag" class="form-control" placeholder="{{__('admin.flag')}}" required data-validation-required-message="{{__('admin.this_field_is_required')}}"  >

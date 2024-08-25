@@ -102,13 +102,32 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="col-md-12 col-12">
+                                    <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="first-name-column">{{__('admin.address')}}</label>
-                                            <div class="controls">
-                                                <input type="text" name="address" class="form-control"   >
-                                            </div>
+                                            <label for="first-name-column">{{__('admin.country')}}</label>
+                                            <select name="country_id" class="form-control select2">
+                                                @foreach($countries as $country)
+                                                    <option value="{{ $country->id }}"
+                                                        @if ($settings['default_country'] == $country->id)
+                                                            selected
+                                                        @endif >
+                                                    {{ $country->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="first-name-column">{{__('admin.currency')}}</label>
+                                            <select name="currency_code" class="form-control select2">
+                                                @foreach($currencies as $currency)
+                                                    <option value="{{ $currency->currency_code }}"
+                                                        @if ($settings['default_currency'] == $country->currency_code)
+                                                            selected
+                                                        @endif >
+                                                    {{ $currency->currency}} - {{ $currency->name}} </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
 

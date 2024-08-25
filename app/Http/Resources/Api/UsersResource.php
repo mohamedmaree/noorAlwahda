@@ -25,6 +25,7 @@ class UsersResource extends JsonResource {
       'is_have_subseries'   => $this->childes->count() > 0 ? true : false,
       'is_main_user'        => $this->parent_id ? false : true,
       'country'             => new CountryResource($this->country),
+      'currency_code'       => $this->currency_code,
       'vip'                 => $this->vip,
     ];
   }

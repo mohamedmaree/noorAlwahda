@@ -16,8 +16,9 @@ class store extends FormRequest
         return [
             'name.*'                => 'required|max:191',
             'currency.*'             => 'required|max:191',
-            'key'                    => 'required|unique:countries,key',
-            'currency_code'          => 'required|unique:countries,currency_code',
+            'key'                    => 'required',//|unique:countries,key',
+            'currency_code'          => 'required',//|unique:countries,currency_code',
+            'exchange_rate'          => 'nullable',
             'flag'                   => 'nullable',
         ];
        

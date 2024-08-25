@@ -19,6 +19,7 @@
                 <th>{{ __('admin.country_code') }}</th>
                 <th>{{ __('admin.currency') }}</th>
                 <th>{{ __('admin.currency_code') }}</th>
+                <th>{{ __('admin.exchange_rate') }}</th>
                 <th>{{ __('admin.control') }}</th>
             </tr>
         </thead>
@@ -36,6 +37,7 @@
                     <td>{{$country->key}}</td>
                     <td>{{$country->currency}}</td>
                     <td>{{$country->currency_code}}</td>
+                    <td>{{$country->exchange_rate}}</td>
                     <td class="product-action">
                         <span class="text-primary"><a href="{{ route('admin.countries.show', ['id' => $country->id]) }}" class="btn btn-warning btn-sm"><i class="feather icon-eye"></i> {{ __('admin.show') }}</a></span>
                         <span class="action-edit text-primary"><a href="{{ route('admin.countries.edit', ['id' => $country->id]) }}" class="btn btn-primary btn-sm"><i class="feather icon-edit"></i>{{ __('admin.edit') }}</a></span>

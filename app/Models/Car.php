@@ -44,7 +44,8 @@ class Car extends BaseModel
                            'port_arrive_date',
                            'shipping_date',
                            'towing_date',
-
+                           
+                           'price',
                            'notes',
                            'image'];
 
@@ -52,6 +53,17 @@ class Car extends BaseModel
         'available'      => 'boolean',
     ];
 
+    public function getPriceAttribute()
+    {
+        if(auth()->check()){
+            if(auth()->user()->currency_code){
+              $exchange_rate = Country::where('currency_code',auth()->user()->currency_code)->first()->exchange_rate??1;
+              return number_format($this->attributes['price'] * $exchange_rate,2);
+            }
+        }
+        return number_format($this->attributes['price'],2);
+    }
+    
     public function user()
     {
         return $this->belongsTo(User::class);

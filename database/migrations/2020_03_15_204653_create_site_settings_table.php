@@ -88,10 +88,10 @@
                 [ 'key' => 'default_locale'                 , 'value' => 'ar' ],
                 [ 'key' => 'locales'                        , 'value' => '["ar","en"]' ],
                 [ 'key' => 'rtl_locales'                    , 'value' => '["ar"]' ],
-                [ 'key' => 'default_country'                , 'value' => '117' ],
-                [ 'key' => 'countries'                      , 'value' => '["117"]' ],
-                [ 'key' => 'default_currency'               , 'value' => 'KWD' ],
-                [ 'key' => 'currencies'                     , 'value' => '["KWD"]' ],
+                [ 'key' => 'default_country'                , 'value' => '221' ],
+                [ 'key' => 'countries'                      , 'value' => '["221"]' ],
+                [ 'key' => 'default_currency'               , 'value' => 'AED' ],
+                [ 'key' => 'currencies'                     , 'value' => '["AED"]' ],
             ];
 			SiteSetting ::insert( $data );
             
