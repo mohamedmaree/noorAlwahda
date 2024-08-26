@@ -118,9 +118,10 @@ class HomeController extends Controller
         });
         $usermcount = [];
         $userArr = [];
-
         foreach ($users as $key => $value) {
-            $usermcount[$key] = $value->sum('amount')??0;
+            $usermcount[$key] = $value->map(function ($item) {
+                return (float) str_replace(',','',$item->amount);
+            })->sum();
         }
         for($i = 1; $i <= 12; $i++){
             $d = ($i < 10 )? date('Y').'-0'.$i : date('Y').'-'.$i;

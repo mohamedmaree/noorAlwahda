@@ -90,7 +90,7 @@ class CarController extends Controller {
     $ids[] = auth()->id();
     $cars_ids = Car::whereIn('user_id',$ids)->pluck('id')->toArray();
     $carsFinance = CarFinance::whereIn('car_id' ,$cars_ids);
-    $total_required = number_format( $carsFinance->sum('required_amount') ,2);
+    $total_required = $carsFinance->sum('required_amount');
     $exchange_rate = Country::where('currency_code',auth()->user()->currency_code)->first()->exchange_rate??1;
     $data['total_required']= number_format($total_required * $exchange_rate,2);
     return $this->successData($data);

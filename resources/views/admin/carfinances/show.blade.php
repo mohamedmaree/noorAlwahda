@@ -90,7 +90,7 @@
                                                 <div class="form-group">
                                                     <label for="first-name-column">{{ __('admin.required_amount') }}</label>
                                                     <div class="controls">
-                                                        <input type="number" name="required_amount" value="{{ $carfinance->required_amount }}" class="form-control"
+                                                        <input type="text" name="required_amount" value="{{str_replace(',','',$carfinance->required_amount)}}" class="form-control"
                                                             placeholder="{{ __('admin.required_amount') }}" required
                                                             data-validation-required-message="{{ __('admin.this_field_is_required') }}">
                                                     </div>

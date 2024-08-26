@@ -333,7 +333,7 @@
                                             <div class="form-group">
                                                 <label for="first-name-column">{{ __('admin.distance') }}</label>
                                                 <div class="controls">
-                                                    <input type="number" name="distance" value="{{ $car->distance }}" class="form-control"
+                                                    <input type="text" name="distance" value="{{ $car->distance }}" class="form-control"
                                                         placeholder="{{ __('admin.distance') }}" required
                                                         data-validation-required-message="{{ __('admin.this_field_is_required') }}">
                                                 </div>
@@ -495,7 +495,7 @@
                                             <div class="form-group">
                                                 <label for="first-name-column">{{ __('admin.price') }}</label>
                                                 <div class="controls">
-                                                    <input type="text" name="price" value="{{$car->price}}"  step="0.00" class="form-control"
+                                                    <input type="text" name="price" value="{{str_replace(',','',$car->price)}}"  step="0.00" class="form-control"
                                                         placeholder="{{ __('admin.price') }}" >
                                                 </div>
                                             </div>
@@ -523,7 +523,7 @@
                                                 <div class="form-group">
                                                     <label for="first-name-column">{{ $priceType->name}}</label>
                                                     <div class="controls">
-                                                        <input type="number" name="required_amount[]" value="{{ $car->carFinance->where('price_type_id',$priceType->id)->first()->required_amount??''}}" class="form-control"
+                                                        <input type="text" name="required_amount[]" value="{{str_replace(',','',$car->carFinance->where('price_type_id',$priceType->id)->first()->required_amount??'')}}" class="form-control"
                                                             placeholder="{{ __('admin.required_amount') }}">
                                                     </div>
                                                 </div>

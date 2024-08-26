@@ -233,7 +233,7 @@
             <div class="form-group">
                 <label for="first-name-column">{{ __('admin.distance') }}</label>
                 <div class="controls">
-                    <input type="number" name="distance" value="{{ $car->distance }}" class="form-control"
+                    <input type="text" name="distance" value="{{ $car->distance }}" class="form-control"
                         placeholder="{{ __('admin.distance') }}" required
                         data-validation-required-message="{{ __('admin.this_field_is_required') }}" disabled>
                 </div>
