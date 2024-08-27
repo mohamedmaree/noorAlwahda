@@ -97,7 +97,7 @@ class SettingController extends Controller {
     $socials = SocialResource::collection(Social::latest()->get());
     $data = SettingService::appInformations(SiteSetting::pluck('value', 'key'));
 
-    return $this->successData( ['socials' => $socials,'address'=>$data['intro_address'],'phone'=>$data['country_code'].$data['phone'],'website_url'=>$data['website_url'],'location_url'=>$data['location_url']]);
+    return $this->successData( ['socials' => $socials,'address'=>$data['intro_address'],'phone'=>$data['country_code'].$data['phone'],'email'=>$data['email'],'website_url'=>$data['website_url'],'location_url'=>$data['location_url']]);
   }
 
   public function images($id = null) {
