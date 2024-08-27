@@ -32,6 +32,9 @@
                 [ 'key' => 'phone'                          , 'value' => '55085102'        ],
                 [ 'key' => 'whatsapp_country_code'          , 'value' => '965'        ],
                 [ 'key' => 'whatsapp'                       , 'value' => '94971095'        ],
+                [ 'key' => 'website_url'                    , 'value' => 'https://marhabaauctions.com/'        ],
+                [ 'key' => 'location_url'                   , 'value' => 'https://maps.google.com/'        ],
+
                 [ 'key' => 'terms_ar'                       , 'value' => 'الشروط والاحكام'      ],
                 [ 'key' => 'terms_en'                       , 'value' => 'terms'                ],
                 [ 'key' => 'about_ar'                       , 'value' => 'من نحن'               ],

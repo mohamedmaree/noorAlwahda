@@ -14,6 +14,9 @@ class SettingService {
            'phone'                      =>$app_info['phone'],
            'whatsapp_country_code'      =>$app_info['whatsapp_country_code'],
            'whatsapp'                   =>$app_info['whatsapp'],
+           'website_url'                =>$app_info['website_url'],
+           'location_url'               =>$app_info['location_url'],
+           
 
            'logo'                       => ('/storage/images/settings/'. $app_info['logo']),
            'fav_icon'                   => ('/storage/images/settings/'. $app_info['fav_icon']),

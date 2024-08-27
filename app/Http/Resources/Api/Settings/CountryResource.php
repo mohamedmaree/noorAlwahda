@@ -13,6 +13,8 @@ class CountryResource extends JsonResource
             'name' => $this->name,
             'key'  => $this->key,
             'flag' => $this->flag,
+            'currency_code' => $this->currency_code,
+            'currency'      => $this->currency,
         ];
     }
 }

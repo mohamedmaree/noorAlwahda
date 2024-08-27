@@ -34,6 +34,7 @@ class CarResource extends JsonResource
             'auction'           => $this->carAcution->name??null,
             'warehouse'         => $this->warehouse->name??null,
             'pickup_location'   => $this->pickupLocation->name??null,
+            'region'            => $this->region->name??null,
             'distance'          => $this->distance,
             'key'               => $this->key,
             'container'         => $this->container,

@@ -574,4 +574,6 @@ return [
     'carfinanceoperations_count' => 'Number of payment vouchers',
     'carfinanceoperations_sum' => 'Amount of payment vouchers',
     'added_cars'  => 'Added Cars',
+    'website_url'  => 'Website Url',
+    'location_url'  => 'Location Url',
 ];

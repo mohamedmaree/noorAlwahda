@@ -155,6 +155,30 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-6 col-md-6">
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <label for="account-name">{{__('admin.address')}}</label>
+                                                <input type="text" class="form-control" name="intro_address" id="account-name" placeholder="{{__('admin.address')}}" value="{{$data['intro_address']}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-6">
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <label for="account-name">{{__('admin.website_url')}}</label>
+                                                <input type="url" class="form-control" name="website_url" id="account-name" placeholder="{{__('admin.website_url')}}" value="{{$data['website_url']}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-6">
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <label for="account-name">{{__('admin.location_url')}}</label>
+                                                <input type="url" class="form-control" name="location_url" id="account-name" placeholder="{{__('admin.location_url')}}" value="{{$data['location_url']}}">
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-12 col-md-6">
                                         <div class="form-group">
                                             <label for="account-name">is production </label>

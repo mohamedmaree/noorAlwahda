@@ -904,6 +904,8 @@ return [
     'carfinanceoperations_count'  => 'عدد سندات الدفع',
     'carfinanceoperations_sum'  => 'مبلغ سندات الدفع',
     'added_cars'  => 'السيارات المضافة',
+    'website_url'  => 'رابط الموقع الالكتروني للمزاد',
+    'location_url'  => 'رابط لوكيشن المزاد',
     #new_comand_translations_here
                 
                 
