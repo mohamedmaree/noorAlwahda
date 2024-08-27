@@ -166,12 +166,11 @@ class CarController extends Controller
         //     }
         // }
         if($request->gallery_images){
-            $carGalleryArr = [];
-            $i = 0;
             foreach($request->car_status_ids as $status_id){
-                $gallery = CarGallery::create(['car_id' => $car->id,'car_status_id' => $status_id]);
-                $this->storeFiles($gallery,$request->gallery_images[$status_id]);
-                $i++;
+                if(isset($request->gallery_images[$status_id])){
+                    $gallery = CarGallery::create(['car_id' => $car->id,'car_status_id' => $status_id]);
+                    $this->storeFiles($gallery,$request->gallery_images[$status_id]);
+                }
             }
         }
 
