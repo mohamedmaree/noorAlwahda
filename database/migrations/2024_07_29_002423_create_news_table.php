@@ -15,6 +15,10 @@ return new class extends Migration
             $table->id();
             $table->text('content')->nullable();
             $table->boolean('vip')->default(0);
+            $table->boolean('middle')->default(0);
+            $table->boolean('usual')->default(1);
+            $table->boolean('main_account')->default(1);
+            $table->boolean('sub_account')->default(0);
             $table->timestamps();
         });
     }

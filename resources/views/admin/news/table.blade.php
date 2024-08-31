@@ -17,6 +17,10 @@
                 </th>
                 <th>{{__('admin.content')}}</th>
                 <th>{{ __('admin.vip') }}</th>
+                <th>{{ __('admin.middle') }}</th>
+                <th>{{ __('admin.usual') }}</th>
+                <th>{{ __('admin.main_account') }}</th>
+                <th>{{ __('admin.sub_account') }}</th>
                 <th>{{__('admin.control')}}</th>
             </tr>
         </thead>
@@ -33,6 +37,19 @@
                     <td>
                         {!! toggleBooleanView($news , route('admin.model.active' , ['model' =>'News' , 'id' => $news->id , 'action' => 'vip'])) !!}
                     </td>
+                    <td>
+                        {!! toggleBooleanView($news , route('admin.model.active' , ['model' =>'News' , 'id' => $news->id , 'action' => 'middle'])) !!}
+                    </td>
+                    <td>
+                        {!! toggleBooleanView($news , route('admin.model.active' , ['model' =>'News' , 'id' => $news->id , 'action' => 'usual'])) !!}
+                    </td>
+                    <td>
+                        {!! toggleBooleanView($news , route('admin.model.active' , ['model' =>'News' , 'id' => $news->id , 'action' => 'main_account'])) !!}
+                    </td>
+                    <td>
+                        {!! toggleBooleanView($news , route('admin.model.active' , ['model' =>'News' , 'id' => $news->id , 'action' => 'sub_account'])) !!}
+                    </td>
+
                     <td class="product-action"> 
                         <span class="text-primary"><a href="{{ route('admin.news.show', ['id' => $news->id]) }}" class="btn btn-warning btn-sm"><i class="feather icon-eye"></i> {{ __('admin.show') }}</a></span>
                         <span class="action-edit text-primary"><a href="{{ route('admin.news.edit', ['id' => $news->id]) }}" class="btn btn-primary btn-sm"><i class="feather icon-edit"></i>{{ __('admin.edit') }}</a></span>

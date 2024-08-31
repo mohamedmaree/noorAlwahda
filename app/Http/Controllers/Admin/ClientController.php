@@ -29,7 +29,7 @@ class ClientController extends Controller {
 
     public function index($id = null) {
         if (request()->ajax()) {
-            $rows = User::where('parent_id' , $id)->search(request()->searchArray)->paginate(30);
+            $rows = User::search(request()->searchArray)->paginate(30);
             $html = view('admin.clients.table', compact('rows'))->render();
             return response()->json(['html' => $html]);
         }

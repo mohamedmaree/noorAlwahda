@@ -18,6 +18,10 @@
                 <th>{{__('admin.image')}}</th>
                 <th>{{__('admin.name')}}</th>
                 <th>{{ __('admin.vip') }}</th>
+                <th>{{ __('admin.middle') }}</th>
+                <th>{{ __('admin.usual') }}</th>
+                <th>{{ __('admin.main_account') }}</th>
+                <th>{{ __('admin.sub_account') }}</th>
                 <th>{{__('admin.control')}}</th>
             </tr>
         </thead>
@@ -35,7 +39,19 @@
                     <td>
                         {!! toggleBooleanView($shippngpricelist , route('admin.model.active' , ['model' =>'ShippngPriceList' , 'id' => $shippngpricelist->id , 'action' => 'vip'])) !!}
                     </td>
-                    
+                    <td>
+                        {!! toggleBooleanView($shippngpricelist , route('admin.model.active' , ['model' =>'ShippngPriceList' , 'id' => $shippngpricelist->id , 'action' => 'middle'])) !!}
+                    </td>
+                    <td>
+                        {!! toggleBooleanView($shippngpricelist , route('admin.model.active' , ['model' =>'ShippngPriceList' , 'id' => $shippngpricelist->id , 'action' => 'usual'])) !!}
+                    </td>
+                    <td>
+                        {!! toggleBooleanView($shippngpricelist , route('admin.model.active' , ['model' =>'ShippngPriceList' , 'id' => $shippngpricelist->id , 'action' => 'main_account'])) !!}
+                    </td>
+                    <td>
+                        {!! toggleBooleanView($shippngpricelist , route('admin.model.active' , ['model' =>'ShippngPriceList' , 'id' => $shippngpricelist->id , 'action' => 'sub_account'])) !!}
+                    </td>
+
                     <td class="product-action"> 
                         <span class="text-primary"><a href="{{ route('admin.shippngpricelists.show', ['id' => $shippngpricelist->id]) }}" class="btn btn-warning btn-sm"><i class="feather icon-eye"></i> {{ __('admin.show') }}</a></span>
                         <span class="action-edit text-primary"><a href="{{ route('admin.shippngpricelists.edit', ['id' => $shippngpricelist->id]) }}" class="btn btn-primary btn-sm"><i class="feather icon-edit"></i>{{ __('admin.edit') }}</a></span>

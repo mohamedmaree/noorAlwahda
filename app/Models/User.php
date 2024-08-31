@@ -33,6 +33,8 @@ class User extends Authenticatable
         'is_blocked'  => 'boolean',
         'is_approved' => 'boolean',
         'vip'         => 'boolean',
+        'middle'      => 'boolean',
+        'usual'       => 'boolean',
         'active'      => 'boolean',
     ];
 
@@ -53,6 +55,8 @@ class User extends Authenticatable
         'block_reason',
         'is_approved',
         'vip',
+        'middle',
+        'usual',
         'lang',
         'is_notify',
         'code',
@@ -99,6 +103,19 @@ class User extends Authenticatable
             })
             ->when(@$searchArray['vip'] !== null, function ($q) use ($searchArray) {
                 $q->where('vip', @$searchArray['vip']);
+            })
+            ->when(@$searchArray['middle'] !== null, function ($q) use ($searchArray) {
+                $q->where('middle', @$searchArray['middle']);
+            })
+            ->when(@$searchArray['usual'] !== null, function ($q) use ($searchArray) {
+                $q->where('usual', @$searchArray['usual']);
+            })
+            ->when(@$searchArray['account_type'] !== null, function ($q) use ($searchArray) {
+                if(@$searchArray['account_type'] == '0'){
+                    $q->whereNotNull('parent_id');
+                }else{
+                    $q->whereNull('parent_id');
+                }
             });
     }
 
@@ -290,7 +307,12 @@ class User extends Authenticatable
 
     public function carFinanceOperations(){
         $carids = $this->cars->pluck('id');
-        return CarFinanceOperations::whereIn('id',$carids)->get();
+        return CarFinanceOperations::whereIn('car_id',$carids)->get();
+    }
+
+    public function carFinance(){
+        $carids = $this->cars->pluck('id');
+        return CarFinance::whereIn('car_id',$carids)->get();
     }
 
     public static function boot()

@@ -23,7 +23,11 @@ class CreateUsersTable extends Migration {
       $table->boolean('is_blocked')->default(0);
       $table->text('block_reason')->nullable();
       $table->boolean('is_approved')->default(0);
+
       $table->boolean('vip')->default(0);
+      $table->boolean('middle')->default(0);
+      $table->boolean('usual')->default(1);
+
       $table->string('lang', 2)->default('ar');
       $table->boolean('is_notify')->default(true);
       $table->string('code', 10)->nullable();

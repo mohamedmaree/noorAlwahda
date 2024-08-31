@@ -576,4 +576,16 @@ return [
     'added_cars'  => 'Added Cars',
     'website_url'  => 'Website Url',
     'location_url'  => 'Location Url',
+    'carFinanceCount' => 'Number of finances added',
+    'carFinanceRequiredSum' => 'Amount of finances required',
+    'carFinancePaidSum' => 'Amount of finances collected',
+    'middle'  => 'Middle',
+    'usual'   => 'Usual',
+    'not_middle'  => 'Not Middle',
+    'not_usual'   => 'Not Usual',
+    'account_type'  => 'Account Type',
+    'sub_account'  => 'SubAccount',
+    'subAccounts'  => 'SubAccounts',
+    'total required amount' => 'Total Remaining Amount',
+    
 ];

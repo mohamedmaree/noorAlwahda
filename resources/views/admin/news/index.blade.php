@@ -18,7 +18,68 @@
             'input_type' => 'text' , 
             'input_name' => __('admin.content') , 
         ] ,
-        
+        'vip' => [
+            'input_type' => 'select' , 
+            'rows'       => [
+              '1' => [
+                'name' => __('admin.vip') , 
+                'id' => 1 , 
+              ],
+              '2' => [
+                'name' => __('admin.not_vip') , 
+                'id' => 0 , 
+              ],
+            ] , 
+            'input_name' => __('admin.vip')  , 
+        ] ,
+        'middle' => [
+            'input_type' => 'select' , 
+            'rows'       => [
+              '1' => [
+                'name' => __('admin.middle') , 
+                'id' => 1 , 
+              ],
+              '2' => [
+                'name' => __('admin.not_middle') , 
+                'id' => 0 , 
+              ],
+            ] , 
+            'input_name' => __('admin.middle')  , 
+        ] ,
+        'usual' => [
+            'input_type' => 'select' , 
+            'rows'       => [
+              '1' => [
+                'name' => __('admin.usual') , 
+                'id' => 1 , 
+              ],
+              '2' => [
+                'name' => __('admin.not_usual') , 
+                'id' => 0 , 
+              ],
+            ] , 
+            'input_name' => __('admin.usual')  , 
+        ] ,
+        'main_account' => [
+            'input_type' => 'select' , 
+            'rows'       => [
+              '1' => [
+                'name' => __('admin.main_account') , 
+                'id' => 1 , 
+              ],
+            ] , 
+            'input_name' => __('admin.main_account')  , 
+        ] ,
+        'sub_account' => [
+            'input_type' => 'select' , 
+            'rows'       => [
+              '1' => [
+                'name' => __('admin.sub_account') , 
+                'id' => 1 , 
+              ],
+            ] , 
+            'input_name' => __('admin.sub_account')  , 
+        ] ,
     ]" 
 >
 

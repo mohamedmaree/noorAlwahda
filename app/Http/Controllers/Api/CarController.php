@@ -97,9 +97,23 @@ class CarController extends Controller {
   }
 
   public function shippingLists(){
-    $lists = new ShippingListsCollection(ShippngPriceList::where('vip',0)->when(auth()->user()->vip,function($q){
-      return $q->orwhere('vip',1);
-    })->latest()->paginate($this->paginateNum()));
+    $lists = new ShippingListsCollection(ShippngPriceList::when(auth()->user()->vip,function($q){
+                                                                return $q->where('vip',1);
+                                                              })
+                                                              ->when(auth()->user()->middle,function($q){
+                                                                return $q->orwhere('middle',1);
+                                                              })
+                                                              ->when(auth()->user()->usual,function($q){
+                                                                return $q->orwhere('usual',1);
+                                                              })
+                                                              ->when(auth()->user()->parent_id !== null,function($q){
+                                                                return $q->orwhere('sub_account',1);
+                                                              })
+                                                              ->when(auth()->user()->parent_id === null,function($q){
+                                                                return $q->orwhere('main_account',1);
+                                                              })
+                                                              ->latest()
+                                                              ->paginate($this->paginateNum()));
     return $this->successData( $lists);
   }
 

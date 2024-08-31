@@ -127,6 +127,20 @@
             ] , 
             'input_name' => __('admin.is_approved')  , 
         ] ,
+        'account_type' => [
+            'input_type' => 'select' , 
+            'rows'       => [
+              '1' => [
+                'name' => __('admin.main_account') , 
+                'id' => 1 , 
+              ],
+              '2' => [
+                'name' => __('admin.sub_account') , 
+                'id' => 0 , 
+              ],
+            ] , 
+            'input_name' => __('admin.account_type')  , 
+        ] ,
         'vip' => [
             'input_type' => 'select' , 
             'rows'       => [
@@ -140,6 +154,34 @@
               ],
             ] , 
             'input_name' => __('admin.vip')  , 
+        ] ,
+        'middle' => [
+            'input_type' => 'select' , 
+            'rows'       => [
+              '1' => [
+                'name' => __('admin.middle') , 
+                'id' => 1 , 
+              ],
+              '2' => [
+                'name' => __('admin.not_middle') , 
+                'id' => 0 , 
+              ],
+            ] , 
+            'input_name' => __('admin.middle')  , 
+        ] ,
+        'usual' => [
+            'input_type' => 'select' , 
+            'rows'       => [
+              '1' => [
+                'name' => __('admin.usual') , 
+                'id' => 1 , 
+              ],
+              '2' => [
+                'name' => __('admin.not_usual') , 
+                'id' => 0 , 
+              ],
+            ] , 
+            'input_name' => __('admin.usual')  , 
         ] ,
         
     ]" 

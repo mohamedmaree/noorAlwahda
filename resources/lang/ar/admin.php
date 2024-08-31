@@ -906,6 +906,19 @@ return [
     'added_cars'  => 'السيارات المضافة',
     'website_url'  => 'رابط الموقع الالكتروني للمزاد',
     'location_url'  => 'رابط لوكيشن المزاد',
+
+    'carFinanceCount'  => 'عدد الماليات المضافة',
+    'carFinanceRequiredSum'  => 'مبالغ الماليات المطلوبة',
+    'carFinancePaidSum'  => 'مبالغ الماليات المحصلة',
+
+    'middle'  => 'متوسط',
+    'usual'   => 'عادي',
+    'not_middle'  => 'غير متوسط',
+    'not_usual'   => 'غير عادي',
+    'account_type'  => 'نوع الحساب',
+    'sub_account'  => 'الحساب الفرعي',
+    'subAccounts'  => 'الحسابات الفرعية',
+    'total_required_amount'  => 'اجمالي المبلغ المتبقي',
     #new_comand_translations_here
                 
                 

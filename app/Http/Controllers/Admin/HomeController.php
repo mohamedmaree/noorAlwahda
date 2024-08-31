@@ -16,6 +16,8 @@ use App\Models\SiteSetting;
 use App\Models\CarStatus;
 use App\Models\CarFinanceOperations;
 use Illuminate\Support\Facades\DB;
+use App\Models\Permission;
+use App\Models\CarFinance;
 
 class HomeController extends Controller
 {
@@ -23,9 +25,15 @@ class HomeController extends Controller
     /***************** dashboard *****************/
     public function dashboard()
     {
+        $permissions = Permission::where('role_id', auth()->guard('admin')->user()->role_id)->pluck('permission')->toArray();
+
         $carsArray      = $this->chartData(new Car);
-        $carFinanceOperationsArrayCount      = $this->chartData(new CarFinanceOperations);
+        $carFinanceOperationsArrayCount    = $this->chartData(new CarFinanceOperations);
         $carFinanceOperationsArraySum      = $this->chartDataFinance(new CarFinanceOperations);
+
+        $carFinanceCount         = $this->chartData(new CarFinance);
+        $carFinanceRequiredSum   = $this->chartDataRequiredFinance(new CarFinance);
+        $carFinancePaidSum       = $this->chartDataPaidFinance(new CarFinance);
 
         $activeUsers    = User::where(['is_approved' => 1])->count() ; 
         $notActiveUsers = User::where(['is_approved' => 0])->count() ; 
@@ -82,9 +90,6 @@ class HomeController extends Controller
         return back()->with('success' , __('admin.update_successfullay'));
     }
 
-
-
-
     public function chartData($model)
     {
         $users = $model::select('id', 'created_at')
@@ -133,4 +138,56 @@ class HomeController extends Controller
         }
         return $userArr ; 
     }
+
+    public function chartDataRequiredFinance($model)
+    {
+        $users = $model::select('id', 'created_at','required_amount')
+        ->get()
+        ->groupBy(function($date) {
+            return Carbon::parse($date->created_at)->format('Y-m'); 
+        });
+        $usermcount = [];
+        $userArr = [];
+        foreach ($users as $key => $value) {
+            $usermcount[$key] = $value->map(function ($item) {
+                return (float) str_replace(',','',$item->required_amount);
+            })->sum();
+        }
+        for($i = 1; $i <= 12; $i++){
+            $d = ($i < 10 )? date('Y').'-0'.$i : date('Y').'-'.$i;
+            if(!empty($usermcount[$d])){
+                $userArr[] = $usermcount[$d];
+            }else{
+                $userArr[] = 0;
+            }
+        }
+        return $userArr ; 
+    }
+
+    public function chartDataPaidFinance($model)
+    {
+        $users = $model::select('id', 'created_at','paid_amount')
+        ->get()
+        ->groupBy(function($date) {
+            return Carbon::parse($date->created_at)->format('Y-m'); 
+        });
+        $usermcount = [];
+        $userArr = [];
+        foreach ($users as $key => $value) {
+            $usermcount[$key] = $value->map(function ($item) {
+                return (float) str_replace(',','',$item->paid_amount);
+            })->sum();
+        }
+        for($i = 1; $i <= 12; $i++){
+            $d = ($i < 10 )? date('Y').'-0'.$i : date('Y').'-'.$i;
+            if(!empty($usermcount[$d])){
+                $userArr[] = $usermcount[$d];
+            }else{
+                $userArr[] = 0;
+            }
+        }
+        return $userArr ; 
+    }
+
+    
 }

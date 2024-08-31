@@ -17,12 +17,14 @@
                 </th>
                 <th>{{ __('admin.image') }}</th>
                 <th>{{ __('admin.name') }}</th>
-                <th>{{ __('admin.sub_accounts') }}</th>
+                <th>{{ __('admin.account_type') }}</th>
                 <th>{{ __('admin.email') }}</th>
                 <th>{{ __('admin.phone') }}</th>
                 <th>{{ __('admin.ban_status') }}</th>
                 <th>{{ __('admin.is_approved') }}</th>
                 <th>{{ __('admin.vip') }}</th>
+                <th>{{ __('admin.middle') }}</th>
+                <th>{{ __('admin.usual') }}</th>
                 <th>{{ __('admin.control') }}</th>
             </tr>
         </thead>
@@ -37,7 +39,13 @@
                 </td>
                 <td><img src="{{$row->image}}" width="30px" height="30px" alt=""></td>
                 <td>{{ $row->name }}</td>
-                <td><a href="{{route('admin.clients.index' , ['id' => $row->id])}}">{{__('admin.view')}}</a></td>
+                <td>
+                    @if($row->parent_id)
+                        {{__('admin.sub_account')}}
+                    @else
+                        {{__('admin.main_account')}}
+                    @endif
+                </td>
                 <td>{{ $row->email }}</td>
                 <td>{{ $row->phone }}</td>
                 <td>
@@ -48,6 +56,12 @@
                 </td>
                 <td>
                     {!! toggleBooleanView($row , route('admin.model.active' , ['model' =>'User' , 'id' => $row->id , 'action' => 'vip'])) !!}
+                </td>
+                <td>
+                    {!! toggleBooleanView($row , route('admin.model.active' , ['model' =>'User' , 'id' => $row->id , 'action' => 'middle'])) !!}
+                </td>
+                <td>
+                    {!! toggleBooleanView($row , route('admin.model.active' , ['model' =>'User' , 'id' => $row->id , 'action' => 'usual'])) !!}
                 </td>
                 <td class="product-action">
                     <span class="text-primary"><a href="{{ route('admin.clients.show', ['id' => $row->id]) }}" class="btn btn-warning btn-sm"><i class="feather icon-eye"></i> {{ __('admin.show') }}</a></span>

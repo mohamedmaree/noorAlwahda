@@ -65,34 +65,50 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="#subAccounts" class="navbar-nav-link legitRipple" data-toggle="tab">
+                                        <i class="fa-solid fa-group mr-2"></i>
+                                        {{  __('admin.subAccounts') }}
+                                        <span class="badge badge-pill bg-primary position-static ml-auto ml-lg-2">{{ $row->childes->count() }}</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="#orders" class="navbar-nav-link legitRipple" data-toggle="tab">
-                                        <i class="fa-solid fa-location-dot mr-2"></i>
+                                        <i class="fa-solid fa-truck mr-2"></i>
                                         {{  __('admin.cars') }}
-                                        <span class="badge badge-pill bg-primary position-static ml-auto ml-lg-2">{{ $row->cars()->count() }}</span>
+                                        <span class="badge badge-pill bg-primary position-static ml-auto ml-lg-2">{{ $row->cars->count() }}</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#carFinance" class="navbar-nav-link legitRipple" data-toggle="tab">
+                                        <i class="fa-solid feather icon-dollar-sign mr-2"></i>
+                                        {{  __('admin.carfinance') }}
+                                        <span class="badge badge-pill bg-primary position-static ml-auto ml-lg-2">{{ $row->carFinance()->count() }}</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="#carFinanceOperations" class="navbar-nav-link legitRipple" data-toggle="tab">
-                                        <i class="fa-solid fa-list mr-2"></i>
+                                        <i class="fa-solid feather icon-dollar-sign mr-2"></i>
                                         {{  __('admin.carfinanceoperations') }}
                                         <span class="badge badge-pill bg-primary position-static ml-auto ml-lg-2">{{ $row->carFinanceOperations()->count() }}</span>
                                     </a>
                                 </li>
+
                             </ul>
                         </div>
                     </div>
                     <div class="content-3">
                         <div class="row d-flex align-items-start flex-column flex-md-row">
                             <!-- Left content -->
-                             <div class="col-md-8">
+                             <div class="col-md-12">
                                  <div class="tab-content w-100 order-2 order-md-1">
                                      @include('admin.clients.tabs.data')
+                                     @include('admin.clients.tabs.subAccounts')
                                      @include('admin.clients.tabs.orders')
+                                     @include('admin.clients.tabs.carFinance')
                                      @include('admin.clients.tabs.carFinanceOperations')
-
                                  </div>
                              </div>
-                            <div class="col-md-4">
+                            {{-- <div class="col-md-4">
                                 <div  class="sidebar sidebar-light bg-transparent sidebar-component sidebar-component-right  border-0 shadow-0 order-1 order-lg-2 sidebar-expand-md">
                                 <div class="sidebar-content">
 
@@ -131,7 +147,7 @@
                                     </div>
                                 </div>
                             </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
 

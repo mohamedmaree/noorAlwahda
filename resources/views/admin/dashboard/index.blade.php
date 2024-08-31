@@ -26,21 +26,23 @@
         <div class="row align-center">
             @foreach($menus as $key => $menu)
                 @php $color = $colores[array_rand($colores)] @endphp
-                <a href="{{$menu['url']}}" class="col-xl-2 col-md-4 col-sm-6">
-                    <div class="card text-center">
-                        <div class="card-content">
-                            <div class="card-body">
-                                <div class="avatar bg-rgba-{{$color}} p-50 m-0 mb-1">
-                                    <div class="avatar-content">
-                                        <i class="feather {!! $menu['icon'] !!} text-{!! $color !!} font-medium-5"></i>
+                @if (in_array($menu['route'], $permissions))
+                    <a href="{{$menu['url']}}" class="col-xl-2 col-md-4 col-sm-6">
+                        <div class="card text-center">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="avatar bg-rgba-{{$color}} p-50 m-0 mb-1">
+                                        <div class="avatar-content">
+                                            <i class="feather {!! $menu['icon'] !!} text-{!! $color !!} font-medium-5"></i>
+                                        </div>
                                     </div>
+                                    <h2 class="text-bold-700">{{$menu['count']}}</h2>
+                                    <p class="mb-0 line-ellipsis" style="color: #6e6a6a">{{$menu['name']}}</p>
                                 </div>
-                                <h2 class="text-bold-700">{{$menu['count']}}</h2>
-                                <p class="mb-0 line-ellipsis" style="color: #6e6a6a">{{$menu['name']}}</p>
                             </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                @endif
             @endforeach
         </div>
         {{-- <div class="row">
@@ -66,7 +68,10 @@
                 </a>
             @endforeach
         </div> --}}
+
         <div class="row hight-card">
+
+        @if (in_array('admin.clients.index', $permissions))
             <div class="col-lg-6 col-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between pb-0">
@@ -163,6 +168,9 @@
                     </div>
                 </div>
             </div>
+        @endif
+
+        @if (in_array('admin.cars.index', $permissions))
             <div class="col-lg-6 col-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between pb-0">
@@ -266,11 +274,12 @@
                     </div>
                 </div>
             </div>
-
+        @endif
+        @if (in_array('admin.carfinanceoperations.index', $permissions))
             <div class="col-lg-12 col-md-6 col-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-end">
-                        <h4 class="card-title">{{__('admin.financial')}}</h4>
+                        <h4 class="card-title">{{__('admin.carfinanceoperations')}}</h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body pb-0">
@@ -279,7 +288,21 @@
                     </div>
                 </div>
             </div>
-                  
+        @endif
+        @if (in_array('admin.carfinances.index', $permissions))
+            <div class="col-lg-12 col-md-6 col-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-end">
+                        <h4 class="card-title">{{__('admin.carfinances')}}</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body pb-0">
+                            <div id="finance-chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif  
         </div>
 @endsection
 @section('js')
@@ -455,6 +478,62 @@
         };
 
         var chart = new ApexCharts(document.querySelector("#columns-chart"), options);
+        chart.render();
+
+
+        //finance chart
+        var options = {
+          series: [{
+          name: '{{ __('admin.carFinanceCount') }}',
+          data: @json($carFinanceCount)
+        },{
+          name: '{{ __('admin.carFinanceRequiredSum') }}',
+          data: @json($carFinanceRequiredSum)
+        },{
+          name: '{{ __('admin.carFinancePaidSum') }}',
+          data: @json($carFinancePaidSum)
+        }
+        ],
+          chart: {
+          type: 'bar',
+          height: 350
+        },
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            columnWidth: '55%',
+            endingShape: 'rounded'
+          },
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          show: true,
+          width: 2,
+          colors: ['transparent']
+        },
+        xaxis: {
+          categories: ['1', '2', '3', '4', '5', '6', '7', '8', '9','10','11','12'],
+        },
+        yaxis: {
+          title: {
+            text: ''
+          }
+        },
+        fill: {
+          opacity: 1
+        },
+        tooltip: {
+          y: {
+            formatter: function (val) {
+              return "" + val + ""
+            }
+          }
+        }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#finance-chart"), options);
         chart.render();
     </script>
     
