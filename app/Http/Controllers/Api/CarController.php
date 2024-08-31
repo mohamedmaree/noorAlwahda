@@ -97,20 +97,24 @@ class CarController extends Controller {
   }
 
   public function shippingLists(){
-    $lists = new ShippingListsCollection(ShippngPriceList::when(auth()->user()->vip,function($q){
-                                                                return $q->where('vip',1);
+    $lists = new ShippingListsCollection(ShippngPriceList::where(function($q){
+                                                                if(auth()->user()->vip == 1 ){
+                                                                  $q->where('vip',1);
+                                                                }
+                                                                if(auth()->user()->middle == 1){
+                                                                  $q->orwhere('middle',1);
+                                                                }
+                                                                if(auth()->user()->usual == 1){
+                                                                  $q->orwhere('usual',1);
+                                                                }
                                                               })
-                                                              ->when(auth()->user()->middle,function($q){
-                                                                return $q->orwhere('middle',1);
-                                                              })
-                                                              ->when(auth()->user()->usual,function($q){
-                                                                return $q->orwhere('usual',1);
-                                                              })
-                                                              ->when(auth()->user()->parent_id !== null,function($q){
-                                                                return $q->orwhere('sub_account',1);
-                                                              })
-                                                              ->when(auth()->user()->parent_id === null,function($q){
-                                                                return $q->orwhere('main_account',1);
+                                                              ->where(function($q){
+                                                                if(auth()->user()->parent_id === null ){
+                                                                  $q->where('main_account',1);
+                                                                }
+                                                                if(auth()->user()->parent_id !== null){
+                                                                  $q->orwhere('sub_account',1);
+                                                                }
                                                               })
                                                               ->latest()
                                                               ->paginate($this->paginateNum()));
