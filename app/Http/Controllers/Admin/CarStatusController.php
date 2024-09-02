@@ -8,7 +8,7 @@ use App\Http\Requests\Admin\carstatuses\Store;
 use App\Http\Requests\Admin\carstatuses\Update;
 use App\Models\CarStatus ;
 use App\Traits\Report;
-
+use Illuminate\Support\Facades\Schema;
 
 class CarStatusController extends Controller
 {
@@ -24,7 +24,8 @@ class CarStatusController extends Controller
 
     public function create()
     {
-        return view('admin.carstatuses.create');
+        $fields = Schema::getColumnListing('cars');
+        return view('admin.carstatuses.create',get_defined_vars());
     }
 
 
@@ -37,7 +38,8 @@ class CarStatusController extends Controller
     public function edit($id)
     {
         $carstatus = CarStatus::findOrFail($id);
-        return view('admin.carstatuses.edit' , ['carstatus' => $carstatus]);
+        $fields = Schema::getColumnListing('cars');
+        return view('admin.carstatuses.edit' ,get_defined_vars());
     }
 
     public function update(Update $request, $id)
@@ -50,7 +52,8 @@ class CarStatusController extends Controller
     public function show($id)
     {
         $carstatus = CarStatus::findOrFail($id);
-        return view('admin.carstatuses.show' , ['carstatus' => $carstatus]);
+        $fields = Schema::getColumnListing('cars');
+        return view('admin.carstatuses.show' ,get_defined_vars());
     }
     public function destroy($id)
     {

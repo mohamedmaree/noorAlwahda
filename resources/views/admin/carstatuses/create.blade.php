@@ -83,6 +83,20 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <div class="col-md-12 col-12">
+                                                <div class="form-group">
+                                                    <label for="first-name-column">{{__('admin.restriction_fields')}}</label>
+                                                    <div class="controls">
+                                                        <select name="fields[]" class="select2 form-control"  multiple>
+                                                            <option value>{{__('admin.restriction_fields')}}</option>
+                                                            @foreach ($fields as $field)
+                                                                <option value="{{$field}}">{{$field}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         
                                     {{--  to create languages tabs uncomment that --}}
                                     </div>

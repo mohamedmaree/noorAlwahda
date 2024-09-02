@@ -9,7 +9,6 @@ class CarFinanceOperations extends BaseModel
     protected $fillable = ['car_id','price_type_id','amount' ,'image'];
 
     protected $casts = [
-        'price_type_id' => 'array',
         'amount'   => 'decimal:2',
     ];
 
@@ -63,8 +62,9 @@ class CarFinanceOperations extends BaseModel
         return $this->belongsTo(Car::class, 'car_id', 'id');
     }
 
-    public function priceTypes(){
-        return PriceTypes::whereIn('id',$this->price_type_id??[])->get();
+    public function priceType()
+    {
+        return $this->belongsTo(PriceTypes::class, 'price_type_id', 'id');
     }
 
 }

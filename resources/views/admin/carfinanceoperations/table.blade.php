@@ -34,9 +34,7 @@
                     <td><a href="{{$carfinanceoperations->image}}" target="blank">{{ __('admin.show') }} </a></td>
                     <td>{{ $carfinanceoperations->car->car_num??'' }}</td>
                     <td>
-                        @foreach($carfinanceoperations->priceTypes() as $pricetype)
-                            {{ $pricetype->name.' - ' }}
-                        @endforeach
+                       {{ $carfinanceoperations->priceType->name??''}}
                     </td>
                     <td>{{ $carfinanceoperations->amount }}</td>
                     

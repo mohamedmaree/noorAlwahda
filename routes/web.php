@@ -1774,7 +1774,7 @@ use App\Models\CarStatus;
             'sub_route' => true,
             'child'     => $childs
         ]);
-
+        
         Route::get('cars', [
             'uses'      => 'CarController@index',
             'as'        => 'cars.index',
@@ -2880,8 +2880,14 @@ use App\Models\CarStatus;
             'icon'      => '<i class="feather icon-dollar-sign"></i>',
             'type'      => 'parent',
             'sub_route' => false,
-            'child'     => ['carfinanceoperations.create', 'carfinanceoperations.store','carfinanceoperations.edit', 'carfinanceoperations.update', 'carfinanceoperations.show', 'carfinanceoperations.delete'  ,'carfinanceoperations.deleteAll' ,]
+            'child'     => ['carfinanceoperations.create', 'carfinanceoperations.store','carfinanceoperations.edit', 'carfinanceoperations.update', 'carfinanceoperations.show', 'carfinanceoperations.delete'  ,'carfinanceoperations.deleteAll' ,'carfinanceoperations.get-car-outstanding-finances']
         ]);
+
+        Route::get('get-car-outstanding-finances', [
+            'uses'  => 'CarFinanceOperationsController@getCarOutstandingFinances',
+            'as'    => 'carfinanceoperations.get-car-outstanding-finances',
+            'title' => 'get_car_outstanding_finances'
+        ]); 
 
         # carfinanceoperations store
         Route::get('carfinanceoperations/create', [

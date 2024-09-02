@@ -16,7 +16,7 @@ class Store extends FormRequest
         return [
             'car_id'                  => 'required|exists:cars,id',
             'price_type_id'           => 'required|array',
-            'amount'                  => 'required',
+            'amount'                  => 'required|array',
             'image'                   => 'required',
         ];
     }

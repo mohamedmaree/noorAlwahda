@@ -919,6 +919,13 @@ return [
     'sub_account'  => 'الحساب الفرعي',
     'subAccounts'  => 'الحسابات الفرعية',
     'total_required_amount'  => 'اجمالي المبلغ المتبقي',
+    'get_car_outstanding_finances'  => 'عرض ماليات السيارة',
+    'still_amount' => 'المبلغ المتبقي',
+    'amount_lt_still_amount'  => 'لا يمكن ان يكون المبلغ المحصل اكبر من المبلغ المتبقي',
+    'no_still_amounts'  => 'لم يعد هناك مبالغ مستحقة',
+    'no_outstanding_amount' => 'لا يوجد مبالغ مستحقة لهذه السيارة في نوع الماليات هذا',
+    'restriction_fields' => 'حقول يجب ملأها للانتقال لهذه الحالة',
+    'field_required'  => 'لا يمكن تغيير الحالة الا بعد ملأ هذه الحقول :fields',
     #new_comand_translations_here
                 
                 

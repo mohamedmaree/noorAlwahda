@@ -120,6 +120,9 @@
                     data: {},
                     dataType: "json",
                     success: function(response){
+                        if (response.key == 'fail') {
+                                toastr.error(response.msg)
+                        } else {
                             Swal.fire(
                             {
                                 position: 'top-start',
@@ -130,6 +133,7 @@
                                 confirmButtonClass: 'btn btn-primary',
                                 buttonsStyling: false,
                             })
+                        }
                             getData({'searchArray' : searchArray()} )
                             // toastr.error()
                             // $('.data-list-view').DataTable().row($(this).closest('td').parent('tr')).remove().draw();

@@ -587,5 +587,11 @@ return [
     'sub_account'  => 'SubAccount',
     'subAccounts'  => 'SubAccounts',
     'total required amount' => 'Total Remaining Amount',
-    
+    'get_car_outstanding_finances' => 'View car finances',
+    'still_amount' => 'remaining amount',
+    'amount_lt_still_amount' => 'The collected amount cannot be greater than the remaining amount',
+    'no_still_amounts' => 'No more amounts due',
+    'no_outstanding_amount' => 'There are no amounts due for this vehicle in this finance type',
+    'restriction_fields' => 'Fields that must be filled to move to this status',
+    'field_required' => 'The status cannot be changed unless these fields are filled in :fields',
 ];

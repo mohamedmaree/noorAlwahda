@@ -33,9 +33,12 @@ use App\Models\CarGallery ;
 use App\Models\CarGalleryImages ;
 use App\Models\CarAttachment ;
 use App\Models\SiteSetting;
+use App\Traits\ResponseTrait;
 
 class CarController extends Controller
 {
+    use ResponseTrait;
+
     public function index($id = null)
     {
         if (request()->ajax()) {
@@ -74,6 +77,14 @@ class CarController extends Controller
     public function changeStatus($car_id = null ,$status_id = null){
        $car = Car::findOrFail($car_id);
        $status = CarStatus::findOrFail($status_id);
+       if($status->fields){
+            foreach($status->fields as $field){
+                if (is_null($car->$field)) {
+                    $fields_text = implode(',',$status->fields);
+                    return $this->response('fail', __('admin.field_required',['fields'=>$fields_text]));
+                }
+            }
+       }
        if($previousStatus = $car->statusHistory()->where('car_status_id', $car->car_status_id)->first()){
             $previousStatus->update(['end_date' => date('Y-m-d')]);
        }

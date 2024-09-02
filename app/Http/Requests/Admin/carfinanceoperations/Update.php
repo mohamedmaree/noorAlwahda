@@ -15,7 +15,7 @@ class Update extends FormRequest
     {
         return [
             'car_id'                  => 'required|exists:cars,id',
-            'price_type_id'           => 'required|array',
+            'price_type_id'           => 'required',
             'amount'                  => 'required',
             'image'                   => 'nullable',
         ];

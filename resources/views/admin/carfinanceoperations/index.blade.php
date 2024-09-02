@@ -24,7 +24,7 @@
             'row_name'   => 'car_num' , 
             'input_name' => __('admin.cars') , 
         ] ,
-        'price_types' => [
+        'price_type_id' => [
             'input_type' => 'select', 
             'input_name' => __('admin.pricetypes') , 
             'rows'       => $priceTypes , 

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->text('name');
             $table->integer('num_days')->nullable();
             $table->integer('sort')->nullable();
+            $table->json('fields')->nullable();
             $table->timestamps();
         });
     }

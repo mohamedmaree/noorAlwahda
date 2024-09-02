@@ -69,7 +69,7 @@
                                                 <div class="form-group">
                                                     <label for="first-name-column">{{__('admin.car')}}</label>
                                                     <div class="controls">
-                                                        <select name="car_id" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}" >
+                                                        <select name="car_id" id="car_id" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}" >
                                                             <option value>{{__('admin.car')}}</option>
                                                             @foreach ($cars as $car)
                                                                 <option value="{{$car->id}}">{{$car->car_num.' - '.$car->lot.' - '.$car->vin}}</option>
@@ -78,11 +78,14 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12 col-12">
+                                            </div>
+                                            <div class="append_here">
+                                            </div>
+                                            {{-- <div class="col-md-12 col-12">
                                                 <div class="form-group">
                                                     <label for="first-name-column">{{__('admin.pricetypes')}}</label>
                                                     <div class="controls">
-                                                        <select name="price_type_id[]" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}" multiple>
+                                                        <select name="price_type_id" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}">
                                                             <option value>{{__('admin.pricetypes')}}</option>
                                                             @foreach ($priceTypes as $priceType)
                                                                 <option value="{{$priceType->id}}">{{$priceType->name}}</option>
@@ -101,7 +104,7 @@
                                                             data-validation-required-message="{{ __('admin.this_field_is_required') }}">
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                         
                                     {{--  to create languages tabs uncomment that --}}
                                     {{-- </div> --}}
@@ -137,4 +140,20 @@
     {{-- submit add form script --}}
     @include('admin.shared.submitAddForm')
     {{-- submit add form script --}}
+<script>
+    $('#car_id').on('change', function(e) { //any select change on the dropdown with id country trigger this code
+        e.preventDefault();
+        var car_id = $('#car_id').val();
+
+        $.get("<?= route('admin.carfinanceoperations.get-car-outstanding-finances') ?>", {
+            car_id: car_id,
+        }, function(data) {
+            console.log(data);
+            $('.append_here').html("");
+            $('.append_here').html(data);
+        });
+        
+
+    });  
+</script> 
 @endsection

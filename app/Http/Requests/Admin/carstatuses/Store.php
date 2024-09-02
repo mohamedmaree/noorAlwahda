@@ -17,6 +17,7 @@ class Store extends FormRequest
             'name.*'   => 'required',
             'num_days' => 'required',
             'sort'     => 'required',
+            'fields'   => 'nullable|array',
         ];
     }
 }
