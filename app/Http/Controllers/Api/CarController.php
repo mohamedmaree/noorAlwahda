@@ -53,15 +53,25 @@ class CarController extends Controller {
 
   public function carFinance(Car $car){
     $priceCats = PriceCategories::orderBy('name','ASC')->get();
-    
+    $exchange_rate = Country::where('currency_code',auth()->user()->currency_code)->first()->exchange_rate??1;
     $data = [];
+    $total = 0;
+    $total_p = 0;
     foreach($priceCats as $priceCat){
+      $total_required = $car->carFinance()->whereIn('price_type_id',$priceCat->price_types_ids)->sum('required_amount') * $exchange_rate;
+      $total_paid = $car->carFinance()->whereIn('price_type_id',$priceCat->price_types_ids)->sum('paid_amount') * $exchange_rate;
+      $total += $total_required;
+      $total_p += $total_paid;
       $data[] = ['id'      => $priceCat->id,
                  'name'    => $priceCat->name,
-                 'finance' => CarFinanceResource::collection($car->carFinance->whereIn('price_type_id',$priceCat->price_types_ids))
+                 'finance' => CarFinanceResource::collection($car->carFinance->whereIn('price_type_id',$priceCat->price_types_ids)),
+                 'subtotal_required' => number_format($total_required,2),
+                 'subtotal_paid'     => number_format($total_paid,2),
+                 'subtotal_outstanding'     => number_format($total_required - $total_paid,2),
                 ];
     }
-    return $this->successData($data);
+
+    return $this->successData(['finances' => $data,'total_required' => number_format($total,2),'total_paid' => number_format($total_p,2) ,'total_outstanding' => number_format($total - $total_p,2)]);
   }
   
 
@@ -74,7 +84,10 @@ class CarController extends Controller {
   public function searchCars(Request $request){
     $ids = auth()->user()->childes()->pluck('id')->toArray();
     $ids[] = auth()->id();
-    $cars = new CarsCollection(Car::whereIn('user_id',$ids)->where('vin','like','%'.$request->search.'%')->orwhere('lot','like','%'.$request->search.'%')->latest()->paginate($this->paginateNum()));
+    $cars = new CarsCollection(Car::whereIn('user_id',$ids)->where(function($q)use($request){
+      $q->where('vin','like','%'.$request->search.'%')
+        ->orwhere('lot','like','%'.$request->search.'%');
+    })->latest()->paginate($this->paginateNum()));
     return $this->successData( $cars);
   }
 
@@ -90,9 +103,12 @@ class CarController extends Controller {
     $ids[] = auth()->id();
     $cars_ids = Car::whereIn('user_id',$ids)->pluck('id')->toArray();
     $carsFinance = CarFinance::whereIn('car_id' ,$cars_ids);
+
     $total_required = $carsFinance->sum('required_amount');
+    $total_paid = $carsFinance->sum('paid_amount');
+
     $exchange_rate = Country::where('currency_code',auth()->user()->currency_code)->first()->exchange_rate??1;
-    $data['total_required']= number_format($total_required * $exchange_rate,2);
+    $data['total_required']= number_format(($total_required - $total_paid) * $exchange_rate,2);
     return $this->successData($data);
   }
 

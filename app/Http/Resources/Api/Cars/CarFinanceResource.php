@@ -19,6 +19,7 @@ class CarFinanceResource extends JsonResource
             'price_type'          => $this->priceType->name??'',
             'required_amount'     => $this->required_amount,
             'paid_amount'         => $this->paid_amount,
+            'outstanding'         => number_format( str_replace(',','',$this->required_amount)  - str_replace(',','',$this->paid_amount),2),
           ];
     }
 }
