@@ -44,7 +44,6 @@ class NotificationController extends Controller
         }else if($request->user_type == 'admins'){
             $rows = Admin::get() ; 
         }
-        die(var_dump($rows->pluck('id')->toArray()));
         
         if ($request->type == 'notify') {
             if ($request->user_type == 'admins') {
