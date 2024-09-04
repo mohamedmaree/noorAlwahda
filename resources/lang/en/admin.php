@@ -580,9 +580,13 @@ return [
     'carFinanceRequiredSum' => 'Amount of finances required',
     'carFinancePaidSum' => 'Amount of finances collected',
     'middle'  => 'Middle',
+    'middle_users'  => 'Middle Users',
+
     'usual'   => 'Usual',
     'not_middle'  => 'Not Middle',
     'not_usual'   => 'Not Usual',
+    'usual_users'   => 'Usual Users',
+
     'account_type'  => 'Account Type',
     'sub_account'  => 'SubAccount',
     'subAccounts'  => 'SubAccounts',

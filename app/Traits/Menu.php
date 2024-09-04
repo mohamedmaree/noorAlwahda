@@ -66,6 +66,20 @@ trait menu {
         'route'   => 'admin.clients.index',
       ],
       [
+        'name'  => __('admin.middle_users'),
+        'count' => \App\Models\User::where('middle', 1)->count(),
+        'icon'  => 'icon-users',
+        'url'   => url('admin/clients-show'),
+        'route'   => 'admin.clients.index',
+      ],
+      [
+        'name'  => __('admin.usual_users'),
+        'count' => \App\Models\User::where('usual', 1)->count(),
+        'icon'  => 'icon-users',
+        'url'   => url('admin/clients-show'),
+        'route'   => 'admin.clients.index',
+      ],
+      [
         'name'  => __('admin.sections'),
         'count' => \App\Models\Category::count(),
         'icon'  => 'icon-list',

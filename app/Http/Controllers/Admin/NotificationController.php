@@ -24,16 +24,28 @@ class NotificationController extends Controller
         if ($request->user_type == 'all_users' ) {
             $rows = User::get() ; 
         }else if($request->user_type == 'active_users'){
-            $rows = User::where('active' , true)->get() ; 
+            $rows = User::where('is_approved', 1)->get() ; 
         }else if($request->user_type == 'not_active_users'){
-            $rows = User::where('active' , false)->get() ; 
+            $rows = User::where('is_approved', 0)->get() ; 
         }else if($request->user_type == 'blocked_users'){
             $rows = User::where('is_blocked' , true)->get() ; 
         }else if($request->user_type == 'not_blocked_users'){
             $rows = User::where('is_blocked' , false)->get() ; 
+        }else if($request->user_type == 'main_users'){
+            $rows = User::whereNull('parent_id')->get() ; 
+        }else if($request->user_type == 'sub_users'){
+            $rows = User::whereNotNull('parent_id')->get() ; 
+        }else if($request->user_type == 'vip_users'){
+            $rows = User::where('vip', 1)->get() ; 
+        }else if($request->user_type == 'middle_users'){
+            $rows = User::where('middle', 1)->get() ; 
+        }else if($request->user_type == 'usual_users'){
+            $rows = User::where('usual', 1)->get() ; 
         }else if($request->user_type == 'admins'){
             $rows = Admin::get() ; 
         }
+        die(var_dump($rows->pluck('id')->toArray()));
+        
         if ($request->type == 'notify') {
             if ($request->user_type == 'admins') {
                 dispatch(new AdminNotify($rows, $request));

@@ -99,7 +99,7 @@
                     <div class="content-3">
                         <div class="row d-flex align-items-start flex-column flex-md-row">
                             <!-- Left content -->
-                             <div class="col-md-12">
+                             <div class="col-md-8">
                                  <div class="tab-content w-100 order-2 order-md-1">
                                      @include('admin.clients.tabs.data')
                                      @include('admin.clients.tabs.subAccounts')
@@ -108,7 +108,7 @@
                                      @include('admin.clients.tabs.carFinanceOperations')
                                  </div>
                              </div>
-                            {{-- <div class="col-md-4">
+                            <div class="col-md-4">
                                 <div  class="sidebar sidebar-light bg-transparent sidebar-component sidebar-component-right  border-0 shadow-0 order-1 order-lg-2 sidebar-expand-md">
                                 <div class="sidebar-content">
 
@@ -147,7 +147,7 @@
                                     </div>
                                 </div>
                             </div>
-                            </div> --}}
+                            </div>
                         </div>
                     </div>
 

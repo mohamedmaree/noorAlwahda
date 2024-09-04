@@ -912,7 +912,9 @@ return [
     'carFinancePaidSum'  => 'مبالغ الماليات المحصلة',
 
     'middle'  => 'متوسط',
+    'middle_users'  => 'المستخدمين المتوسطين',
     'usual'   => 'عادي',
+    'usual_users'   => 'المستخدمين العاديين',
     'not_middle'  => 'غير متوسط',
     'not_usual'   => 'غير عادي',
     'account_type'  => 'نوع الحساب',

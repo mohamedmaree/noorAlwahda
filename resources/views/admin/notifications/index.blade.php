@@ -83,6 +83,11 @@
                                                 <option  value="not_active_users">{{__('admin.dis_active_users')}}</option>
                                                 <option  value="blocked_users">{{__('admin.Prohibited_users')}}</option>
                                                 <option  value="not_blocked_users">{{__('admin.Unspoken_users')}}</option>
+                                                <option  value="main_users">{{__('admin.main_users')}}</option>
+                                                <option  value="sub_users">{{__('admin.sub_users')}}</option>
+                                                <option  value="vip_users">{{__('admin.vip_users')}}</option>
+                                                <option  value="middle_users">{{__('admin.middle_users')}}</option>
+                                                <option  value="usual_users">{{__('admin.usual_users')}}</option>
                                             </select>
                                         </div>
                                     </div>
