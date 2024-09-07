@@ -2136,6 +2136,12 @@ use App\Models\CarStatus;
             'as'    => 'carbrands.deleteAll',
             'title' => 'delete_group_of_carbrands'
         ]);
+        #import carbrands file
+        Route::post('carbrands/importFile', [
+            'uses'  => 'CarBrandsController@importFile',
+            'as'    => 'carbrands.importFile',
+            'title' => 'import_file'
+        ]); 
     /*------------ end Of carbrands ----------*/
     
     /*------------ start Of carmodels ----------*/
@@ -2197,6 +2203,12 @@ use App\Models\CarStatus;
             'as'    => 'carmodels.deleteAll',
             'title' => 'delete_group_of_carmodels'
         ]);
+        #import carbrands file
+        Route::post('carmodels/importFile', [
+            'uses'  => 'CarModelsController@importFile',
+            'as'    => 'carmodels.importFile',
+            'title' => 'import_file'
+        ]); 
     /*------------ end Of carmodels ----------*/
     
     /*------------ start Of carcolors ----------*/
@@ -3078,8 +3090,8 @@ use App\Models\CarStatus;
         'child'     => [
             'carstatuses.index','carstatuses.create', 'carstatuses.store','carstatuses.edit', 'carstatuses.update', 'carstatuses.show', 'carstatuses.delete'  ,'carstatuses.deleteAll' ,
             'damagetypes.index','damagetypes.create', 'damagetypes.store','damagetypes.edit', 'damagetypes.update', 'damagetypes.show', 'damagetypes.delete'  ,'damagetypes.deleteAll' ,
-            'carbrands.index','carbrands.create', 'carbrands.store','carbrands.edit', 'carbrands.update', 'carbrands.show', 'carbrands.delete'  ,'carbrands.deleteAll' ,
-            'carmodels.index','carmodels.create', 'carmodels.store','carmodels.edit', 'carmodels.update', 'carmodels.show', 'carmodels.delete'  ,'carmodels.deleteAll' ,
+            'carbrands.index','carbrands.create', 'carbrands.store','carbrands.edit', 'carbrands.update', 'carbrands.show', 'carbrands.delete'  ,'carbrands.deleteAll','carbrands.importFile' ,
+            'carmodels.index','carmodels.create', 'carmodels.store','carmodels.edit', 'carmodels.update', 'carmodels.show', 'carmodels.delete'  ,'carmodels.deleteAll','carmodels.importFile' ,
             'carcolors.index','carcolors.create', 'carcolors.store','carcolors.edit', 'carcolors.update', 'carcolors.show', 'carcolors.delete'  ,'carcolors.deleteAll' ,
             'caryears.index','caryears.create', 'caryears.store','caryears.edit', 'caryears.update', 'caryears.show', 'caryears.delete'  ,'caryears.deleteAll' ,
             'bodytypes.index','bodytypes.create', 'bodytypes.store','bodytypes.edit', 'bodytypes.update', 'bodytypes.show', 'bodytypes.delete'  ,'bodytypes.deleteAll' ,

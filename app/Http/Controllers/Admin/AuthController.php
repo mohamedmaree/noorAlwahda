@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
+use App\Traits\Report;
 
 class AuthController extends Controller {
   use AdminFirstRouteTrait;
@@ -49,8 +50,9 @@ class AuthController extends Controller {
     if (auth()->guard('admin')->attempt(['email' => $request->email, 'password' => $request->password , 'is_blocked' => 0], $remember)) {
         
         RateLimiter::clear($this->throttleKey());
-
         session()->put('lang', 'ar');
+        Report::addToLog(' قام بتسجيل الدخول') ;
+
         return response()->json(['status' => 'login', 'url' => route($this->getAdminFirstRouteName()), 'message' => __('admin.login_successfully_logged')]);
 
     } else {

@@ -23,6 +23,10 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <?php 
+                                    $total_required = 0;
+                                    $total_paid = 0;
+                                ?>
                                 @forelse($car->carFinance as $key => $carfinance)
                                     <tr class="delete_row">
                                         <td class="text-center">
@@ -38,7 +42,10 @@
                                         </td>
                                         
                                     </tr>
-
+                                    <?php 
+                                        $total_required += str_replace(',','',$carfinance->required_amount); 
+                                        $total_paid +=str_replace(',','',$carfinance->paid_amount); 
+                                    ?>
                                 @empty
                                 @endforelse
                                 </tbody>
@@ -47,6 +54,29 @@
                     </div>
                 </div>
             </div>
+            <div class="col-lg-6">
+                <div class="card border-right-2 border-left-2 border-right-primary border-left-primary">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <h3 class="font-weight-semibold mb-0">{{__('admin.total_required_amount')}}  </h3>
+                        </div>
+                        <div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card border-right-2 border-left-2 border-right-primary border-left-primary">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <h3 class="font-weight-semibold mb-0">{{ number_format($total_required - $total_paid,2) }} </h3>
+                        </div>
+                        <div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     @else
         <div class="d-flex flex-column w-100 align-center mt-4">

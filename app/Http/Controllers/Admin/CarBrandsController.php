@@ -9,6 +9,8 @@ use App\Http\Requests\Admin\carbrands\Update;
 use App\Models\CarBrands ;
 use App\Traits\Report;
 
+use App\Imports\CarBrandImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CarBrandsController extends Controller
 {
@@ -72,5 +74,12 @@ class CarBrandsController extends Controller
         } else {
             return response()->json('failed');
         }
+    }
+
+    public function importFile(Request $request)
+    {
+        Excel::import(new CarBrandImport,request()->file('file'));        
+        Report::addToLog('  رفع ملف أنواع السيارات') ;
+        return response()->json(['url' => route('admin.carbrands.index')]);
     }
 }

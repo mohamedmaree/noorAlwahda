@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('car_models', function (Blueprint $table) {
             $table->id();
             $table->text('name');
-            $table->foreignId('car_brand_id')->constrained()->references('id')->on('car_brands')->onDelete('cascade');
+            $table->integer('car_brand_id')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
         });

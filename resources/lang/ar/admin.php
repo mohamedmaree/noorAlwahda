@@ -928,6 +928,7 @@ return [
     'no_outstanding_amount' => 'لا يوجد مبالغ مستحقة لهذه السيارة في نوع الماليات هذا',
     'restriction_fields' => 'حقول يجب ملأها للانتقال لهذه الحالة',
     'field_required'  => 'لا يمكن تغيير الحالة الا بعد ملأ هذه الحقول :fields',
+    'import_file' => 'استيراد ملف',
     #new_comand_translations_here
                 
                 

@@ -10,6 +10,8 @@ use App\Models\CarModels ;
 use App\Models\CarBrands ;
 use App\Traits\Report;
 
+use App\Imports\CarModelImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CarModelsController extends Controller
 {
@@ -77,5 +79,12 @@ class CarModelsController extends Controller
         } else {
             return response()->json('failed');
         }
+    }
+
+    public function importFile(Request $request)
+    {
+        Excel::import(new CarModelImport,request()->file('file'));        
+        Report::addToLog('  رفع ملف موديلات السيارات') ;
+        return response()->json(['url' => route('admin.carmodels.index')]);
     }
 }

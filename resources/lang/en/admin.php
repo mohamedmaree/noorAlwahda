@@ -598,4 +598,5 @@ return [
     'no_outstanding_amount' => 'There are no amounts due for this vehicle in this finance type',
     'restriction_fields' => 'Fields that must be filled to move to this status',
     'field_required' => 'The status cannot be changed unless these fields are filled in :fields',
+    'import_file' => 'Import File',
 ];
