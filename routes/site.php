@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['web', 'HtmlMinifier']], function () {
 
-  Route::get('/', 'IntroController@index')->name('intro');
+  // Route::get('/', 'IntroController@index')->name('intro');
   Route::get('/privacy-policy', 'IntroController@privacyPolicy')->name('IntroPrivacyPolicy');
   Route::post('/send-message', 'IntroController@sendMessage');
   Route::get('/lang/{lang}', 'IntroController@SetLanguage');
