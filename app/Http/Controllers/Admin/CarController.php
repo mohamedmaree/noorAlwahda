@@ -66,6 +66,8 @@ class CarController extends Controller
         $auctions = Auction::latest()->get();
         
         $statuses = CarStatus::orderBy('sort','ASC')->get();
+        $statusArr = [];
+        $carsStatusArr = [];
         foreach($statuses as $status){
             $statusArr[] =  $status->name;
             $carsStatusArr[] = Car::where('car_status_id',$status->id)->count();
