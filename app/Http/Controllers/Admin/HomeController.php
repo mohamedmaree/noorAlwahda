@@ -48,10 +48,14 @@ class HomeController extends Controller
         $notavailable     = Car::where(['available' => 0])->count() ; 
 
         $statuses = CarStatus::orderBy('sort','ASC')->get();
+        $statusArr = [];
+        $carsStatusArr = [];
         foreach($statuses as $status){
             $statusArr[] =  $status->name;
             $carsStatusArr[] = Car::where('car_status_id',$status->id)->count();
         }
+        $DelaystatusArr = [];
+        $DelaycarsStatusArr = [];
         foreach($statuses as $status){
             $DelaystatusArr[]     =  $status->name;
             $DelaycarsStatusArr[] = DB::table('cars')
