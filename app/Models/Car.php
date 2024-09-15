@@ -64,6 +64,13 @@ class Car extends BaseModel
         }
         return number_format($this->attributes['price']);
     }
+
+    public function outstanding(){
+        $total_required = $this->carFinance()->sum('required_amount');
+        $total_paid = $this->carFinance()->sum('paid_amount');
+        $exchange_rate = (auth()->check())? (Country::where('currency_code',auth()->user()->currency_code)->first()->exchange_rate??1) : 1;
+        return number_format(($total_required - $total_paid) * $exchange_rate);
+    }
     
     public function user()
     {

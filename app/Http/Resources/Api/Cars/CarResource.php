@@ -49,6 +49,7 @@ class CarResource extends JsonResource
             'level'                    => $this->carStatus->category()->level??'',
             'price'                    => $this->price,
             'image'                    => $this->image,
+            'outstanding'              => $this->outstanding(),
           ];
     }
 }

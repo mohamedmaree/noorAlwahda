@@ -95,17 +95,7 @@ class CarController extends Controller {
     $ids = auth()->user()->childes()->pluck('id')->toArray();
     $ids[] = auth()->id();
     $cars = new CarsCollection(Car::whereIn('user_id',$ids)->latest()->paginate($this->paginateNum()));
-    
-    $cars_ids = Car::whereIn('user_id',$ids)->pluck('id')->toArray();
-    $carsFinance = CarFinance::whereIn('car_id' ,$cars_ids);
-
-    $total_required = $carsFinance->sum('required_amount');
-    $total_paid = $carsFinance->sum('paid_amount');
-
-    $exchange_rate = Country::where('currency_code',auth()->user()->currency_code)->first()->exchange_rate??1;
-    $total_required= number_format(($total_required - $total_paid) * $exchange_rate);
-
-    return $this->successData(['cars' => $cars ,'total_required' =>$total_required ]);
+    return $this->successData( $cars );
   }
 
   public function customerOutstanding(){
