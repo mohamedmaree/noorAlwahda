@@ -63,16 +63,14 @@
 
 <label class="switch">
     <input
-
             type="checkbox"
             onchange="toggleBoolean(this ,'{{$url}}')"
-
-
             {{$model->$switch == $open ? 'checked' : ''}}
+            class="toggleBtn {{ $id }}"
+            id="{{ $switch }}-{{ $id }}"
+            name="{{ $switch }}"
+            data-url="{{ $url }}"
     />
 
     <span class="slider round"></span>
 </label>
-
-
-

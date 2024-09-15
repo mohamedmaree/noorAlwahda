@@ -1,11 +1,11 @@
-<div class="tab-pane fade" id="history">
+<div class="tab-pane fade" id="carattachments">
 
-    @if($car->statusHistory->count() > 0)
+    @if($car->carAttachments->count() > 0)
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header header-elements-inline">
-                        <h5 class="card-title">{{  __('admin.car_history') }}</h5>
+                        <h5 class="card-title">{{  __('admin.carattachments') }}</h5>
                     </div>
                     <div class="d-flex justify-content-center btns">
 
@@ -16,22 +16,24 @@
                                 <thead>
                                 <tr class="text-center">
                                     <th>#</th>
+                                    <th>{{__('admin.attachment')}}</th>
                                     <th>{{__('admin.name')}}</th>
-                                    <th>{{__('admin.start_date')}}</th>
-                                    <th>{{__('admin.end_date')}}</th>
+                                    <th>{{__('admin.control')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @forelse($car->statusHistory as $key => $status)
+                                @forelse($car->carAttachments as $key => $carattachment)
                                     <tr class="delete_row">
                                         <td class="text-center">
                                             {{ $key + 1 }}
                                         </td>
-
-                                        <td>{{ $status->carStatus->name??'' }}</td>
-                                        <td>{{ $status->start_date }}</td>
-                                        <td>{{ $status->end_date }}</td>
+                                        <td><a href="{{$carattachment->image}}" target="blank"><img src="{{$carattachment->image}}" width="30px" height="30px" alt=""></a></td>
+                                        <td>{{ $carattachment->name }}</td>
+                    
                                         
+                                        <td class="product-action"> 
+                                            <span class="text-primary"><a href="{{ route('admin.carattachments.show', ['id' => $carattachment->id]) }}" class="btn btn-warning btn-sm"><i class="feather icon-eye"></i> {{ __('admin.show') }}</a></span>
+                                        </td>
                                     </tr>
 
                                 @empty

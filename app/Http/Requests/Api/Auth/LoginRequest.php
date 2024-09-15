@@ -15,7 +15,7 @@ class LoginRequest extends BaseApiRequest {
   public function rules() {
     return [
       'country_code' => 'required|numeric|digits_between:2,5',
-      'phone'        => 'required|numeric|digits_between:8,10|exists:users,phone,deleted_at,NULL',
+      'phone'        => 'required|numeric|digits_between:8,10',//|exists:users,phone,deleted_at,NULL',
       //'email'       => 'required|email|exists:users,email|max:50',
       'password'    => 'required|min:6|max:100',
       'device_id'   => 'required|max:250',

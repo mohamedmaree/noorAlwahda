@@ -117,7 +117,9 @@ trait  Roles
                         if(str_contains($child,'cars.carsByStatus.')){
                             $carStatus = CarStatus::where('name->en', $routes_data['"admin.' . $child . '"']['title'])->first();
                             $title = $carStatus->name;
-
+                        }elseif(str_contains($child,'cars.carsChangeStatus.')){
+                            $carStatus = CarStatus::where('name->en', $routes_data['"admin.' . $child . '"']['title'])->first();
+                            $title = __('admin.change_status_to').' '.$carStatus->name;
                         }else{
                             $title = __('admin.'.$routes_data['"admin.' . $child . '"']['title']) ;
                         }

@@ -31,7 +31,11 @@
                         <span class="checkmark"></span>
                         </label>
                     </td>
-                    <td>{{ $carfinance->car->car_num??'' }}</td>
+                    <td>
+                        @if($carfinance->car)
+                            <a href="{{ route('admin.cars.show', ['id' => $carfinance->car_id]) }}" > {{  $carfinance->car->car_num}}</a>
+                        @endif
+                    </td>
                     <td>{{ $carfinance->priceType->name??'' }}</td>
                     <td>{{ $carfinance->required_amount }}</td>
                     <td>{{ $carfinance->paid_amount }}</td>

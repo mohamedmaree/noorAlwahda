@@ -3,6 +3,51 @@
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/extensions/sweetalert2.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/index_page.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="  crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+.status-history-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+}
+
+.icon-line {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.status-item {
+    text-align: center;
+    position: relative;
+    margin: 0 10px;
+}
+
+.car-icon {
+    font-size: 20px;
+    position: absolute;
+    top: -10px; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.line {
+    height: 1px;
+    background-color: #252424;
+    width: 130%;
+    position: absolute;
+    top: 12px; /* Adjust as needed */
+    left: 0;
+}
+
+.status-details {
+    margin-top: 20px; /* Adjust as needed */
+}
+
+</style>
+
 @endsection
 
 @section('content')

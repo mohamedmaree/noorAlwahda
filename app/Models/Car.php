@@ -51,6 +51,7 @@ class Car extends BaseModel
 
     protected $casts = [
         'available'      => 'boolean',
+        'price'          => 'decimal:0',
     ];
 
     public function getPriceAttribute()
@@ -58,10 +59,10 @@ class Car extends BaseModel
         if(auth()->check()){
             if(auth()->user()->currency_code){
               $exchange_rate = Country::where('currency_code',auth()->user()->currency_code)->first()->exchange_rate??1;
-              return number_format($this->attributes['price'] * $exchange_rate,2);
+              return number_format($this->attributes['price'] * $exchange_rate);
             }
         }
-        return number_format($this->attributes['price'],2);
+        return number_format($this->attributes['price']);
     }
     
     public function user()

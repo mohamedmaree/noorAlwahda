@@ -65,13 +65,13 @@ class CarController extends Controller {
       $data[] = ['id'      => $priceCat->id,
                  'name'    => $priceCat->name,
                  'finance' => CarFinanceResource::collection($car->carFinance->whereIn('price_type_id',$priceCat->price_types_ids)),
-                 'subtotal_required' => number_format($total_required,2),
-                 'subtotal_paid'     => number_format($total_paid,2),
-                 'subtotal_outstanding'     => number_format($total_required - $total_paid,2),
+                 'subtotal_required' => number_format($total_required),
+                 'subtotal_paid'     => number_format($total_paid),
+                 'subtotal_outstanding'     => number_format($total_required - $total_paid),
                 ];
     }
 
-    return $this->successData(['finances' => $data,'total_required' => number_format($total,2),'total_paid' => number_format($total_p,2) ,'total_outstanding' => number_format($total - $total_p,2)]);
+    return $this->successData(['finances' => $data,'total_required' => number_format($total),'total_paid' => number_format($total_p) ,'total_outstanding' => number_format($total - $total_p)]);
   }
   
 
@@ -95,7 +95,17 @@ class CarController extends Controller {
     $ids = auth()->user()->childes()->pluck('id')->toArray();
     $ids[] = auth()->id();
     $cars = new CarsCollection(Car::whereIn('user_id',$ids)->latest()->paginate($this->paginateNum()));
-    return $this->successData( $cars);
+    
+    $cars_ids = Car::whereIn('user_id',$ids)->pluck('id')->toArray();
+    $carsFinance = CarFinance::whereIn('car_id' ,$cars_ids);
+
+    $total_required = $carsFinance->sum('required_amount');
+    $total_paid = $carsFinance->sum('paid_amount');
+
+    $exchange_rate = Country::where('currency_code',auth()->user()->currency_code)->first()->exchange_rate??1;
+    $total_required= number_format(($total_required - $total_paid) * $exchange_rate);
+
+    return $this->successData(['cars' => $cars ,'total_required' =>$total_required ]);
   }
 
   public function customerOutstanding(){
@@ -108,7 +118,7 @@ class CarController extends Controller {
     $total_paid = $carsFinance->sum('paid_amount');
 
     $exchange_rate = Country::where('currency_code',auth()->user()->currency_code)->first()->exchange_rate??1;
-    $data['total_required']= number_format(($total_required - $total_paid) * $exchange_rate,2);
+    $data['total_required']= number_format(($total_required - $total_paid) * $exchange_rate);
     return $this->successData($data);
   }
 

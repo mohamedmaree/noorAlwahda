@@ -271,6 +271,48 @@
             document.querySelector("#mainusers-chart"),
             pieChartFunction(['{{ __('admin.main_users') }}', '{{ __('admin.sub_users') }}'] , [ Number('{{$mainUsers}}'), Number('{{$subUsers}}')] , ['#7367F0', '#FF9F43'])
         ).render();
+
+        document.querySelectorAll('input[name="vip"]').forEach(function(vipCheckbox) {
+          alert('dd');
+            vipCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    let rowClass = this.classList[1];
+                    document.querySelectorAll(`.toggleBtn.${rowClass}`).forEach(function(checkbox) {
+                        if (checkbox.name !== 'vip') {
+                            checkbox.checked = false;
+                        }
+                    });
+                }
+            });
+        });
+
+        document.querySelectorAll('input[name="middle"]').forEach(function(vipCheckbox) {
+            vipCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    let rowClass = this.classList[1];
+                    document.querySelectorAll(`.toggleBtn.${rowClass}`).forEach(function(checkbox) {
+                        if (checkbox.name !== 'middle') {
+                            checkbox.checked = false;
+                        }
+                    });
+                }
+            });
+        });
+
+        document.querySelectorAll('input[name="usual"]').forEach(function(vipCheckbox) {
+            vipCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    let rowClass = this.classList[1];
+                    document.querySelectorAll(`.toggleBtn.${rowClass}`).forEach(function(checkbox) {
+                        if (checkbox.name !== 'usual') {
+                            checkbox.checked = false;
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
   </script>
     {{-- import excel file script--}}
     @include('admin.shared.importFile')

@@ -75,7 +75,7 @@
             <div class="col-lg-6 col-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between pb-0">
-                        <h4 class="card-title">{{__('admin.users')}}</h4>
+                        <h4 class="card-title">{{__('admin.clients')}}</h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body py-0">
@@ -107,7 +107,7 @@
             <div class="col-lg-6 col-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between pb-0">
-                        <h4 class="card-title">{{__('admin.users')}}</h4>
+                        <h4 class="card-title">{{__('admin.clients')}}</h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body py-0">
@@ -139,7 +139,7 @@
             <div class="col-lg-6 col-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between pb-0">
-                        <h4 class="card-title">{{__('admin.users')}}</h4>
+                        <h4 class="card-title">{{__('admin.clients')}}</h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body py-0">

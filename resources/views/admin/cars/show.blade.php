@@ -52,7 +52,7 @@
                         <div class="text-center d-lg-none w-100">
                             <button type="button" class="navbar-toggler dropdown-toggle" data-toggle="collapse"
                                     data-target="#navbar-second">
-                                <i class="fa-solid fa-bars mr-2"></i>
+                                <i class="fa-solid fa-bars mr-1"></i>
                                 {{  __('admin.car_info') }}
                             </button>
                         </div>
@@ -60,7 +60,7 @@
                             <ul class="nav navbar-nav">
                                 <li class="nav-item">
                                     <a href="#data" class="navbar-nav-link active legitRipple" data-toggle="tab">
-                                        <i class="fa-solid fa-car mr-2"></i>
+                                        <i class="fa-solid fa-car mr-1"></i>
                                         {{  __('admin.car_info') }}
                                     </a>
                                 </li>
@@ -68,33 +68,41 @@
 
                                 <li class="nav-item">
                                     <a href="#history" class="navbar-nav-link legitRipple" data-toggle="tab">
-                                        <i class="fa-solid fa-list mr-2"></i>
+                                        <i class="fa-solid fa-list mr-1"></i>
                                         {{  __('admin.car_history') }}
-                                        <span class="badge badge-pill bg-primary position-static ml-auto ml-lg-2">{{ $car->statusHistory->count() }}</span>
+                                        <span class="badge badge-pill bg-primary position-static ml-auto ml-lg-1">{{ $car->statusHistory->count() }}</span>
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
                                     <a href="#gallery" class="navbar-nav-link legitRipple" data-toggle="tab">
-                                        <i class="fa-solid fa-list mr-2"></i>
+                                        <i class="fa-solid fa-list mr-1"></i>
                                         {{  __('admin.car_gallery') }}
-                                        <span class="badge badge-pill bg-primary position-static ml-auto ml-lg-2">{{ $car->carGalleries->count() }}</span>
+                                        <span class="badge badge-pill bg-primary position-static ml-auto ml-lg-1">{{ $car->carGalleries->count() }}</span>
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
                                     <a href="#carfinance" class="navbar-nav-link legitRipple" data-toggle="tab">
-                                        <i class="fa-solid fa-list mr-2"></i>
+                                        <i class="fa-solid fa-list mr-1"></i>
                                         {{  __('admin.carfinance') }}
-                                        <span class="badge badge-pill bg-primary position-static ml-auto ml-lg-2">{{ $car->carFinance->count() }}</span>
+                                        <span class="badge badge-pill bg-primary position-static ml-auto ml-lg-1">{{ $car->carFinance->count() }}</span>
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
                                     <a href="#carFinanceOperations" class="navbar-nav-link legitRipple" data-toggle="tab">
-                                        <i class="fa-solid fa-list mr-2"></i>
+                                        <i class="fa-solid fa-list mr-1"></i>
                                         {{  __('admin.carfinanceoperations') }}
-                                        <span class="badge badge-pill bg-primary position-static ml-auto ml-lg-2">{{ $car->carFinanceOperations->count() }}</span>
+                                        <span class="badge badge-pill bg-primary position-static ml-auto ml-lg-1">{{ $car->carFinanceOperations->count() }}</span>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="#carattachments" class="navbar-nav-link legitRipple" data-toggle="tab">
+                                        <i class="fa-solid fa-list mr-1"></i>
+                                        {{  __('admin.carattachments') }}
+                                        <span class="badge badge-pill bg-primary position-static ml-auto ml-lg-1">{{ $car->carAttachments->count() }}</span>
                                     </a>
                                 </li>
 
@@ -111,6 +119,7 @@
                                      @include('admin.cars.tabs.car_gallery')
                                      @include('admin.cars.tabs.carFinance')
                                      @include('admin.cars.tabs.carFinanceOperations')
+                                     @include('admin.cars.tabs.carAttachments')
 
                                  </div>
                              </div>

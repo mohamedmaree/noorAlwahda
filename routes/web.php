@@ -1755,10 +1755,10 @@ use App\Models\CarStatus;
         $childs[] = 'cars.carsByStatus.'.$status->id;
        
         // if($i > 0){
-            Route::get('cars/change-status/{car?}/{status?}'.$status->id, [
+            Route::get('cars/change-status/'.$status->id, [
                 'uses'  => 'CarController@changeStatus',
                 'as'    => 'cars.carsChangeStatus.'.$status->id,
-                'title' => 'change status to' .$status->name,
+                'title' => $status->name,
             ]);
             $childs[] = 'cars.carsChangeStatus.'.$status->id;
         // }
@@ -2892,13 +2892,19 @@ use App\Models\CarStatus;
             'icon'      => '<i class="feather icon-dollar-sign"></i>',
             'type'      => 'parent',
             'sub_route' => false,
-            'child'     => ['carfinanceoperations.create', 'carfinanceoperations.store','carfinanceoperations.edit', 'carfinanceoperations.update', 'carfinanceoperations.show', 'carfinanceoperations.delete'  ,'carfinanceoperations.deleteAll' ,'carfinanceoperations.get-car-outstanding-finances']
+            'child'     => ['carfinanceoperations.create', 'carfinanceoperations.store','carfinanceoperations.edit', 'carfinanceoperations.update', 'carfinanceoperations.show', 'carfinanceoperations.delete'  ,'carfinanceoperations.deleteAll' ,'carfinanceoperations.get-car-outstanding-finances','carfinanceoperations.print']
         ]);
 
         Route::get('get-car-outstanding-finances', [
             'uses'  => 'CarFinanceOperationsController@getCarOutstandingFinances',
             'as'    => 'carfinanceoperations.get-car-outstanding-finances',
             'title' => 'get_car_outstanding_finances'
+        ]); 
+
+        Route::get('carfinanceoperations/{id}/print', [
+            'uses'  => 'CarFinanceOperationsController@print',
+            'as'    => 'carfinanceoperations.print',
+            'title' => 'print'
         ]); 
 
         # carfinanceoperations store

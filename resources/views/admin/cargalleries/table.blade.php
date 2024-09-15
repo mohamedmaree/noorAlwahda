@@ -29,7 +29,11 @@
                         <span class="checkmark"></span>
                         </label>
                     </td>
-                    <td>{{ $cargallery->car->car_num??'' }}</td>
+                    <td>
+                        @if($cargallery->car)
+                            <a href="{{ route('admin.cars.show', ['id' => $cargallery->car_id]) }}" > {{  $cargallery->car->car_num}}</a>
+                        @endif
+                    </td>
                     <td>{{ $cargallery->carStatus->name??'' }}</td>
                     
                     <td class="product-action"> 

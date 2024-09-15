@@ -31,7 +31,11 @@
                         </label>
                     </td>
                     <td><a href="{{$carattachment->image}}" target="blank"><img src="{{$carattachment->image}}" width="30px" height="30px" alt=""></a></td>
-                    <td>{{ $carattachment->car->car_num??'' }}</td>
+                    <td>
+                        @if($carattachment->car)
+                            <a href="{{ route('admin.cars.show', ['id' => $carattachment->car_id]) }}" > {{  $carattachment->car->car_num}}</a>
+                        @endif
+                    </td>
                     <td>{{ $carattachment->name }}</td>
 
                     

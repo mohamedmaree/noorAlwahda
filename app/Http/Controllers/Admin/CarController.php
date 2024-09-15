@@ -76,17 +76,17 @@ class CarController extends Controller
         return view('admin.cars.index',get_defined_vars());
     }
 
-    public function changeStatus($car_id = null ,$status_id = null){
-       $car = Car::findOrFail($car_id);
-       $status = CarStatus::findOrFail($status_id);
-       if($status->fields){
+    public function changeStatus(Request $request){
+        $car = Car::findOrFail($request->car_id);
+        $status = CarStatus::findOrFail($request->status_id);
+        if($status->fields){
             foreach($status->fields as $field){
                 if (is_null($car->$field)) {
                     $fields_text = implode(',',$status->fields);
                     return $this->response('fail', __('admin.field_required',['fields'=>$fields_text]));
                 }
             }
-       }
+        }
        if($previousStatus = $car->statusHistory()->where('car_status_id', $car->car_status_id)->first()){
             $previousStatus->update(['end_date' => date('Y-m-d')]);
        }

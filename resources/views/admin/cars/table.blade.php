@@ -68,12 +68,33 @@
                     </td>
                     <td class="product-action"> 
                         @if($car->nextCarStatus())
-                            <span class="change-status btn btn-success btn-sm" data-url="{{ route('admin.cars.carsChangeStatus.'.($car->nextCarStatus()->id??0),[$car->id,($car->nextCarStatus()->id??0)]) }}"><i class="feather icon-edit"></i> {{ __('admin.change_status_to').' '.($car->nextCarStatus()->name??'') }}</span>
+                            <?php $status_id = $car->nextCarStatus()->id??0;?>
+                            <span class="change-status btn btn-success btn-sm" data-url="{{ url('admin/cars/change-status/'.$status_id.'?car_id='.$car->id.'&status_id='. $status_id) }}"><i class="feather icon-edit"></i> {{ __('admin.change_status_to').' '.($car->nextCarStatus()->name??'') }}</span>
                         @endif
                         <span class="text-primary"><a href="{{ route('admin.cars.show', ['id' => $car->id]) }}" class="btn btn-warning btn-sm"><i class="feather icon-eye"></i> {{ __('admin.show') }}</a></span>
                         <span class="action-edit text-primary"><a href="{{ route('admin.cars.edit', ['id' => $car->id]) }}" class="btn btn-primary btn-sm"><i class="feather icon-edit"></i>{{ __('admin.edit') }}</a></span>
                         <span class="delete-row btn btn-danger btn-sm" data-url="{{ url('admin/cars/' . $car->id) }}"><i class="feather icon-trash"></i>{{ __('admin.delete') }}</span>
                     </td>
+                </tr>
+                <tr>
+                    <td>{{  __('admin.car_history') }}<td>
+                    <td colspan="14">
+                        <div class="status-history-container">
+                            <div class="icon-line">
+                                @foreach($car->statusHistory as $statusHistory)
+                                    <div class="status-item">
+                                        <i class="fa-solid fa-car car-icon"></i>
+                                        <div class="line"></div>
+                                        <div class="status-details">
+                                            <div class="status-name">{{ $statusHistory->carStatus->name ?? '' }}</div>
+                                            <div class="status-date">{{ $statusHistory->start_date }}</div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </td>
+                    
                 </tr>
             @endforeach
         </tbody>

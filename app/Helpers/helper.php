@@ -58,9 +58,10 @@ function toggleBooleanView($model, $url, $switch = 'is_active' , $open = 1 , $cl
     $path = parse_url($url, PHP_URL_PATH);
     $path = trim($path, '/');
     $pathComponents = explode('/', $path);
-     $switch = $pathComponents[4] ;
+    $switch = $pathComponents[4] ;
+    $id = $pathComponents[3] ;
 
-    return view('components.admin.toggle-boolean-view', compact('model', 'url', 'switch','open','close'))->render();
+    return view('components.admin.toggle-boolean-view', compact('model', 'url', 'switch','open','close','id'))->render();
 }
 
 function toggleBoolean($model, $name = 'is_active' , $open = 1 , $close = 0)

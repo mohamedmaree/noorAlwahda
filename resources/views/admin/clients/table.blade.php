@@ -99,4 +99,63 @@
     </div>
 @endif
 {{-- pagination  links div --}}
+<script>
+        $('#car_id').on('change', function(e) { //any select change on the dropdown with id country trigger this code
+        e.preventDefault();
+        var car_id = $('#car_id').val();
 
+        $.get("<?= route('admin.carfinanceoperations.get-car-outstanding-finances') ?>", {
+            car_id: car_id,
+        }, function(data) {
+            console.log(data);
+            $('.append_here').html("");
+            $('.append_here').html(data);
+        });
+        
+
+    }); 
+
+    $('input[name=vip]').on('change', function() {
+            if (this.checked) {
+                let rowClass = this.classList[1];
+                let name = this.name;
+                $(`.toggleBtn.${rowClass}`).each(function() {
+                    if (this.name !== name && ( this.name == 'middle' || this.name == 'usual')) {
+                        if(this.checked == true){
+                            toggleBoolean(this,$(this).attr('data-url'));
+                        }
+                        this.checked = false;
+                    }
+                });
+            }
+    });
+    $('input[name=middle]').on('change', function() {
+            if (this.checked) {
+                let rowClass = this.classList[1];
+                let name = this.name;
+                $(`.toggleBtn.${rowClass}`).each(function() {
+                    if (this.name !== name && (this.name == 'vip' || this.name == 'usual')) {
+                        if(this.checked == true){
+                            toggleBoolean(this,$(this).attr('data-url'));
+                        }
+                        this.checked = false;
+                    }
+                });
+            }
+    });
+    $('input[name=usual]').on('change', function() {
+            if (this.checked) {
+                let rowClass = this.classList[1];
+                let name = this.name;
+                $(`.toggleBtn.${rowClass}`).each(function() {
+                    if (this.name !== name && (this.name == 'vip' || this.name == 'middle')) {
+                        if(this.checked == true){
+                            toggleBoolean(this,$(this).attr('data-url'));
+                        }
+                        this.checked = false;
+                    }
+                });
+            }
+    });
+
+</script>

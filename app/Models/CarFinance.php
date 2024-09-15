@@ -9,8 +9,8 @@ class CarFinance extends BaseModel
     protected $fillable = ['car_id','price_type_id' ,'required_amount','paid_amount'];
 
     protected $casts = [
-        'required_amount'   => 'decimal:2',
-        'paid_amount'       => 'decimal:2',
+        'required_amount'   => 'decimal:0',
+        'paid_amount'       => 'decimal:0',
     ];
 
     public function getRequiredAmountAttribute()
@@ -18,10 +18,10 @@ class CarFinance extends BaseModel
         if(auth()->check()){
             if(auth()->user()->currency_code){
               $exchange_rate = Country::where('currency_code',auth()->user()->currency_code)->first()->exchange_rate??1;
-              return number_format($this->attributes['required_amount'] * $exchange_rate,2);
+              return number_format($this->attributes['required_amount'] * $exchange_rate);
             }
         }
-        return number_format($this->attributes['required_amount'],2);
+        return number_format($this->attributes['required_amount']);
     }
 
     public function getPaidAmountAttribute()
@@ -29,10 +29,10 @@ class CarFinance extends BaseModel
         if(auth()->check()){
             if(auth()->user()->currency_code){
               $exchange_rate = Country::where('currency_code',auth()->user()->currency_code)->first()->exchange_rate??1;
-              return number_format($this->attributes['paid_amount'] * $exchange_rate,2);
+              return number_format($this->attributes['paid_amount'] * $exchange_rate);
             }
         }
-        return number_format($this->attributes['paid_amount'],2);
+        return number_format($this->attributes['paid_amount']);
     }
 
 

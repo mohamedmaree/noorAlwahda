@@ -8,6 +8,7 @@ use App\Traits\Report;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Role\Create;
+use Illuminate\Support\Facades\Artisan;
 
 class RoleController extends Controller
 {
@@ -41,6 +42,8 @@ class RoleController extends Controller
 
         $role->permissions()->createMany($permissions);
         Report::addToLog('  اضافه صلاحية') ;
+        Artisan::call('optimize:clear');
+        Artisan::call('optimize');
         return redirect(route('admin.roles.index'))->with('success', 'تم الاضافه بنجاح');
     }
 
@@ -69,6 +72,9 @@ class RoleController extends Controller
         $role->permissions()->createMany($permissions);
         Report::addToLog('  تعديل صلاحية') ;
 
+        Artisan::call('optimize:clear');
+        Artisan::call('optimize');
+
         return redirect(route('admin.roles.index'))->with('success', 'تم التعديل بنجاح');
     }
 
@@ -76,6 +82,8 @@ class RoleController extends Controller
     {
         $role = Role::findOrFail($id)->delete();
         Report::addToLog('  حذف صلاحية') ;
+        Artisan::call('optimize:clear');
+        Artisan::call('optimize');
         return response()->json(['id' =>$id]);
     }
 }

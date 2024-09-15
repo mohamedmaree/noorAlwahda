@@ -9,7 +9,7 @@ class CarFinanceOperations extends BaseModel
     protected $fillable = ['car_id','price_type_id','amount' ,'image'];
 
     protected $casts = [
-        'amount'   => 'decimal:2',
+        'amount'   => 'decimal:0',
     ];
 
     public function getAmountAttribute()
@@ -17,10 +17,10 @@ class CarFinanceOperations extends BaseModel
         if(auth()->check()){
             if(auth()->user()->currency_code){
               $exchange_rate = Country::where('currency_code',auth()->user()->currency_code)->first()->exchange_rate??1;
-              return number_format($this->attributes['amount'] * $exchange_rate,2);
+              return number_format($this->attributes['amount'] * $exchange_rate);
             }
         }
-        return number_format($this->attributes['amount'],2);
+        return number_format($this->attributes['amount']);
     }
 
 

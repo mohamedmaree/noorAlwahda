@@ -9,6 +9,7 @@ use App\Http\Requests\Admin\carstatuses\Update;
 use App\Models\CarStatus ;
 use App\Traits\Report;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Artisan;
 
 class CarStatusController extends Controller
 {
@@ -33,6 +34,8 @@ class CarStatusController extends Controller
     {
         CarStatus::create($request->validated());
         Report::addToLog('  اضافه حالة') ;
+        Artisan::call('optimize:clear');
+        Artisan::call('optimize');
         return response()->json(['url' => route('admin.carstatuses.index')]);
     }
     public function edit($id)
@@ -46,6 +49,8 @@ class CarStatusController extends Controller
     {
         $carstatus = CarStatus::findOrFail($id)->update($request->validated());
         Report::addToLog('  تعديل حالة') ;
+        Artisan::call('optimize:clear');
+        Artisan::call('optimize');
         return response()->json(['url' => route('admin.carstatuses.index')]);
     }
 
@@ -59,6 +64,8 @@ class CarStatusController extends Controller
     {
         $carstatus = CarStatus::findOrFail($id)->delete();
         Report::addToLog('  حذف حالة') ;
+        Artisan::call('optimize:clear');
+        Artisan::call('optimize');
         return response()->json(['id' =>$id]);
     }
 
@@ -71,6 +78,8 @@ class CarStatusController extends Controller
         }
         if (CarStatus::whereIntegerInRaw('id',$ids)->get()->each->delete()) {
             Report::addToLog('  حذف العديد من حالات السيارات') ;
+            Artisan::call('optimize:clear');
+            Artisan::call('optimize');
             return response()->json('success');
         } else {
             return response()->json('failed');

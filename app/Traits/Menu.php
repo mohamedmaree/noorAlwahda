@@ -14,7 +14,7 @@ trait menu {
         'url'   => url('admin/admins'),
         'route'   => 'admin.admins.index',
       ], [
-        'name'  => __('admin.users'),
+        'name'  => __('admin.clients'),
         'count' => \App\Models\User::count(),
         'icon'  => 'icon-users',
         'url'   => url('admin/clients-show'),

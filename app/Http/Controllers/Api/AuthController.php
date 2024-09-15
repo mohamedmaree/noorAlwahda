@@ -72,10 +72,10 @@ class AuthController extends Controller {
         if (!$user = User::where('phone', $request['phone'])
             ->where('country_code', $request['country_code'])
             ->first()) {
-            return $this->failMsg(__('auth.failed'));
+            return $this->response('fail',__('site.phone_ex'),['phone' => false,'password' => true]);
         }
         if (!Hash::check($request->password, $user->password)) {
-            return $this->failMsg(__('auth.failed'));
+            return $this->response('fail',__('auth.failed'),['phone' => true,'password' => false]);
         }
 
         if ($user->is_blocked) {

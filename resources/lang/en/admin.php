@@ -835,5 +835,11 @@ return [
     'show_branch_page' => 'Show Branch Page',
     'delete_branch' => 'Delete Branch',
     'delete_group_of_branches' => 'Delete Group of Company Branches',
+    'print'   => 'Print',
+    'receipt'  => 'Receipt',
+    'receipt_voucher' => 'Receipt Voucher',
+    'customer_name' => 'Customer Name',
+    'details'  => 'Details',
+    'recipient_signature'  => 'Recipient Signature',
     
 ];

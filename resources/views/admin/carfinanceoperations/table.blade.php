@@ -23,25 +23,30 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($carfinanceoperations as $carfinanceoperations)
+            @foreach ($carfinanceoperations as $carfinanceoperation)
                 <tr class="delete_row">
                     <td class="text-center">
                         <label class="container-checkbox">
-                        <input type="checkbox" class="checkSingle" id="{{ $carfinanceoperations->id }}">
+                        <input type="checkbox" class="checkSingle" id="{{ $carfinanceoperation->id }}">
                         <span class="checkmark"></span>
                         </label>
                     </td>
-                    <td><a href="{{$carfinanceoperations->image}}" target="blank">{{ __('admin.show') }} </a></td>
-                    <td>{{ $carfinanceoperations->car->car_num??'' }}</td>
+                    <td><a href="{{$carfinanceoperation->image}}" target="blank">{{ __('admin.show') }} </a></td>
                     <td>
-                       {{ $carfinanceoperations->priceType->name??''}}
+                        @if($carfinanceoperation->car)
+                            <a href="{{ route('admin.cars.show', ['id' => $carfinanceoperation->car_id]) }}" > {{  $carfinanceoperation->car->car_num}}</a>
+                        @endif
                     </td>
-                    <td>{{ $carfinanceoperations->amount }}</td>
+                    <td>
+                       {{ $carfinanceoperation->priceType->name??''}}
+                    </td>
+                    <td>{{ $carfinanceoperation->amount }}</td>
                     
                     <td class="product-action"> 
-                        <span class="text-primary"><a href="{{ route('admin.carfinanceoperations.show', ['id' => $carfinanceoperations->id]) }}" class="btn btn-warning btn-sm"><i class="feather icon-eye"></i> {{ __('admin.show') }}</a></span>
-                        <span class="action-edit text-primary"><a href="{{ route('admin.carfinanceoperations.edit', ['id' => $carfinanceoperations->id]) }}" class="btn btn-primary btn-sm"><i class="feather icon-edit"></i>{{ __('admin.edit') }}</a></span>
-                        <span class="delete-row btn btn-danger btn-sm" data-url="{{ url('admin/carfinanceoperations/' . $carfinanceoperations->id) }}"><i class="feather icon-trash"></i>{{ __('admin.delete') }}</span>
+                        <span class="text-success"><a href="{{ route('admin.carfinanceoperations.print', ['id' => $carfinanceoperation->id]) }}" class="btn btn-success btn-sm" target="blank"><i class="feather icon-arrow-down"></i>{{ __('admin.print') }}</a></span>
+                        <span class="text-primary"><a href="{{ route('admin.carfinanceoperations.show', ['id' => $carfinanceoperation->id]) }}" class="btn btn-warning btn-sm"><i class="feather icon-eye"></i> {{ __('admin.show') }}</a></span>
+                        <span class="action-edit text-primary"><a href="{{ route('admin.carfinanceoperations.edit', ['id' => $carfinanceoperation->id]) }}" class="btn btn-primary btn-sm"><i class="feather icon-edit"></i>{{ __('admin.edit') }}</a></span>
+                        <span class="delete-row btn btn-danger btn-sm" data-url="{{ url('admin/carfinanceoperations/' . $carfinanceoperation->id) }}"><i class="feather icon-trash"></i>{{ __('admin.delete') }}</span>
                     </td>
                 </tr>
             @endforeach

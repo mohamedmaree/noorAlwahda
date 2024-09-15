@@ -9,7 +9,6 @@ trait ResponseTrait {
    */
   //todo: user builder design pattern
   public function response($key, $msg, $data = [], $anotherKey = [], $page = false) {
-
     $allResponse['key'] = (string) $key;
     $allResponse['msg'] = (string) $msg;
 
@@ -31,7 +30,7 @@ trait ResponseTrait {
     }
 
     # res data
-    if ([] != $data && (in_array($key, ['success', 'needActive', 'exception']))) {
+    if ([] != $data && (in_array($key, ['success', 'needActive', 'exception','fail']))) {
       $allResponse['data'] = $data;
     }    
 
