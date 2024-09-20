@@ -43,6 +43,7 @@ return [
     'choose_bank'             => 'إرسال العمولة' ,
     'help'                    => 'مساعده' ,
     'contact_us'              => 'تابعنا علي ' ,
+    'contact_us2'             => 'تواصل معنا' ,
     'notifications'           => 'الإشعارات ' ,
     'favorite'                => 'المفضله' ,
     'chat'                    => 'الدردشه' ,

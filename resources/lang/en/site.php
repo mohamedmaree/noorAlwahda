@@ -46,6 +46,7 @@ return [
     'choose_bank'             => 'Send commission',
     'help'                    => 'Help',
     'contact_us'              => 'Follow Us On',
+    'contact_us2'             => 'Contact Us' ,
     'notifications'           => 'Notifications',
     'favorite'                => 'Favorite',
     'join_us_or_login'        => 'join us',

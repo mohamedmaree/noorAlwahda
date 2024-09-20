@@ -10,7 +10,7 @@
     <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>{{__('site.remove_account')}}</title>
+    <title>{{__('site.contact_us2')}}</title>
 
         <!-- Favicon -->
         <link rel="apple-touch-icon" href="{{$data['fav_icon']}}">
@@ -68,7 +68,7 @@
                 </a>
               </div>
               <!-- /Logo -->
-              {{-- <h4 class="mb-1 pt-2">{{__('site.contact_us')}} </h4> --}}
+              <h4 class="mb-1 pt-2">{{__('site.contact_us2')}} </h4>
               {{-- <p class="mb-4">Please sign-in to your account and start the adventure</p> --}}
 
               <form id="formAuthentication" class="mb-3 send-message" action="{{url('send-message')}}"  method="POST">
