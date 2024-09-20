@@ -6,7 +6,10 @@ Route::group(['middleware' => ['web', 'HtmlMinifier']], function () {
 
   // Route::get('/', 'IntroController@index')->name('intro');
   Route::get('/privacy-policy', 'IntroController@privacyPolicy')->name('IntroPrivacyPolicy');
+  
+  Route::get('/contact-us', 'IntroController@contactUs')->name('contact-us');
   Route::post('/send-message', 'IntroController@sendMessage');
+  
   Route::get('/lang/{lang}', 'IntroController@SetLanguage');
   // guest routes
   Route::group(['middleware' => ['guest']], function () {

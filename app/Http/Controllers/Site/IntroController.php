@@ -40,6 +40,11 @@ class IntroController extends Controller
     }
 
 
+    public function contactUs(){
+        $data = SettingService::appInformations(SiteSetting::pluck('value', 'key'));
+        return view('intro_site.contactUs',get_defined_vars());
+    }
+
     public function sendMessage(sendMessageRequest $request)
     {
         IntroMessages::create($request->validated());
