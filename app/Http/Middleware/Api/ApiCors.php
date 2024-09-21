@@ -17,6 +17,10 @@ class ApiCors {
       "Access-Control-Max-Age"       => "1000",
     ];
 
+    if ($request->getMethod() === "OPTIONS") {
+      return response()->json('OK', 200, $headers);
+    }
+
     $response = $next($request);
 
     foreach ($headers as $key => $value) {
@@ -26,3 +30,4 @@ class ApiCors {
     return $response;
   }
 }
+
