@@ -8,7 +8,7 @@ class ApiCors {
   public function handle($request, Closure $next) {
     $headers = [
       "Access-Control-Allow-Origin"  => "*",
-      "Access-Control-Allow-Headers" => "X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method,lang",
+      "Access-Control-Allow-Headers" => "X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method,lang,Lang",
       "Access-Control-Allow-Methods" => "POST, GET, OPTIONS, PUT, DELETE",
 
       // "Content-Type"                 => "application/json,form-data,charset=UTF-8", // use this with android and ios
