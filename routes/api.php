@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([
     'namespace'  => 'Api',
-    'middleware' => ['api-cors', 'api-lang'],
+    'middleware' => [ 'api-lang'],
 ], function () {
 
     Route::group(['middleware' => ['OptionalSanctumMiddleware']], function () {
