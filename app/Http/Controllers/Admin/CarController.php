@@ -34,7 +34,7 @@ use App\Models\CarGalleryImages ;
 use App\Models\CarAttachment ;
 use App\Models\SiteSetting;
 use App\Traits\ResponseTrait;
-use App\Models\city;
+use App\Models\City;
 
 class CarController extends Controller
 {
