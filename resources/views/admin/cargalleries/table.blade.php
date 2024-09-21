@@ -16,6 +16,8 @@
                     </label>
                 </th>
                 <th>{{__('admin.car')}}</th>
+                <th>{{__('admin.lot')}}</th>
+                <th>{{__('admin.vin')}}</th>
                 <th>{{__('admin.carstatuses')}}</th>
                 <th>{{__('admin.control')}}</th>
             </tr>
@@ -34,6 +36,8 @@
                             <a href="{{ route('admin.cars.show', ['id' => $cargallery->car_id]) }}" > {{  $cargallery->car->car_num}}</a>
                         @endif
                     </td>
+                    <td>{{ $cargallery->car->lot??'' }}</td>
+                    <td>{{ $cargallery->car->vin??'' }}</td>
                     <td>{{ $cargallery->carStatus->name??'' }}</td>
                     
                     <td class="product-action"> 

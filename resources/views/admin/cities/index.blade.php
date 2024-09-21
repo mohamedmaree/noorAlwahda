@@ -34,6 +34,9 @@
     <x-slot name="extrabuttonsdiv">
             <a class="btn bg-gradient-info mr-1 mb-1 waves-effect waves-light"  href="{{url(route('admin.master-export', 'City'))}}"><i  class="fa fa-file-excel-o"></i>
                 {{ __('admin.export') }}</a>
+            <a type="button" data-toggle="modal" data-target="#import-file"
+                class="btn bg-gradient-info mr-1 mb-1 waves-effect waves-light import-file"
+                data-id="all"><i class="feather icon-arrow-up-circle"></i> {{ __('admin.importfile') }}</a>
     </x-slot>
 
     <x-slot name="tableContent">
@@ -42,6 +45,7 @@
         </div>
     </x-slot>
 </x-admin.table>
+<x-admin.ImportFile route="{{ route('admin.cities.importFile') }}" />
 
 
     
@@ -54,4 +58,5 @@
     @include('admin.shared.deleteAll')
     @include('admin.shared.deleteOne')
     @include('admin.shared.filter_js' , [ 'index_route' => url('admin/cities')])
+    @include('admin.shared.importFile')
 @endsection

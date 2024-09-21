@@ -16,6 +16,8 @@
                     </label>
                 </th>
                 <th>{{__('admin.car')}}</th>
+                <th>{{__('admin.lot')}}</th>
+                <th>{{__('admin.vin')}}</th>
                 <th>{{__('admin.pricetype')}}</th>
                 <th>{{__('admin.required_amount')}}</th>
                 <th>{{__('admin.paid_amount')}}</th>
@@ -36,6 +38,8 @@
                             <a href="{{ route('admin.cars.show', ['id' => $carfinance->car_id]) }}" > {{  $carfinance->car->car_num}}</a>
                         @endif
                     </td>
+                    <td>{{ $carfinance->car->lot??'' }}</td>
+                    <td>{{ $carfinance->car->vin??'' }}</td>
                     <td>{{ $carfinance->priceType->name??'' }}</td>
                     <td>{{ $carfinance->required_amount }}</td>
                     <td>{{ $carfinance->paid_amount }}</td>

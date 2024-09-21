@@ -159,7 +159,7 @@
                                             <div class="form-group">
                                                 <label for="first-name-column">{{__('admin.carbrand')}}</label>
                                                 <div class="controls">
-                                                    <select name="car_brand_id" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}" >
+                                                    <select name="car_brand_id" id="car_brand_id" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}" >
                                                         <option value>{{__('admin.carbrand')}}</option>
                                                         @foreach ($carbrands as $carbrand)
                                                             <option {{$carbrand->id == $car->car_brand_id ? 'selected' : ''}} value="{{$carbrand->id}}">{{$carbrand->name}}</option>
@@ -173,7 +173,7 @@
                                             <div class="form-group">
                                                 <label for="first-name-column">{{__('admin.carmodel')}}</label>
                                                 <div class="controls">
-                                                    <select name="car_model_id" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}" >
+                                                    <select name="car_model_id" id="car_model_id" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}" >
                                                         <option value>{{__('admin.carmodel')}}</option>
                                                         @foreach ($carmodels as $carmodel)
                                                             <option {{$carmodel->id == $car->car_model_id ? 'selected' : ''}} value="{{$carmodel->id}}">{{$carmodel->name}}</option>
@@ -353,9 +353,31 @@
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
+                                                <label for="first-name-column">{{__('admin.title_deeds')}}</label>
+                                                <div class="controls">
+                                                    <select name="title_deeds" class="select2 form-control" >
+                                                        <option value>{{__('admin.title_deeds')}}</option>
+                                                            <option  value="0" {{$car->title_deeds == 0 ? 'selected' : ''}}>{{ __('admin.no') }}</option>
+                                                            <option  value="1" {{$car->title_deeds == 1 ? 'selected' : ''}}>{{ __('admin.yes') }}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-column">{{ __('admin.buyer_number') }}</label>
+                                                <div class="controls">
+                                                    <input type="text" name="buyer_number"  value="{{ $car->buyer_number }}" class="form-control"
+                                                        placeholder="{{ __('admin.buyer_number') }}">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
                                                 <label for="first-name-column">{{__('admin.from_country')}}</label>
                                                 <div class="controls">
-                                                    <select name="from_country_id" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}" >
+                                                    <select name="from_country_id" id="country_id" class="select2 form-control" required data-validation-required-message="{{__('admin.this_field_is_required')}}" >
                                                         <option value>{{__('admin.from_country')}}</option>
                                                         @foreach ($countries as $country)
                                                             <option  value="{{$country->id}}" {{$country->id == $car->from_country_id ? 'selected' : ''}}>{{$country->name}}</option>
@@ -366,12 +388,25 @@
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
-                                                <label for="first-name-column">{{__('admin.region')}}</label>
+                                                <label for="first-name-column">{{__('admin.auction_location')}}</label>
                                                 <div class="controls">
-                                                    <select name="region_id" class="select2 form-control"  >
-                                                        <option value>{{__('admin.region')}}</option>
+                                                    <select name="region_id" id="region_id" class="select2 form-control"  >
+                                                        <option value>{{__('admin.auction_location')}}</option>
                                                         @foreach ($regions as $region)
                                                             <option  value="{{$region->id}}" {{$region->id == $car->region_id ? 'selected' : ''}}>{{$region->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-column">{{__('admin.city')}}</label>
+                                                <div class="controls">
+                                                    <select name="city_id" id="city_id" class="select2 form-control"  >
+                                                        <option value>{{__('admin.city')}}</option>
+                                                        @foreach ($cities as $city)
+                                                            <option  value="{{$city->id}}" {{$city->id == $car->city_id ? 'selected' : ''}}>{{$city->name}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -438,10 +473,10 @@
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
-                                                <label for="first-name-column">{{ __('admin.estimation_arrive_date') }}</label>
+                                                <label for="first-name-column">{{ __('admin.towing_date') }}</label>
                                                 <div class="controls">
-                                                    <input type="date" name="estimation_arrive_date" value="{{$car->estimation_arrive_date}}" class="form-control"
-                                                        placeholder="{{ __('admin.estimation_arrive_date') }}" >
+                                                    <input type="date" name="towing_date" value="{{$car->towing_date}}"  class="form-control"
+                                                        placeholder="{{ __('admin.towing_date') }}" >
                                                 </div>
                                             </div>
                                         </div>
@@ -456,10 +491,19 @@
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
-                                                <label for="first-name-column">{{ __('admin.company_arrive_date') }}</label>
+                                                <label for="first-name-column">{{ __('admin.shipping_date') }}</label>
                                                 <div class="controls">
-                                                    <input type="date" name="company_arrive_date" value="{{$car->company_arrive_date}}"  class="form-control"
-                                                        placeholder="{{ __('admin.company_arrive_date') }}" >
+                                                    <input type="date" name="shipping_date" value="{{$car->shipping_date}}"  class="form-control"
+                                                        placeholder="{{ __('admin.shipping_date') }}" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-column">{{ __('admin.estimation_arrive_date') }}</label>
+                                                <div class="controls">
+                                                    <input type="date" name="estimation_arrive_date" value="{{$car->estimation_arrive_date}}" class="form-control"
+                                                        placeholder="{{ __('admin.estimation_arrive_date') }}" >
                                                 </div>
                                             </div>
                                         </div>
@@ -474,22 +518,16 @@
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
-                                                <label for="first-name-column">{{ __('admin.shipping_date') }}</label>
+                                                <label for="first-name-column">{{ __('admin.company_arrive_date') }}</label>
                                                 <div class="controls">
-                                                    <input type="date" name="shipping_date" value="{{$car->shipping_date}}"  class="form-control"
-                                                        placeholder="{{ __('admin.shipping_date') }}" >
+                                                    <input type="date" name="company_arrive_date" value="{{$car->company_arrive_date}}"  class="form-control"
+                                                        placeholder="{{ __('admin.company_arrive_date') }}" >
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <label for="first-name-column">{{ __('admin.towing_date') }}</label>
-                                                <div class="controls">
-                                                    <input type="date" name="towing_date" value="{{$car->towing_date}}"  class="form-control"
-                                                        placeholder="{{ __('admin.towing_date') }}" >
-                                                </div>
-                                            </div>
-                                        </div>
+
+
+
 
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
@@ -746,5 +784,57 @@
         }
     })  
 </script>  
+<script>
+    $('#car_brand_id').on('change', function(e) { //any select change on the dropdown with id country trigger this code
+    e.preventDefault();
+    var car_brand_id = $('#car_brand_id').val();
+    $.get("<?= route('admin.cars.get-brand-models') ?>", {
+        car_brand_id: car_brand_id,
+    }, function(data) {
+        console.log(data);
+        var html = '<option>{{__('admin.carmodel')}}</option>';
+        var len = data.length;
+        for (var i = 0; i < len; i++) {
+            html += '<option value="' + data[i].id + '" >' +data[i].name.{{ lang() }}+'</option>';
+        }
+        $('#car_model_id').html("");
+        $('#car_model_id').append(html);
+    });
+});
+</script> 
+<script>
+    $('#country_id').on('change', function(e) { //any select change on the dropdown with id country trigger this code
+    e.preventDefault();
+    var country_id = $('#country_id').val();
+    $.get("<?= route('admin.cities.get-country-regions') ?>", {
+        country_id: country_id,
+    }, function(data) {
+        console.log(data);
+        var html = '<option>{{__('admin.region')}}</option>';
+        var len = data.length;
+        for (var i = 0; i < len; i++) {
+            html += '<option value="' + data[i].id + '" >' +data[i].name.{{ lang() }}+'</option>';
+        }
+        $('#region_id').html("");
+        $('#region_id').append(html);
+    });
+});
+$('#region_id').on('change', function(e) { //any select change on the dropdown with id country trigger this code
+    e.preventDefault();
+    var region_id = $('#region_id').val();
+    $.get("<?= route('admin.cities.get-region-cities') ?>", {
+        region_id: region_id,
+    }, function(data) {
+        console.log(data);
+        var html = '<option>{{__('admin.city')}}</option>';
+        var len = data.length;
+        for (var i = 0; i < len; i++) {
+            html += '<option value="' + data[i].id + '" >' +data[i].name.{{ lang() }}+'</option>';
+        }
+        $('#city_id').html("");
+        $('#city_id').append(html);
+    });
+});
+</script> 
 @endsection
 

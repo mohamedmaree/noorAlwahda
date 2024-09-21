@@ -10,6 +10,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\cities\Store;
 use App\Models\Region;
 
+use App\Imports\CityImport;
+use Maatwebsite\Excel\Facades\Excel;
+
 class CityController extends Controller
 {
 
@@ -18,7 +21,10 @@ class CityController extends Controller
             $models   = Region::where(['country_id'=>$request->country_id])->orderBy('name','ASC')->get();
             return response()->json($models);
         }
-
+        public function getRegionCities(Request $request){
+            $models   = City::where(['region_id'=>$request->region_id])->orderBy('name','ASC')->get();
+            return response()->json($models);
+        }
         /************ AJAX ****************/
 
         
@@ -92,5 +98,12 @@ class CityController extends Controller
         } else {
             return response()->json('failed');
         }
+    }
+
+    public function importFile(Request $request)
+    {
+        Excel::import(new CityImport,request()->file('file'));        
+        Report::addToLog('  رفع ملف المدن') ;
+        return response()->json(['url' => route('admin.cities.index')]);
     }
 }

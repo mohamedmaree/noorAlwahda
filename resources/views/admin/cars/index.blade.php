@@ -136,7 +136,7 @@
         'region_id' => [
             'input_type' => 'select' , 
             'rows'       => $regions , 
-            'input_name' => __('admin.regions') , 
+            'input_name' => __('admin.auction_location') , 
         ] ,
         'warehouse_id' => [
             'input_type' => 'select' , 

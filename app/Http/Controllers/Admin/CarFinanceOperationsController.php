@@ -66,14 +66,10 @@ class CarFinanceOperationsController extends Controller
                     
                     $paid_amount = CarFinanceOperations::where('car_id', $request->car_id)->where('price_type_id',$priceType)->sum('amount');
                     CarFinance::where(['car_id' => $request->car_id,'price_type_id' => $priceType])->update(['paid_amount' => $paid_amount]);
-                    
-                    $i++;
                 }
+                $i++;
             }
         }
-
-
-
         Report::addToLog('  اضافه سند دفع') ;
         return response()->json(['url' => route('admin.carfinanceoperations.index')]);
     }

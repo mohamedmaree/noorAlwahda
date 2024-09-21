@@ -42,7 +42,8 @@ class HomeController extends Controller
         $subUsers    = User::whereNotNull('parent_id')->count() ; 
 
         $vipUsers    = User::where(['vip' => 1])->count() ; 
-        $notvipUsers = User::where(['vip' => 0])->count() ; 
+        $middleUsers = User::where(['middle' => 1])->count() ; 
+        $usualUsers  = User::where(['usual' => 1])->count() ; 
 
         $availableCars    = Car::where(['available' => 1])->count() ; 
         $notavailable     = Car::where(['available' => 0])->count() ; 

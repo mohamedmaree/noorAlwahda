@@ -525,7 +525,17 @@ use App\Models\CarStatus;
         /*------------ end Of intro site ----------*/
 
         /*------------ start Of users Controller ----------*/
-
+        Route::get('staff-management', [
+            'as'        => 'staff_management',
+            'icon'      => '<i class="feather icon-edit"></i>',
+            'title'     => 'staff_management',
+            'type'      => 'parent',
+            'sub_route' => true,
+            'child'     => [
+                'admins.index','admins.block', 'admins.store', 'admins.update', 'admins.edit','admins.delete', 'admins.deleteAll', 'admins.create', 'admins.edit', 'admins.notifications','admins.notifications.delete', 'admins.show',
+                'roles.index', 'roles.create', 'roles.store', 'roles.edit', 'roles.update', 'roles.delete',
+            ],
+        ]);
         Route::get('all-users', [
             'as'        => 'all_users',
             'icon'      => '<i class="feather icon-users"></i>',
@@ -534,10 +544,147 @@ use App\Models\CarStatus;
             'sub_route' => true,
             'child'     => [
                 'clients.index','clients.show', 'clients.block', 'clients.store', 'clients.update', 'clients.delete', 'clients.notify', 'clients.deleteAll', 'clients.create', 'clients.edit','clients.importFile','clients.updateBalance',
-                'admins.index','admins.block', 'admins.store', 'admins.update', 'admins.edit','admins.delete', 'admins.deleteAll', 'admins.create', 'admins.edit', 'admins.notifications','admins.notifications.delete', 'admins.show',
             ],
         ]);
+    /*------------ start Of cars ----------*/
+    $childs = ['cars.index','cars.create', 'cars.store','cars.edit', 'cars.update', 'cars.show', 'cars.delete'  ,'cars.deleteAll','cars.get-brand-models' ];
+    $statuses = CarStatus::orderBy('sort','ASC')->get();
+    $i = 0;
+    foreach($statuses as $status){
+        Route::get('cars/status/'.$status->id, [
+            'uses'  => 'CarController@carsByStatus',
+            'as'    => 'cars.carsByStatus.'.$status->id,
+            'title' => $status->name,
+            'icon'      => '<i class="feather icon-image"></i>',
+        ]);
+        $childs[] = 'cars.carsByStatus.'.$status->id;
+       
+        // if($i > 0){
+            Route::get('cars/change-status/'.$status->id, [
+                'uses'  => 'CarController@changeStatus',
+                'as'    => 'cars.carsChangeStatus.'.$status->id,
+                'title' => $status->name,
+            ]);
+            $childs[] = 'cars.carsChangeStatus.'.$status->id;
+        // }
+        $i++;
+    }
 
+        Route::get('all-cars', [
+            'uses'      => 'CarController@index',
+            'as'        => 'all_cars',
+            'title'     => 'cars',
+            'icon'      => '<i class="feather icon-truck"></i>',
+            'type'      => 'parent',
+            'sub_route' => true,
+            'child'     => $childs
+        ]);
+        
+        Route::get('cars', [
+            'uses'      => 'CarController@index',
+            'as'        => 'cars.index',
+            'title'     => 'all_cars',
+            'icon'      => '<i class="feather icon-image"></i>',
+            // 'type'      => 'parent',
+            // 'sub_route' => false,
+            // 'child'     => ['cars.create', 'cars.store','cars.edit', 'cars.update', 'cars.show', 'cars.delete'  ,'cars.deleteAll' ,]
+        ]);
+
+        # cars store
+        Route::get('cars/create', [
+            'uses'  => 'CarController@create',
+            'as'    => 'cars.create',
+            'title' => 'add_car_page'
+        ]);
+
+
+        # cars store
+        Route::post('cars/store', [
+            'uses'  => 'CarController@store',
+            'as'    => 'cars.store',
+            'title' => 'add_car'
+        ]);
+
+        # cars update
+        Route::get('cars/{id}/edit', [
+            'uses'  => 'CarController@edit',
+            'as'    => 'cars.edit',
+            'title' => 'update_car_page'
+        ]);
+
+        # cars update
+        Route::put('cars/{id}', [
+            'uses'  => 'CarController@update',
+            'as'    => 'cars.update',
+            'title' => 'update_car'
+        ]);
+
+        # cars show
+        Route::get('cars/{id}/Show', [
+            'uses'  => 'CarController@show',
+            'as'    => 'cars.show',
+            'title' => 'show_car_page'
+        ]);
+
+        # cars delete
+        Route::delete('cars/{id}', [
+            'uses'  => 'CarController@destroy',
+            'as'    => 'cars.delete',
+            'title' => 'delete_car'
+        ]);
+        #delete all cars
+        Route::post('delete-all-cars', [
+            'uses'  => 'CarController@destroyAll',
+            'as'    => 'cars.deleteAll',
+            'title' => 'delete_group_of_cars'
+        ]);
+        Route::get('get-brand-models', [
+            'uses'  => 'CarController@getBrandModels',
+            'as'    => 'cars.get-brand-models',
+            'title' => 'get_brand_models'
+        ]); 
+    /*------------ end Of cars ----------*/
+    
+    Route::get('finance', [
+        'as'        => 'finance',
+        'icon'      => '<i class="feather icon-dollar-sign"></i>',
+        'title'     => 'finance',
+        'type'      => 'parent',
+        'sub_route' => true,
+        'child'     => [
+            'carfinances.index','carfinances.create', 'carfinances.store','carfinances.edit', 'carfinances.update', 'carfinances.show', 'carfinances.delete'  ,'carfinances.deleteAll' ,'carfinances.print',
+            'carfinanceoperations.index','carfinanceoperations.create', 'carfinanceoperations.store','carfinanceoperations.edit', 'carfinanceoperations.update', 'carfinanceoperations.show', 'carfinanceoperations.delete'  ,'carfinanceoperations.deleteAll' ,'carfinanceoperations.get-car-outstanding-finances','carfinanceoperations.print',
+        ],
+    ]);
+
+    Route::get('cars-settings', [
+        'as'        => 'cars_settings',
+        'title'     => 'cars_settings',
+        'icon'      => '<i class="feather icon-settings"></i>',
+        'type'      => 'parent',
+        'sub_route' => true,
+        'child'     => [
+            'carstatuses.index','carstatuses.create', 'carstatuses.store','carstatuses.edit', 'carstatuses.update', 'carstatuses.show', 'carstatuses.delete'  ,'carstatuses.deleteAll' ,
+            'cargalleries.index','cargalleries.create', 'cargalleries.store','cargalleries.edit', 'cargalleries.update', 'cargalleries.show', 'cargalleries.delete'  ,'cargalleries.deleteAll' ,'cargalleries.delete.image',
+            'carattachments.index','carattachments.create', 'carattachments.store','carattachments.edit', 'carattachments.update', 'carattachments.show', 'carattachments.delete'  ,'carattachments.deleteAll' ,'carattachments.delete.image',
+            'damagetypes.index','damagetypes.create', 'damagetypes.store','damagetypes.edit', 'damagetypes.update', 'damagetypes.show', 'damagetypes.delete'  ,'damagetypes.deleteAll' ,
+            'carbrands.index','carbrands.create', 'carbrands.store','carbrands.edit', 'carbrands.update', 'carbrands.show', 'carbrands.delete'  ,'carbrands.deleteAll','carbrands.importFile' ,
+            'carmodels.index','carmodels.create', 'carmodels.store','carmodels.edit', 'carmodels.update', 'carmodels.show', 'carmodels.delete'  ,'carmodels.deleteAll','carmodels.importFile' ,
+            'carcolors.index','carcolors.create', 'carcolors.store','carcolors.edit', 'carcolors.update', 'carcolors.show', 'carcolors.delete'  ,'carcolors.deleteAll' ,
+            'caryears.index','caryears.create', 'caryears.store','caryears.edit', 'caryears.update', 'caryears.show', 'caryears.delete'  ,'caryears.deleteAll' ,
+            'bodytypes.index','bodytypes.create', 'bodytypes.store','bodytypes.edit', 'bodytypes.update', 'bodytypes.show', 'bodytypes.delete'  ,'bodytypes.deleteAll' ,
+            'enginetypes.index','enginetypes.create', 'enginetypes.store','enginetypes.edit', 'enginetypes.update', 'enginetypes.show', 'enginetypes.delete'  ,'enginetypes.deleteAll' ,
+            'enginecylinders.index','enginecylinders.create', 'enginecylinders.store','enginecylinders.edit', 'enginecylinders.update', 'enginecylinders.show', 'enginecylinders.delete'  ,'enginecylinders.deleteAll' ,
+            'transmissiontypes.index','transmissiontypes.create', 'transmissiontypes.store','transmissiontypes.edit', 'transmissiontypes.update', 'transmissiontypes.show', 'transmissiontypes.delete'  ,'transmissiontypes.deleteAll' ,
+            'drivetypes.index','drivetypes.create', 'drivetypes.store','drivetypes.edit', 'drivetypes.update', 'drivetypes.show', 'drivetypes.delete'  ,'drivetypes.deleteAll' ,
+            'fueltypes.index','fueltypes.create', 'fueltypes.store','fueltypes.edit', 'fueltypes.update', 'fueltypes.show', 'fueltypes.delete'  ,'fueltypes.deleteAll' ,
+            'auctions.index','auctions.create', 'auctions.store','auctions.edit', 'auctions.update', 'auctions.show', 'auctions.delete'  ,'auctions.deleteAll' ,
+            'warehouses.index','warehouses.create', 'warehouses.store','warehouses.edit', 'warehouses.update', 'warehouses.show', 'warehouses.delete'  ,'warehouses.deleteAll' ,
+            'branches.index','branches.create', 'branches.store','branches.edit', 'branches.update', 'branches.show', 'branches.delete'  ,'branches.deleteAll' ,
+        ],
+    ]);
+    
+    
         Route::get('clients-show/{id?}', [
             'uses'  => 'ClientController@index',
             'as'    => 'clients.index',
@@ -1231,8 +1378,8 @@ use App\Models\CarStatus;
             'sub_route' => true,
             'child'     => [
                 'countries.index','countries.show', 'countries.create', 'countries.store', 'countries.edit', 'countries.update', 'countries.delete', 'countries.deleteAll',
-                'regions.index','regions.create', 'regions.store', 'regions.edit', 'regions.update', 'regions.show', 'regions.delete', 'regions.deleteAll',
-                'cities.index','cities.create', 'cities.store', 'cities.edit', 'cities.show', 'cities.update', 'cities.delete', 'cities.deleteAll','cities.get-country-regions' 
+                'regions.index','regions.create', 'regions.store', 'regions.edit', 'regions.update', 'regions.show', 'regions.delete', 'regions.deleteAll','regions.importFile',
+                'cities.index','cities.create', 'cities.store', 'cities.edit', 'cities.show', 'cities.update', 'cities.delete', 'cities.deleteAll','cities.get-country-regions','cities.get-region-cities','cities.importFile' 
             ],
         ]);
 
@@ -1352,6 +1499,12 @@ use App\Models\CarStatus;
             'as'    => 'regions.deleteAll',
             'title' => 'delete_group_of_regions',
         ]);
+        #import regions file
+        Route::post('regions/importFile', [
+            'uses'  => 'RegionController@importFile',
+            'as'    => 'regions.importFile',
+            'title' => 'import_file'
+        ]); 
 /*------------ end Of regions ----------*/
 
         /*------------ start Of cities ----------*/
@@ -1417,6 +1570,17 @@ use App\Models\CarStatus;
             'as'    => 'cities.get-country-regions',
             'title' => 'get_country_regions'
         ]); 
+        Route::get('get-region-cities', [
+            'uses'  => 'CityController@getRegionCities',
+            'as'    => 'cities.get-region-cities',
+            'title' => 'get_region_cities'
+        ]); 
+        #import cities file
+        Route::post('cities/importFile', [
+            'uses'  => 'CityController@importFile',
+            'as'    => 'cities.importFile',
+            'title' => 'import_file'
+        ]);
         /*------------ end Of cities ----------*/
         /*------------ start Of Settings----------*/
         Route::get('all-settings', [
@@ -1429,7 +1593,6 @@ use App\Models\CarStatus;
                 'fqs.index','fqs.show', 'fqs.create', 'fqs.store', 'fqs.edit', 'fqs.update', 'fqs.delete', 'fqs.deleteAll',
                 'all_complaints','complaints.delete', 'complaints.deleteAll', 'complaints.show', 'complaint.replay',
                 // 'sms.index','sms.update', 'sms.change',
-                'roles.index', 'roles.create', 'roles.store', 'roles.edit', 'roles.update', 'roles.delete',
                 'reports.index','reports.delete', 'reports.deleteAll', 'reports.show',
                 'settings.index', 'settings.update', 'settings.message.all', 'settings.message.one', 'settings.send_email',
                 // 'apphomes.index','apphomes.create', 'apphomes.store','apphomes.edit', 'apphomes.update', 'apphomes.show', 'apphomes.delete'  ,'apphomes.deleteAll' ,'apphomes.get-records-by-type',
@@ -1741,99 +1904,7 @@ use App\Models\CarStatus;
     ]);
 /*------------ end Of apphomes ----------*/
         
-    /*------------ start Of cars ----------*/
-    $childs = ['cars.index','cars.create', 'cars.store','cars.edit', 'cars.update', 'cars.show', 'cars.delete'  ,'cars.deleteAll' ];
-    $statuses = CarStatus::orderBy('sort','ASC')->get();
-    $i = 0;
-    foreach($statuses as $status){
-        Route::get('cars/status/'.$status->id, [
-            'uses'  => 'CarController@carsByStatus',
-            'as'    => 'cars.carsByStatus.'.$status->id,
-            'title' => $status->name,
-            'icon'      => '<i class="feather icon-image"></i>',
-        ]);
-        $childs[] = 'cars.carsByStatus.'.$status->id;
-       
-        // if($i > 0){
-            Route::get('cars/change-status/'.$status->id, [
-                'uses'  => 'CarController@changeStatus',
-                'as'    => 'cars.carsChangeStatus.'.$status->id,
-                'title' => $status->name,
-            ]);
-            $childs[] = 'cars.carsChangeStatus.'.$status->id;
-        // }
-        $i++;
-    }
 
-        Route::get('all-cars', [
-            'uses'      => 'CarController@index',
-            'as'        => 'all_cars',
-            'title'     => 'cars',
-            'icon'      => '<i class="feather icon-truck"></i>',
-            'type'      => 'parent',
-            'sub_route' => true,
-            'child'     => $childs
-        ]);
-        
-        Route::get('cars', [
-            'uses'      => 'CarController@index',
-            'as'        => 'cars.index',
-            'title'     => 'all_cars',
-            'icon'      => '<i class="feather icon-image"></i>',
-            // 'type'      => 'parent',
-            // 'sub_route' => false,
-            // 'child'     => ['cars.create', 'cars.store','cars.edit', 'cars.update', 'cars.show', 'cars.delete'  ,'cars.deleteAll' ,]
-        ]);
-
-        # cars store
-        Route::get('cars/create', [
-            'uses'  => 'CarController@create',
-            'as'    => 'cars.create',
-            'title' => 'add_car_page'
-        ]);
-
-
-        # cars store
-        Route::post('cars/store', [
-            'uses'  => 'CarController@store',
-            'as'    => 'cars.store',
-            'title' => 'add_car'
-        ]);
-
-        # cars update
-        Route::get('cars/{id}/edit', [
-            'uses'  => 'CarController@edit',
-            'as'    => 'cars.edit',
-            'title' => 'update_car_page'
-        ]);
-
-        # cars update
-        Route::put('cars/{id}', [
-            'uses'  => 'CarController@update',
-            'as'    => 'cars.update',
-            'title' => 'update_car'
-        ]);
-
-        # cars show
-        Route::get('cars/{id}/Show', [
-            'uses'  => 'CarController@show',
-            'as'    => 'cars.show',
-            'title' => 'show_car_page'
-        ]);
-
-        # cars delete
-        Route::delete('cars/{id}', [
-            'uses'  => 'CarController@destroy',
-            'as'    => 'cars.delete',
-            'title' => 'delete_car'
-        ]);
-        #delete all cars
-        Route::post('delete-all-cars', [
-            'uses'  => 'CarController@destroyAll',
-            'as'    => 'cars.deleteAll',
-            'title' => 'delete_group_of_cars'
-        ]);
-    /*------------ end Of cars ----------*/
     
     /*------------ start Of carstatuses ----------*/
         Route::get('carstatuses', [
@@ -2203,7 +2274,7 @@ use App\Models\CarStatus;
             'as'    => 'carmodels.deleteAll',
             'title' => 'delete_group_of_carmodels'
         ]);
-        #import carbrands file
+        #import carmodels file
         Route::post('carmodels/importFile', [
             'uses'  => 'CarModelsController@importFile',
             'as'    => 'carmodels.importFile',
@@ -2821,17 +2892,15 @@ use App\Models\CarStatus;
         ]);
     /*------------ end Of news ----------*/
     
-    
-    
     /*------------ start Of carfinances ----------*/
         Route::get('carfinances', [
             'uses'      => 'CarFinanceController@index',
             'as'        => 'carfinances.index',
             'title'     => 'carfinances',
             'icon'      => '<i class="feather icon-dollar-sign"></i>',
-            'type'      => 'parent',
-            'sub_route' => false,
-            'child'     => ['carfinances.create', 'carfinances.store','carfinances.edit', 'carfinances.update', 'carfinances.show', 'carfinances.delete'  ,'carfinances.deleteAll' ,]
+            // 'type'      => 'parent',
+            // 'sub_route' => false,
+            // 'child'     => ['carfinances.create', 'carfinances.store','carfinances.edit', 'carfinances.update', 'carfinances.show', 'carfinances.delete'  ,'carfinances.deleteAll' ,'carfinances.print']
         ]);
 
         # carfinances store
@@ -2882,6 +2951,11 @@ use App\Models\CarStatus;
             'as'    => 'carfinances.deleteAll',
             'title' => 'delete_group_of_carfinances'
         ]);
+        Route::get('carfinances/{id}/print', [
+            'uses'  => 'CarFinanceController@print',
+            'as'    => 'carfinances.print',
+            'title' => 'print'
+        ]); 
     /*------------ end Of carfinances ----------*/
     
     /*------------ start Of carfinanceoperations ----------*/
@@ -2890,9 +2964,9 @@ use App\Models\CarStatus;
             'as'        => 'carfinanceoperations.index',
             'title'     => 'carfinanceoperations',
             'icon'      => '<i class="feather icon-dollar-sign"></i>',
-            'type'      => 'parent',
-            'sub_route' => false,
-            'child'     => ['carfinanceoperations.create', 'carfinanceoperations.store','carfinanceoperations.edit', 'carfinanceoperations.update', 'carfinanceoperations.show', 'carfinanceoperations.delete'  ,'carfinanceoperations.deleteAll' ,'carfinanceoperations.get-car-outstanding-finances','carfinanceoperations.print']
+            // 'type'      => 'parent',
+            // 'sub_route' => false,
+            // 'child'     => ['carfinanceoperations.create', 'carfinanceoperations.store','carfinanceoperations.edit', 'carfinanceoperations.update', 'carfinanceoperations.show', 'carfinanceoperations.delete'  ,'carfinanceoperations.deleteAll' ,'carfinanceoperations.get-car-outstanding-finances','carfinanceoperations.print']
         ]);
 
         Route::get('get-car-outstanding-finances', [
@@ -2963,9 +3037,9 @@ use App\Models\CarStatus;
             'as'        => 'cargalleries.index',
             'title'     => 'cargalleries',
             'icon'      => '<i class="feather icon-image"></i>',
-            'type'      => 'parent',
-            'sub_route' => false,
-            'child'     => ['cargalleries.create', 'cargalleries.store','cargalleries.edit', 'cargalleries.update', 'cargalleries.show', 'cargalleries.delete'  ,'cargalleries.deleteAll' ,'cargalleries.delete.image']
+            // 'type'      => 'parent',
+            // 'sub_route' => false,
+            // 'child'     => ['cargalleries.create', 'cargalleries.store','cargalleries.edit', 'cargalleries.update', 'cargalleries.show', 'cargalleries.delete'  ,'cargalleries.deleteAll' ,'cargalleries.delete.image']
         ]);
 
         # cargalleries store
@@ -3028,9 +3102,9 @@ use App\Models\CarStatus;
             'as'        => 'carattachments.index',
             'title'     => 'carattachments',
             'icon'      => '<i class="feather icon-file"></i>',
-            'type'      => 'parent',
-            'sub_route' => false,
-            'child'     => ['carattachments.create', 'carattachments.store','carattachments.edit', 'carattachments.update', 'carattachments.show', 'carattachments.delete'  ,'carattachments.deleteAll' ,'carattachments.delete.image']
+            // 'type'      => 'parent',
+            // 'sub_route' => false,
+            // 'child'     => ['carattachments.create', 'carattachments.store','carattachments.edit', 'carattachments.update', 'carattachments.show', 'carattachments.delete'  ,'carattachments.deleteAll' ,'carattachments.delete.image']
         ]);
 
         # carattachments store
@@ -3087,28 +3161,7 @@ use App\Models\CarStatus;
             'title' => 'delete_image'
         ]);
     /*------------ end Of carattachments ----------*/
-    Route::get('cars-settings', [
-        'as'        => 'cars_settings',
-        'title'     => 'cars_settings',
-        'icon'      => '<i class="feather icon-settings"></i>',
-        'type'      => 'parent',
-        'sub_route' => true,
-        'child'     => [
-            'carstatuses.index','carstatuses.create', 'carstatuses.store','carstatuses.edit', 'carstatuses.update', 'carstatuses.show', 'carstatuses.delete'  ,'carstatuses.deleteAll' ,
-            'damagetypes.index','damagetypes.create', 'damagetypes.store','damagetypes.edit', 'damagetypes.update', 'damagetypes.show', 'damagetypes.delete'  ,'damagetypes.deleteAll' ,
-            'carbrands.index','carbrands.create', 'carbrands.store','carbrands.edit', 'carbrands.update', 'carbrands.show', 'carbrands.delete'  ,'carbrands.deleteAll','carbrands.importFile' ,
-            'carmodels.index','carmodels.create', 'carmodels.store','carmodels.edit', 'carmodels.update', 'carmodels.show', 'carmodels.delete'  ,'carmodels.deleteAll','carmodels.importFile' ,
-            'carcolors.index','carcolors.create', 'carcolors.store','carcolors.edit', 'carcolors.update', 'carcolors.show', 'carcolors.delete'  ,'carcolors.deleteAll' ,
-            'caryears.index','caryears.create', 'caryears.store','caryears.edit', 'caryears.update', 'caryears.show', 'caryears.delete'  ,'caryears.deleteAll' ,
-            'bodytypes.index','bodytypes.create', 'bodytypes.store','bodytypes.edit', 'bodytypes.update', 'bodytypes.show', 'bodytypes.delete'  ,'bodytypes.deleteAll' ,
-            'enginetypes.index','enginetypes.create', 'enginetypes.store','enginetypes.edit', 'enginetypes.update', 'enginetypes.show', 'enginetypes.delete'  ,'enginetypes.deleteAll' ,
-            'enginecylinders.index','enginecylinders.create', 'enginecylinders.store','enginecylinders.edit', 'enginecylinders.update', 'enginecylinders.show', 'enginecylinders.delete'  ,'enginecylinders.deleteAll' ,
-            'transmissiontypes.index','transmissiontypes.create', 'transmissiontypes.store','transmissiontypes.edit', 'transmissiontypes.update', 'transmissiontypes.show', 'transmissiontypes.delete'  ,'transmissiontypes.deleteAll' ,
-            'drivetypes.index','drivetypes.create', 'drivetypes.store','drivetypes.edit', 'drivetypes.update', 'drivetypes.show', 'drivetypes.delete'  ,'drivetypes.deleteAll' ,
-            'fueltypes.index','fueltypes.create', 'fueltypes.store','fueltypes.edit', 'fueltypes.update', 'fueltypes.show', 'fueltypes.delete'  ,'fueltypes.deleteAll' ,
-        ],
-    ]);
-    
+
     /*------------ start Of carstatushistories ----------*/
         // Route::get('carstatushistories', [
         //     'uses'      => 'CarStatusHistoryController@index',
@@ -3176,9 +3229,9 @@ use App\Models\CarStatus;
             'as'        => 'auctions.index',
             'title'     => 'auctions',
             'icon'      => '<i class="feather icon-activity"></i>',
-            'type'      => 'parent',
-            'sub_route' => false,
-            'child'     => ['auctions.create', 'auctions.store','auctions.edit', 'auctions.update', 'auctions.show', 'auctions.delete'  ,'auctions.deleteAll' ,]
+            // 'type'      => 'parent',
+            // 'sub_route' => false,
+            // 'child'     => ['auctions.create', 'auctions.store','auctions.edit', 'auctions.update', 'auctions.show', 'auctions.delete'  ,'auctions.deleteAll' ,]
         ]);
 
         # auctions store
@@ -3237,9 +3290,9 @@ use App\Models\CarStatus;
             'as'        => 'warehouses.index',
             'title'     => 'warehouses',
             'icon'      => '<i class="feather icon-home"></i>',
-            'type'      => 'parent',
-            'sub_route' => false,
-            'child'     => ['warehouses.create', 'warehouses.store','warehouses.edit', 'warehouses.update', 'warehouses.show', 'warehouses.delete'  ,'warehouses.deleteAll' ,]
+            // 'type'      => 'parent',
+            // 'sub_route' => false,
+            // 'child'     => ['warehouses.create', 'warehouses.store','warehouses.edit', 'warehouses.update', 'warehouses.show', 'warehouses.delete'  ,'warehouses.deleteAll' ,]
         ]);
 
         # warehouses store
@@ -3298,9 +3351,9 @@ use App\Models\CarStatus;
             'as'        => 'branches.index',
             'title'     => 'branches',
             'icon'      => '<i class="feather icon-home"></i>',
-            'type'      => 'parent',
-            'sub_route' => false,
-            'child'     => ['branches.create', 'branches.store','branches.edit', 'branches.update', 'branches.show', 'branches.delete'  ,'branches.deleteAll' ,]
+            // 'type'      => 'parent',
+            // 'sub_route' => false,
+            // 'child'     => ['branches.create', 'branches.store','branches.edit', 'branches.update', 'branches.show', 'branches.delete'  ,'branches.deleteAll' ,]
         ]);
 
         # branches store

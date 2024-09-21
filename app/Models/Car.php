@@ -28,9 +28,13 @@ class Car extends BaseModel
                            'auction_id',
                            'distance',
                            'key',
+                           
+                           'title_deeds',
+                           'buyer_number',
 
                            'from_country_id',
                            'region_id',
+                           'city_id',
                            'to_country_id',
                            'warehouse_id',
                            'pickup_location_id',
@@ -132,6 +136,10 @@ class Car extends BaseModel
 
     public function region(){
         return $this->belongsTo(Region::class,'region_id','id');
+    }
+
+    public function city(){
+        return $this->belongsTo(City::class,'city_id','id');
     }
 
     public function carToCountry(){

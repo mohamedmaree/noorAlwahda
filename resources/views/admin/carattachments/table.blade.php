@@ -17,6 +17,8 @@
                 </th>
                 <th>{{__('admin.attachment')}}</th>
                 <th>{{__('admin.car')}}</th>
+                <th>{{__('admin.lot')}}</th>
+                <th>{{__('admin.vin')}}</th>
                 <th>{{__('admin.name')}}</th>
                 <th>{{__('admin.control')}}</th>
             </tr>
@@ -36,6 +38,8 @@
                             <a href="{{ route('admin.cars.show', ['id' => $carattachment->car_id]) }}" > {{  $carattachment->car->car_num}}</a>
                         @endif
                     </td>
+                    <td>{{ $carattachment->car->lot??'' }}</td>
+                    <td>{{ $carattachment->car->vin??'' }}</td>
                     <td>{{ $carattachment->name }}</td>
 
                     

@@ -17,7 +17,7 @@ class Store extends FormRequest
             'car_id'                  => 'required|exists:cars,id',
             'price_type_id'           => 'required|array',
             'amount'                  => 'required|array',
-            'image'                   => 'required',
+            'image'                   => 'nullable',
         ];
     }
 }

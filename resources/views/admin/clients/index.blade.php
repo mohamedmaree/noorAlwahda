@@ -13,7 +13,7 @@
   <div class="col-lg-6 col-12">
     <div class="card">
         <div class="card-header d-flex justify-content-between pb-0">
-            <h4 class="card-title">{{__('admin.main_users')}}</h4>
+            <h4 class="card-title">{{__('admin.clients')}}</h4>
         </div>
         <div class="card-content">
             <div class="card-body py-0">
@@ -45,7 +45,7 @@
   <div class="col-lg-6 col-12">
     <div class="card">
         <div class="card-header d-flex justify-content-between pb-0">
-            <h4 class="card-title">{{__('admin.vip_users')}}</h4>
+            <h4 class="card-title">{{__('admin.clients')}}</h4>
         </div>
         <div class="card-content">
             <div class="card-body py-0">
@@ -264,7 +264,7 @@
         //vip-chart
         new ApexCharts(
             document.querySelector("#vip-chart"),
-            pieChartFunction(['{{ __('admin.vip_users') }}', '{{ __('admin.not_vip_users') }}'] , [ Number('{{$vipUsers}}'), Number('{{$notvipUsers}}')] , ['#7367F0', '#FF9F43'])
+            pieChartFunction(['{{ __('admin.vip_users') }}', '{{ __('admin.middle_users') }}', '{{ __('admin.usual_users') }}'] , [ Number('{{$vipUsers}}'), Number('{{$middleUsers}}'), Number('{{$usualUsers}}')] , ['#7367F0', '#FF9F43','#4CAF50'])
         ).render();
         //mainusers-chart
         new ApexCharts(

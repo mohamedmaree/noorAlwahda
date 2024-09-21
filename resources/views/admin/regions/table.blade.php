@@ -33,7 +33,7 @@
                     </td>
                     <td>{{\Carbon\Carbon::parse($region->created_at)->format('d/m/Y')}}</td>
                     <td>{{ $region->name }}</td>
-                    <td>{{ $region->country->name }}</td>
+                    <td>{{ $region->country->name??'' }}</td>
                     
                     
                     <td class="product-action"> 

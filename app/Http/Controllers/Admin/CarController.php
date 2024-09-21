@@ -34,10 +34,18 @@ use App\Models\CarGalleryImages ;
 use App\Models\CarAttachment ;
 use App\Models\SiteSetting;
 use App\Traits\ResponseTrait;
+use App\Models\city;
 
 class CarController extends Controller
 {
     use ResponseTrait;
+
+    /************ AJAX ****************/
+    public function getBrandModels(Request $request){
+        $models   = CarModels::where(['car_brand_id'=>$request->car_brand_id])->orderBy('name','ASC')->get();
+        return response()->json($models);
+    }
+    /************ AJAX ****************/
 
     public function index($id = null)
     {
@@ -116,6 +124,7 @@ class CarController extends Controller
         $supported_countries = json_decode($supported_countries);
         $countries = Country::whereIn('id',$supported_countries??[])->orderBy('id','ASC')->get();
         $regions = Region::whereIn('country_id',$supported_countries??[])->orderBy('name','ASC')->get();
+        $cities = City::whereIn('country_id',$supported_countries??[])->orderBy('name','ASC')->get();
         $warehouses = Warehouse::orderBy('name','ASC')->get();
         return view('admin.cars.carsByStatus',get_defined_vars());
     }
@@ -140,6 +149,7 @@ class CarController extends Controller
         $supported_countries = json_decode($supported_countries);
         $countries = Country::whereIn('id',$supported_countries??[])->orderBy('id','ASC')->get();
         $regions = Region::whereIn('country_id',$supported_countries??[])->orderBy('name','ASC')->get();
+        $cities = City::whereIn('country_id',$supported_countries??[])->orderBy('name','ASC')->get();
         $warehouses = Warehouse::orderBy('name','ASC')->get();
         $branches = Branch::orderBy('name','ASC')->get();
         $priceTypes = PriceTypes::orderBy('name','ASC')->get();
@@ -225,6 +235,7 @@ class CarController extends Controller
         $supported_countries = json_decode($supported_countries);
         $countries = Country::whereIn('id',$supported_countries??[])->orderBy('id','ASC')->get();
         $regions = Region::whereIn('country_id',$supported_countries??[])->orderBy('name','ASC')->get();
+        $cities = City::whereIn('country_id',$supported_countries??[])->orderBy('name','ASC')->get();
         $warehouses = Warehouse::orderBy('name','ASC')->get();
         $branches = Branch::orderBy('name','ASC')->get();
         $priceTypes = PriceTypes::orderBy('name','ASC')->get();
@@ -238,12 +249,11 @@ class CarController extends Controller
         $car->update($request->validated());
 
         if($request->required_amount){
-            $car->carFinance()->delete();
             $carFinanceArr = [];
             $i = 0;
             foreach($request->price_type_id as $priceType){
                 if(isset($request->required_amount[$i]) ){
-                    CarFinance::create(['car_id' => $car->id,'price_type_id' => $priceType,'required_amount' => $request->required_amount[$i]??'' ]);
+                    CarFinance::updateOrcreate(['car_id' => $car->id,'price_type_id' => $priceType],['required_amount' => $request->required_amount[$i]??'' ]);
                     $i++;
                 }
             }
@@ -302,6 +312,7 @@ class CarController extends Controller
         $supported_countries = json_decode($supported_countries);
         $countries = Country::whereIn('id',$supported_countries??[])->orderBy('id','ASC')->get();
         $regions = Region::whereIn('country_id',$supported_countries??[])->orderBy('name','ASC')->get();
+        $cities = City::whereIn('country_id',$supported_countries??[])->orderBy('name','ASC')->get();
         $warehouses = Warehouse::orderBy('name','ASC')->get();
         $branches = Branch::orderBy('name','ASC')->get();
         $priceTypes = PriceTypes::orderBy('name','ASC')->get();

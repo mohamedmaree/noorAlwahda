@@ -10,6 +10,8 @@ use App\Models\Country;
 use App\Models\Region ;
 use App\Traits\Report;
 
+use App\Imports\RegionImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class RegionController extends Controller
 {
@@ -77,5 +79,12 @@ class RegionController extends Controller
         } else {
             return response()->json('failed');
         }
+    }
+
+    public function importFile(Request $request)
+    {
+        Excel::import(new RegionImport,request()->file('file'));        
+        Report::addToLog('  رفع ملف الولايات') ;
+        return response()->json(['url' => route('admin.regions.index')]);
     }
 }

@@ -5,10 +5,10 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header header-elements-inline">
-                        <h5 class="card-title">{{  __('admin.carfinance') }}</h5>
+                        <h5 class="card-title">{{  __('admin.carfinance') }} </h5>
+                        <span class="text-success"><a href="{{ route('admin.carfinances.print', ['id' => $car->id]) }}" class="btn btn-success btn-sm" target="blank"><i class="feather icon-arrow-down"></i>{{ __('admin.print') }}</a></span>
                     </div>
                     <div class="d-flex justify-content-center btns">
-
                     </div>
                     <div class="card-body">
                         <div class="contain-table">
@@ -69,7 +69,7 @@
                 <div class="card border-right-2 border-left-2 border-right-primary border-left-primary">
                     <div class="card-body">
                         <div class="d-flex">
-                            <h3 class="font-weight-semibold mb-0">{{ number_format($total_required - $total_paid,2) }} </h3>
+                            <h3 class="font-weight-semibold mb-0">{{ number_format($total_required - $total_paid) }} </h3>
                         </div>
                         <div>
                         </div>

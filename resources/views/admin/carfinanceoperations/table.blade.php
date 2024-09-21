@@ -17,6 +17,8 @@
                 </th>
                 <th>{{__('admin.image')}}</th>
                 <th>{{__('admin.car')}}</th>
+                <th>{{__('admin.lot')}}</th>
+                <th>{{__('admin.vin')}}</th>
                 <th>{{__('admin.pricetypes')}}</th>
                 <th>{{__('admin.amount')}}</th>
                 <th>{{__('admin.control')}}</th>
@@ -37,6 +39,8 @@
                             <a href="{{ route('admin.cars.show', ['id' => $carfinanceoperation->car_id]) }}" > {{  $carfinanceoperation->car->car_num}}</a>
                         @endif
                     </td>
+                    <td>{{ $carfinanceoperation->car->lot??'' }}</td>
+                    <td>{{ $carfinanceoperation->car->vin??'' }}</td>
                     <td>
                        {{ $carfinanceoperation->priceType->name??''}}
                     </td>

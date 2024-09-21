@@ -32,8 +32,13 @@ class Store extends FormRequest
             'auction_id'               => 'required|exists:auctions,id',
             'distance'                 => 'required',
             'key'                      => 'required',
+
+            'title_deeds'              => 'nullable',
+            'buyer_number'             => 'nullable',
+
             'from_country_id'          => 'required|exists:countries,id',
             'region_id'                => 'nullable|exists:regions,id',
+            'city_id'                  => 'nullable|exists:cities,id',
             'to_country_id'            => 'nullable|exists:countries,id',
             'warehouse_id'             => 'nullable|exists:warehouses,id',
             'pickup_location_id'       => 'nullable|exists:branches,id',

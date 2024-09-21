@@ -158,10 +158,19 @@
                             <li class="list-group-item d-flex justify-content-between ">
                                 <div class="series-info">
                                     <i class="fa fa-circle font-small-3 text-warning"></i>
-                                    <span class="text-bold-600">{{__('admin.not_vip_users')}}</span>
+                                    <span class="text-bold-600">{{__('admin.middle_users')}}</span>
                                 </div>
                                 <div class="product-result">
-                                    <span>{{$notvipUsers}}</span>
+                                    <span>{{$middleUsers}}</span>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between ">
+                                <div class="series-info">
+                                    <i class="fa fa-circle font-small-3 text-warning"></i>
+                                    <span class="text-bold-600">{{__('admin.usual_users')}}</span>
+                                </div>
+                                <div class="product-result">
+                                    <span>{{$usualUsers}}</span>
                                 </div>
                             </li>
                         </ul>
@@ -323,7 +332,7 @@
         //vip-chart
         new ApexCharts(
             document.querySelector("#vip-chart"),
-            pieChartFunction(['{{ __('admin.vip_users') }}', '{{ __('admin.not_vip_users') }}'] , [ Number('{{$vipUsers}}'), Number('{{$notvipUsers}}')] , ['#7367F0', '#FF9F43'])
+            pieChartFunction(['{{ __('admin.vip_users') }}', '{{ __('admin.middle_users') }}', '{{ __('admin.usual_users') }}'] , [ Number('{{$vipUsers}}'), Number('{{$middleUsers}}'), Number('{{$usualUsers}}')] , ['#7367F0', '#FF9F43','#4CAF50'])
         ).render();
         //mainusers-chart
         new ApexCharts(

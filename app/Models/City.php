@@ -28,7 +28,7 @@ class City extends BaseModel
     {
         parent::boot();
 
-        static::addGlobalScope(new PublishedCitiesScope());
+        // static::addGlobalScope(new PublishedCitiesScope());
     }
 
 }

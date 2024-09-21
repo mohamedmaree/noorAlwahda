@@ -403,15 +403,15 @@ return [
     "new_password_confirm"                                   => ' تأكيد كلمة السر الجديدة',
     "not_old_password"                                       => '  كلمة السر القديمة غير صحيحة',
 
-    'region'                                                 => 'محافظة',
-    'regions'                                                => 'المحافظات',
-    'add_region_page'                                        => 'صفحة اضافة محافظة',
-    'add_region'                                             => 'اضافة محافظة',
-    'update_region_page'                                     => 'صفحة تحديث محافظة',
-    'update_region'                                          => 'تحديث محافظة',
-    'show_region_page'                                       => 'صفحة عرض محافظة',
-    'delete_region'                                          => 'حذف محافظة',
-    'delete_group_of_regions'                                => 'حذف مجموعة من المحافظات',
+    'region'                                                 => 'ولاية',
+    'regions'                                                => 'الولايات',
+    'add_region_page'                                        => 'صفحة اضافة ولاية',
+    'add_region'                                             => 'اضافة ولاية',
+    'update_region_page'                                     => 'صفحة تحديث ولاية',
+    'update_region'                                          => 'تحديث ولاية',
+    'show_region_page'                                       => 'صفحة عرض ولاية',
+    'delete_region'                                          => 'حذف ولاية',
+    'delete_group_of_regions'                                => 'حذف مجموعة من الولايات',
 
 
     'followed_category'                                => 'القسم التابع له',
@@ -434,7 +434,7 @@ return [
     'write'                => 'اكتب',
 
     'clients'    => 'العملاء',
-    'countries_cities'   => 'الدول والمحافظات',
+    'countries_cities'   => 'الدول والولايات',
     'marketing'      => 'التسويق',
     'all_settings'  => 'الاعدادات',
     'delete_multible_question' => 'حذف العديد من الاسئلة',
@@ -443,7 +443,7 @@ return [
     'project'         => 'المشروع',
     'ar'             => 'البيانات بالعربية',
     'en'             => 'البيانات بالانجليزية',
-    'choose_the_region'   => 'اختر المنطقة',
+    'choose_the_region'   => 'اختر الولاية',
     'flag'          => 'علم الدولة',
     'profile_cover'      => 'غلاف الملف الشخصي',
     'language_setting'  => 'اعدادات اللغة',
@@ -935,7 +935,18 @@ return [
     'customer_name' => 'اسم العميل',
     'details'  => 'التفاصيل',
     'recipient_signature'  => 'توقيع المستلم',
-
+    'get_brand_models' => 'فلترة موديلات السيارات حسب النوع',
+    'total'  => 'الاجمالي',
+    'paid_amount'  => 'المبلغ المدفوع',
+    'remaining_amount'  => 'المبلغ المتبقي',
+    'auction_location'  => 'ولاية المزاد',
+    'get_country_regions' => 'فلترة الولايات بالدولة',
+    'get_region_cities' => 'فلترة المدن بالولاية',
+    'city' => 'المدينة',
+    'title_deeds' => 'اوراق ملكية',
+    'buyer_number' => 'باير نمبر',
+    'staff_management' => 'ادارة الموظفين',
+    'finance'   => 'المالية',
 
     #new_comand_translations_here
                 

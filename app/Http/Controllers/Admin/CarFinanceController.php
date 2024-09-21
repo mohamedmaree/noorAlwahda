@@ -14,6 +14,11 @@ use App\Models\PriceTypes ;
 
 class CarFinanceController extends Controller
 {
+    public function print($id){
+        $car = Car::findOrFail($id);
+        return view('admin.carfinances.print' ,get_defined_vars());
+    }
+
     public function index($id = null)
     {
         if (request()->ajax()) {

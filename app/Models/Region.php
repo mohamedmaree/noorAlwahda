@@ -29,7 +29,7 @@ class Region extends BaseModel
     {
         parent::boot();
 
-        static::addGlobalScope(new PublishedRegionsScope());
+        // static::addGlobalScope(new PublishedRegionsScope());
     }
 
 }
