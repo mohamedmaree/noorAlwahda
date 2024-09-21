@@ -19,13 +19,13 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => ['https://nooralwahdah.com'],
 
     'allowed_origins_patterns' => [],
 
     'allowed_headers' => ['*'],
 
-    'exposed_headers' => [],
+    'exposed_headers' => ['Content-Type', 'X-Requested-With', 'Authorization', 'lang'],
 
     'max_age' => 0,
 
