@@ -72,7 +72,7 @@ class Kernel extends HttpKernel {
     'web-cors'                          => \App\Http\Middleware\WebCors::class,
 
     'api-lang'                          => \App\Http\Middleware\Api\ApiLang::class,
-    'api-cors'                          => \App\Http\Middleware\Api\ApiCors::class,
+    // 'api-cors'                          => \App\Http\Middleware\Api\ApiCors::class,
     'OptionalSanctumMiddleware'         => \App\Http\Middleware\Api\OptionalSanctumMiddleware::class,
 
   ];
