@@ -315,6 +315,11 @@ class User extends Authenticatable
         return CarFinance::whereIn('car_id',$carids)->get();
     }
 
+    public function attachments(){
+        return $this->hasMany(UserAttachments::class,'user_id','id');
+    }
+
+
     public static function boot()
     {
         parent::boot();

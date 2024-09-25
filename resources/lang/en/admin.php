@@ -853,4 +853,18 @@ return [
     'buyer_number' => 'Buyer Number',
     'staff_management' => 'Staff Management',
     'finance'   => 'Finance',
+    'print_by_client' => 'print by client',
+    'print_by_car' => 'print by car',
+    'userattachments' => 'Client Attachments',
+    'userattachments' => 'Client Attachments',
+    'add_userattachments_page' => 'Add Client Attachments Page',
+    'add_userattachments' => 'Add Client Attachments',
+    'update_userattachments_page' => 'Update Client Attachments Page',
+    'update_userattachments' => 'Update Client Attachments',
+    'show_userattachments_page' => 'View Client Attachments Page',
+    'delete_userattachments' => 'Delete Client Attachments',
+    'delete_group_of_userattachments' => 'Delete Group of Userattachments',
+
+    'reply_complaint' => 'reply to complaint',
+    'year'  => 'Year',
 ];

@@ -6,6 +6,7 @@
                 <div class="card">
                     <div class="card-header header-elements-inline">
                         <h5 class="card-title">{{  __('admin.carfinanceoperations') }}</h5>
+                        <span class="text-success"><a href="{{ route('admin.carfinanceoperations.print-by-car', ['id' => $car->id]) }}" class="btn btn-success btn-sm" target="blank"><i class="feather icon-arrow-down"></i>{{ __('admin.print') }}</a></span>
                     </div>
                     <div class="d-flex justify-content-center btns">
 

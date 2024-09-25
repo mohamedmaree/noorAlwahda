@@ -947,8 +947,26 @@ return [
     'buyer_number' => 'باير نمبر',
     'staff_management' => 'ادارة الموظفين',
     'finance'   => 'المالية',
+    'print_by_client'  => 'طباعة الخاصة بالعميل',
+    'print_by_car'     => 'طباعة الخاصة بالسيارة',
 
+    
+    'userattachments'                        => 'مرفقات العميل',
+    'userattachments'                       => 'مرفقات العميل',
+    'add_userattachments_page'               => 'صفحة اضافة مرفقات العميل',
+    'add_userattachments'                    => 'اضافة مرفقات العميل',
+    'update_userattachments_page'            => 'صفحة تحديث مرفقات العميل',
+    'update_userattachments'                 => 'تحديث مرفقات العميل',
+    'show_userattachments_page'              => 'صفحة عرض مرفقات العميل',
+    'delete_userattachments'                 => 'حذف مرفقات العميل',
+    'delete_group_of_userattachments'       => 'حذف مجموعة من مرفقات العميل',
+    
+
+    'reply_complaint' => 'الرد علي الشكوي',
+    'year'  => 'السنة',
+    
     #new_comand_translations_here
+                
                 
                 
                 

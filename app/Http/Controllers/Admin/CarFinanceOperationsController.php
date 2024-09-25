@@ -12,6 +12,7 @@ use App\Models\Car ;
 use App\Models\PriceTypes ;
 use App\Models\CarFinance ;
 use App\Traits\ResponseTrait;
+use App\Models\User ;
 
 class CarFinanceOperationsController extends Controller
 {
@@ -25,6 +26,16 @@ class CarFinanceOperationsController extends Controller
     public function print($id){
         $carfinanceoperations = CarFinanceOperations::findOrFail($id);
         return view('admin.carfinanceoperations.print' ,get_defined_vars());
+    }
+
+    public function printByCar($id){
+        $car = Car::findOrFail($id);
+        return view('admin.carfinanceoperations.print-by-car' ,get_defined_vars());
+    }
+
+    public function printByClient($id){
+        $user = User::findOrFail($id);
+        return view('admin.carfinanceoperations.print-by-client' ,get_defined_vars());
     }
 
     public function index($id = null)

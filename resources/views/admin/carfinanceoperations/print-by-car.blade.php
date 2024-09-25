@@ -101,44 +101,30 @@ body {
             <thead>
                 <tr>
                     <th>#</th>
+                    <th>{{ __('admin.amount') }}</th>
                     <th>{{ __('admin.lot') }}</th>
                     <th>{{ __('admin.vin') }}</th>
-                    <th>{{__('admin.pricetype')}}</th>
-                    <th>{{__('admin.required_amount')}}</th>
-                    <th>{{__('admin.paid_amount')}}</th>
+                    <th>{{__('admin.details')}}</th>
                 </tr>
             </thead>
             <tbody>
-                <?php 
-                    $total_required = 0;
-                    $total_paid = 0;
-                ?>
-                @forelse($car->carFinance as $key => $carfinance)
+                @forelse($car->carFinanceOperations as $key => $carFinanceOperation)
                 <tr class="delete_row">
                     <td class="text-center">
                         {{ $key + 1 }}
                     </td>
-                    <td>{{ $carfinance->car->lot??'' }}</td>
-                    <td>{{ $carfinance->car->vin??'' }}</td>
-                    <td>{{ $carfinance->priceType->name??'' }}</td>
-                    <td>{{ $carfinance->required_amount }}</td>
-                    <td>{{ $carfinance->paid_amount }}</td>
+
+                    <td>{{ $carFinanceOperation->amount }}</td>
+                    <td>{{ $carFinanceOperation->car->lot??'' }}</td>
+                    <td>{{ $carFinanceOperation->car->vin??'' }}</td>
+                    <td>{{ $carFinanceOperation->priceType->name??''}}</td>
                     
                 </tr>
-                <?php 
-                    $total_required += str_replace(',','',$carfinance->required_amount); 
-                    $total_paid +=str_replace(',','',$carfinance->paid_amount); 
-                ?>
+
             @empty
             @endforelse
             </tbody>
         </table>
-
-        <div class="amount-section">
-            <p>{{ __('admin.total') }}: {{ $total_required }}</p>
-            <p>{{ __('admin.paid_amount') }}: {{ $total_paid }}</p>
-            <p>{{ __('admin.remaining_amount') }}:{{ number_format($total_required - $total_paid) }}</p>
-        </div>
 
         <div class="signature-section">
             <p>{{ __('admin.recipient_signature') }}:</p>

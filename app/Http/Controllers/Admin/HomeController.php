@@ -22,6 +22,28 @@ use App\Models\CarFinance;
 class HomeController extends Controller
 {
     use Menu ;
+
+    /***************** Ajax *****************/
+    public function getYearlyFinanceOperationsChart(Request $request){
+        $carFinanceOperationsArrayCount    = $this->chartData(new CarFinanceOperations,$request->year);
+        $carFinanceOperationsArraySum      = $this->chartDataFinance(new CarFinanceOperations,$request->year);
+        return view('admin.dashboard.getYearlyFinanceOperationsChart' , get_defined_vars());
+    }
+
+    public function getYearlyFinanceChart(Request $request){
+        $carFinanceCount         = $this->chartData(new CarFinance,$request->year);
+        $carFinanceRequiredSum   = $this->chartDataRequiredFinance(new CarFinance,$request->year);
+        $carFinancePaidSum       = $this->chartDataPaidFinance(new CarFinance,$request->year);
+        return view('admin.dashboard.getYearlyFinanceChart' , get_defined_vars());
+    }
+
+    public function getYearlyAddedCarsChart(Request $request){
+        $carsArray      = $this->chartData(new Car,$request->year);
+        return view('admin.dashboard.getYearlyAddedCarsChart' , get_defined_vars());
+    }
+    
+    /***************** Ajax *****************/
+
     /***************** dashboard *****************/
     public function dashboard()
     {
@@ -95,8 +117,9 @@ class HomeController extends Controller
         return back()->with('success' , __('admin.update_successfullay'));
     }
 
-    public function chartData($model)
+    public function chartData($model,$year=null)
     {
+        $year = ($year)? $year : date('Y');
         $users = $model::select('id', 'created_at')
         ->get()
         ->groupBy(function($date) {
@@ -109,7 +132,7 @@ class HomeController extends Controller
             $usermcount[$key] = count($value);
         }
         for($i = 1; $i <= 12; $i++){
-            $d = ($i < 10 )? date('Y').'-0'.$i : date('Y').'-'.$i;
+            $d = ($i < 10 )? $year.'-0'.$i : $year.'-'.$i;
             if(!empty($usermcount[$d])){
                 $userArr[] = $usermcount[$d];
             }else{
@@ -119,8 +142,9 @@ class HomeController extends Controller
         return $userArr ; 
     }
 
-    public function chartDataFinance($model)
+    public function chartDataFinance($model,$year=null)
     {
+        $year = ($year)? $year : date('Y');
         $users = $model::select('id', 'created_at','amount')
         ->get()
         ->groupBy(function($date) {
@@ -134,7 +158,7 @@ class HomeController extends Controller
             })->sum();
         }
         for($i = 1; $i <= 12; $i++){
-            $d = ($i < 10 )? date('Y').'-0'.$i : date('Y').'-'.$i;
+            $d = ($i < 10 )? $year.'-0'.$i : $year.'-'.$i;
             if(!empty($usermcount[$d])){
                 $userArr[] = $usermcount[$d];
             }else{
@@ -144,8 +168,9 @@ class HomeController extends Controller
         return $userArr ; 
     }
 
-    public function chartDataRequiredFinance($model)
+    public function chartDataRequiredFinance($model,$year=null)
     {
+        $year = ($year)? $year : date('Y');
         $users = $model::select('id', 'created_at','required_amount')
         ->get()
         ->groupBy(function($date) {
@@ -159,7 +184,7 @@ class HomeController extends Controller
             })->sum();
         }
         for($i = 1; $i <= 12; $i++){
-            $d = ($i < 10 )? date('Y').'-0'.$i : date('Y').'-'.$i;
+            $d = ($i < 10 )? $year.'-0'.$i : $year.'-'.$i;
             if(!empty($usermcount[$d])){
                 $userArr[] = $usermcount[$d];
             }else{
@@ -169,8 +194,9 @@ class HomeController extends Controller
         return $userArr ; 
     }
 
-    public function chartDataPaidFinance($model)
+    public function chartDataPaidFinance($model,$year=null)
     {
+        $year = ($year)? $year : date('Y');
         $users = $model::select('id', 'created_at','paid_amount')
         ->get()
         ->groupBy(function($date) {
@@ -184,7 +210,7 @@ class HomeController extends Controller
             })->sum();
         }
         for($i = 1; $i <= 12; $i++){
-            $d = ($i < 10 )? date('Y').'-0'.$i : date('Y').'-'.$i;
+            $d = ($i < 10 )? $year.'-0'.$i : $year.'-'.$i;
             if(!empty($usermcount[$d])){
                 $userArr[] = $usermcount[$d];
             }else{

@@ -35,6 +35,10 @@ trait NotificationMessageTrait
             $transData['amount'] = $notification_data['amount'];
         }
 
+        if (isset($notification_data['car_status'])) {
+            $transData['car_status'] = $notification_data['car_status'];
+        }
+        
         $msg = trans('notification.body_' . $notification_data['type'], $transData, $local);
         return $msg;
     }

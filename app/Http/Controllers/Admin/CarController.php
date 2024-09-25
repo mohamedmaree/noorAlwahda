@@ -35,6 +35,8 @@ use App\Models\CarAttachment ;
 use App\Models\SiteSetting;
 use App\Traits\ResponseTrait;
 use App\Models\City;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\ChangeCarStatusNotification ;
 
 class CarController extends Controller
 {
@@ -100,6 +102,9 @@ class CarController extends Controller
        }
        $car->update(['car_status_id' => $status->id]);
        $car->statusHistory()->create(['car_status_id' => $status->id,'start_date' => date('Y-m-d')]);
+       
+       Notification::send( $car->user , new ChangeCarStatusNotification($car,$status->name));
+
        return response()->json('success');
     }
 

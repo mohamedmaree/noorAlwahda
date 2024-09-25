@@ -86,11 +86,10 @@ body {
     <div class="container">
         <div class="header">
             <div class="receipt-info">
-                <p>{{ __('admin.receipt') }}: #{{ $car->car_num }} </p>
+                <p>{{ __('admin.receipt') }}: #{{ $user->id }} </p>
                 <p>{{ __('admin.date') }}: {{ date('Y-m-d') }}</p>
             </div>
             <h1>{{ __('admin.receipt_voucher') }}</h1>
-            <?php $user = $car->user??'';?>
             <div class="customer-info">
                 <p>{{ __('admin.customer_name') }}: {{ $user->name??'' }}</p>
                 <p>{{ __('admin.phone') }}: {{ $user->full_phone??'' }}</p>
@@ -113,11 +112,12 @@ body {
                     $total_required = 0;
                     $total_paid = 0;
                 ?>
-                @forelse($car->carFinance as $key => $carfinance)
+                @forelse($user->carFinance() as $key => $carfinance)
                 <tr class="delete_row">
                     <td class="text-center">
                         {{ $key + 1 }}
                     </td>
+
                     <td>{{ $carfinance->car->lot??'' }}</td>
                     <td>{{ $carfinance->car->vin??'' }}</td>
                     <td>{{ $carfinance->priceType->name??'' }}</td>

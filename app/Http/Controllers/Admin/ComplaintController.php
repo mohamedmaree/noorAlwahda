@@ -6,6 +6,8 @@ use App\Models\Complaint;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Traits\Report;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\NotifyUser ;
 
 class ComplaintController extends Controller
 {
@@ -29,6 +31,10 @@ class ComplaintController extends Controller
     {
         $complaint = Complaint::findOrFail($id);
         auth('admin')->user()->replays()->create(['replay' => $request->replay , 'complaint_id' => $id]);
+        $data['title'] = __('admin.reply_complaint'); 
+        $data['body'] = $request->replay; 
+        Notification::send( $complaint->user , new NotifyUser($data));
+
         return response()->json(['url' => route('admin.all_complaints')]) ;
     }
 

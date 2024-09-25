@@ -92,6 +92,13 @@
                                         <span class="badge badge-pill bg-primary position-static ml-auto ml-lg-2">{{ $row->carFinanceOperations()->count() }}</span>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="#userattachments" class="navbar-nav-link legitRipple" data-toggle="tab">
+                                        <i class="fa-solid feather icon-file mr-2"></i>
+                                        {{  __('admin.userattachments') }}
+                                        <span class="badge badge-pill bg-primary position-static ml-auto ml-lg-2">{{ $row->attachments()->count() }}</span>
+                                    </a>
+                                </li>
 
                             </ul>
                         </div>
@@ -106,6 +113,7 @@
                                      @include('admin.clients.tabs.orders')
                                      @include('admin.clients.tabs.carFinance')
                                      @include('admin.clients.tabs.carFinanceOperations')
+                                     @include('admin.clients.tabs.userattachments')
                                  </div>
                              </div>
                             <div class="col-md-4">

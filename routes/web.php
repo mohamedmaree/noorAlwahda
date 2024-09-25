@@ -37,6 +37,24 @@ use App\Models\CarStatus;
         'title' => 'orders',
     ]);
 
+    Route::post('getYearlyFinanceOperationsChart/', [
+        'uses'  => 'HomeController@getYearlyFinanceOperationsChart',
+        'as'    => 'getYearlyFinanceOperationsChart',
+        'title' => 'getYearlyFinanceOperationsChart',
+    ]);
+
+    Route::post('getYearlyFinanceChart/', [
+        'uses'  => 'HomeController@getYearlyFinanceChart',
+        'as'    => 'getYearlyFinanceChart',
+        'title' => 'getYearlyFinanceChart',
+    ]);
+
+    Route::post('getYearlyAddedCarsChart/', [
+        'uses'  => 'HomeController@getYearlyAddedCarsChart',
+        'as'    => 'getYearlyAddedCarsChart',
+        'title' => 'getYearlyAddedCarsChart',
+    ]);
+    
     Route::group(['middleware' => ['admin', 'check-role', 'admin-lang']], function () {
         /*------------ start Of profile----------*/
         Route::get('profile', [
@@ -544,6 +562,7 @@ use App\Models\CarStatus;
             'sub_route' => true,
             'child'     => [
                 'clients.index','clients.show', 'clients.block', 'clients.store', 'clients.update', 'clients.delete', 'clients.notify', 'clients.deleteAll', 'clients.create', 'clients.edit','clients.importFile','clients.updateBalance',
+                'userattachments.index','userattachments.create', 'userattachments.store','userattachments.edit', 'userattachments.update', 'userattachments.show', 'userattachments.delete'  ,'userattachments.deleteAll' ,
             ],
         ]);
     /*------------ start Of cars ----------*/
@@ -652,8 +671,8 @@ use App\Models\CarStatus;
         'type'      => 'parent',
         'sub_route' => true,
         'child'     => [
-            'carfinances.index','carfinances.create', 'carfinances.store','carfinances.edit', 'carfinances.update', 'carfinances.show', 'carfinances.delete'  ,'carfinances.deleteAll' ,'carfinances.print',
-            'carfinanceoperations.index','carfinanceoperations.create', 'carfinanceoperations.store','carfinanceoperations.edit', 'carfinanceoperations.update', 'carfinanceoperations.show', 'carfinanceoperations.delete'  ,'carfinanceoperations.deleteAll' ,'carfinanceoperations.get-car-outstanding-finances','carfinanceoperations.print',
+            'carfinances.index','carfinances.create', 'carfinances.store','carfinances.edit', 'carfinances.update', 'carfinances.show', 'carfinances.delete'  ,'carfinances.deleteAll' ,'carfinances.print','carfinances.print-by-client',
+            'carfinanceoperations.index','carfinanceoperations.create', 'carfinanceoperations.store','carfinanceoperations.edit', 'carfinanceoperations.update', 'carfinanceoperations.show', 'carfinanceoperations.delete'  ,'carfinanceoperations.deleteAll' ,'carfinanceoperations.get-car-outstanding-finances','carfinanceoperations.print','carfinanceoperations.print-by-car','carfinanceoperations.print-by-client'
         ],
     ]);
 
@@ -2956,6 +2975,11 @@ use App\Models\CarStatus;
             'as'    => 'carfinances.print',
             'title' => 'print'
         ]); 
+        Route::get('carfinances/{id}/print-by-client', [
+            'uses'  => 'CarFinanceController@printByClient',
+            'as'    => 'carfinances.print-by-client',
+            'title' => 'print_by_client'
+        ]); 
     /*------------ end Of carfinances ----------*/
     
     /*------------ start Of carfinanceoperations ----------*/
@@ -2979,6 +3003,17 @@ use App\Models\CarStatus;
             'uses'  => 'CarFinanceOperationsController@print',
             'as'    => 'carfinanceoperations.print',
             'title' => 'print'
+        ]); 
+        Route::get('carfinanceoperations/{id}/print-by-car', [
+            'uses'  => 'CarFinanceOperationsController@printByCar',
+            'as'    => 'carfinanceoperations.print-by-car',
+            'title' => 'print_by_car'
+        ]); 
+
+        Route::get('carfinanceoperations/{id}/print-by-client', [
+            'uses'  => 'CarFinanceOperationsController@printByClient',
+            'as'    => 'carfinanceoperations.print-by-client',
+            'title' => 'print_by_client'
         ]); 
 
         # carfinanceoperations store
@@ -3407,7 +3442,69 @@ use App\Models\CarStatus;
     /*------------ end Of branches ----------*/
     
 
+    
+    /*------------ start Of userattachments ----------*/
+        Route::get('userattachments', [
+            'uses'      => 'UserAttachmentsController@index',
+            'as'        => 'userattachments.index',
+            'title'     => 'userattachments',
+            'icon'      => '<i class="feather icon-image"></i>',
+            // 'type'      => 'parent',
+            // 'sub_route' => false,
+            // 'child'     => ['userattachments.create', 'userattachments.store','userattachments.edit', 'userattachments.update', 'userattachments.show', 'userattachments.delete'  ,'userattachments.deleteAll' ,]
+        ]);
+
+        # userattachments store
+        Route::get('userattachments/create', [
+            'uses'  => 'UserAttachmentsController@create',
+            'as'    => 'userattachments.create',
+            'title' => 'add_userattachments_page'
+        ]);
+
+
+        # userattachments store
+        Route::post('userattachments/store', [
+            'uses'  => 'UserAttachmentsController@store',
+            'as'    => 'userattachments.store',
+            'title' => 'add_userattachments'
+        ]);
+
+        # userattachments update
+        Route::get('userattachments/{id}/edit', [
+            'uses'  => 'UserAttachmentsController@edit',
+            'as'    => 'userattachments.edit',
+            'title' => 'update_userattachments_page'
+        ]);
+
+        # userattachments update
+        Route::put('userattachments/{id}', [
+            'uses'  => 'UserAttachmentsController@update',
+            'as'    => 'userattachments.update',
+            'title' => 'update_userattachments'
+        ]);
+
+        # userattachments show
+        Route::get('userattachments/{id}/Show', [
+            'uses'  => 'UserAttachmentsController@show',
+            'as'    => 'userattachments.show',
+            'title' => 'show_userattachments_page'
+        ]);
+
+        # userattachments delete
+        Route::delete('userattachments/{id}', [
+            'uses'  => 'UserAttachmentsController@destroy',
+            'as'    => 'userattachments.delete',
+            'title' => 'delete_userattachments'
+        ]);
+        #delete all userattachments
+        Route::post('delete-all-userattachments', [
+            'uses'  => 'UserAttachmentsController@destroyAll',
+            'as'    => 'userattachments.deleteAll',
+            'title' => 'delete_group_of_userattachments'
+        ]);
+    /*------------ end Of userattachments ----------*/
     #new_routes_here
+                     
                      
                      
                      

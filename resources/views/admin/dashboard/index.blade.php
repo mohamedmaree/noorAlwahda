@@ -275,9 +275,24 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-end">
                         <h4 class="card-title">{{__('admin.added_cars')}}</h4>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="controls">
+                                        <select name="year" id="year3" class="form-control"  >
+                                            <option value>{{__('admin.year')}}</option>
+                                            <option value="{{ date('Y') }}"  selected> {{ date('Y') }}</option>
+                                            <option value="{{ (int)date('Y') - 1 }}"  > {{ (int)date('Y') - 1 }}</option>
+                                            <option value="{{ (int)date('Y') - 2 }}"  > {{ (int)date('Y') - 2 }}</option>
+                                            <option value="{{ (int)date('Y') - 3 }}"  > {{ (int)date('Y') - 3 }}</option>
+                                            <option value="{{ (int)date('Y') - 4 }}"  > {{ (int)date('Y') - 4 }}</option>
+                                            <option value="{{ (int)date('Y') - 5 }}"  > {{ (int)date('Y') - 5 }}</option>
+                                        </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-content">
-                        <div class="card-body pb-0">
+                        <div class="card-body pb-0" id="carschart">
                             <div id="revenue-chart"></div>
                         </div>
                     </div>
@@ -289,9 +304,24 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-end">
                         <h4 class="card-title">{{__('admin.carfinanceoperations')}}</h4>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="controls">
+                                        <select name="year" id="year1" class="form-control"  >
+                                            <option value>{{__('admin.year')}}</option>
+                                            <option value="{{ date('Y') }}"  selected> {{ date('Y') }}</option>
+                                            <option value="{{ (int)date('Y') - 1 }}"  > {{ (int)date('Y') - 1 }}</option>
+                                            <option value="{{ (int)date('Y') - 2 }}"  > {{ (int)date('Y') - 2 }}</option>
+                                            <option value="{{ (int)date('Y') - 3 }}"  > {{ (int)date('Y') - 3 }}</option>
+                                            <option value="{{ (int)date('Y') - 4 }}"  > {{ (int)date('Y') - 4 }}</option>
+                                            <option value="{{ (int)date('Y') - 5 }}"  > {{ (int)date('Y') - 5 }}</option>
+                                        </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-content">
-                        <div class="card-body pb-0">
+                        <div class="card-body pb-0" id="carfinanceoperationsChart">
                             <div id="columns-chart"></div>
                         </div>
                     </div>
@@ -303,9 +333,24 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-end">
                         <h4 class="card-title">{{__('admin.carfinances')}}</h4>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="controls">
+                                        <select name="year" id="year2" class="form-control"  >
+                                            <option value>{{__('admin.year')}}</option>
+                                            <option value="{{ date('Y') }}"  selected> {{ date('Y') }}</option>
+                                            <option value="{{ (int)date('Y') - 1 }}"  > {{ (int)date('Y') - 1 }}</option>
+                                            <option value="{{ (int)date('Y') - 2 }}"  > {{ (int)date('Y') - 2 }}</option>
+                                            <option value="{{ (int)date('Y') - 3 }}"  > {{ (int)date('Y') - 3 }}</option>
+                                            <option value="{{ (int)date('Y') - 4 }}"  > {{ (int)date('Y') - 4 }}</option>
+                                            <option value="{{ (int)date('Y') - 5 }}"  > {{ (int)date('Y') - 5 }}</option>
+                                        </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-content">
-                        <div class="card-body pb-0">
+                        <div class="card-body pb-0" id="carfinanceChart">
                             <div id="finance-chart"></div>
                         </div>
                     </div>
@@ -545,5 +590,38 @@
         var chart = new ApexCharts(document.querySelector("#finance-chart"), options);
         chart.render();
     </script>
-    
+        <script>
+        $('#year1').on('change', function(e) { //any select change on the dropdown with id country trigger this code
+                e.preventDefault();
+            var year = $('#year1').val();
+            $.post("<?=route('admin.getYearlyFinanceOperationsChart')?>", {
+                year: year,
+            }, function(data) {
+                $('#carfinanceoperationsChart').html("");
+                $('#carfinanceoperationsChart').append(data);
+            });
+        });
+
+        $('#year2').on('change', function(e) { //any select change on the dropdown with id country trigger this code
+                e.preventDefault();
+            var year = $('#year2').val();
+            $.post("<?=route('admin.getYearlyFinanceChart')?>", {
+                year: year,
+            }, function(data) {
+                $('#carfinanceChart').html("");
+                $('#carfinanceChart').append(data);
+            });
+        });
+
+        $('#year3').on('change', function(e) { //any select change on the dropdown with id country trigger this code
+                e.preventDefault();
+            var year = $('#year3').val();
+            $.post("<?=route('admin.getYearlyAddedCarsChart')?>", {
+                year: year,
+            }, function(data) {
+                $('#carschart').html("");
+                $('#carschart').append(data);
+            });
+        });
+        </script>
 @endsection

@@ -11,4 +11,7 @@ return [
     'title_block' => 'حظر',
     'body_block'  => 'تم حظرك من قبل الادارة',
     
+    'title_change_car_status'  => 'مرحلة جديدة',
+    'body_change_car_status'  => 'تم انتقال السيارة الي مرحلة :car_status',
+    
 ];

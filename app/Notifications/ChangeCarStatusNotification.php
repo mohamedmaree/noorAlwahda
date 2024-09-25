@@ -6,19 +6,18 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use App\Traits\Firebase;
 
-class OrderNotification extends Notification
+class ChangeCarStatusNotification extends Notification
 {
     use Queueable , Firebase;
     protected $receiver, $data;
 
-    public function __construct($order, $reciever)
+    public function __construct($car, $status)
     {
-        $this->receiver = $reciever;
-        
         $this->data     = [
-            'order_id'    => $order->id,
-            'order_num'   => $order->order_num,
-            'type'        => 'finish_order' ,
+            'id'          => $car->id,
+            'car_num'     => $car->car_num,
+            'type'        => 'change_car_status' ,
+            'car_status'  => $status
         ];
     }
     public function via($notifiable)

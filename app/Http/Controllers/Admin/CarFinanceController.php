@@ -10,6 +10,7 @@ use App\Models\CarFinance ;
 use App\Traits\Report;
 use App\Models\Car ;
 use App\Models\PriceTypes ;
+use App\Models\User ;
 
 
 class CarFinanceController extends Controller
@@ -17,6 +18,11 @@ class CarFinanceController extends Controller
     public function print($id){
         $car = Car::findOrFail($id);
         return view('admin.carfinances.print' ,get_defined_vars());
+    }
+
+    public function printByClient($id){
+        $user = User::findOrFail($id);
+        return view('admin.carfinances.print-by-client' ,get_defined_vars());
     }
 
     public function index($id = null)
