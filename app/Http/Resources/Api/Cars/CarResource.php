@@ -4,6 +4,7 @@ namespace App\Http\Resources\Api\Cars;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\Api\Cars\CarGalleryResource;
 
 class CarResource extends JsonResource
 {
@@ -50,6 +51,7 @@ class CarResource extends JsonResource
             'price'                    => $this->price,
             'image'                    => $this->image,
             'outstanding'              => $this->outstanding(),
+            'gallery'                  => CarGalleryResource::collection($this->carGalleries)
           ];
     }
 }
