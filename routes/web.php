@@ -672,7 +672,7 @@ use App\Models\CarStatus;
         'sub_route' => true,
         'child'     => [
             'carfinances.index','carfinances.create', 'carfinances.store','carfinances.edit', 'carfinances.update', 'carfinances.show', 'carfinances.delete'  ,'carfinances.deleteAll' ,'carfinances.print','carfinances.print-by-client',
-            'carfinanceoperations.index','carfinanceoperations.create', 'carfinanceoperations.store','carfinanceoperations.edit', 'carfinanceoperations.update', 'carfinanceoperations.show', 'carfinanceoperations.delete'  ,'carfinanceoperations.deleteAll' ,'carfinanceoperations.get-car-outstanding-finances','carfinanceoperations.print','carfinanceoperations.print-by-car','carfinanceoperations.print-by-client'
+            'carfinanceoperations.index','carfinanceoperations.create', 'carfinanceoperations.store','carfinanceoperations.edit', 'carfinanceoperations.update', 'carfinanceoperations.show', 'carfinanceoperations.delete'  ,'carfinanceoperations.deleteAll' ,'carfinanceoperations.get-car-outstanding-finances','carfinanceoperations.print','carfinanceoperations.print-by-car','carfinanceoperations.print-by-client','carfinanceoperations.print-defined'
         ],
     ]);
 
@@ -3014,6 +3014,12 @@ use App\Models\CarStatus;
             'uses'  => 'CarFinanceOperationsController@printByClient',
             'as'    => 'carfinanceoperations.print-by-client',
             'title' => 'print_by_client'
+        ]); 
+
+        Route::get('carfinanceoperations/print-defined', [
+            'uses'  => 'CarFinanceOperationsController@printDefined',
+            'as'    => 'carfinanceoperations.print-defined',
+            'title' => 'print_defined'
         ]); 
 
         # carfinanceoperations store

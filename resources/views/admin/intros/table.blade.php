@@ -16,6 +16,7 @@
                 </th>
                 <th>{{__('admin.image')}}</th>
                 <th>{{__('admin.address')}}</th>
+                <th>{{__('admin.sort')}}</th>
                 <th>{{__('admin.control')}}</th>
             </tr>
         </thead>
@@ -30,6 +31,7 @@
                     </td>
                     <td><img src="{{$intro->image}}" width="30px" height="30px" alt=""></td>
                     <td>{{$intro->title}}</td>
+                    <td>{{$intro->sort}}</td>
                     <td class="product-action">
                         <span class="text-primary"><a href="{{ route('admin.intros.show', ['id' => $intro->id]) }}" class="btn btn-warning btn-sm"><i class="feather icon-eye"></i> {{ __('admin.show') }}</a></span>
                         <span class="action-edit text-primary"><a href="{{ route('admin.intros.edit', ['id' => $intro->id]) }}" class="btn btn-primary btn-sm"><i class="feather icon-edit"></i>{{ __('admin.edit') }}</a></span>

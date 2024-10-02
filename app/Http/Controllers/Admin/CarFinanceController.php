@@ -34,6 +34,7 @@ class CarFinanceController extends Controller
         }
         $priceTypes = PriceTypes::orderBy('name','ASC')->get();
         $cars = Car::latest()->get();
+        $users = User::orderBy('name','ASC')->get();
         return view('admin.carfinances.index',get_defined_vars());
     }
 

@@ -38,6 +38,16 @@ class CarFinanceOperationsController extends Controller
         return view('admin.carfinanceoperations.print-by-client' ,get_defined_vars());
     }
 
+    public function printDefined(Request $request){
+        $ids = json_decode($request->data);
+        $newIds = [];
+        foreach ($ids as $id) {
+          $newIds[] = $id->id;
+        }
+        $carfinanceoperations = CarFinanceOperations::whereIntegerInRaw('id',$newIds)->get();
+        return view('admin.carfinanceoperations.print-defined' ,get_defined_vars());
+    }
+
     public function index($id = null)
     {
         if (request()->ajax()) {
@@ -47,6 +57,8 @@ class CarFinanceOperationsController extends Controller
         }
         $priceTypes = PriceTypes::orderBy('name','ASC')->get();
         $cars = Car::latest()->get();
+        $users = User::orderBy('name','ASC')->get();
+
         return view('admin.carfinanceoperations.index',get_defined_vars());
     }
 

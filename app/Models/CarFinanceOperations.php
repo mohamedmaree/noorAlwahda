@@ -46,6 +46,11 @@ class CarFinanceOperations extends BaseModel
                           if ($value != null ) {
                               $query->whereJsonContains('price_type_id' , (string)$value);
                           }
+                    }elseif ($key == 'userid') { 
+                        if ($value != null ) {
+                            $cars_ids = Car::where('user_id',$value)->pluck('id')->toArray();
+                            $query->whereIn('car_id' ,$cars_ids);
+                        }
                     }else{
                         if ($value != null ) {
                             $query->Where($key, 'like', '%'.$value.'%');

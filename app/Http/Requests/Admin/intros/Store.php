@@ -16,7 +16,8 @@ class store extends FormRequest
         return [
             'title.*'                  => 'required',
             'description.*'            => 'required',
-            'image'                     => ['required','image'],
+            'image'                    => ['required','image'],
+            'sort'                     => 'nullable',
         ];
     }
 }

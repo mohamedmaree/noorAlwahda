@@ -930,8 +930,8 @@ return [
     'field_required'  => 'لا يمكن تغيير الحالة الا بعد ملأ هذه الحقول :fields',
     'import_file' => 'استيراد ملف',
     'print'   => 'طباعة',
-    'receipt'  => 'إيصال',
-    'receipt_voucher' => 'إيصال استلام',
+    'receipt'  => 'فاتورة',
+    'receipt_voucher' => 'فاتورة',
     'customer_name' => 'اسم العميل',
     'details'  => 'التفاصيل',
     'recipient_signature'  => 'توقيع المستلم',
@@ -949,7 +949,9 @@ return [
     'finance'   => 'المالية',
     'print_by_client'  => 'طباعة الخاصة بالعميل',
     'print_by_car'     => 'طباعة الخاصة بالسيارة',
-
+    'print_defined'     => 'طباعة المحدد',
+    'define_items'  => 'قم بتحديد العناصر المراد طباعتها',
+    
     
     'userattachments'                        => 'مرفقات العميل',
     'userattachments'                       => 'مرفقات العميل',

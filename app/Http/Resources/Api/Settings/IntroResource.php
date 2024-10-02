@@ -12,6 +12,7 @@ class IntroResource extends JsonResource
             'id'          => $this->id,
             'title'       => $this->title,
             'description' => $this->description,
+            'sort'        => $this->sort,
             'image'       => $this->image,
         ];
     }

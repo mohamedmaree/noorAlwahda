@@ -6,7 +6,8 @@
                 <div class="card">
                     <div class="card-header header-elements-inline">
                         <h5 class="card-title">{{  __('admin.carfinanceoperations') }}</h5>
-                        <span class="text-success"><a href="{{ route('admin.carfinanceoperations.print-by-client', ['id' => $row->id]) }}" class="btn btn-success btn-sm" target="blank"><i class="feather icon-arrow-down"></i>{{ __('admin.print') }}</a></span>
+                        {{-- route('admin.carfinanceoperations.print-by-client', ['id' => $row->id]) --}}
+                        <span class="text-success"><a href="#" class="btn btn-success btn-sm print" target="blank"><i class="feather icon-arrow-down"></i>{{ __('admin.print') }}</a></span>
                     </div>
                     <div class="d-flex justify-content-center btns">
 
@@ -16,6 +17,9 @@
                             <table class="table datatable-button-init-basic ">
                                 <thead>
                                 <tr class="text-center">
+                                    <th>
+                                        #
+                                    </th>
                                     <th>#</th>
                                     <th>{{__('admin.image')}}</th>
                                     <th>{{__('admin.pricetype')}}</th>
@@ -26,6 +30,12 @@
                                 <tbody>
                                 @forelse($row->carFinanceOperations() as $key => $carfinanceoperations)
                                     <tr class="delete_row">
+                                        <td class="text-center">
+                                            <label class="container-checkbox">
+                                            <input type="checkbox" class="checkSingle" id="{{ $carfinanceoperations->id }}">
+                                            <span class="checkmark"></span>
+                                            </label>
+                                        </td>
                                         <td class="text-center">
                                             {{ $key + 1 }}
                                         </td>
@@ -58,3 +68,25 @@
     @endif
 
 </div>
+
+@section('js')
+<script>
+    $(document).on('click', '.print', function (e) {
+        e.preventDefault();
+        var ids = [];
+        $('.checkSingle:checked').each(function () {
+            var id = $(this).attr('id');
+            ids.push({
+                id: id,
+            });
+        });
+        var requestData = JSON.stringify(ids);
+        if (ids.length > 0) {
+            var newUrl = '{{ route('admin.carfinanceoperations.print-defined') }}?data=' + requestData;
+            window.location.href = newUrl;
+        }else{
+            alert('{{ __('admin.define_items') }}');
+        }
+    });
+</script>
+@endsection

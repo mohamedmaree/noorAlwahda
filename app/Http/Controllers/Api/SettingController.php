@@ -84,7 +84,7 @@ class SettingController extends Controller {
   }
 
   public function intros() {
-    $intros = IntroResource::collection(Intro::latest()->get());
+    $intros = IntroResource::collection(Intro::orderBy('sort','ASC')->get());
     return $this->successData( $intros);
   }
 

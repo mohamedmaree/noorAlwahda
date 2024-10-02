@@ -29,7 +29,11 @@
             'rows'       => $priceTypes , 
             'input_name' => __('admin.pricetypes') , 
         ] ,
-        
+        'userid' => [
+            'input_type' => 'select' , 
+            'rows'       => $users , 
+            'input_name' => __('admin.client') , 
+        ] ,
     ]" 
 >
 
