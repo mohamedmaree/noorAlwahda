@@ -112,9 +112,10 @@ class SettingController extends Controller {
   }
 
   public function countries() {
-    $supported_countries = SiteSetting::where('key','countries')->first()->value??'';
-    $supported_countries = json_decode($supported_countries);
-    $countries = CountryResource::collection(Country::whereIn('id',$supported_countries??[])->latest()->get());
+    // $supported_countries = SiteSetting::where('key','countries')->first()->value??'';
+    // $supported_countries = json_decode($supported_countries);
+    // $countries = CountryResource::collection(Country::whereIn('id',$supported_countries??[])->latest()->get());
+    $countries = CountryResource::collection(Country::orderBy('name','ASC')->get());
     return $this->successData( $countries);
   }
 
