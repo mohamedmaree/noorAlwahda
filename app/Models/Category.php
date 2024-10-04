@@ -52,7 +52,9 @@ class Category extends BaseModel
       }
 
     public function numcars(){
-        return Car::where('user_id',auth()->id())->whereIn('car_status_id',$this->car_statuses_ids??[])->count();
+        $ids = auth()->user()->childes()->pluck('id')->toArray();
+        $ids[] = auth()->id();
+        return Car::whereIn('user_id',$ids)->whereIn('car_status_id',$this->car_statuses_ids??[])->count();
     }
     // public function childes(){
     //     return $this->hasMany(self::class,'parent_id');

@@ -16,6 +16,8 @@ class ChangeCarStatusNotification extends Notification
         $this->data     = [
             'id'          => $car->id,
             'car_num'     => $car->car_num,
+            'vin'         => $car->vin,
+            'lot'         => $car->lot,
             'type'        => 'change_car_status' ,
             'car_status'  => $status
         ];
