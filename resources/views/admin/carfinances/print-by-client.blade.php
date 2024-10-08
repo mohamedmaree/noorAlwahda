@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ __('admin.receipt_voucher') }}</title>
+    <title>{{ __('admin.invoice') }}</title>
     {{-- <link rel="stylesheet" href="index.css"> --}}
     <style>
 * {
@@ -79,17 +79,29 @@ body {
 .footer .contact-info, .footer .address-info {
     text-align: center;
 }
-    </style>
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+.logo img{
+    max-height: 100px;
+}
+</style>
 
 </head>
 <body>
     <div class="container">
+        <div class="logo">
+            <img src="{{ $settings['logo'] }}" alt="">
+        </div>
         <div class="header">
             <div class="receipt-info">
-                <p>{{ __('admin.receipt') }}: #{{ $user->id }} </p>
+                <p>{{ __('admin.invoice') }}: #{{ $user->id }} </p>
                 <p>{{ __('admin.date') }}: {{ date('Y-m-d') }}</p>
             </div>
-            <h1>{{ __('admin.receipt_voucher') }}</h1>
+            <h1>{{ __('admin.invoice') }}</h1>
             <div class="customer-info">
                 <p>{{ __('admin.customer_name') }}: {{ $user->name??'' }}</p>
                 <p>{{ __('admin.phone') }}: {{ $user->full_phone??'' }}</p>

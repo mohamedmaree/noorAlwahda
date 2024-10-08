@@ -25,6 +25,17 @@ class CarFinanceController extends Controller
         return view('admin.carfinances.print-by-client' ,get_defined_vars());
     }
 
+    public function printDefined(Request $request){
+        $ids = json_decode($request->data);
+        $newIds = [];
+        foreach ($ids as $id) {
+          $newIds[] = $id->id;
+        }
+        $carfinances = CarFinance::whereIntegerInRaw('id',$newIds)->get();
+        return view('admin.carfinances.print-defined' ,get_defined_vars());
+    }
+
+
     public function index($id = null)
     {
         if (request()->ajax()) {

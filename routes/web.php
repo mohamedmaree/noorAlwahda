@@ -671,8 +671,8 @@ use App\Models\CarStatus;
         'type'      => 'parent',
         'sub_route' => true,
         'child'     => [
-            'carfinances.index','carfinances.create', 'carfinances.store','carfinances.edit', 'carfinances.update', 'carfinances.show', 'carfinances.delete'  ,'carfinances.deleteAll' ,'carfinances.print','carfinances.print-by-client',
-            'carfinanceoperations.index','carfinanceoperations.create', 'carfinanceoperations.store','carfinanceoperations.edit', 'carfinanceoperations.update', 'carfinanceoperations.show', 'carfinanceoperations.delete'  ,'carfinanceoperations.deleteAll' ,'carfinanceoperations.get-car-outstanding-finances','carfinanceoperations.print','carfinanceoperations.print-by-car','carfinanceoperations.print-by-client','carfinanceoperations.print-defined'
+            'carfinances.index','carfinances.create', 'carfinances.store','carfinances.edit', 'carfinances.update', 'carfinances.show', 'carfinances.delete'  ,'carfinances.deleteAll' ,'carfinances.print','carfinances.print-by-client','carfinances.print-defined',
+            'carfinanceoperations.index','carfinanceoperations.create', 'carfinanceoperations.store','carfinanceoperations.edit', 'carfinanceoperations.update', 'carfinanceoperations.show', 'carfinanceoperations.delete'  ,'carfinanceoperations.deleteAll' ,'carfinanceoperations.get-car-outstanding-finances','carfinanceoperations.print','carfinanceoperations.print-by-car','carfinanceoperations.print-by-client','carfinanceoperations.print-defined',
         ],
     ]);
 
@@ -2979,6 +2979,11 @@ use App\Models\CarStatus;
             'uses'  => 'CarFinanceController@printByClient',
             'as'    => 'carfinances.print-by-client',
             'title' => 'print_by_client'
+        ]); 
+        Route::get('carfinances/print-defined', [
+            'uses'  => 'CarFinanceController@printDefined',
+            'as'    => 'carfinances.print-defined',
+            'title' => 'print_defined'
         ]); 
     /*------------ end Of carfinances ----------*/
     

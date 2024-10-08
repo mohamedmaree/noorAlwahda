@@ -6,7 +6,8 @@
                 <div class="card">
                     <div class="card-header header-elements-inline">
                         <h5 class="card-title">{{  __('admin.carfinance') }} </h5>
-                        <span class="text-success"><a href="{{ route('admin.carfinances.print', ['id' => $car->id]) }}" class="btn btn-success btn-sm" target="blank"><i class="feather icon-arrow-down"></i>{{ __('admin.print') }}</a></span>
+                        {{-- <span class="text-success"><a href="{{ route('admin.carfinances.print', ['id' => $car->id]) }}" class="btn btn-success btn-sm" target="blank"><i class="feather icon-arrow-down"></i>{{ __('admin.print') }}</a></span> --}}
+                        <span class="text-success"><a href="#" class="btn btn-success btn-sm print_finance" target="blank"><i class="feather icon-arrow-down"></i>{{ __('admin.print') }}</a></span>
                     </div>
                     <div class="d-flex justify-content-center btns">
                     </div>
@@ -15,6 +16,9 @@
                             <table class="table datatable-button-init-basic ">
                                 <thead>
                                 <tr class="text-center">
+                                    <th>
+                                        #
+                                    </th>
                                     <th>#</th>
                                     <th>{{__('admin.pricetype')}}</th>
                                     <th>{{__('admin.required_amount')}}</th>
@@ -29,6 +33,12 @@
                                 ?>
                                 @forelse($car->carFinance as $key => $carfinance)
                                     <tr class="delete_row">
+                                        <td class="text-center">
+                                            <label class="container-checkbox">
+                                            <input type="checkbox" class="checkSingle" id="{{ $carfinance->id }}">
+                                            <span class="checkmark"></span>
+                                            </label>
+                                        </td>
                                         <td class="text-center">
                                             {{ $key + 1 }}
                                         </td>
@@ -86,3 +96,4 @@
     @endif
 
 </div>
+

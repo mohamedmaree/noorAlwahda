@@ -79,11 +79,23 @@ body {
 .footer .contact-info, .footer .address-info {
     text-align: center;
 }
-    </style>
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+.logo img{
+    max-height: 100px;
+}
+</style>
 
 </head>
 <body>
     <div class="container">
+        <div class="logo">
+            <img src="{{ $settings['logo'] }}" alt="">
+        </div>
         <div class="header">
             <div class="receipt-info">
                 <p>{{ __('admin.receipt') }}: #{{ $user->id }} </p>

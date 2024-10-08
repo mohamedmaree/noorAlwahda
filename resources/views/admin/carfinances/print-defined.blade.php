@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ __('admin.receipt_voucher') }}</title>
+    <title>{{ __('admin.invoice') }}</title>
     {{-- <link rel="stylesheet" href="index.css"> --}}
     <style>
 * {
@@ -88,7 +88,6 @@ body {
 .logo img{
     max-height: 100px;
 }
-
 </style>
 
 </head>
@@ -99,10 +98,12 @@ body {
         </div>
         <div class="header">
             <div class="receipt-info">
-                <p>{{ __('admin.receipt') }}: #{{ $car->car_num }} </p>
+                <?php $car = $carfinances->first()->car;?>
+                <p>{{ __('admin.invoice') }}: #{{ $car->car_num??'' }} </p>
                 <p>{{ __('admin.date') }}: {{ date('Y-m-d') }}</p>
             </div>
-            <h1>{{ __('admin.receipt_voucher') }}</h1>
+
+            <h1>{{ __('admin.invoice') }}</h1>
             <?php $user = $car->user??'';?>
             <div class="customer-info">
                 <p>{{ __('admin.customer_name') }}: {{ $user->name??'' }}</p>
@@ -114,26 +115,34 @@ body {
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>{{ __('admin.amount') }}</th>
                     <th>{{ __('admin.lot') }}</th>
                     <th>{{ __('admin.vin') }}</th>
-                    <th>{{__('admin.details')}}</th>
+                    <th>{{__('admin.pricetype')}}</th>
+                    <th>{{__('admin.required_amount')}}</th>
+                    <th>{{__('admin.paid_amount')}}</th>
                 </tr>
             </thead>
             <tbody>
-                @forelse($car->carFinanceOperations as $key => $carFinanceOperation)
+                <?php 
+                    $total_required = 0;
+                    $total_paid = 0;
+                ?>
+                @forelse($carfinances as $key => $carfinance)
                 <tr class="delete_row">
                     <td class="text-center">
                         {{ $key + 1 }}
                     </td>
-
-                    <td>{{ $carFinanceOperation->amount }}</td>
-                    <td>{{ $carFinanceOperation->car->lot??'' }}</td>
-                    <td>{{ $carFinanceOperation->car->vin??'' }}</td>
-                    <td>{{ $carFinanceOperation->priceType->name??''}}</td>
+                    <td>{{ $carfinance->car->lot??'' }}</td>
+                    <td>{{ $carfinance->car->vin??'' }}</td>
+                    <td>{{ $carfinance->priceType->name??'' }}</td>
+                    <td>{{ $carfinance->required_amount }}</td>
+                    <td>{{ $carfinance->paid_amount }}</td>
                     
                 </tr>
-
+                <?php 
+                    $total_required += str_replace(',','',$carfinance->required_amount); 
+                    $total_paid +=str_replace(',','',$carfinance->paid_amount); 
+                ?>
             @empty
             @endforelse
             </tbody>

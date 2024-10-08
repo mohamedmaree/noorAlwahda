@@ -67,24 +67,4 @@
 
 </div>
 
-@section('js')
-<script>
-    $(document).on('click', '.print', function (e) {
-        e.preventDefault();
-        var ids = [];
-        $('.checkSingle:checked').each(function () {
-            var id = $(this).attr('id');
-            ids.push({
-                id: id,
-            });
-        });
-        var requestData = JSON.stringify(ids);
-        if (ids.length > 0) {
-            var newUrl = '{{ route('admin.carfinanceoperations.print-defined') }}?data=' + requestData;
-            window.location.href = newUrl;
-        }else{
-            alert('{{ __('admin.define_items') }}');
-        }
-    });
-</script>
-@endsection
+
